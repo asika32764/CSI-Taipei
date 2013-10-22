@@ -15,7 +15,13 @@ $execute = function($path) use($app)
     
     $template = $template ?: 'index';
     
-    $app->render($template . '.twig', array('path' => $path, 'uri' => array('base' => $base)));
+    $data = array(
+        'path' => $path,
+        'uri'  => array('base' => $base),
+        'helper' => new DI\Helper()
+    );
+    
+    $app->render($template . '.twig', $data);
 };
 
 $app->get('/', $execute);
