@@ -1,2 +1,58 @@
 {% extends "_index.twig" %}
 
+{% block body %}
+    <div class="container result-index">
+        <div class="row">
+
+            <div class="col-lg-8">
+
+                <div id="search-box" class="row">
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <legend>重新搜尋</legend>
+
+                            {% include "result/index_search.twig" %}
+
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div id="result-table" class="row">
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <legend>檢索結果</legend>
+
+                            {% include "result/index_table.twig" %}
+
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+            {#Related Entries#}
+            <div class="col-lg-4">
+                <fieldset>
+                    <legend>相關搜索</legend>
+
+                    <h3>您現在搜索的是:</h3>
+                    <p>黃俊傑; Chun Chieh; Chun-Chieh; Huang</p>
+
+                    <h3>其他相關搜索</h3>
+                    <ul>
+                        <li>
+                            <a href="{{ uri.base }}result/index?q=黃俊傑; Chun Chieh; Huang">
+                                黃俊傑; Chun Chieh; Huang
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ uri.base }}result/index?q=黃俊傑; Huang">
+                                黃俊傑; Huang
+                            </a>
+                        </li>
+                    </ul>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

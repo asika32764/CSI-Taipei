@@ -1,0 +1,137 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th class="text-center">資料庫</th>
+        <th class="text-center">分析項目</th>
+        <th class="text-center">數量</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    {#課程大綱#}
+    <tr>
+        <th rowspan="3">課程大綱</th>
+        <td>
+            <a href="{{ uri.base }}result/list/index">被引用</a>
+        </td>
+        <td>
+            {{ random(3000) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{ uri.base }}result/list/index">自我引用</a>
+        </td>
+        <td>
+            {{ random(200) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{ uri.base }}result/list/index">課程大綱數量</a>
+        </td>
+        <td>
+            {{ random(120) }}
+        </td>
+    </tr>
+
+    {#博碩士論文#}
+    <tr>
+        <th rowspan="2">
+            博碩士論文資料庫
+        </th>
+        <td>
+            <a href="{{ uri.base }}result/list/index">指導論文次數</a>
+        </td>
+        <td>
+            {{ random(150) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{ uri.base }}result/list/index">論文參考文獻次數</a>
+        </td>
+        <td>
+            {{ random(130) }}
+        </td>
+    </tr>
+
+    {#報紙資料庫#}
+    <tr>
+        <th rowspan="2">
+            報紙資料庫
+        </th>
+        <td>
+            <a href="{{ uri.base }}result/list/index">著作篇數</a>
+        </td>
+        <td>
+            {{ random(150) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{ uri.base }}result/list/index">被提及次數</a>
+        </td>
+        <td>
+            {{ random(130) }}
+        </td>
+    </tr>
+
+    {#雜誌資料庫#}
+    <tr>
+        <th rowspan="2">
+            雜誌資料庫
+        </th>
+        <td>
+            <a href="{{ uri.base }}result/list/index">著作篇數</a>
+        </td>
+        <td>
+            {{ random(150) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{ uri.base }}result/list/index">被提及次數</a>
+        </td>
+        <td>
+            {{ random(130) }}
+        </td>
+    </tr>
+
+    {#維基百科#}
+    <tr>
+        <th>
+            維基百科
+        </th>
+        <td>
+            <a href="{{ uri.base }}result/list/index">被提及次與列為參考文獻</a>
+        </td>
+        <td>
+            {{ random(20) }}
+        </td>
+    </tr>
+
+    {#Webometrics#}
+    <tr>
+        <th rowspan="2">
+            Webometrics
+        </th>
+        <td>
+            <a href="{{ uri.base }}result/list/index">Google</a>
+        </td>
+        <td>
+            {{ random(10000000) }}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{ uri.base }}result/list/index">Yahoo</a>
+        </td>
+        <td>
+            {{ random(1000000) }}
+        </td>
+    </tr>
+
+    </tbody>
+</table>
