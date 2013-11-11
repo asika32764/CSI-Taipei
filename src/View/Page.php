@@ -17,7 +17,7 @@ class Page extends \Slim\View
         }
         
         $loader = new \Twig_Loader_Filesystem($this->getTemplatesDirectory());
-        $loader->addPath(PROTOTYPE_ROOT . '/src/template');
+        $loader->addPath(PROTOTYPE_ROOT . '/src/Template');
         
         $twig = new \Twig_Environment($loader);
         
