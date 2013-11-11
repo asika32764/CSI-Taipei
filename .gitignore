@@ -29,3 +29,4 @@ Thumbs.db
 # Project #
 /cache/*
 !/cache/index.html
+.idea/

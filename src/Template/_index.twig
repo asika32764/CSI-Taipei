@@ -4,17 +4,17 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="../../assets/ico/favicon.png" />
-        
+
         <title>{% block title %}CSI Taipei{% endblock %}</title>
-        
+
         <!-- Bootstrap core CSS -->
         <link href="{{ uri.base }}/assets/css/bootstrap.css" rel="stylesheet">
-    
+
         <!-- Custom styles for this template -->
         <link href="{{ uri.base }}/assets/css/prototype.css" rel="stylesheet">
     </head>
     <body>
-        
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -31,15 +31,15 @@
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
+                <!--/.nav-collapse -->
             </div>
         </div>
-        
+
         <div id="main-body">
             {% block body %}{% endblock %}
         </div>
-        
-        
+
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->

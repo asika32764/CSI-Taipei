@@ -1,0 +1,44 @@
+{% extends "_index.twig" %}
+
+{% block body %}
+<div class="waiting-page container">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                搜尋中，請稍候 24 小時。
+            </div>
+
+            <h2>是否需要 Email 通知</h2>
+
+            <form class="form-inline" action="">
+                <div class="form-grou col-lg-9">
+                    <input type="text" class="form-control" placeholder="Your Email"/>
+                </div>
+                <div class="col-lg-3">
+                    <button class="btn btn-primary">
+                        Submit
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-default pull-left" href="{{ uri.base }}index">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                搜尋其他項目
+            </a>
+            <a class="btn btn-default pull-right" href="{{ uri.base }}result/index">
+                直接到結果頁面
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
