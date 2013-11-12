@@ -7,6 +7,12 @@ fieldset {
     margin-bottom: 30px;
 }
 
+/* TYPO */
+body ,
+h1, h2, h3, h4, h5{
+	font-family: "constantia", "微軟正黑體";
+}
+
 
 /* LAYOUT */
 
@@ -14,6 +20,12 @@ fieldset {
     padding-top: 40px;
 }
 
+
+/*HEADER*/
+.navbar-brand {
+	font-size: 180%;
+	text-transform: uppercase;
+}
 
 /* FORM */
 
