@@ -21,7 +21,7 @@ $execute = function($path = array()) use($app)
         'helper' => new DI\Helper()
     );
     
-    $app->render($template . '.twig', $data);
+    $app->render($template, $data);
 };
 
 $app->get('/', $execute);
