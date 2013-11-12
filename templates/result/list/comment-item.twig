@@ -1,0 +1,28 @@
+{% set user = random(['Simon', 'Andy', 'Eddy', 'Don', 'George', 'Anna', 'Natalie']) %}
+
+{% set content = random(['書是理想的伴侶，不能怨，給你的頸根與胸膛一半日的自由，在這不自然的世界上，我猜想，怎樣她們為怕你起來鬧，你才知道靈魂的愉快是怎樣的，
+            但我最後見你的時候你才不滿四月，今天已是壯年；昨天腮邊還帶著圓潤的笑渦，你去時也還是一個光亮，他們承著你的體重卻不叫你記起你還有一雙腳在你的底下。',
+            '稍稍疏洩我的積愫，你愛好音樂的故事，輕繞著你的肩腰，流，軟弱時有督責，一則因為這道是你自願才來走的，不止是苦，是貝德花芬是槐格納你就愛，
+            你才偷偷的爬起來，我們始終不曾明白，你穿來的白衣不曾沾著一斑的泥污。'])
+%}
+
+<div class="comment-item">
+
+    <div class="info">
+        <img src="http://placehold.it/64x64" alt="avatar" align="left" style="margin-right: 10px" />
+
+        <h3>{{ user }}</h3>
+        <span class="text-muted">
+            2013-10-09
+        </span>
+
+        <br /><br />
+    </div>
+
+    <div class="content">
+        <p>
+            {{ content }}
+        </p>
+    </div>
+
+</div>
