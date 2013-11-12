@@ -1,0 +1,111 @@
+{% extends "_index.twig" %}
+
+{% block body %}
+    <div id="esult-list" class="container">
+
+        <div class="page-header">
+            <h1>搜尋結果列表 <small>黃俊傑; Chun Chieh; Chun-Chieh; Huang</small></h1>
+        </div>
+
+        <div id="filter-bar" class="row">
+            <div class="col-lg-8">
+                <a class="btn btn-default" href="{{ uri.base }}result">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                    回前頁
+                </a>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                        <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <hr />
+
+        <div class="row">
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="text-center"><input type="checkbox" /></th>
+                    <th class="text-center">標題</th>
+                    <th class="text-center">連結類型</th>
+                    <th class="text-center">檔案類型</th>
+                    <th class="text-center">是否是課綱</th>
+                    <th class="text-center">被引</th>
+                    <th class="text-center">自引</th>
+                    <th class="text-center">詳情</th>
+                    <th class="text-center">ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in 1..10 %}
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>
+                        <a href="{{ uri.base }}result/list/item">統計學課程大綱</a> <br />
+                        <a class="text-muted" href="http://cc.shu.edu.tw/~econ/DOCUMENT/cte/CT/Common-Teaching-statistics.pdf">
+                            <small>http://cc.shu.edu.tw/~econ/DOCUMENT/cte/CT/Common-Teaching-statistics.pdf</small>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <span class="label label-default">Normal</span>
+                    </td>
+                    <td class="text-center">
+                        {{ random(['html', 'pdf', 'doc']) }}
+                    </td>
+                    <td class="text-center">
+                        {% set btn1 = random([['ok', 'success'], ['remove', 'danger']]) %}
+                        <button class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-{{ btn1[0] }} text-{{ btn1[1] }}"></i>
+                        </button>
+                    </td>
+                    <td class="text-center">
+                        {% set btn2 = btn1[0] == 'ok' ? random([['ok', 'success'], ['remove', 'danger']]) : ['remove', 'danger'] %}
+                        <button class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-{{ btn2[0] }} text-{{ btn2[1] }}"></i>
+                        </button>
+                    </td>
+                    <td class="text-center">
+                        {% set btn2 = btn1[0] == 'ok' ? random([['ok', 'success'], ['remove', 'danger']]) : ['remove', 'danger'] %}
+                        <button class="btn btn-default btn-sm">
+                            <i class="glyphicon glyphicon-{{ btn2[0] }} text-{{ btn2[1] }}"></i>
+                        </button>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-info btn-sm" href="{{ uri.base }}result/list/item">詳情</a>
+                    </td>
+                    <td class="text-center">
+                        {{ i + 100548 }}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+                <tfoot>
+                <tr>
+                    <td class="text-center" colspan="10">
+                        <ul class="pagination">
+                            <li><a href="#">&laquo;</a></li>
+                            {% for i in 1..10 %}
+                                <li><a href="#">{{ i }}</a></li>
+                            {% endfor %}
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}
