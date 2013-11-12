@@ -1,0 +1,30 @@
+{% extends "global/admin/panel.twig" %}
+
+{% block body %}
+    {{ helper.debug.show(path) }}
+
+    <div id="result-list" class="container">
+
+        <div class="page-header">
+            {% block header %}
+                <h1>Admin Panel</h1>
+            {% endblock %}
+        </div>
+
+        <div id="filter-bar" class="row">
+            {% block toolbar %}{% endblock %}
+        </div>
+
+        <hr />
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                {% block content %}
+                    Here is table content.
+                {% endblock %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

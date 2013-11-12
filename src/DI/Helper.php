@@ -23,7 +23,7 @@ class Helper extends SlimHelper
             
             $this->singleton($key, function($this) use($class)
             {
-                return new $class;
+                return new $class($this);
             });
         }
         

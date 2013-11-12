@@ -14,12 +14,17 @@ $execute = function($path = array()) use($app)
     $template = implode('/', $path);
     
     $template = $template ?: 'index';
+
+	$helper = new DI\Helper();
     
     $data = array(
         'path' => $path,
-        'uri'  => array('base' => $base),
-        'helper' => new DI\Helper()
+        'uri'  => array('base' => $base)
     );
+
+	$helper->set('data', $data);
+
+	$data['helper'] = $helper;
     
     $app->render($template, $data);
 };

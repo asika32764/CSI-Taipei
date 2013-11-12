@@ -7,6 +7,13 @@ namespace DI;
  */
 abstract class BaseHelper
 {
+	protected $helper;
+
+	public function __construct($helper = null)
+	{
+		$this->helper = $helper;
+	}
+
     /**
      * __invoke description
      *
