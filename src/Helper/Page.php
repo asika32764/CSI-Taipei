@@ -13,6 +13,20 @@ class Page extends Helper
 		return $path;
 	}
 
+	public function getID($path)
+	{
+		$path = implode('-', $path);
+
+		return $path;
+	}
+
+	public function getClass($path)
+	{
+		$path = implode(' ', $path);
+
+		return $path;
+	}
+
 	public function isActive($path, $key)
 	{
 		$path = implode('.', $path);

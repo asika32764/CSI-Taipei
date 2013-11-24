@@ -16,6 +16,6 @@ class Entry extends Helper
 			'陳光華; Quang-Hua Chen'
 		);
 
-		return $names[rand(0,2)];
+		return $names[rand(0,4)];
 	}
 }

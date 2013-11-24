@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block body %}
-    <div id="result-list" class="container">
+    <div id="{{ helper.page.getID(path) }}" class="container {{ helper.page.getClass(path) }}">
 
         <div class="page-header">
             {% block header %}

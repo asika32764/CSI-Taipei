@@ -17,7 +17,6 @@ h1, h2, h3, h4, h5{
 
 
 /* LAYOUT */
-
 #main-body {
     padding-top: 40px;
 }
@@ -30,8 +29,19 @@ h1, h2, h3, h4, h5{
 }
 
 /* FORM */
-
 #eng-name-form .form-control {
     width: auto;
 }
 
+/* TABLE */
+.table th
+{
+	text-align: center;
+}
+
+/* DETAIL LIST */
+.dl-horizontal dt,
+.dl-horizontal dd
+{
+	margin-bottom: 5px;
+}

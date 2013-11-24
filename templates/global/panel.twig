@@ -1,7 +1,7 @@
 {% extends "_index.twig" %}
 
 {% block body %}
-    <div id="esult-list" class="container">
+    <div id="{{ helper.page.getID(path) }}" class="container {{ helper.page.getClass(path) }}">
 
         <div class="page-header">
             {% block header %}
