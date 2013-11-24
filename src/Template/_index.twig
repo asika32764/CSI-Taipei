@@ -8,10 +8,16 @@
         <title>{% block title %}CSI Taipei{% endblock %}</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="{{ uri.base }}/assets/css/bootstrap.css" rel="stylesheet">
+        <link href="{{ uri.base }}assets/css/bootstrap.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="{{ uri.base }}/assets/css/prototype.css" rel="stylesheet">
+        <link href="{{ uri.base }}assets/css/prototype.css" rel="stylesheet">
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ uri.base }}assets/js/jquery.js"></script>
+        <script src="{{ uri.base }}assets/js/bootstrap.min.js"></script>
     </head>
     <body>
 
@@ -40,11 +46,5 @@
         <div id="main-body">
             {% block body %}{% endblock %}
         </div>
-
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{{ uri.base }}/assets/js/jquery.js"></script>
-        <script src="{{ uri.base }}/assets/js/bootstrap.min.js"></script>
     </body>
 </html>

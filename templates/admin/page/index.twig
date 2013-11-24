@@ -1,10 +1,15 @@
 {% extends "global/admin/panel-list.twig" %}
 
 {% block header %}
-    <h1>Entry List</h1>
+    <h1>Pages List <small>唐牧群; Muh-Chyun Tang [Syllabus]</small></h1>
 {% endblock %}
 
 {% block buttons %}
+    <a class="btn btn-default" href="../task/index">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        回前頁
+    </a>
+
     <a class="btn btn-danger" href="#">
         <i class="glyphicon glyphicon-remove"></i>
         刪除
@@ -12,12 +17,20 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table table-striped">
+    <script>
+        $(document).ready(function(){
+            $('#modal').on('show.bs.modal', function (e) {
+                var iframe = $(this).find('iframe');
+
+                iframe.attr('src', e.relatedTarget.href);
+            });
+        });
+    </script>
     <table class="table table-striped">
         <thead>
         <tr>
             <th class="text-center"><input type="checkbox" /></th>
-            <th class="text-center">索引</th>
+            <th class="text-center">標題</th>
             <th class="text-center">連結類型</th>
             <th class="text-center">檔案類型</th>
             <th class="text-center">是否是課綱</th>
@@ -30,17 +43,22 @@
         <tbody>
         {% for i in 1..10 %}
             <tr>
-                <td class="text-center">
+                <td>
                     <input type="checkbox" />
                 </td>
                 <td>
-                    <a href="edit">{{ helper.entry.buildKey() }}</a>
+                    <a href="{{ uri.base }}result/list/item">統計學課程大綱</a> <br />
+                    <a class="text-muted" href="http://cc.shu.edu.tw/~econ/DOCUMENT/cte/CT/Common-Teaching-statistics.pdf" target="_blank">
+                        <small>http://cc.shu.edu.tw/~econ/DOCUMENT/cte/CT/Common-Teaching-statistics.pdf</small>
+                    </a>
                 </td>
                 <td class="text-center">
                     <span class="label label-default">Normal</span>
                 </td>
                 <td class="text-center">
+                    <a data-toggle="modal" href="http://cc.shu.edu.tw/~econ/DOCUMENT/cte/CT/Common-Teaching-statistics.pdf" data-target="#modal">
                     {{ random(['html', 'pdf', 'doc']) }}
+                    </a>
                 </td>
                 <td class="text-center">
                     {% set btn1 = random([['ok', 'success'], ['remove', 'danger']]) %}
@@ -78,4 +96,23 @@
         </tr>
         </tfoot>
     </table>
+
+    {#MODAL#}
+    <div id="modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+
+                    <iframe src="" frameborder="0" width="100%" height="400px"></iframe>
+
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 {% endblock %}
