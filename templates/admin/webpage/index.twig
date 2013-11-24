@@ -1,0 +1,74 @@
+{% extends "global/admin/panel-list.twig" %}
+
+{% block header %}
+    <h1>Web Page List</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th class="text-center"><input type="checkbox" /></th>
+            <th class="text-center">索引</th>
+            <th class="text-center">連結類型</th>
+            <th class="text-center">檔案類型</th>
+            <th class="text-center">是否是課綱</th>
+            <th class="text-center">被引</th>
+            <th class="text-center">自引</th>
+            <th class="text-center">詳情</th>
+            <th class="text-center">ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in 1..10 %}
+            <tr>
+                <td class="text-center">
+                    <input type="checkbox" />
+                </td>
+                <td>
+                    <a href="edit">{{ helper.entry.buildKey() }}</a>
+                </td>
+                <td class="text-center">
+                    <span class="label label-default">Normal</span>
+                </td>
+                <td class="text-center">
+                    {{ random(['html', 'pdf', 'doc']) }}
+                </td>
+                <td class="text-center">
+                    {% set btn1 = random([['ok', 'success'], ['remove', 'danger']]) %}
+                    <button class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-{{ btn1[0] }} text-{{ btn1[1] }}"></i>
+                    </button>
+                </td>
+                <td class="text-center">
+                    {% set btn2 = btn1[0] == 'ok' ? random([['ok', 'success'], ['remove', 'danger']]) : ['remove', 'danger'] %}
+                    <button class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-{{ btn2[0] }} text-{{ btn2[1] }}"></i>
+                    </button>
+                </td>
+                <td class="text-center">
+                    {% set btn2 = btn1[0] == 'ok' ? random([['ok', 'success'], ['remove', 'danger']]) : ['remove', 'danger'] %}
+                    <button class="btn btn-default btn-sm">
+                        <i class="glyphicon glyphicon-{{ btn2[0] }} text-{{ btn2[1] }}"></i>
+                    </button>
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-info btn-sm" href="{{ uri.base }}result/list/item">詳情</a>
+                </td>
+                <td class="text-center">
+                    {{ i + 100548 }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <td class="text-center" colspan="10">
+                {% include "global/blocks/pagination.twig" %}
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}
