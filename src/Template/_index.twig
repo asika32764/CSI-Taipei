@@ -27,8 +27,10 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
+                        {% block nav %}
                         <li class="active"><a href="{{ uri.base }}index">Home</a></li>
-                        <li><a href="{{ uri.base }}admin/index">Admin</a></li>
+                        <li><a href="{{ uri.base }}admin/entry/index">Admin</a></li>
+                        {% endblock %}
                     </ul>
                 </div>
                 <!--/.nav-collapse -->

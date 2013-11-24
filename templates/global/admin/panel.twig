@@ -1,5 +1,23 @@
 {% extends "global/panel.twig" %}
 
+{% block nav %}
+    <li>
+        <a href="{{ uri.base }}index"><small><i class="glyphicon glyphicon-chevron-left"></i></small> Front-End</a>
+    </li>
+
+    <li class="{{ helper.page.isActive(path, 'admin.entry') }}">
+        <a href="{{ uri.base }}admin/entry/index">Entry</a>
+    </li>
+
+    <li class="{{ helper.page.isActive(path, 'admin.task') }}">
+        <a href="{{ uri.base }}admin/task/index">Task</a>
+    </li>
+
+    <li class="{{ helper.page.isActive(path, 'admin.webpage') }}">
+        <a href="{{ uri.base }}admin/webpage/index">Webpage</a>
+    </li>
+{% endblock %}
+
 {% block body %}
     <div id="result-list" class="container">
 

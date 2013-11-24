@@ -37,10 +37,10 @@ class Page extends \Slim\View
     {
         $twig = $this->getTwig();
 
-	    if (!is_file(PROTOTYPE_ROOT . '/templates/' . $template . '.twig'))
+	    /*if (!is_file(PROTOTYPE_ROOT . '/templates/' . $template . '.twig'))
 	    {
 		    $template = $template . '/index';
-	    }
+	    }*/
         
         return $twig->render($template . '.twig', $this->data->all());
     }

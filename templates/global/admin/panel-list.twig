@@ -1,30 +1,27 @@
 {% extends "global/admin/panel.twig" %}
 
-{% block body %}
-    {{ helper.debug.show(path) }}
+{% block toolbar %}
+    <div class="col-lg-8">
+        {% block buttons %}
+            <a class="btn btn-success" href="edit">
+                <i class="glyphicon glyphicon-plus"></i>
+                新增
+            </a>
 
-    <div id="result-list" class="container">
+            <a class="btn btn-danger" href="#">
+                <i class="glyphicon glyphicon-remove"></i>
+                刪除
+            </a>
+        {% endblock %}
+    </div>
 
-        <div class="page-header">
-            {% block header %}
-                <h1>Admin Panel</h1>
-            {% endblock %}
-        </div>
-
-        <div id="filter-bar" class="row">
-            {% block toolbar %}{% endblock %}
-        </div>
-
-        <hr />
-
-        <div class="row">
-
-            <div class="col-lg-12">
-                {% block content %}
-                    Here is table content.
-                {% endblock %}
-            </div>
-
+    <div class="col-lg-4">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i></button>
+            </span>
         </div>
     </div>
 {% endblock %}
