@@ -18,10 +18,12 @@
         <tr>
             <th class="text-center"><input type="checkbox" /></th>
             <th class="text-center">索引</th>
+            <th class="text-center">資料庫</th>
             <th class="text-center">搜尋頁面數</th>
-            <th class="text-center">總筆數</th>
+            <th class="text-center">有效頁面</th>
             <th class="text-center">分析完成度</th>
             <th class="text-center">觀看所有頁面</th>
+            <th class="text-center">建立時間</th>
             <th class="text-center">ID</th>
         </tr>
         </thead>
@@ -37,9 +39,13 @@
                     <input type="checkbox" />
                 </td>
 
-                <td>
+                <td class="text-center">
                     <a href="edit">{{ title }} [{{ db }}]</a>
-                </td class="text-center">
+                </td>
+
+                <td class="text-center">
+                    {{ db }}
+                </td>
 
                 <td class="text-center">
                     {% set pages = random(9) + 1 %}
@@ -64,6 +70,10 @@
                     <a class="btn btn-sm btn-info" href="../page/index">
                         觀看所有頁面
                     </a>
+                </td>
+
+                <td>
+                    2013-10-10
                 </td>
 
                 <td class="text-center">

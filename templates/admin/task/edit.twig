@@ -17,6 +17,15 @@
         <fieldset>
             <legend>基本資訊</legend>
             <dl class="dl-horizontal">
+                <dt>ID</dt>
+                <dd>65465</dd>
+
+                <dt>任務名稱</dt>
+                <dd>唐牧群; Muh-Chyun Tang [Syllabus]</dd>
+
+                <dt>資料庫</dt>
+                <dd>Syllabus</dd>
+
                 <dt>搜尋時間</dt>
                 <dd>2013-10-10</dd>
 
@@ -27,7 +36,7 @@
                 <dd>1000</dd>
 
                 <dt>使用的關鍵字</dt>
-                <dd>唐牧群; Muh-Chyun Tang</dd>
+                <dd>("黃俊傑" OR "Huang Chun Chieh" OR "Chun Chieh, Huang" OR "Chun-Chieh Huang" OR "Huang, Chun-Chieh" ) AND (課程大綱 OR "Syllabus")</dd>
 
                 <dt></dt>
                 <dd></dd>
@@ -39,19 +48,22 @@
             <thead>
                 <tr>
                     <th>
+                        頁數
+                    </th>
+                    <th>
                         編號
                     </th>
                     <th width="15%">
-                        查看頁面
+                        頁面快取
                     </th>
                     <th>
-                        頁數
+                        儲存頁面數
+                    </th>
+                    <th>
+                        分析頁面數
                     </th>
                     <th width="15%">
                         查看搜尋結果
-                    </th>
-                    <th>
-
                     </th>
                 </tr>
             </thead>
@@ -59,24 +71,27 @@
             <tbody>
                 {% for i in 1..10 %}
                     <tr>
-                        <td>
+                        <td class="text-center">
+                            {{ loop.index }}
+                        </td>
+                        <td class="text-center">
                             {{ i + 100548 }}
                         </td>
-                        <td>
+                        <td class="text-center">
                             <a class="btn btn-info btn-sm" href="{{ uri.base }}admin/searchpage/index">
-                                查看頁面
+                                頁面快取
                             </a>
                         </td>
-                        <td>
-                            {{ i }}
+                        <td class="text-center">
+                            90 / 100
                         </td>
-                        <td>
+                        <td class="text-center">
+                            90
+                        </td>
+                        <td class="text-center">
                             <a class="btn btn-primary btn-sm" href="{{ uri.base }}admin/page/index">
                                 搜尋結果
                             </a>
-                        </td>
-                        <td>
-
                         </td>
                     </tr>
                 {% endfor %}
