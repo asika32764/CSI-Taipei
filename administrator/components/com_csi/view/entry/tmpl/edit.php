@@ -22,9 +22,7 @@ $item      = $data->item;
 
 // Setting tabset
 $tabs = array(
-	'tab_basic',
-	'tab_advanced',
-	'tab_rules'
+	'tab_basic'
 )
 ?>
 <div id="csi" class="windwalker entry edit-form row-fluid">

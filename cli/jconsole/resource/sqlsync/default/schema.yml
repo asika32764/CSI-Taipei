@@ -314,6 +314,112 @@
         search_term: { Field: search_term, Type: varchar(128), 'Null': NO, Default: '', Extra: '', Comment: '', From: [search_term] }
         hits: { Field: hits, Type: 'int(10) unsigned', 'Null': NO, Default: '0', Extra: '', Comment: '', From: [hits] }
     index: {  }
+'#__csi_entries':
+    name: '#__csi_entries'
+    from:
+        - '#__csi_entries'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [created_by] }
+        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+    index:
+        - { Table: '#__csi_entries', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_entries', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_pages':
+    name: '#__csi_pages'
+    from:
+        - '#__csi_pages'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        asset_id: { Field: asset_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [asset_id] }
+        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [parent_id] }
+        lft: { Field: lft, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [lft] }
+        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [rgt] }
+        level: { Field: level, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [level] }
+        path: { Field: path, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [path] }
+        catid: { Field: catid, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [catid] }
+        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
+        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [alias] }
+        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        introtext: { Field: introtext, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [introtext] }
+        fulltext: { Field: fulltext, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [fulltext] }
+        images: { Field: images, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [images] }
+        version: { Field: version, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [version] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [created_by] }
+        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified] }
+        modified_by: { Field: modified_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified_by] }
+        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
+        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        publish_up: { Field: publish_up, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [publish_up] }
+        publish_down: { Field: publish_down, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [publish_down] }
+        checked_out: { Field: checked_out, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [access] }
+        language: { Field: language, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [language] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+    index:
+        - { Table: '#__csi_pages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_access, Seq_in_index: '1', Column_name: access, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_path, Seq_in_index: '1', Column_name: path, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_left_right, Seq_in_index: '1', Column_name: lft, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_left_right, Seq_in_index: '2', Column_name: rgt, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_alias, Seq_in_index: '1', Column_name: alias, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_createdby, Seq_in_index: '1', Column_name: catid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_checkout, Seq_in_index: '1', Column_name: checked_out, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '2', Column_name: access, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_pages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '3', Column_name: catid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_tasks':
+    name: '#__csi_tasks'
+    from:
+        - '#__csi_tasks'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        asset_id: { Field: asset_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [asset_id] }
+        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [parent_id] }
+        lft: { Field: lft, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [lft] }
+        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [rgt] }
+        level: { Field: level, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [level] }
+        path: { Field: path, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [path] }
+        catid: { Field: catid, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [catid] }
+        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
+        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [alias] }
+        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        introtext: { Field: introtext, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [introtext] }
+        fulltext: { Field: fulltext, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [fulltext] }
+        images: { Field: images, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [images] }
+        version: { Field: version, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [version] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [created_by] }
+        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified] }
+        modified_by: { Field: modified_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified_by] }
+        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
+        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        publish_up: { Field: publish_up, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [publish_up] }
+        publish_down: { Field: publish_down, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [publish_down] }
+        checked_out: { Field: checked_out, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [checked_out] }
+        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
+        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [access] }
+        language: { Field: language, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [language] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+    index:
+        - { Table: '#__csi_tasks', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_access, Seq_in_index: '1', Column_name: access, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_path, Seq_in_index: '1', Column_name: path, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_left_right, Seq_in_index: '1', Column_name: lft, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_left_right, Seq_in_index: '2', Column_name: rgt, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_alias, Seq_in_index: '1', Column_name: alias, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_createdby, Seq_in_index: '1', Column_name: catid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: idx_checkout, Seq_in_index: '1', Column_name: checked_out, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: cat_index, Seq_in_index: '2', Column_name: access, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: cat_index, Seq_in_index: '3', Column_name: catid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__extensions':
     name: '#__extensions'
     from:
@@ -375,7 +481,7 @@
         - ['100', PHPMailer, library, phpmailer, '', '0', '1', '1', '1', '{"name":"PHPMailer","type":"library","creationDate":"2001","author":"PHPMailer","copyright":"(c) 2001-2003, Brent R. Matzelle, (c) 2004-2009, Andy Prevost. All Rights Reserved., (c) 2010-2013, Jim Jagielski. All Rights Reserved.","authorEmail":"jimjag@gmail.com","authorUrl":"https:\/\/github.com\/PHPMailer\/PHPMailer","version":"5.2.6","description":"LIB_PHPMAILER_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['101', SimplePie, library, simplepie, '', '0', '1', '1', '1', '{"name":"SimplePie","type":"library","creationDate":"2004","author":"SimplePie","copyright":"Copyright (c) 2004-2009, Ryan Parman and Geoffrey Sneddon","authorEmail":"","authorUrl":"http:\/\/simplepie.org\/","version":"1.2","description":"LIB_SIMPLEPIE_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['102', phputf8, library, phputf8, '', '0', '1', '1', '1', '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\/\/sourceforge.net\/projects\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
-        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '1', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"8397a56e3d5a40b3d6af16f8a4dc16e6"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '1', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"ba96f38ca4edfb16af68ed13c4dbed29"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['104', 'IDNA Convert', library, idna_convert, '', '0', '1', '1', '1', '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\/\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\/\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['105', FOF, library, fof, '', '0', '1', '1', '1', '{"name":"FOF","type":"library","creationDate":"2013-12-14","author":"Nicholas K. Dionysopoulos \/ Akeeba Ltd","copyright":"(C)2011-2013 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\/\/www.akeebabackup.com","version":"2.1.1","description":"LIB_FOF_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['106', PHPass, library, phpass, '', '0', '1', '1', '1', '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\/\/www.openwall.com\/phpass\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
@@ -447,6 +553,7 @@
         - ['10006', 'Asikart QuickIcons Module', module, mod_akquickicons, '', '1', '1', '2', '0', '{"name":"Asikart QuickIcons Module","type":"module","creationDate":"2012-08-11","author":"Asika","copyright":"Copyright (C) 2005 - 2012 http:\/\/asikart.com","authorEmail":"asika@asikart.com","authorUrl":"http:\/\/asikart.com","version":"1.4","description":"MOD_AKQUICKICONS_INSTALL_DESC","group":""}', '{"get_icon_from_plugins":"1","cache":"1","cache_time":"900","cachemode":"static"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['10007', 'System - Asikart Easy Set', plugin, asikart_easyset, system, '0', '1', '1', '0', '{"name":"System - Asikart Easy Set","type":"plugin","creationDate":"2011-06-28","author":"Asikart.com","copyright":"(C) 2013 Asikart.com. All rights reserved.","authorEmail":"asika@asikart.com","authorUrl":"http:\/\/asikart.com","version":"2.6.4","description":"Asikart Easy Set. Easy setup Joomla! Site!","group":""}', '{"includejQuery":"0","includeBootstrap":"0","colorTable":"0","tidyRepair":"0","smoothScroll":"0","getImages":"0","blogViewClearly":"0","blogViewImgWidth":"150","blogViewImgCrop":"0","blogViewCleanTags":"0","blogViewMaxChar":"250","autoThumbnail":"0","onlyLocalhostThumb":"1","tranAlias":"0","originLan":"","tranLan":"","spacer3":"","seo":"0","titleFix":"{%TITLE%} | {%SITE%}","titleSeparator":"|","getMeta":"0","maxMetaChar":"250","insertHeader":"","openGraph":"0","ogDefaultImage":"","ogDefaultImageOnlyFrontPage":"1","ogAdminId":"","ogPageId":"","ogAppId":"","fbLike":"0","fbLikeOnBlog":"0","fbLikePosition":"3","inputCodeBase":"","insertArticleTop":"","insertTitleBottom":"","insertContentTop":"","insertContentBottom":"","showOnBlog":"1","showNumber":"3","adminSecureCode":"ezset","languageOrphan":"0","languageOrphanPath":"logs\/language.ini","cacheManagerEnabled":"0","cacheControlType":"exclude"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['10008', windwalker, library, windwalker, '', '0', '1', '1', '0', '{"name":"windwalker","type":"library","creationDate":"2012-11-23","author":"Asika","copyright":"Copyright (C) 2013. All rights reserved.","authorEmail":"asika32764@gmail.com","authorUrl":"http:\/\/asikart.com","version":"3.3.7","description":"LIB_WINDWALKER_XML_DESC","group":""}', '{}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['10009', com_csi, component, com_csi, '', '1', '1', '1', '0', '{"name":"com_csi","type":"component","creationDate":"2014-1-11","author":"Asika","copyright":"Copyright (C) 2014. All rights reserved.","authorEmail":"asika32764@gmail.com","authorUrl":"http:\/\/asikart.com","version":"1.0.0","description":"COM_CSI_XML_DESCRIPTION","group":""}', '{}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
 '#__languages':
     name: '#__languages'
     from:
@@ -520,7 +627,7 @@
         - { Table: '#__menu', Non_unique: '1', Key_name: idx_path, Seq_in_index: '1', Column_name: path, Sub_part: '255', 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__menu', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['1', '', Menu_Item_Root, root, '', '', '', '', '1', '0', '0', '0', '0', '0000-00-00 00:00:00', '0', '0', '', '0', '', '0', '19', '0', '*', '0']
+        - ['1', '', Menu_Item_Root, root, '', '', '', '', '1', '0', '0', '0', '0', '0000-00-00 00:00:00', '0', '0', '', '0', '', '0', '21', '0', '*', '0']
         - ['10', menu, com_messages, Messaging, '', Messaging, 'index.php?option=com_messages', component, '0', '1', '1', '15', '0', '0000-00-00 00:00:00', '0', '0', 'class:messages', '0', '', '1', '6', '0', '*', '1']
         - ['11', menu, com_messages_add, 'New Private Message', '', 'Messaging/New Private Message', 'index.php?option=com_messages&task=message.add', component, '0', '10', '2', '15', '0', '0000-00-00 00:00:00', '0', '0', 'class:messages-add', '0', '', '2', '3', '0', '*', '1']
         - ['12', menu, com_messages_read, 'Read Private Message', '', 'Messaging/Read Private Message', 'index.php?option=com_messages', component, '0', '10', '2', '15', '0', '0000-00-00 00:00:00', '0', '0', 'class:messages-read', '0', '', '4', '5', '0', '*', '1']
@@ -530,6 +637,7 @@
         - ['24', main, com_postinstall, 'Post-installation messages', '', 'Post-installation messages', 'index.php?option=com_postinstall', component, '0', '1', '1', '32', '0', '0000-00-00 00:00:00', '0', '1', 'class:postinstall', '0', '', '13', '14', '0', '*', '1']
         - ['101', mainmenu, Home, home, '', home, 'index.php?option=com_content&view=featured', component, '1', '1', '1', '22', '0', '0000-00-00 00:00:00', '0', '1', '', '0', '{"featured_categories":[""],"layout_type":"blog","num_leading_articles":"1","num_intro_articles":"3","num_columns":"3","num_links":"0","multi_column_order":"1","orderby_pri":"","orderby_sec":"front","order_date":"","show_pagination":"2","show_pagination_results":"1","show_title":"","link_titles":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_noauth":"","show_feed_link":"1","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":1,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', '15', '16', '1', '*', '0']
         - ['102', main, COM_AKQUICKICONS, com-akquickicons, '', com-akquickicons, 'index.php?option=com_akquickicons', component, '0', '1', '1', '10004', '0', '0000-00-00 00:00:00', '0', '1', components/com_akquickicons/images/admin-icons/menu-akquickicons.png, '0', '', '17', '18', '0', '', '1']
+        - ['103', main, COM_CSI, com-csi, '', com-csi, 'index.php?option=com_csi', component, '0', '1', '1', '10009', '0', '0000-00-00 00:00:00', '0', '1', 'class:component', '0', '', '19', '20', '0', '', '1']
 '#__menu_types':
     name: '#__menu_types'
     from:
@@ -901,11 +1009,11 @@
     index:
         - { Table: '#__update_sites', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: update_site_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['1', 'Joomla Core', collection, 'http://update.joomla.org/core/list.xml', '1', '1393045878', '']
-        - ['2', 'Joomla Extension Directory', collection, 'http://update.joomla.org/jed/list.xml', '1', '1393045878', '']
-        - ['3', 'Accredited Joomla! Translations', collection, 'http://update.joomla.org/language/translationlist_3.xml', '1', '1393045878', '']
-        - ['4', 'WebInstaller Update Site', extension, 'http://appscdn.joomla.org/webapps/jedapps/webinstaller.xml', '1', '1393045878', '']
-        - ['5', 'Asikart QuickIcons', extension, 'http://asikart.com/update/com_akquickicons.xml', '1', '1393045878', '']
+        - ['1', 'Joomla Core', collection, 'http://update.joomla.org/core/list.xml', '1', '1393049686', '']
+        - ['2', 'Joomla Extension Directory', collection, 'http://update.joomla.org/jed/list.xml', '1', '1393049686', '']
+        - ['3', 'Accredited Joomla! Translations', collection, 'http://update.joomla.org/language/translationlist_3.xml', '1', '1393049686', '']
+        - ['4', 'WebInstaller Update Site', extension, 'http://appscdn.joomla.org/webapps/jedapps/webinstaller.xml', '1', '1393049686', '']
+        - ['5', 'Asikart QuickIcons', extension, 'http://asikart.com/update/com_akquickicons.xml', '1', '1393049686', '']
         - ['6', 'Asikart Easyset', extension, 'http://update.asikart.com/plugin/system/asikart_easyset.xml', '0', '0', '']
 '#__update_sites_extensions':
     name: '#__update_sites_extensions'
@@ -1117,7 +1225,7 @@
         - { Table: '#__users', Non_unique: '1', Key_name: username, Seq_in_index: '1', Column_name: username, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__users', Non_unique: '1', Key_name: email, Seq_in_index: '1', Column_name: email, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['319', 'Super User', asika32764, asika32764@gmail.com, $P$DdI/rlsB.7Q/N/rI.7/c0O5pbt17f71, '0', '1', '2014-02-22 05:08:43', '2014-02-22 05:09:13', '0', '', '0000-00-00 00:00:00', '0', '', '']
+        - ['319', 'Super User', asika32764, asika32764@gmail.com, $P$DdI/rlsB.7Q/N/rI.7/c0O5pbt17f71, '0', '1', '2014-02-22 05:08:43', '2014-02-22 08:46:50', '0', '', '0000-00-00 00:00:00', '0', '', '']
 '#__viewlevels':
     name: '#__viewlevels'
     from:
