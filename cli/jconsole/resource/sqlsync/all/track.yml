@@ -12,6 +12,9 @@ table:
     '#__content_types': all
     '#__contentitem_tag_map': all
     '#__core_log_searches': all
+    '#__csi_entries': all
+    '#__csi_pages': all
+    '#__csi_tasks': all
     '#__extensions': all
     '#__finder_filters': all
     '#__finder_links': all
