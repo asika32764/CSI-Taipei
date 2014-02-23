@@ -46,12 +46,20 @@ class Route
 	 */
 	public static function build($resource, $data = array(), $xhtml = true, $ssl = null)
 	{
-		list($option, $resource) = explode('.', $resource, 2);
+		$resource = explode('.', $resource, 2);
+
+		if (count($resource) == 2)
+		{
+			$data['option'] = $resource[0];
+			$data['view']   = $resource[1];
+		}
+		elseif (count($resource) == 1)
+		{
+			$data['option'] = $resource[0];
+			$data['view']   = null;
+		}
 
 		$url = new \JUri;
-
-		$data['option'] = $option;
-		$data['view']   = $resource;
 
 		$menu = \JFactory::getApplication()->getMenu();
 

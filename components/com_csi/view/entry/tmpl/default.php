@@ -14,7 +14,7 @@
 			<br />
 			<?php echo \Windwalker\Router\Route::_('com_csi.result', array('task' => '123')); ?>
 			<br />
-			<?php echo \Windwalker\Router\Route::_('com_csi.task', array('task' => '123')); ?>
+			<?php echo \Windwalker\Router\Route::_('com_csi', array('task' => '123')); ?>
 			<fieldset>
 				<legend>請輸入檢索字串</legend>
 

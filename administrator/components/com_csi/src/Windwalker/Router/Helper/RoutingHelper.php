@@ -75,7 +75,7 @@ class RoutingHelper
 		{
 			if (empty($map->pattern) || empty($map->view))
 			{
-				throw new \LogicException('Are you kidding me? no map, no run! Add pattern and view to: ' . $name);
+				// throw new \LogicException('Are you kidding me? no map, no run! Add pattern and view to: ' . $name);
 			}
 
 			$router->addMap($map->pattern, $map->view)
