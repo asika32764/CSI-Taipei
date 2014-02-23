@@ -9,9 +9,12 @@ table:
     '#__content_types': all
     '#__contentitem_tag_map': all
     '#__core_log_searches': all
+    '#__csi_enginepages': cols
     '#__csi_entries': cols
+    '#__csi_notifies': cols
     '#__csi_pages': cols
     '#__csi_tasks': cols
+    '#__csi_webpages': cols
     '#__extensions': all
     '#__languages': all
     '#__menu': all

@@ -1,3 +1,19 @@
+'#__csi_enginepages':
+    name: '#__csi_enginepages'
+    from:
+        - '#__csi_enginepages'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
+        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        total: { Field: total, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [total] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
+        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+    index:
+        - { Table: '#__csi_enginepages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_enginepages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_entries':
     name: '#__csi_entries'
     from:
@@ -12,59 +28,49 @@
     index:
         - { Table: '#__csi_entries', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_notifies':
+    name: '#__csi_notifies'
+    from:
+        - '#__csi_notifies'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        mail: { Field: mail, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [mail] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+    index:
+        - { Table: '#__csi_notifies', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_notifies', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_pages':
     name: '#__csi_pages'
     from:
         - '#__csi_pages'
     columns:
         id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        asset_id: { Field: asset_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [asset_id] }
-        parent_id: { Field: parent_id, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [parent_id] }
-        lft: { Field: lft, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [lft] }
-        rgt: { Field: rgt, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [rgt] }
-        level: { Field: level, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [level] }
-        path: { Field: path, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [path] }
-        catid: { Field: catid, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [catid] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
+        enginepage_id: { Field: enginepage_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [enginepage_id] }
+        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: null, Extra: '', Comment: '', From: [state] }
         title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        alias: { Field: alias, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [alias] }
         url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
-        introtext: { Field: introtext, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [introtext] }
-        fulltext: { Field: fulltext, Type: mediumtext, 'Null': NO, Default: null, Extra: '', Comment: '', From: [fulltext] }
-        images: { Field: images, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [images] }
-        version: { Field: version, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [version] }
+        filetype: { Field: filetype, Type: char(10), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filetype] }
+        filepath: { Field: filepath, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filepath] }
+        downloaded: { Field: downloaded, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [downloaded] }
         created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [created_by] }
-        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified] }
-        modified_by: { Field: modified_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified_by] }
         ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
         published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
-        publish_up: { Field: publish_up, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [publish_up] }
-        publish_down: { Field: publish_down, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [publish_down] }
-        checked_out: { Field: checked_out, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [checked_out] }
-        checked_out_time: { Field: checked_out_time, Type: datetime, 'Null': NO, Default: '0000-00-00 00:00:00', Extra: '', Comment: '', From: [checked_out_time] }
-        access: { Field: access, Type: 'int(10) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [access] }
-        language: { Field: language, Type: char(7), 'Null': NO, Default: null, Extra: '', Comment: '', From: [language] }
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_pages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_access, Seq_in_index: '1', Column_name: access, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_path, Seq_in_index: '1', Column_name: path, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_left_right, Seq_in_index: '1', Column_name: lft, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_left_right, Seq_in_index: '2', Column_name: rgt, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_alias, Seq_in_index: '1', Column_name: alias, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_createdby, Seq_in_index: '1', Column_name: catid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: idx_checkout, Seq_in_index: '1', Column_name: checked_out, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_pages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '2', Column_name: access, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_pages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '3', Column_name: catid, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_tasks':
     name: '#__csi_tasks'
     from:
         - '#__csi_tasks'
     columns:
         id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        entry_id: { Field: entry_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
         engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
         database: { Field: database, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [database] }
         title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
@@ -76,31 +82,18 @@
         - { Table: '#__csi_tasks', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_tasks', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_tasks', Non_unique: '1', Key_name: entry_id, Seq_in_index: '1', Column_name: entry_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: entry_id, Seq_in_index: '2', Column_name: engine, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: entry_id, Seq_in_index: '3', Column_name: database, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-'#__postinstall_messages':
-    name: '#__postinstall_messages'
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: engine, Seq_in_index: '1', Column_name: engine, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_tasks', Non_unique: '1', Key_name: database, Seq_in_index: '1', Column_name: database, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_webpages':
+    name: '#__csi_webpages'
     from:
-        - '#__postinstall_messages'
+        - '#__csi_webpages'
     columns:
-        postinstall_message_id: { Field: postinstall_message_id, Type: 'bigint(20) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [postinstall_message_id] }
-        extension_id: { Field: extension_id, Type: bigint(20), 'Null': NO, Default: '700', Extra: '', Comment: 'FK to #__extensions', From: [extension_id] }
-        title_key: { Field: title_key, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: 'Lang key for the title', From: [title_key] }
-        description_key: { Field: description_key, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: 'Lang key for description', From: [description_key] }
-        action_key: { Field: action_key, Type: varchar(255), 'Null': NO, Default: '', Extra: '', Comment: '', From: [action_key] }
-        language_extension: { Field: language_extension, Type: varchar(255), 'Null': NO, Default: com_postinstall, Extra: '', Comment: 'Extension holding lang keys', From: [language_extension] }
-        language_client_id: { Field: language_client_id, Type: tinyint(3), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [language_client_id] }
-        type: { Field: type, Type: varchar(10), 'Null': NO, Default: link, Extra: '', Comment: 'Message type - message, link, action', From: [type] }
-        action_file: { Field: action_file, Type: varchar(255), 'Null': YES, Default: '', Extra: '', Comment: 'RAD URI to the PHP file containing action method', From: [action_file] }
-        action: { Field: action, Type: varchar(255), 'Null': YES, Default: '', Extra: '', Comment: 'Action method name or URL', From: [action] }
-        condition_file: { Field: condition_file, Type: varchar(255), 'Null': YES, Default: null, Extra: '', Comment: 'RAD URI to file holding display condition method', From: [condition_file] }
-        condition_method: { Field: condition_method, Type: varchar(255), 'Null': YES, Default: null, Extra: '', Comment: 'Display condition method, must return boolean', From: [condition_method] }
-        version_introduced: { Field: version_introduced, Type: varchar(50), 'Null': NO, Default: 3.2.0, Extra: '', Comment: 'Version when this message was introduced', From: [version_introduced] }
-        enabled: { Field: enabled, Type: tinyint(3), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [enabled] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        count: { Field: count, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [count] }
+        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
     index:
-        - { Table: '#__postinstall_messages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: postinstall_message_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-    data:
-        - ['1', '700', PLG_TWOFACTORAUTH_TOTP_POSTINSTALL_TITLE, PLG_TWOFACTORAUTH_TOTP_POSTINSTALL_BODY, PLG_TWOFACTORAUTH_TOTP_POSTINSTALL_ACTION, plg_twofactorauth_totp, '1', action, 'site://plugins/twofactorauth/totp/postinstall/actions.php', twofactorauth_postinstall_action, 'site://plugins/twofactorauth/totp/postinstall/actions.php', twofactorauth_postinstall_condition, 3.2.0, '0']
-        - ['2', '700', COM_CPANEL_MSG_EACCELERATOR_TITLE, COM_CPANEL_MSG_EACCELERATOR_BODY, COM_CPANEL_MSG_EACCELERATOR_BUTTON, com_cpanel, '1', action, 'admin://components/com_admin/postinstall/eaccelerator.php', admin_postinstall_eaccelerator_action, 'admin://components/com_admin/postinstall/eaccelerator.php', admin_postinstall_eaccelerator_condition, 3.2.0, '1']
-        - ['3', '700', COM_CPANEL_WELCOME_BEGINNERS_TITLE, COM_CPANEL_WELCOME_BEGINNERS_MESSAGE, '', com_cpanel, '1', message, '', '', '', '', 3.2.0, '0']
-        - ['4', '700', COM_CPANEL_MSG_PHPVERSION_TITLE, COM_CPANEL_MSG_PHPVERSION_BODY, '', com_cpanel, '1', message, '', '', 'admin://components/com_admin/postinstall/phpversion.php', admin_postinstall_phpversion_condition, 3.2.2, '1']
+        - { Table: '#__csi_webpages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_webpages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
