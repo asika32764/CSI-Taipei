@@ -93,21 +93,6 @@ class CsiControllerTaskEditSave extends SaveController
 	}
 
 	/**
-	 * postExecute
-	 *
-	 * @param null $return
-	 *
-	 * @return  mixed|null|void
-	 */
-	protected function postExecute($return = null)
-	{
-		// Build query
-		$data = \Csi\Helper\EntryHelper::cleanQuery($this->data);
-
-		$this->redirect(\Windwalker\Router\Route::_('result', array('q' => json_encode($data))));
-	}
-
-	/**
 	 * Method to check if you can add a new record.
 	 *
 	 * Extended classes can override this if necessary.

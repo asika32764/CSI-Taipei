@@ -54,6 +54,9 @@ class CsiControllerEntryEditSave extends SaveController
 		{
 			$this->data['created_by'] = $this->user->get('id');
 		}
+
+		// Don't auto appear message
+		$this->input->set('quiet', true);
 	}
 
 	/**
@@ -79,10 +82,35 @@ class CsiControllerEntryEditSave extends SaveController
 				array(
 					'jform'    => $this->data,
 					'database' => $database,
-					'entry_id' => $id
+					'entry_id' => $id,
+					'quiet'    => true
 				)
 			);
 		}
+	}
+
+	/**
+	 * postExecute
+	 *
+	 * @param null $return
+	 *
+	 * @return  mixed|null|void
+	 */
+	protected function postExecute($return = null)
+	{
+		// Clear the record id and data from the session.
+		$this->releaseEditId($this->context, $this->recordId);
+		$this->app->setUserState($this->context . '.data', null);
+
+		// Build query
+		$data = \Csi\Helper\EntryHelper::cleanQuery($this->data);
+
+		$url = \Windwalker\Router\Route::_('com_csi.result', array('q' => json_encode($data)));
+
+		// Re allow appear message
+		$this->input->set('quiet', false);
+
+		$this->redirect($url);
 	}
 
 	/**
