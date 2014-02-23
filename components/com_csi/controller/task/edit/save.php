@@ -32,6 +32,7 @@ class CsiControllerTaskEditSave extends SaveController
 	/**
 	 * preSaveHook
 	 *
+	 * @throws  RuntimeException
 	 * @return  void
 	 */
 	protected function preSaveHook()
@@ -89,8 +90,21 @@ class CsiControllerTaskEditSave extends SaveController
 			// Redirect back to the edit screen.
 			throw new \Exception(\JText::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $e->getMessage()));
 		}
+	}
 
-		die;
+	/**
+	 * postExecute
+	 *
+	 * @param null $return
+	 *
+	 * @return  mixed|null|void
+	 */
+	protected function postExecute($return = null)
+	{
+		// Build query
+		$data = \Csi\Helper\EntryHelper::cleanQuery($this->data);
+
+		$this->redirect(\Windwalker\Router\Route::_('result', array('q' => json_encode($data))));
 	}
 
 	/**

@@ -18,6 +18,14 @@ use Joomla\String\String;
  */
 class EntryHelper
 {
+	/**
+	 * regularizeTitle
+	 *
+	 * @param $chineseName
+	 * @param $engNames
+	 *
+	 * @return  string
+	 */
 	public static function regularizeTitle($chineseName, $engNames)
 	{
 		$chineseName = trim($chineseName);
@@ -46,6 +54,13 @@ class EntryHelper
 		return implode(';', $names);
 	}
 
+	/**
+	 * regularizeEngName
+	 *
+	 * @param $name
+	 *
+	 * @return  string
+	 */
 	public static function regularizeEngName($name)
 	{
 		// Trim
@@ -59,6 +74,39 @@ class EntryHelper
 		$name = Normalise::toDashSeparated($name);
 
 		return $name;
+	}
+
+	/**
+	 * cleanQuery
+	 *
+	 * @param $queries
+	 *
+	 * @return  mixed
+	 */
+	public static function cleanQuery($queries)
+	{
+		foreach ((array) $queries['eng_name'] as $key => $name)
+		{
+			if (empty($name['first']) && empty($name['last']))
+			{
+				unset($queries['eng_name'][$key]);
+			}
+		}
+
+		foreach ((array) $queries['webo_url'] as $key => $url)
+		{
+			if (empty($url))
+			{
+				unset($queries['webo_url'][$key]);
+			}
+		}
+
+		if (empty($queries['id']))
+		{
+			unset($queries['id']);
+		}
+
+		return $queries;
 	}
 }
  
