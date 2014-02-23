@@ -17,10 +17,8 @@ use JComponentHelper;
  */
 class Route
 {
-	protected static $lookup;
-
 	/**
-	 * Proxy of build()
+	 * Build by resource.
 	 *
 	 * @param string  $resource
 	 * @param array   $data
@@ -30,21 +28,6 @@ class Route
 	 * @return  string Route url.
 	 */
 	public static function _($resource, $data = array(), $xhtml = true, $ssl = null)
-	{
-		return static::build($resource, $data, $xhtml, $ssl);
-	}
-
-	/**
-	 * Build route.
-	 *
-	 * @param string  $resource
-	 * @param array   $data
-	 * @param boolean $xhtml
-	 * @param boolean $ssl
-	 *
-	 * @return  string Route url.
-	 */
-	public static function build($resource, $data = array(), $xhtml = true, $ssl = null)
 	{
 		$resource = explode('.', $resource, 2);
 
@@ -61,11 +44,29 @@ class Route
 
 		$url = new \JUri;
 
+		$url->setQuery($data);
+
+		$url->setPath('index.php');
+
+		return \JRoute::_((string) $url, $xhtml, $ssl);
+	}
+
+	/**
+	 * Build route.
+	 *
+	 * @param array   &$data
+	 *
+	 * @return  string Route url.
+	 */
+	public static function build(&$data = array())
+	{
 		$menu = \JFactory::getApplication()->getMenu();
 
 		$items = $menu->getMenu();
 
 		$Itemid = null;
+
+		$data['view'] = isset($data['view']) ? $data['view'] : null;
 
 		// Find option and view
 		foreach ($items as $item)
@@ -104,11 +105,7 @@ class Route
 			$data['Itemid'] = $Itemid;
 		}
 
-		$url->setQuery($data);
-
-		$url->setPath('index.php');
-
-		return \JRoute::_($url, $xhtml, $ssl);
+		return $data;
 	}
 }
  

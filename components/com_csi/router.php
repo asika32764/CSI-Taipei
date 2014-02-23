@@ -38,6 +38,8 @@ function CsiBuildRoute(&$query)
 {
 	$router = CmsRouter::getInstance('com_csi');
 
+	$query = \Windwalker\Router\Route::build($query);
+
 	if (!empty($query['view']))
 	{
 		$segments = $router->build($query['view'], $query);
