@@ -9,10 +9,12 @@
 ?>
 <div class="row-fluid">
 	<div class="col-lg-6 col-lg-offset-2 span12">
-		<form action="" class="form-horizontal">
+		<form action="<?php echo \Windwalker\Router\Route::_('com_csi.entry', array('task' => '123')); ?>" class="form-horizontal">
+			<?php echo \Windwalker\Router\Route::_('com_csi.entry', array('task' => '123')); ?>
+			<br />
 			<?php echo \Windwalker\Router\Route::_('com_csi.result', array('task' => '123')); ?>
 			<br />
-			<?php echo \JRoute::_('index.php?option=com_csi&view=result'); ?>
+			<?php echo \Windwalker\Router\Route::_('com_csi.task', array('task' => '123')); ?>
 			<fieldset>
 				<legend>請輸入檢索字串</legend>
 

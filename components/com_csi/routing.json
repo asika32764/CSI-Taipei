@@ -1,4 +1,9 @@
 {
+	"entry" : {
+		"pattern" : "entry",
+		"view" : "entry"
+	},
+
 	"result" : {
 		"pattern" : "result",
 		"view" : "result"
