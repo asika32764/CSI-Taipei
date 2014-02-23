@@ -28,6 +28,8 @@
     index:
         - { Table: '#__csi_entries', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_entries', Non_unique: '1', Key_name: title, Seq_in_index: '1', Column_name: title, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_entries', Non_unique: '1', Key_name: created_by, Seq_in_index: '1', Column_name: created_by, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_notifies':
     name: '#__csi_notifies'
     from:
