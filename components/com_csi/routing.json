@@ -1,3 +1,6 @@
 {
-
+	"result" : {
+		"pattern" : "result",
+		"view" : "result"
+	}
 }

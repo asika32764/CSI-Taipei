@@ -20,23 +20,25 @@ class CmsRouter extends Router
 	 *
 	 * @var  CmsRouter
 	 */
-	static protected $instance = null;
+	static protected $instance = array();
 
 	/**
 	 * Singleton.
 	 *
+	 * @param $option
+	 *
 	 * @return  CmsRouter
 	 */
-	public static function getInstance()
+	public static function getInstance($option)
 	{
-		if (!self::$instance)
+		if (empty(self::$instance[$option]))
 		{
 			$input = \JFactory::getApplication()->input;
 
-			self::$instance = new CmsRouter($input);
+			self::$instance[$option] = new CmsRouter($input);
 		}
 
-		return self::$instance;
+		return self::$instance[$option];
 	}
 
 	/**
@@ -46,7 +48,7 @@ class CmsRouter extends Router
 	 *
 	 * @return  mixed   The return value of the view name.
 	 */
-	public function getTask($route)
+	public function getView($route)
 	{
 		// Get the view name based on the route patterns and requested route.
 		return $name = $this->parseRoute($route);

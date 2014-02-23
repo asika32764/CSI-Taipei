@@ -18,7 +18,7 @@ include_once JPATH_LIBRARIES . '/windwalker/Windwalker/init.php';
 JLoader::registerNamespace('Windwalker', PathHelper::getAdmin('com_csi') . '/src');
 
 // Prepare Router
-$router = CmsRouter::getInstance();
+$router = CmsRouter::getInstance('com_csi');
 
 // Register routing config and inject Router object into it.
 $router = RoutingHelper::registerRouting($router, 'com_csi');
@@ -36,6 +36,17 @@ $router = RoutingHelper::registerRouting($router, 'com_csi');
  */
 function CsiBuildRoute(&$query)
 {
+	$router = CmsRouter::getInstance('com_csi');
+
+	if (!empty($query['view']))
+	{
+		$segments = $router->build($query['view'], $query);
+
+		unset($query['view']);
+
+		return $segments;
+	}
+
 	return array();
 }
 
@@ -52,14 +63,14 @@ function CsiBuildRoute(&$query)
  */
 function CsiParseRoute($segments)
 {
-	$router = CmsRouter::getInstance();
+	$router = CmsRouter::getInstance('com_csi');
 
 	// OK, let's fetch view name.
-	$task = $router->getTask(implode('/', $segments));
+	$view = $router->getView(implode('/', $segments));
 
-	if ($task)
+	if ($view)
 	{
-		return array('task' => $task);
+		return array('view' => $view);
 	}
 
 	return array();
