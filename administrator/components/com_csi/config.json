@@ -1,0 +1,9 @@
+{
+	"database" : [
+		"syllabus",
+		"ndltd",
+		"paper",
+		"magazine",
+		"wiki"
+	]
+}

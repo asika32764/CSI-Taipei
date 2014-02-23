@@ -8,7 +8,7 @@
 			type="text"
 			label="JGLOBAL_TITLE"
 			description="JFIELD_TITLE_DESC"
-			required="true"
+			required=""
 			class="input-xxlarge"
 			/>
 	</fieldset>

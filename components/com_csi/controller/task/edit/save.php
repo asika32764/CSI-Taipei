@@ -6,83 +6,91 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-use Csi\Helper\EntryHelper;
 use Windwalker\Controller\Edit\SaveController;
 
 /**
- * Class CstControllerEntryEditSave
+ * Class CsiControllerTaskEditSave
  *
  * @since 1.0
  */
-class CsiControllerEntryEditSave extends SaveController
+class CsiControllerTaskEditSave extends SaveController
 {
 	/**
-	 * Property databases.
+	 * Property database.
 	 *
-	 * @var  array
+	 * @var string
 	 */
-	protected $databases = array();
+	protected $database = null;
 
 	/**
-	 * Property useTransaction.
+	 * Property entryId.
 	 *
-	 * @var  boolean
+	 * @var  int
 	 */
-	protected $useTransaction = false;
+	protected $entryId = null;
 
 	/**
 	 * preSaveHook
 	 *
-	 * @throws  RuntimeException
 	 * @return  void
 	 */
 	protected function preSaveHook()
 	{
-		if (empty($this->data['database']))
+		$this->data = $this->input->getVar('jform');
+
+		$this->database = $currentDatabase = $this->input->get('database');
+
+		$this->entryId = $this->input->get('entry_id');
+
+		if (empty($this->data['title']))
 		{
-			throw new \RuntimeException('請勾選資料來源');
+			throw new \RuntimeException('無法取得資料來源的標題');
 		}
 
-		$title = EntryHelper::regularizeTitle($this->data['chinese_name'], $this->data['eng_name']);
-
-		// @TODO: If title exists, redirect to it.
-
-		$this->data['title'] = $title;
-		$this->data['created'] = (string) new \Windwalker\Date\Date;
-
-		if (!$this->user->get('guest'))
+		if (empty($this->database))
 		{
-			$this->data['created_by'] = $this->user->get('id');
+			throw new \RuntimeException('無法取得資料來源');
+		}
+
+		if (empty($this->entryId))
+		{
+			throw new \RuntimeException('無法取得搜尋ID');
 		}
 	}
 
 	/**
-	 * postSaveHook
+	 * doSave
 	 *
-	 * @param \Windwalker\Model\CrudModel $model
-	 * @param array                       $validData
-	 *
-	 * @return  void
+	 * @throws Exception
+	 * @return  array|void
 	 */
-	protected function postSaveHook($model, $validData)
+	protected function doSave()
 	{
-		$id = $model->getState()->get('entry.id');
+		$data = new \Windwalker\Data\Data;
 
-		// Loop all databases
-		$databases = \Csi\Config\Config::get('database');
+		$data->title    = $this->data['title'];
+		$data->entry_id = $this->entryId;
+		$data->database = $this->database;
+		$data->engine   = 'google';
 
-		foreach ($databases as $database)
+		// @TODO: Build keywords.
+
+		$model = $this->getModel();
+
+		try
 		{
-			$this->fetch(
-				'Csi',
-				'task.edit.save',
-				array(
-					'jform'    => $this->data,
-					'database' => $database,
-					'entry_id' => $id
-				)
-			);
+			$model->save((array) $data);
 		}
+		catch (\Exception $e)
+		{
+			// Save the data in the session.
+			$this->app->setUserState($this->context . '.data', $data);
+
+			// Redirect back to the edit screen.
+			throw new \Exception(\JText::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $e->getMessage()));
+		}
+
+		die;
 	}
 
 	/**
