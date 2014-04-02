@@ -36,6 +36,8 @@ $router = RoutingHelper::registerRouting($router, 'com_csi');
  */
 function CsiBuildRoute(&$query)
 {
+	$segments = array();
+
 	$router = CmsRouter::getInstance('com_csi');
 
 	$query = \Windwalker\Router\Route::build($query);
@@ -45,11 +47,9 @@ function CsiBuildRoute(&$query)
 		$segments = $router->build($query['view'], $query);
 
 		unset($query['view']);
-
-		return $segments;
 	}
 
-	return array();
+	return $segments;
 }
 
 /**

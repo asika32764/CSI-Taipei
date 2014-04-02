@@ -31,5 +31,9 @@ final class CsiComponent extends \Csi\Component\CsiComponent
 	protected function prepare()
 	{
 		parent::prepare();
+
+		$asset = $this->container->get('helper.asset');
+
+		$asset->addCss('main.css');
 	}
 }

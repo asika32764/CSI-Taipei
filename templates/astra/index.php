@@ -102,7 +102,7 @@ include_once JPATH_THEMES.'/astra/includes/init.php' ;
 							<span class="icon-bar"></span>
 						</button>
 						
-						<div class="nav-collapse navbar-responsive-collapse <?php if( $responsive ) echo 'collapse' ?>">
+						<div class="nav-collapse navbar-responsive-collapse <?php if( $this->params->get('responsive', 1) ) echo 'collapse' ?>">
 							<?php if( $this->countModules('search-navbar') ): ?>
 							<div class="navbar-search pull-right">
 								<jdoc:include type="modules" name="search-navbar" />
