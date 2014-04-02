@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="3.0" type="template" client="site" method="upgrade">
+	<name>astra</name>
+	<version>1.0</version>
+	<creationDate>10/30/2012</creationDate>
+	<author>Asika</author>
+	<authorEmail>asika@asikart.com</authorEmail>
+	<copyright>Copyright (C) 2012 Asikart.com. All rights reserved.</copyright>
+	<description>TPL_ASTRA_XML_DESCRIPTION</description>
+	<files>
+		<filename>component.php</filename>
+		<filename>error.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>index.html</filename>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<folder>class</folder>
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>images</folder>
+		<folder>img</folder>
+		<folder>includes</folder>
+		<folder>js</folder>
+		<folder>language</folder>
+		<folder>less</folder>
+	</files>
+	<positions>
+		<position>debug</position>
+		
+		<position>search-navbar</position>
+		<position>search-header</position>
+		
+		<position>banner-1</position>
+		<position>banner-2</position>
+		<position>sub-banner-1</position>
+		<position>sub-banner-2</position>
+		
+		<position>top-breadcrumbs</position>
+		<position>bottom-breadcrumbs</position>
+		
+		<position>top-container-1</position>
+		<position>top-container-2</position>
+		<position>top-container-3</position>
+		<position>top-container-4</position>
+		
+		<position>top-inner-1</position>
+		<position>top-inner-2</position>
+		<position>top-inner-3</position>
+		<position>top-inner-4</position>
+		
+		<position>bottom-inner-1</position>
+		<position>bottom-inner-2</position>
+		<position>bottom-inner-3</position>
+		<position>bottom-inner-4</position>
+		
+		<position>bottom-container-1</position>
+		<position>bottom-container-2</position>
+		<position>bottom-container-3</position>
+		<position>bottom-container-4</position>
+		
+		<position>left</position>
+		<position>left-inner</position>
+		<position>right</position>
+		<position>right-inner</position>
+		
+		<position>footer-1</position>
+		<position>footer-2</position>
+		<position>footer-3</position>
+		<position>footer-4</position>
+		
+		<position>footer-nav</position>
+		<position>footer</position>
+	</positions>
+
+	<config>
+		<fields name="params">
+			<fieldset name="advanced" label="TPL_ASTRA_SPACER_HEADER_LABEL">
+				
+				<!--<field
+					name="sample"
+					type="text"
+					label="TPL_ASTRA__LABEL"
+					description="TPL_ASTRA__DESC"
+					class=""
+				/>-->
+				
+				
+				<field name="site_title"  type="text" default=""
+					label="JGLOBAL_TITLE"
+					description="JFIELD_ALT_PAGE_TITLE_LABEL"
+					filter="string" />
+
+				<field name="site_description"  type="text" default=""
+					label="JGLOBAL_DESCRIPTION"
+					description="JGLOBAL_SUBHEADING_DESC"
+					filter="string" />
+				
+				<field name="logo_file" class="" type="media" default=""
+					label="TPL_ASTRA_LOGO_LABEL"
+					description="TPL_ASTRA_LOGO_DESC" />
+				
+			</fieldset>
+			<fieldset name="layout" label="TPL_ASTRA_SPACER_LAYOUT_LABEL">
+
+				
+				<field name="responsive"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="TPL_ASTRA_RESPONSIVE_LABEL"
+					description="TPL_ASTRA_RESPONSIVE_DESC"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field name="fluidContainer"
+					type="radio"
+					class="btn-group"
+					default="0"
+					label="TPL_ASTRA_FLUID_LABEL"
+					description="TPL_ASTRA_FLUID_DESC"
+				>
+					<option value="1">TPL_ASTRA_FLUID_OPT_FLUID</option>
+					<option value="0">TPL_ASTRA_FLUID_OPT_STATIC</option>
+				</field>
+			
+
+				<field name="template_background_color" class="" type="color" default="#FFFFFF"
+					label="TPL_ASTRA_BACKGROUND_COLOR_LABEL"
+					description="TPL_ASTRA_BACKGROUND_COLOR_DESC" />
+				
+				<field name="template_text_color" class="" type="color" default="#111111"
+					label="TPL_ASTRA_TEXT_COLOR_LABEL"
+					description="TPL_ASTRA_TEXT_COLOR_DESC" />
+			
+			
+				
+			</fieldset>
+			<fieldset name="nav" label="TPL_ASTRA_SPACER_NAV_LABEL">
+				
+				
+				<field
+					name="menutype"
+					type="menu"
+					label="TPL_ASTRA_MENUTYPE_LABEL"
+					description="TPL_ASTRA_MENUTYPE_DESC"
+					default="mainmenu"
+				/>
+				
+				<field
+					name="menufixtop"
+					type="radio"
+					label="TPL_ASTRA_MENUFIXTOP_LABEL"
+					description="TPL_ASTRA_MENUFIXTOP_DESC"
+					class="btn-group"
+					default="1"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field
+					name="menucolor"
+					type="radio"
+					label="TPL_ASTRA_MENUCOLOR_LABEL"
+					description="TPL_ASTRA_MENUCOLOR_DESC"
+					class="btn-group"
+					default="black"
+				>
+					<option value="black">TPL_ASTRA_MENUCOLOR_OPT_BLACK</option>
+					<option value="white">TPL_ASTRA_MENUCOLOR_OPT_WHITE</option>
+				</field>
+				
+			
+			</fieldset>
+			<fieldset name="banner" label="TPL_ASTRA_SPACER_BANNER_LABEL">
+
+				
+				<field name="banner_text_color" class="" type="color"
+					default="#111111"
+					label="TPL_ASTRA_BANNERTEXT_COLOR_LABEL"
+					description="TPL_ASTRA_BANNERTEXT_COLOR_DESC" />
+				
+				<field name="banner_bg_file" class="" type="media" default=""
+					label="TPL_ASTRA_BANNER_BG_FILE_LABEL"
+					description="TPL_ASTRA_BANNER_BG_FILE_DESC" />
+				
+			
+			</fieldset>
+			<fieldset name="footer" label="TPL_ASTRA_SPACER_FOOTER_LABEL">
+				
+				<field
+					name="footercolor"
+					type="radio"
+					label="TPL_ASTRA_FOOTERCOLOR_LABEL"
+					description="TPL_ASTRA_FOOTERCOLOR_DESC"
+					class="btn-group"
+					default="black"
+				>
+					<option value="black">TPL_ASTRA_FOOTERCOLOR_OPT_BLACK</option>
+					<option value="white">TPL_ASTRA_FOOTERCOLOR_OPT_WHITE</option>
+				</field>
+				
+				<field name="footer_logo_file" class="" type="media" default=""
+					label="TPL_ASTRA_FOOTERLOGO_LABEL"
+					description="TPL_ASTRA_FOOTERLOGO_DESC" />
+				
+				<field
+					name="footer_logo_float"
+					type="radio"
+					label="TPL_ASTRA_FOOTERFLOAT_LABEL"
+					description="TPL_ASTRA_FOOTERFLOAT_DESC"
+					class="btn-group"
+					default="pull-left"
+				>
+					<option value="pull-left">TPL_ASTRA_FOOTER_LOGO_FLOAT_OPT_LEFT</option>
+					<option value="pull-right">TPL_ASTRA_FOOTER_LOGO_FLOAT_OPT_RIGHT</option>
+				</field>
+				
+				
+			</fieldset>
+			<fieldset name="column" label="TPL_ASTRA_SPACER_COLUMN_LABEL">
+				
+				
+				<field
+					name="left_col_width"
+					type="integer"
+					label="TPL_ASTRA_LEFT_COL_WIDTH_LABEL"
+					description="TPL_ASTRA_LEFT_COL_WIDTH_DESC"
+					class=""
+					default="3"
+					first="1"
+					last="5"
+					step="1"
+				/>
+				
+				<field
+					name="leftinner_col_width"
+					type="integer"
+					label="TPL_ASTRA_LEFTINNER_COL_WIDTH_LABEL"
+					description="TPL_ASTRA_LEFTINNER_COL_WIDTH_DESC"
+					class=""
+					default="2"
+					first="1"
+					last="5"
+					step="1"
+				/>
+				
+				<field
+					name="right_col_width"
+					type="integer"
+					label="TPL_ASTRA_RIGHT_COL_WIDTH_LABEL"
+					description="TPL_ASTRA_RIGHT_COL_WIDTH_DESC"
+					class=""
+					default="3"
+					first="1"
+					last="5"
+					step="1"
+				/>
+				
+				<field
+					name="rightinner_col_width"
+					type="integer"
+					label="TPL_ASTRA_RIGHTINNER_COL_WIDTH_LABEL"
+					description="TPL_ASTRA_RIGHTINNER_COL_WIDTH_DESC"
+					class=""
+					default="2"
+					first="1"
+					last="5"
+					step="1"
+				/>
+				
+			</fieldset>
+			
+		</fields>
+	</config>
+</extension>
