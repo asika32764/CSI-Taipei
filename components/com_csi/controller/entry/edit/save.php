@@ -48,7 +48,7 @@ class CsiControllerEntryEditSave extends SaveController
 		// @TODO: If title exists, redirect to it.
 
 		$this->data['title'] = $title;
-		$this->data['created'] = (string) new \Windwalker\Date\Date;
+		$this->data['created'] = (string) new \Csi\Date\Date;
 
 		if (!$this->user->get('guest'))
 		{
@@ -105,7 +105,7 @@ class CsiControllerEntryEditSave extends SaveController
 		// Build query
 		$data = \Csi\Helper\EntryHelper::cleanQuery($this->data);
 
-		$url = \Windwalker\Router\Route::_('com_csi.result', array('q' => json_encode($data)));
+		echo $url = \Csi\Router\Route::_('com_csi.result', array('q' => json_encode($data)));
 
 		// Re allow appear message
 		$this->input->set('quiet', false);

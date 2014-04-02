@@ -2,5 +2,13 @@
 	"system" : {
 		"debug" : true,
 		"development" : true
-	}
+	},
+
+	"database" : [
+		"syllabus",
+		"ndltd",
+		"paper",
+		"magazine",
+		"wiki"
+	]
 }

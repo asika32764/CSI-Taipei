@@ -10,8 +10,7 @@
 <div class="row-fluid">
 	<div class="col-lg-6 col-lg-offset-2 span12">
 
-		<?php echo \Csi\Router\Route::_('com_csi', array('task' => 'entry.edit.save')); ?>
-		<form action="<?php echo \Csi\Router\Route::_('com_csi', array('task' => 'entry.edit.save')); ?>" class="form-horizontal"
+		<form action="<?php echo \Csi\Router\Route::_('com_csi.entry', array('task' => 'entry.edit.save')); ?>" class="form-horizontal"
 			method="post">
 			<fieldset>
 				<legend>請輸入檢索字串</legend>
@@ -26,7 +25,7 @@
 					<div class="col-lg-10">
 						<div class="row">
 							<div class="col-lg-12">
-								<input type="text" class="form-control" id="chineseName" placeholder="姓名">
+								<input type="text" name="jform[chinese_name]" class="form-control" id="chineseName" placeholder="姓名">
 							</div>
 						</div>
 					</div>
@@ -42,21 +41,10 @@
 					<div class="col-lg-10">
 						<div class="row">
                                 <span class="col-lg-6 margin-b-20">
-                                    <input type="text" class="form-control" id="engNameFirst" placeholder="First Name">
+                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][first]" placeholder="First Name">
                                 </span>
                                 <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameLast" placeholder="Last Name">
-                                </span>
-						</div>
-					</div>
-
-					<div class="col-lg-10 col-lg-offset-2 margin-b-20">
-						<div class="row">
-                                <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst" placeholder="First Name">
-                                </span>
-                                <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameLast" placeholder="Last Name">
+                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][last]" placeholder="Last Name">
                                 </span>
 						</div>
 					</div>
@@ -64,10 +52,21 @@
 					<div class="col-lg-10 col-lg-offset-2 margin-b-20">
 						<div class="row">
                                 <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst" placeholder="First Name">
+                                    <input type="text" class="form-control" id="engNameFirst-1" name="jform[eng_name][1][first]" placeholder="First Name">
                                 </span>
                                 <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameLast" placeholder="Last Name">
+                                    <input type="text" class="form-control" id="engNameFirst-1" name="jform[eng_name][1][last]" placeholder="Last Name">
+                                </span>
+						</div>
+					</div>
+
+					<div class="col-lg-10 col-lg-offset-2 margin-b-20">
+						<div class="row">
+                                <span class="col-lg-6">
+                                    <input type="text" class="form-control" id="engNameFirst-2" name="jform[eng_name][2][first]" placeholder="First Name">
+                                </span>
+                                <span class="col-lg-6">
+                                    <input type="text" class="form-control" id="engNameFirst-2" name="jform[eng_name][2][last]" placeholder="Last Name">
                                 </span>
 						</div>
 					</div>

@@ -103,7 +103,7 @@ class Route
 		}
 
 		// Find option
-		if (!$Itemid && empty($data['view']))
+		if (!$Itemid /*&& empty($data['view'])*/)
 		{
 			foreach ($items as $item)
 			{
