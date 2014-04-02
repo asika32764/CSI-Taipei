@@ -96,8 +96,11 @@ dt label {
 h1#logo {
 	padding: 0 ;
 	margin:  0 ;
+	margin-top: 0;
+	margin-bottom: 0;
 	font-size: 100% ;
 	font-weight: normal ;
+	z-index: 1000;
 }
 
 #header #logo a.brand {

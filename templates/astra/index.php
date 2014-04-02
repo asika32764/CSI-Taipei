@@ -82,19 +82,22 @@ include_once JPATH_THEMES.'/astra/includes/init.php' ;
 			<div class="container<?php echo $fluid; ?>">
 			<?php endif; ?>
 			
-			<div class="navbar<?php echo $inverse; ?><?php echo $fixtop ? '  navbar-fixed-top': ''; ?>">
+			<div class="navbar<?php echo $inverse; ?><?php echo $fixtop ? '  navbar-static-top': ''; ?>">
 				<div class="navbar-inner">
 					<?php if( $fixtop ): ?>
 					<div class="container<?php echo $fluid; ?>">
-						<h1 id="logo" class="pull-left">
-							<a class="brand" href="index.php">
-							<?php if( $logo_file ): ?>
-								<img src="<?php echo $logo_file; ?>" alt="<?php echo $site_title; ?>" />
-							<?php else: ?>
-								<?php echo $site_title; ?>
-							<?php endif; ?>
-							</a>
-						</h1>
+						<div class="navbar-header">
+							<h1 id="logo" class="pull-left">
+								<a class="navbar-brand" href="index.php">
+									<?php if( $logo_file ): ?>
+										<img src="<?php echo $logo_file; ?>" alt="<?php echo $site_title; ?>" />
+									<?php else: ?>
+										<?php echo $site_title; ?>
+									<?php endif; ?>
+								</a>
+							</h1>
+						</div>
+
 					<?php endif; ?>
 						<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 							<span class="icon-bar"></span>
@@ -102,7 +105,7 @@ include_once JPATH_THEMES.'/astra/includes/init.php' ;
 							<span class="icon-bar"></span>
 						</button>
 						
-						<div class="nav-collapse navbar-responsive-collapse <?php if( $this->params->get('responsive', 1) ) echo 'collapse' ?>">
+						<div class="nav-collapse navbar-responsive-collapse <?php if( $this->params->get('responsive', 1) ) echo 'collapse' ?>" style="float: left;">
 							<?php if( $this->countModules('search-navbar') ): ?>
 							<div class="navbar-search pull-right">
 								<jdoc:include type="modules" name="search-navbar" />
