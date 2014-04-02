@@ -6,6 +6,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Windwalker\Joomla\DataMapper\DataMapper;
 use Windwalker\Table\Table;
 
 // No direct access
@@ -105,6 +106,17 @@ class CsiTableEntry extends Table
 	 */
 	public function delete($pk = null)
 	{
-		return parent::delete($pk);
+		$result = parent::delete($pk);
+
+		if (!$result)
+		{
+			return $result;
+		}
+
+		$mapper = new DataMapper('#__csi_tasks', 'id', $this->_db);
+
+		$result = $mapper->delete(array('entry_id' => $pk));
+
+		return true;
 	}
 }
