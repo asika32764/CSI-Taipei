@@ -16,6 +16,13 @@ namespace Csi\Engine;
 class AbstractEngine
 {
 	/**
+	 * Property keyword.
+	 *
+	 * @var  string
+	 */
+	protected $keyword = null;
+
+	/**
 	 * getInstance
 	 *
 	 * @param string $name
@@ -32,6 +39,30 @@ class AbstractEngine
 	public function getPageList()
 	{
 
+	}
+
+	/**
+	 * getKeyword
+	 *
+	 * @return  string
+	 */
+	public function getKeyword()
+	{
+		return $this->keyword;
+	}
+
+	/**
+	 * setKeyword
+	 *
+	 * @param   string $keyword
+	 *
+	 * @return  AbstractEngine  Return self to support chaining.
+	 */
+	public function setKeyword($keyword)
+	{
+		$this->keyword = $keyword;
+
+		return $this;
 	}
 }
  

@@ -28,11 +28,12 @@ class CountController extends Controller
 	{
 		$id = $this->input->get('id');
 
-		$task = with(new DataMapper('#__csi_tasks'))->findOne($id);
+		$task = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $id));
 
 		$engine = AbstractEngine::getInstance($task->engine);
 
-		$engine->getPageList();
+		$pages = $engine->setKeyword($task->keyword)
+			->getPageList();
 
 		show($task, $engine);
 

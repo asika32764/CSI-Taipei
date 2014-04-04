@@ -38,7 +38,7 @@ class SyllabusListener extends DatabaseListener
 	 */
 	public function onBeforeTaskSave($database, $engine, $id, Data $data)
 	{
-		if ($this->checkType($database))
+		if (!$this->checkType($database))
 		{
 			return;
 		}

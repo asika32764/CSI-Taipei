@@ -15,9 +15,18 @@ namespace Csi\Engine;
  */
 class GoogleEngine extends AbstractEngine
 {
+	/**
+	 * Property host.
+	 *
+	 * @var  string
+	 */
+	protected $host = 'http://www.google.com.tw';
+
+
+
 	public function getPageList()
 	{
-
+		// $page =
 	}
 }
  
