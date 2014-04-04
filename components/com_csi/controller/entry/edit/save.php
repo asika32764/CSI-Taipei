@@ -74,16 +74,20 @@ class CsiControllerEntryEditSave extends SaveController
 		// Loop all databases
 		$databases = \Csi\Config\Config::get('database');
 
-		// Handle data
-		$this->data['title'] .= sprintf(' [%s]', $this->data['engine']);
-
 		foreach ($databases as $database)
 		{
+			$data = $this->data;
+
+			// Handle data
+			$data['title'] .= sprintf(' [%s]', $database->name);
+
+			$data['engine'] = $database->engine;
+
 			$this->fetch(
 				'Csi',
 				'task.edit.save',
 				array(
-					'jform'    => $this->data,
+					'jform'    => $data,
 					'database' => $database,
 					'entry_id' => $id,
 					'quiet'    => true

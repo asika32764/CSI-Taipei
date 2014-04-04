@@ -5,10 +5,34 @@
 	},
 
 	"database" : [
-		"syllabus",
-		"ndltd",
-		"paper",
-		"magazine",
-		"wiki"
+		{
+			"name" : "syllabus",
+			"engine" : "google"
+		},
+
+		{
+			"name" : "ethesys",
+			"engine" : "google"
+		},
+
+		{
+			"name" : "paper",
+			"engine" : "google"
+		},
+
+		{
+			"name" : "social",
+			"engine" : "google"
+		},
+
+		{
+			"name" : "wiki",
+			"engine" : "google"
+		},
+
+		{
+			"name" : "scholar",
+			"engine" : "scholar"
+		}
 	]
 }

@@ -18,7 +18,7 @@ class CsiControllerTaskEditSave extends SaveController
 	/**
 	 * Property database.
 	 *
-	 * @var string
+	 * @var \stdClass
 	 */
 	protected $database = null;
 
@@ -39,7 +39,7 @@ class CsiControllerTaskEditSave extends SaveController
 	{
 		$this->data = $this->input->getVar('jform');
 
-		$this->database = $currentDatabase = $this->input->get('database');
+		$this->database = $currentDatabase = $this->input->getVar('database');
 
 		$this->entryId = $this->input->get('entry_id');
 
@@ -71,7 +71,8 @@ class CsiControllerTaskEditSave extends SaveController
 
 		$data->title    = $this->data['title'];
 		$data->entry_id = $this->entryId;
-		$data->database = $this->database;
+		$data->database = $this->database->name;
+		$data->engine   = $this->database->engine;
 		$data->engine   = 'google';
 
 		// @TODO: Build keywords.
