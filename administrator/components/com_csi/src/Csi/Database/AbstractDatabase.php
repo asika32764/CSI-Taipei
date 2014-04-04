@@ -31,6 +31,13 @@ abstract class AbstractDatabase
 		return new $class;
 	}
 
+	/**
+	 * getKeyword
+	 *
+	 * @param Data $task
+	 *
+	 * @return  string
+	 */
 	abstract public function getKeyword(Data $task);
 }
  

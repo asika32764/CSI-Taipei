@@ -73,6 +73,8 @@ class CsiControllerTaskEditSave extends SaveController
 		$data->entry_id = $this->entryId;
 		$data->database = $this->database->name;
 		$data->engine   = $this->database->engine;
+		$data->names    = $this->data['names'];
+		$data->created  = $this->data['created'];
 
 		// @TODO: Build keywords.
 
@@ -91,9 +93,6 @@ class CsiControllerTaskEditSave extends SaveController
 			);
 
 			$diapatcher->trigger('onBeforeTaskSave', $args);
-
-			show($data);
-			die;
 
 			$model->save((array) $data);
 

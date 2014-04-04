@@ -51,7 +51,7 @@ class EntryHelper
 			}
 		}
 
-		return implode(';', $names);
+		return trim(implode(';', $names), ' ;');
 	}
 
 	/**

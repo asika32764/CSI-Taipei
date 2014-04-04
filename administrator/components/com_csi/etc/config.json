@@ -4,35 +4,36 @@
 		"development" : true
 	},
 
-	"database" : [
-		{
+	"database" : {
+		"syllabus": {
 			"name" : "syllabus",
-			"engine" : "google"
+			"engine" : "google",
+			"keyword" : "課程大綱 課綱"
 		},
 
-		{
+		"ethesys": {
 			"name" : "ethesys",
 			"engine" : "google"
 		},
 
-		{
+		"paper": {
 			"name" : "paper",
 			"engine" : "google"
 		},
 
-		{
+		"social": {
 			"name" : "social",
 			"engine" : "google"
 		},
 
-		{
+		"wiki": {
 			"name" : "wiki",
 			"engine" : "google"
 		},
 
-		{
+		"scholar": {
 			"name" : "scholar",
 			"engine" : "scholar"
 		}
-	]
+	}
 }

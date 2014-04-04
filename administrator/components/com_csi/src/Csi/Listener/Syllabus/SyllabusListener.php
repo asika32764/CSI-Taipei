@@ -9,6 +9,7 @@
 namespace Csi\Listener\Syllabus;
 
 use Csi\Database\AbstractDatabase;
+use Csi\Listener\DatabaseListener;
 use Windwalker\Data\Data;
 
 /**
@@ -16,8 +17,15 @@ use Windwalker\Data\Data;
  *
  * @since 1.0
  */
-class SyllabusListener extends \JEvent
+class SyllabusListener extends DatabaseListener
 {
+	/**
+	 * Property type.
+	 *
+	 * @var  string
+	 */
+	protected $type = 'syllabus';
+
 	/**
 	 * onBeforeTaskSave
 	 *
@@ -30,7 +38,12 @@ class SyllabusListener extends \JEvent
 	 */
 	public function onBeforeTaskSave($database, $engine, $id, Data $data)
 	{
-		$task = AbstractDatabase::getInstance($database);
+		if ($this->checkType($database))
+		{
+			return;
+		}
+
+		$task = AbstractDatabase::getInstance($this->type);
 
 		$data->keyword = $task->getKeyword($data);
 	}

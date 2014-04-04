@@ -48,6 +48,7 @@ class CsiControllerEntryEditSave extends SaveController
 		// @TODO: If title exists, redirect to it.
 
 		$this->data['title'] = $title;
+		$this->data['names'] = explode(';', $title);
 		$this->data['created'] = (string) new \Csi\Date\Date;
 
 		if (!$this->user->get('guest'))
@@ -74,7 +75,7 @@ class CsiControllerEntryEditSave extends SaveController
 		// Loop all databases
 		$databases = \Csi\Config\Config::get('database');
 
-		foreach ($databases as $database)
+		foreach ((array) $databases as $name => $database)
 		{
 			$data = $this->data;
 

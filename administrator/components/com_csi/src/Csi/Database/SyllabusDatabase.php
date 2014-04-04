@@ -8,7 +8,9 @@
 
 namespace Csi\Database;
 
+use Csi\Config\Config;
 use Windwalker\Data\Data;
+use Windwalker\String\String;
 
 /**
  * Class SyllabusDatabase
@@ -17,11 +19,30 @@ use Windwalker\Data\Data;
  */
 class SyllabusDatabase extends AbstractDatabase
 {
+	/**
+	 * getKeyword
+	 *
+	 * @param Data $task
+	 *
+	 * @return  string
+	 */
 	public function getKeyword(Data $task)
 	{
-		$title = $task->title;
+		$names = $task->names;
 
-		return $title;
+		$names = array_map(
+			function($value)
+			{
+				return String::quote($value, '"');
+			},
+			$names
+		);
+
+		$names = implode(' ', $names);
+
+		$names .= ' ' . Config::get('database.syllabus.keyword');
+
+		return $names;
 	}
 }
  
