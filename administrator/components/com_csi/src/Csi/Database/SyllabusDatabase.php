@@ -9,6 +9,7 @@
 namespace Csi\Database;
 
 use Csi\Config\Config;
+use Csi\Helper\KeywordHelper;
 use Windwalker\Data\Data;
 use Windwalker\String\String;
 
@@ -30,15 +31,7 @@ class SyllabusDatabase extends AbstractDatabase
 	{
 		$names = $task->names;
 
-		$names = array_map(
-			function($value)
-			{
-				return String::quote($value, '"');
-			},
-			$names
-		);
-
-		$names = implode(' ', $names);
+		$names = KeywordHelper::arrangeNames($names->chinese, $names->eng);
 
 		$names .= ' ' . Config::get('database.syllabus.keyword');
 

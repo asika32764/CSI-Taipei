@@ -45,11 +45,18 @@ class CsiControllerEntryEditSave extends SaveController
 
 		$title = EntryHelper::regularizeTitle($this->data['chinese_name'], $this->data['eng_name']);
 
+		// Build params
+		$params = new \JRegistry;
+
+		$params->set('name.chinese', trim($this->data['chinese_name']));
+		$params->set('name.eng', EntryHelper::distinctEngName($this->data['eng_name']));
+
 		// @TODO: If title exists, redirect to it.
 
-		$this->data['title'] = $title;
-		$this->data['names'] = explode(';', $title);
+		$this->data['title']   = $title;
+		$this->data['names']   = $params->get('name');
 		$this->data['created'] = (string) new \Csi\Date\Date;
+		$this->data['params']  = $params->toString('JSON');
 
 		if (!$this->user->get('guest'))
 		{

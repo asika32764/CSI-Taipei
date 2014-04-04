@@ -52,6 +52,15 @@
 			/>
 	</fieldset>
 
+	<field
+		name="params"
+		type="hidden"
+		label=""
+		description=""
+		class=""
+		default=""
+		/>
+
 	<!-- Need this field as child of root node for access setting. -->
 	<field name="asset_id"
 		type="hidden"

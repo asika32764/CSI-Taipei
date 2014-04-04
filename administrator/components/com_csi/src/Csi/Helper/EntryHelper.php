@@ -32,24 +32,9 @@ class EntryHelper
 
 		$names = array($chineseName);
 
-		foreach ($engNames as $engName)
-		{
-			$first = \JArrayHelper::getValue($engName, 'first');
-			$last  = \JArrayHelper::getValue($engName, 'last');
+		$engNames = static::distinctEngName($engNames);
 
-			$first = static::regularizeEngName($first);
-			$last  = static::regularizeEngName($last);
-
-			if (!in_array($first, $names))
-			{
-				$names[] = $first;
-			}
-
-			if (!in_array($last, $names))
-			{
-				$names[] = $last;
-			}
-		}
+		$names = array_merge($names, $engNames);
 
 		return trim(implode(';', $names), ' ;');
 	}
@@ -74,6 +59,41 @@ class EntryHelper
 		$name = Normalise::toDashSeparated($name);
 
 		return $name;
+	}
+
+	/**
+	 * distinctEngName
+	 *
+	 * @param array $engNames
+	 *
+	 * @return  array
+	 */
+	public static function distinctEngName($engNames)
+	{
+		$names = array();
+
+		foreach ($engNames as $engName)
+		{
+			$first = \JArrayHelper::getValue($engName, 'first');
+			$last  = \JArrayHelper::getValue($engName, 'last');
+
+			$first = static::regularizeEngName($first);
+			$last  = static::regularizeEngName($last);
+
+			if ($first && !in_array($first, $names))
+			{
+				$names[] = $first;
+			}
+
+			if ($last && !in_array($last, $names))
+			{
+				$names[] = $last;
+			}
+		}
+
+		sort($names);
+
+		return $names;
 	}
 
 	/**

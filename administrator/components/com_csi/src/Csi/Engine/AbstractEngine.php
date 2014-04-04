@@ -13,14 +13,42 @@ namespace Csi\Engine;
  *
  * @since 1.0
  */
-class AbstractEngine
+class AbstractEngine extends \JModelDatabase
 {
 	/**
-	 * Property keyword.
+	 * Property pages.
+	 *
+	 * @var  int
+	 */
+	public $pages = 0 ;
+
+	/**
+	 * Property links.
+	 *
+	 * @var  int
+	 */
+	public $links = 0 ;
+
+	/**
+	 * Property host.
 	 *
 	 * @var  string
 	 */
-	protected $keyword = null;
+	protected $host = '';
+
+	/**
+	 * Property path.
+	 *
+	 * @var  string
+	 */
+	public $path = '' ;
+
+	/**
+	 * Property query.
+	 *
+	 * @var  array
+	 */
+	public $query = array() ;
 
 	/**
 	 * getInstance
@@ -38,31 +66,6 @@ class AbstractEngine
 
 	public function getPageList()
 	{
-
-	}
-
-	/**
-	 * getKeyword
-	 *
-	 * @return  string
-	 */
-	public function getKeyword()
-	{
-		return $this->keyword;
-	}
-
-	/**
-	 * setKeyword
-	 *
-	 * @param   string $keyword
-	 *
-	 * @return  AbstractEngine  Return self to support chaining.
-	 */
-	public function setKeyword($keyword)
-	{
-		$this->keyword = $keyword;
-
-		return $this;
 	}
 }
  

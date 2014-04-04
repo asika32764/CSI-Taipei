@@ -6,14 +6,18 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-use Windwalker\Model\CrudModel;
+namespace Csi\Helper;
 
 /**
- * Class CsiModelEntry
+ * Class KeywordHelper
  *
  * @since 1.0
  */
-class CsiModelEntry extends CrudModel
+class KeywordHelper
 {
+	public static function arrangeNames($chineseName, $engNames)
+	{
+
+	}
 }
  
