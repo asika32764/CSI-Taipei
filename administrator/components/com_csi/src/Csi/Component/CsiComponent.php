@@ -50,6 +50,9 @@ abstract class CsiComponent extends Component
 
 		$asset->windwalker();
 
+		// Register Tasks
+		with(new TaskMapper($this))->register();
+
 		parent::prepare();
 	}
 

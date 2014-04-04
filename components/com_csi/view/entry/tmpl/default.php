@@ -91,22 +91,27 @@
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="jform[database][]" value="ndltd"> 博碩士論文資訊網
+						<input type="checkbox" name="jform[database][]" value="ethesys"> 博碩士論文
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="jform[database][]" value="paper"> 報紙資料庫
+						<input type="checkbox" name="jform[database][]" value="paper"> 報章雜誌
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="jform[database][]" value="magazine"> 雜誌資料庫
+						<input type="checkbox" name="jform[database][]" value="social"> 社群媒體
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="jform[database][]" value="wiki"> 維基百科
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="jform[database][]" value="scholar"> Google Scholar
 					</label>
 				</div>
 				<div class="checkbox">

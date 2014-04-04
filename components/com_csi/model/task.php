@@ -15,6 +15,19 @@ use Windwalker\Model\CrudModel;
  */
 class CsiModelTask extends CrudModel
 {
-
+	/**
+	 * addQueue
+	 *
+	 * @param $database
+	 * @param $engine
+	 * @param $id
+	 * @param $task
+	 *
+	 * @return  void
+	 */
+	public function addQueue($database, $engine, $id, $task)
+	{
+		// @TODO: Add queue to queue.
+	}
 }
  

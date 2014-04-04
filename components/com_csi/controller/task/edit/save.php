@@ -73,7 +73,6 @@ class CsiControllerTaskEditSave extends SaveController
 		$data->entry_id = $this->entryId;
 		$data->database = $this->database->name;
 		$data->engine   = $this->database->engine;
-		$data->engine   = 'google';
 
 		// @TODO: Build keywords.
 
@@ -81,7 +80,31 @@ class CsiControllerTaskEditSave extends SaveController
 
 		try
 		{
+			$diapatcher = $this->container->get('event.dispatcher');
+
+			// Raise Event
+			$args = array(
+				$data->database,
+				$data->engine,
+				$model->getState()->get('task.id'),
+				&$data
+			);
+
+			$diapatcher->trigger('onBeforeTaskSave', $args);
+
+			show($data);
+			die;
+
 			$model->save((array) $data);
+
+			$diapatcher->trigger('onAfterTaskSave', $args);
+
+//			$model->addQueue(
+//				$data->database,
+//				$data->engine,
+//				$model->getState()->get('task.id'),
+//				$data
+//			);
 		}
 		catch (\Exception $e)
 		{
