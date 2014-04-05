@@ -227,6 +227,7 @@
         - '#__csi_queues'
     columns:
         id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        task: { Field: task, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task] }
         query: { Field: query, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [query] }
         created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
         state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: 'Record state', From: [state] }
@@ -236,6 +237,7 @@
         - { Table: '#__csi_queues', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: priority, Seq_in_index: '1', Column_name: priority, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_queues', Non_unique: '1', Key_name: task, Seq_in_index: '1', Column_name: task, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_tasks':
     name: '#__csi_tasks'
     from:
