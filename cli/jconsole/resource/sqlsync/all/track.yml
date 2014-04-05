@@ -71,5 +71,6 @@ table:
     '#__csi_entries': all
     '#__csi_notifies': all
     '#__csi_pages': all
+    '#__csi_queues': cols
     '#__csi_tasks': all
     '#__csi_webpages': all
