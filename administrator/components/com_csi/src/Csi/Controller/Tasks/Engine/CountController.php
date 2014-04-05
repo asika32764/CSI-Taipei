@@ -56,6 +56,8 @@ class CountController extends Controller
 		{
 			$query->set('url', $page->url);
 			$query->set('num', $page->num);
+			$query->set('total', count($pages));
+			$query->set('keyword', $task->keyword);
 
 			$queueModel->add('tasks.engine.fetch', $query);
 		}

@@ -13,21 +13,21 @@ namespace Csi\Engine;
  *
  * @since 1.0
  */
-class AbstractEngine extends \JModelDatabase
+abstract class AbstractEngine extends \JModelDatabase
 {
 	/**
 	 * Property pages.
 	 *
 	 * @var  int
 	 */
-	public $pages = 0 ;
+	public $pages = 0;
 
 	/**
 	 * Property links.
 	 *
 	 * @var  int
 	 */
-	public $links = 0 ;
+	public $links = 0;
 
 	/**
 	 * Property host.
@@ -41,14 +41,14 @@ class AbstractEngine extends \JModelDatabase
 	 *
 	 * @var  string
 	 */
-	public $path = '' ;
+	public $path = '';
 
 	/**
 	 * Property query.
 	 *
 	 * @var  array
 	 */
-	public $query = array() ;
+	public $query = array();
 
 	/**
 	 * getInstance
@@ -69,9 +69,18 @@ class AbstractEngine extends \JModelDatabase
 	 *
 	 * @return  array
 	 */
-	public function getPageList()
-	{
-	}
+	abstract public function getPageList();
+
+	/**
+	 * getPage
+	 *
+	 * @param int $page
+	 *
+	 * @return  string|null
+	 *
+	 * @throws \InvalidArgumentException
+	 */
+	abstract public function getPage($page = 1);
 
 	/**
 	 * prepareUrl

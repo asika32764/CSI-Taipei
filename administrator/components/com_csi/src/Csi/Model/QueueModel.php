@@ -74,19 +74,21 @@ class QueueModel extends AdminModel
 	 * @param string     $task
 	 * @param \JRegistry $query
 	 * @param \JRegistry $params
+	 * @param int        $priority
 	 *
 	 * @return  boolean
 	 */
-	public function add($task, \JRegistry $query = null, \JRegistry $params = null)
+	public function add($task, \JRegistry $query = null, \JRegistry $params = null, $priority = 256)
 	{
 		$query  = $query  ? : new \JRegistry;
 		$params = $params ? : new \JRegistry;
 
 		$queue = new Data;
-		$queue->task    = $task;
-		$queue->query   = $query->toString();
-		$queue->created = (string) DateHelper::getDate();
-		$queue->params  = $params;
+		$queue->task     = $task;
+		$queue->query    = $query->toString();
+		$queue->created  = (string) DateHelper::getDate();
+		$queue->params   = $params;
+		$queue->priority = $priority;
 
 		return $this->save((array) $queue);
 	}

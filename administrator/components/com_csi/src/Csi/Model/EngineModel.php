@@ -8,6 +8,8 @@
 
 namespace Csi\Model;
 
+use Windwalker\Data\Data;
+
 /**
  * Class EngineModel
  *
@@ -15,5 +17,19 @@ namespace Csi\Model;
  */
 class EngineModel extends \JModelDatabase
 {
+	/**
+	 * savePage
+	 *
+	 * @param Data   $data
+	 * @param string $engine
+	 *
+	 * @return  boolean
+	 */
+	public function savePage($html, $path)
+	{
+		$data->query = new \JRegistry($data->query);
+
+		// $engine =
+	}
 }
  

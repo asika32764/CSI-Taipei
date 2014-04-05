@@ -113,7 +113,7 @@ class GoogleEngine extends AbstractEngine
 	 *
 	 * @throws \InvalidArgumentException
 	 */
-	protected function getPage($page = 1)
+	public function getPage($page = 1)
 	{
 		if ($page < 1)
 		{
