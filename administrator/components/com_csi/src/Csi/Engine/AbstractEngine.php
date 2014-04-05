@@ -64,6 +64,11 @@ class AbstractEngine extends \JModelDatabase
 		return new $class;
 	}
 
+	/**
+	 * getPageList
+	 *
+	 * @return  array
+	 */
 	public function getPageList()
 	{
 	}

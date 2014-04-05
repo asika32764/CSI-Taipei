@@ -9,7 +9,10 @@
 namespace Csi\Controller\Tasks\Engine;
 
 use Csi\Engine\AbstractEngine;
+use Csi\Model\QueueModel;
 use Windwalker\Controller\Controller;
+use Windwalker\Data\Data;
+use Windwalker\Helper\DateHelper;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
@@ -39,13 +42,28 @@ class CountController extends Controller
 		// Prepare engine model to parse page
 		$engine = AbstractEngine::getInstance($task->engine);
 
-		$state = $engine->getState();
-
-		$state->set('keyword', $task->keyword);
+		$engine->getState()->set('keyword', $task->keyword);
 
 		$pages = $engine->getPageList();
 
-		show($task, $engine);
+		// Get Queue model
+		$queueModel = new QueueModel;
+
+		// Build query
+		$query = new \JRegistry;
+
+		$query->set('id', $task->id);
+
+		foreach ($pages as $page)
+		{
+			$query->set('url', $page->url);
+			$query->set('num', $page->num);
+
+			$queueModel->add('tasks.engine.fetch', $query);
+		}
+
+
+		// show($task, $engine);
 
 		die;
 	}
