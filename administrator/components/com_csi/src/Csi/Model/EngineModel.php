@@ -15,6 +15,5 @@ namespace Csi\Model;
  */
 class EngineModel extends \JModelDatabase
 {
-
 }
  

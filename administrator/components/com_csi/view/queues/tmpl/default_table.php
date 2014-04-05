@@ -30,6 +30,9 @@ $date      = $container->get('date');
 
 // Set order script.
 $grid->registerTableSort();
+
+// Add CSS
+$asset->addCss('main.css');
 ?>
 
 <!-- LIST TABLE -->
@@ -38,14 +41,15 @@ $grid->registerTableSort();
 <!-- TABLE HEADER -->
 <thead>
 <tr>
-	<!--SORT-->
-	<th width="1%" class="nowrap center hidden-phone">
-		<?php echo $grid->orderTitle(); ?>
-	</th>
 
 	<!--CHECKBOX-->
 	<th width="1%" class="center">
 		<?php echo JHtml::_('grid.checkAll'); ?>
+	</th>
+
+	<!--ID-->
+	<th width="1%" class="nowrap center">
+		<?php echo $grid->sortTitle('JGRID_HEADING_ID', 'queue.id'); ?>
 	</th>
 
 	<!--STATE-->
@@ -55,37 +59,17 @@ $grid->registerTableSort();
 
 	<!--TITLE-->
 	<th class="center">
-		<?php echo $grid->sortTitle('JGLOBAL_TITLE', 'queue.title'); ?>
+		<?php echo $grid->sortTitle('Task', 'queue.task'); ?>
 	</th>
 
-	<!--CATEGORY-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JCATEGORY', 'category.title'); ?>
-	</th>
-
-	<!--ACCESS VIEW LEVEL-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_ACCESS', 'viewlevel.title'); ?>
+	<!--QUERY-->
+	<th width="" class="center">
+		<?php echo $grid->sortTitle('Query', 'queue.query'); ?>
 	</th>
 
 	<!--CREATED-->
-	<th width="10%" class="center">
+	<th width="20%" class="center">
 		<?php echo $grid->sortTitle('JDATE', 'queue.created'); ?>
-	</th>
-
-	<!--USER-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JAUTHOR', 'user.name'); ?>
-	</th>
-
-	<!--LANGUAGE-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_LANGUAGE', 'lang.title'); ?>
-	</th>
-
-	<!--ID-->
-	<th width="1%" class="nowrap center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_ID', 'queue.id'); ?>
 	</th>
 </tr>
 </thead>
@@ -112,75 +96,10 @@ $grid->registerTableSort();
 	$grid->setItem($item, $i);
 	?>
 	<tr class="queue-row" sortable-group-id="<?php echo $item->catid; ?>">
-		<!-- DRAG SORT -->
-		<td class="order nowrap center hidden-phone">
-			<?php echo $grid->dragSort(); ?>
-		</td>
 
 		<!--CHECKBOX-->
 		<td class="center">
 			<?php echo JHtml::_('grid.id', $i, $item->queue_id); ?>
-		</td>
-
-		<!--STATE-->
-		<td class="center">
-			<div class="btn-group">
-				<!-- STATE BUTTON -->
-				<?php echo $grid->state() ?>
-
-				<!-- CHANGE STATE DROP DOWN -->
-				<?php echo $this->loadTemplate('dropdown'); ?>
-			</div>
-		</td>
-
-		<!--TITLE-->
-		<td class="n/owrap has-context quick-edit-wrap">
-			<div class="item-title">
-				<!-- Checkout -->
-				<?php echo $grid->checkoutButton(); ?>
-
-				<!-- Title -->
-				<?php echo $grid->editTitle(); ?>
-			</div>
-
-			<!-- Sub Title -->
-			<div class="small">
-				<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias)); ?>
-			</div>
-		</td>
-
-		<!--CATEGORY-->
-		<td class="center">
-			<?php echo $this->escape($item->category_title); ?>
-		</td>
-
-		<!--ACCESS VIEW LEVEL-->
-		<td class="center">
-			<?php echo $this->escape($item->viewlevel_title); ?>
-		</td>
-
-		<!--CREATED-->
-		<td class="center">
-			<?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?>
-		</td>
-
-		<!--USER-->
-		<td class="center">
-			<?php echo $this->escape($item->user_name); ?>
-		</td>
-
-		<!--LANGUAGE-->
-		<td class="center">
-			<?php
-			if ($item->language == '*')
-			{
-				echo JText::alt('JALL', 'language');
-			}
-			else
-			{
-				echo $item->lang_title ? $this->escape($item->lang_title) : JText::_('JUNDEFINED');
-			}
-			?>
 		</td>
 
 		<!--ID-->
@@ -188,6 +107,37 @@ $grid->registerTableSort();
 			<?php echo (int) $item->id; ?>
 		</td>
 
+		<!--STATE-->
+		<td class="center">
+			<div class="btn-group">
+			<?php if ($item->state == 0): ?>
+				<span class="label label-default">Close</span>
+			<?php elseif ($item->state == 1): ?>
+				<span class="label label-warning">Pending</span>
+			<?php elseif ($item->state == 2): ?>
+				<span class="label label-info">Finished</span>
+			<?php endif; ?>
+			</div>
+		</td>
+
+		<!--TITLE-->
+		<td class="n/owrap has-context quick-edit-wrap">
+			<div class="item-title">
+				<!-- Title -->
+				<?php echo $item->task; ?>
+			</div>
+		</td>
+
+		<!--Query-->
+		<td class="">
+			<?php echo \Windwalker\Helper\ModalHelper::modalLink('See Query', 'query-' . $item->id); ?>
+			<?php echo \Windwalker\Helper\ModalHelper::renderModal('query-' . $item->id, '<pre>' . print_r(json_decode($item->query, true), true) . '</pre>'); ?>
+		</td>
+
+		<!--CREATED-->
+		<td class="center">
+			<?php echo JHtml::_('date', $item->created, 'Y-m-d H:i:s'); ?>
+		</td>
 	</tr>
 <?php endforeach; ?>
 </tbody>

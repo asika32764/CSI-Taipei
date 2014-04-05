@@ -11,8 +11,6 @@ namespace Csi\Controller\Tasks\Engine;
 use Csi\Engine\AbstractEngine;
 use Csi\Model\QueueModel;
 use Windwalker\Controller\Controller;
-use Windwalker\Data\Data;
-use Windwalker\Helper\DateHelper;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
@@ -62,10 +60,9 @@ class CountController extends Controller
 			$queueModel->add('tasks.engine.fetch', $query);
 		}
 
+		$msg = sprintf('Count pages: %s success.', count($pages));
 
-		// show($task, $engine);
-
-		die;
+		exit($msg);
 	}
 }
  

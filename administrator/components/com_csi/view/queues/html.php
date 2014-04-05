@@ -110,14 +110,14 @@ class CsiViewQueuesHtml extends GridView
 	protected function configureToolbar($buttonSet = array(), $canDo = null)
 	{
 		// Get default button set.
-		$buttonSet = parent::configureToolbar($buttonSet, $canDo);
-
-		// In debug mode, we remove trash button but use delete button instead.
-		if (JDEBUG)
-		{
-			$buttonSet['trash']['access']  = false;
-			$buttonSet['delete']['access'] = true;
-		}
+		$buttonSet = array(
+			'delete' => array(
+				'handler' => 'deleteList',
+				'args'    => array($this->viewList . '.state.delete'),
+				'access'  => true,
+				'priority' => 400
+			)
+		);
 
 		return $buttonSet;
 	}

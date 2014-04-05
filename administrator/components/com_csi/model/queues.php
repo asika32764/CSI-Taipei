@@ -65,10 +65,11 @@ class CsiModelQueues extends ListModel
 		$queryHelper = $this->getContainer()->get('model.queues.helper.query', Container::FORCE_NEW);
 
 		$queryHelper->addTable('queue', '#__csi_queues')
-			->addTable('category',  '#__categories', 'queue.catid      = category.id')
-			->addTable('user',      '#__users',      'queue.created_by = user.id')
-			->addTable('viewlevel', '#__viewlevels', 'queue.access     = viewlevel.id')
-			->addTable('lang',      '#__languages',  'queue.language   = lang.lang_code');
+//			->addTable('category',  '#__categories', 'queue.catid      = category.id')
+//			->addTable('user',      '#__users',      'queue.created_by = user.id')
+//			->addTable('viewlevel', '#__viewlevels', 'queue.access     = viewlevel.id')
+//			->addTable('lang',      '#__languages',  'queue.language   = lang.lang_code')
+		;
 
 		$this->filterFields = array_merge($this->filterFields, $queryHelper->getFilterFields());
 	}
