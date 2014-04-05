@@ -32,6 +32,8 @@ class Memcached extends Storage
 			throw new \RuntimeException('Memcached Extension is not available', 404);
 		}
 
+		parent::__construct($options);
+
 		// This will be an array of loveliness
 		// @todo: multiple servers
 		$this->_servers = array(
@@ -40,9 +42,6 @@ class Memcached extends Storage
 				'port' => isset($options['memcache_server_port']) ? $options['memcache_server_port'] : 11211
 			)
 		);
-
-		// Only construct parent AFTER host and port are sent, otherwise when register is called this will fail.
-		parent::__construct($options);
 	}
 
 	/**
@@ -67,7 +66,6 @@ class Memcached extends Storage
 	 */
 	static public function isSupported()
 	{
-		// GAE and HHVM have both had instances where Memcached the class was defined but no extension was loaded.  If the class is there, we can assume it works.
-		return (class_exists('Memcached'));
+		return (extension_loaded('memcached') && class_exists('Memcached'));
 	}
 }

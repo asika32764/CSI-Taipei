@@ -6,38 +6,18 @@
 
 namespace Joomla\Session\Tests;
 
-use Joomla\Session\Storage;
-
 /**
- * Test class for Joomla\Session\Storage.  Because Storage
- * is an Absract class, we can not invoke it by object - so
- * we over-ride most of the tests and instead call it using static
- * method calls.  Do NOT do this for live code - if you want
- * a Cache engine which stores data in an ArrayObject, subclass
- * Joomla\Session\Storage and invoke it as an object.
- * These tests merely provide a baseline model for how all other
- * classes should respond to the same data and method calls.
+ * Test class for Joomla\Session\Storage.
  *
  * @since  1.0
  */
-class StorageTest extends StorageCase
+class StorageTest extends \PHPUnit_Framework_TestCase
 {
 	/**
-	 * Sets up the fixture.
-	 *
-	 * This method is called before a test is executed.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
+	 * @var    \Joomla\Session\Storage
+	 * @since  1.0
 	 */
-	protected function setUp()
-	{
-		// Dummy object for testing
-		static::$object = $this;
-		parent::setUp();
-		static::$className  = '\\Joomla\\Session\\Storage';
-	}
+	protected $object;
 
 	/**
 	 * Test getInstance
@@ -48,114 +28,129 @@ class StorageTest extends StorageCase
 	 */
 	public function testGetInstance()
 	{
-		$className = static::$className;
-		$instance = $className::getInstance();
-		$instanceClass = get_class($instance);
-
-		// Can't be us because we are abstract
-		$this->assertNotEquals($className, $instanceClass,  __LINE__);
-
-		// Should Default to None
-		$storageClass = 'Joomla\\Session\\Storage\\None';
-		$this->assertInstanceOf($storageClass, $instance, __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test __construct: can't construct an abstract class
+	 * Test...
 	 *
-	 * @return void
-	 */
-	public function test__Construct()
-	{
-		$reflectStorage = new \ReflectionClass('Joomla\\Session\\Storage');
-		$this->assertThat($reflectStorage->isAbstract(), $this->isTrue(), __LINE__);
-	}
-
-	/**
-	 * Test Register is not valid for an abstract model
+	 * @todo Implement testRegister().
 	 *
 	 * @return void
 	 */
 	public function testRegister()
 	{
-		$reflectStorage = new \ReflectionClass('Joomla\Session\\Storage');
-		$this->assertThat($reflectStorage->isAbstract(), $this->isTrue(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test session open
+	 * Test...
+	 *
+	 * @todo Implement testOpen().
 	 *
 	 * @return void
 	 */
 	public function testOpen()
 	{
-		$className = static::$className;
-		$this->assertThat($className::open(static::$sessionPath, static::$sessionName), $this->isTrue(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test close session
+	 * Test...
+	 *
+	 * @todo Implement testClose().
 	 *
 	 * @return void
 	 */
 	public function testClose()
 	{
-		$className = static::$className;
-		$this->assertThat($className::close(), $this->isTrue(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test read default key and value
+	 * Test...
+	 *
+	 * @todo Implement testRead().
 	 *
 	 * @return void
 	 */
 	public function testRead()
 	{
-		$className = static::$className;
-		$this->assertThat($className::read(static::$key), $this->isNull(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test write nothing default key and value
+	 * Test...
+	 *
+	 * @todo Implement testWrite().
 	 *
 	 * @return void
 	 */
 	public function testWrite()
 	{
-		$className = static::$className;
-		$this->assertThat($className::write(static::$key, static::$value), $this->isTrue(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test storage destroy no value
+	 * Test...
+	 *
+	 * @todo Implement testDestroy().
 	 *
 	 * @return void
 	 */
 	public function testDestroy()
 	{
-		$className = static::$className;
-		$this->assertThat($className::destroy(static::$key), $this->isTrue(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test garbage collection
+	 * Test...
+	 *
+	 * @todo Implement testGc().
 	 *
 	 * @return void
 	 */
 	public function testGc()
 	{
-		$className = static::$className;
-		$this->assertThat($className::gc(), $this->isTrue(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 
 	/**
-	 * Test isSupported
+	 * Test...
+	 *
+	 * @todo Implement testIsSupported().
 	 *
 	 * @return void
 	 */
 	public function testIsSupported()
 	{
-		$className = static::$className;
-		$this->assertThat($className::isSupported(), $this->isTrue(), __LINE__);
+		// Remove the following lines when you implement this test.
+		$this->markTestIncomplete(
+			'This test has not been implemented yet.'
+		);
 	}
 }

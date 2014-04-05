@@ -67,5 +67,21 @@ class AbstractEngine extends \JModelDatabase
 	public function getPageList()
 	{
 	}
+
+	/**
+	 * prepareUrl
+	 *
+	 * @param int $page
+	 *
+	 * @return  \JUri
+	 */
+	public function prepareUrl($page = 1)
+	{
+		$uri = new \JUri($this->host);
+
+		$uri->setPath($this->path);
+
+		return $uri;
+	}
 }
  

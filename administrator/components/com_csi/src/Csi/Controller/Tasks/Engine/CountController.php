@@ -22,13 +22,19 @@ class CountController extends Controller
 	/**
 	 * doExecute
 	 *
+	 * @throws \RuntimeException
 	 * @return mixed
 	 */
 	protected function doExecute()
 	{
 		$id = $this->input->get('id');
 
-		$task  = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $id));
+		$task = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $id));
+
+		if (!(array) $task)
+		{
+			throw new \RuntimeException('Task not found');
+		}
 
 		// Prepare engine model to parse page
 		$engine = AbstractEngine::getInstance($task->engine);

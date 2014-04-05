@@ -85,5 +85,20 @@ class KeywordHelper
 
 		return trim(implode(' OR ', $names));
 	}
+
+	/**
+	 * encode
+	 *
+	 * @param string $text
+	 *
+	 * @return  mixed
+	 */
+	public static function encode($text)
+	{
+		$text = trim($text);
+		$text = urlencode($text);
+
+		return str_replace(array('%20', ' '), '+', $text);
+	}
 }
  

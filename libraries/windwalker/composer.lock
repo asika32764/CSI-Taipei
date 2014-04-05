@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ff3da6b549789be22c4649c22dde3d65",
+    "hash": "ccca1210bd54974240690f4b05864bd3",
     "packages": [
         {
             "name": "asika/joomla-console",
@@ -49,16 +49,16 @@
         },
         {
             "name": "asika/php-code-generator",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asika32764/php-code-generator.git",
-                "reference": "1e27294c1253f282ac539ea56bd05c098da169c8"
+                "reference": "f3cd515c0ad1ae17c3f66272f6cbcee92ef60695"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asika32764/php-code-generator/zipball/1e27294c1253f282ac539ea56bd05c098da169c8",
-                "reference": "1e27294c1253f282ac539ea56bd05c098da169c8",
+                "url": "https://api.github.com/repos/asika32764/php-code-generator/zipball/f3cd515c0ad1ae17c3f66272f6cbcee92ef60695",
+                "reference": "f3cd515c0ad1ae17c3f66272f6cbcee92ef60695",
                 "shasum": ""
             },
             "require-dev": {
@@ -84,7 +84,7 @@
                 }
             ],
             "description": "PHP Code generator",
-            "time": "2014-02-21 09:30:27"
+            "time": "2014-04-02 07:48:22"
         },
         {
             "name": "filp/whoops",
@@ -146,6 +146,98 @@
             "time": "2014-03-31 04:21:53"
         },
         {
+            "name": "guzzle/guzzle",
+            "version": "v3.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "b4a3ce8c05e777fa18b802956d5d0e38ad338a69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b4a3ce8c05e777fa18b802956d5d0e38ad338a69",
+                "reference": "b4a3ce8c05e777fa18b802956d5d0e38ad338a69",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "2.0.*",
+                "zendframework/zend-log": "2.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Tests": "tests/",
+                    "Guzzle": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2013-12-05 23:39:20"
+        },
+        {
             "name": "joomla/application",
             "version": "1.0",
             "target-dir": "Joomla/Application",
@@ -192,42 +284,6 @@
                 "joomla"
             ],
             "time": "2013-11-30 15:04:01"
-        },
-        {
-            "name": "joomla/compat",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joomla-framework/compat.git",
-                "reference": "92ba45e9cfdca4c912691bf04ef13e0c03660348"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/compat/zipball/92ba45e9cfdca4c912691bf04ef13e0c03660348",
-                "reference": "92ba45e9cfdca4c912691bf04ef13e0c03660348",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.10"
-            },
-            "type": "joomla-package",
-            "autoload": {
-                "classmap": [
-                    "src/JsonSerializable.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Joomla Compat Package",
-            "homepage": "https://github.com/joomla-framework/compat",
-            "keywords": [
-                "compat",
-                "framework",
-                "joomla"
-            ],
-            "time": "2014-02-09 19:29:20"
         },
         {
             "name": "joomla/date",
@@ -349,6 +405,92 @@
             "time": "2014-02-09 07:45:50"
         },
         {
+            "name": "joomla/framework",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joomla/joomla-framework.git",
+                "reference": "f8a2343d3147f595d43e735b89b11c277520f141"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joomla/joomla-framework/zipball/f8a2343d3147f595d43e735b89b11c277520f141",
+                "reference": "f8a2343d3147f595d43e735b89b11c277520f141",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.10",
+                "psr/log": "~1.0"
+            },
+            "replace": {
+                "joomla/application": "self.version",
+                "joomla/archive": "self.version",
+                "joomla/cache": "self.version",
+                "joomla/compat": "self.version",
+                "joomla/controller": "self.version",
+                "joomla/crypt": "self.version",
+                "joomla/data": "self.version",
+                "joomla/database": "self.version",
+                "joomla/date": "self.version",
+                "joomla/facebook": "self.version",
+                "joomla/filesystem": "self.version",
+                "joomla/filter": "self.version",
+                "joomla/form": "self.version",
+                "joomla/github": "self.version",
+                "joomla/google": "self.version",
+                "joomla/http": "self.version",
+                "joomla/image": "self.version",
+                "joomla/input": "self.version",
+                "joomla/keychain": "self.version",
+                "joomla/language": "self.version",
+                "joomla/linkedin": "self.version",
+                "joomla/log": "self.version",
+                "joomla/model": "self.version",
+                "joomla/oauth1": "self.version",
+                "joomla/oauth2": "self.version",
+                "joomla/profiler": "self.version",
+                "joomla/registry": "self.version",
+                "joomla/router": "self.version",
+                "joomla/session": "self.version",
+                "joomla/string": "self.version",
+                "joomla/test": "self.version",
+                "joomla/twitter": "self.version",
+                "joomla/uri": "self.version",
+                "joomla/utilities": "self.version",
+                "joomla/view": "self.version"
+            },
+            "require-dev": {
+                "symfony/yaml": "~2.0"
+            },
+            "suggest": {
+                "symfony/yaml": "Install symfony/yaml 2.* if you require YAML support."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Joomla": "src/",
+                    "Psr": "vendor/psr/cache"
+                },
+                "classmap": [
+                    "src/Joomla/Compat/JsonSerializable.php"
+                ],
+                "files": [
+                    "src/Joomla/PHP/methods.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "The Joomla Framework is a platform for writing Web and command line applications in PHP.",
+            "homepage": "https://github.com/joomla/joomla-framework",
+            "keywords": [
+                "framework",
+                "joomla"
+            ],
+            "time": "2014-02-08 18:43:22"
+        },
+        {
             "name": "joomla/input",
             "version": "1.1.1",
             "source": {
@@ -433,64 +575,18 @@
             "time": "2014-02-09 08:39:26"
         },
         {
-            "name": "joomla/registry",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joomla-framework/registry.git",
-                "reference": "d4526f2fb6295fbd3c688fa817e72a1821d7c0e4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/registry/zipball/d4526f2fb6295fbd3c688fa817e72a1821d7c0e4",
-                "reference": "d4526f2fb6295fbd3c688fa817e72a1821d7c0e4",
-                "shasum": ""
-            },
-            "require": {
-                "joomla/compat": "~1.0",
-                "joomla/utilities": "~1.0",
-                "php": ">=5.3.10"
-            },
-            "require-dev": {
-                "joomla/test": "~1.0",
-                "symfony/yaml": "~2.0"
-            },
-            "suggest": {
-                "symfony/yaml": "Install 2.* if you require YAML support."
-            },
-            "type": "joomla-package",
-            "autoload": {
-                "psr-4": {
-                    "Joomla\\Registry\\": "src/",
-                    "Joomla\\Registry\\Tests\\": "Tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Joomla Registry Package",
-            "homepage": "https://github.com/joomla-framework/registry",
-            "keywords": [
-                "framework",
-                "joomla",
-                "registry"
-            ],
-            "time": "2014-02-09 07:19:55"
-        },
-        {
             "name": "joomla/session",
-            "version": "1.1.0",
+            "version": "1.0",
             "target-dir": "Joomla/Session",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/session.git",
-                "reference": "ba9a354be1522390bd32cef21bae8fc8c33d212d"
+                "reference": "f6a748bc1aa3bc8b91a1c72c62cc62c07e1c6efb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/session/zipball/ba9a354be1522390bd32cef21bae8fc8c33d212d",
-                "reference": "ba9a354be1522390bd32cef21bae8fc8c33d212d",
+                "url": "https://api.github.com/repos/joomla-framework/session/zipball/f6a748bc1aa3bc8b91a1c72c62cc62c07e1c6efb",
+                "reference": "f6a748bc1aa3bc8b91a1c72c62cc62c07e1c6efb",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +613,7 @@
                 "joomla",
                 "session"
             ],
-            "time": "2014-01-16 04:24:36"
+            "time": "2013-11-30 23:56:12"
         },
         {
             "name": "joomla/string",
@@ -597,42 +693,98 @@
             "time": "2014-02-09 02:57:17"
         },
         {
-            "name": "joomla/utilities",
-            "version": "1.1.1",
+            "name": "paquettg/php-html-parser",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/joomla-framework/utilities.git",
-                "reference": "de31259372d049f2a3fabe7b1c412cece134ca31"
+                "url": "https://github.com/paquettg/php-html-parser.git",
+                "reference": "dbaf2cab29bd745469bc69b9cc5bb5aaea20451d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/utilities/zipball/de31259372d049f2a3fabe7b1c412cece134ca31",
-                "reference": "de31259372d049f2a3fabe7b1c412cece134ca31",
+                "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/dbaf2cab29bd745469bc69b9cc5bb5aaea20451d",
+                "reference": "dbaf2cab29bd745469bc69b9cc5bb5aaea20451d",
                 "shasum": ""
             },
             "require": {
-                "joomla/string": "~1.0",
-                "php": ">=5.3.10"
+                "guzzle/guzzle": "v3.8.0",
+                "paquettg/string-encode": "0.1.0",
+                "php": ">=5.4"
             },
-            "type": "joomla-package",
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Joomla\\Utilities\\": "src/",
-                    "Joomla\\Utilities\\Tests\\": "Tests/"
+                "psr-0": {
+                    "PHPHtmlParser": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "MIT"
             ],
-            "description": "Joomla Utilities Package",
-            "homepage": "https://github.com/joomla-framework/utilities",
+            "authors": [
+                {
+                    "name": "Gilles Paquette",
+                    "email": "paquettg@gmail.com",
+                    "homepage": "http://gillespaquette.ca"
+                }
+            ],
+            "description": "An HTML DOM parser. It allows you to manipulate HTML. Find tags on an HTML page with selectors just like jQuery.",
+            "homepage": "https://github.com/paquettg/php-html-parser",
             "keywords": [
-                "framework",
-                "joomla",
-                "utilities"
+                "dom",
+                "html",
+                "parser"
             ],
-            "time": "2014-02-09 02:57:39"
+            "time": "2014-01-03 15:00:35"
+        },
+        {
+            "name": "paquettg/string-encode",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paquettg/string-encoder.git",
+                "reference": "f0e6ae7e974287e28fcb6e4e70cd9231a3b62b62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paquettg/string-encoder/zipball/f0e6ae7e974287e28fcb6e4e70cd9231a3b62b62",
+                "reference": "f0e6ae7e974287e28fcb6e4e70cd9231a3b62b62",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "stringEncode": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gilles Paquette",
+                    "email": "paquettg@gmail.com",
+                    "homepage": "http://gillespaquette.ca"
+                }
+            ],
+            "description": "Facilitating the process of altering string encoding in PHP.",
+            "homepage": "https://github.com/paquettg/string-encoder",
+            "keywords": [
+                "charset",
+                "encoding",
+                "string"
+            ],
+            "time": "2013-12-13 15:26:20"
         },
         {
             "name": "psr/log",
@@ -671,6 +823,62 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "v2.4.2",
+            "target-dir": "Symfony/Component/EventDispatcher",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/dependency-injection": "~2.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-02-11 13:52:09"
         },
         {
             "name": "windwalker/framework",
