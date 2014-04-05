@@ -10,7 +10,6 @@ namespace Csi\Controller\Tasks\Engine;
 
 use Csi\Engine\AbstractEngine;
 use Csi\Helper\EnginepageHelper;
-use Csi\Model\EngineModel;
 use Windwalker\Controller\Controller;
 use Windwalker\Data\Data;
 use Windwalker\Helper\DateHelper;
