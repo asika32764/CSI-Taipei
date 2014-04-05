@@ -30,7 +30,7 @@ class SyllabusDatabase extends AbstractDatabase
 	public function getKeyword(Data $task)
 	{
 		$names = $task->names;
-
+show($task, 6);
 		$names = KeywordHelper::arrangeNames($names->chinese, $names->eng);
 
 		$names .= ' ' . Config::get('database.syllabus.keyword');

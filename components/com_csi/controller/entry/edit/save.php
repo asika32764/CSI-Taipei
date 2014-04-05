@@ -49,7 +49,9 @@ class CsiControllerEntryEditSave extends SaveController
 		$params = new \JRegistry;
 
 		$params->set('name.chinese', trim($this->data['chinese_name']));
-		$params->set('name.eng', EntryHelper::distinctEngName($this->data['eng_name']));
+
+		$params->set('name.eng', EntryHelper::cleanEngNames($this->data['eng_name']));
+		// $params->set('name.eng', EntryHelper::distinctEngName($this->data['eng_name']));
 
 		// @TODO: If title exists, redirect to it.
 

@@ -17,7 +17,7 @@ class KeywordHelper
 {
 	public static function arrangeNames($chineseName, $engNames)
 	{
-
+		show($engNames);die;
 	}
 }
  
