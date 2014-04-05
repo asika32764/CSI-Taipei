@@ -10,8 +10,8 @@ namespace Csi\Database;
 
 use Csi\Config\Config;
 use Csi\Helper\KeywordHelper;
+use Csi\Registry\RegistryHelper;
 use Windwalker\Data\Data;
-use Windwalker\String\String;
 
 /**
  * Class SyllabusDatabase
@@ -29,13 +29,20 @@ class SyllabusDatabase extends AbstractDatabase
 	 */
 	public function getKeyword(Data $task)
 	{
-		$names = $task->names;
-show($task, 6);
-		$names = KeywordHelper::arrangeNames($names->chinese, $names->eng);
+		$params = RegistryHelper::loadString($task->params);
 
-		$names .= ' ' . Config::get('database.syllabus.keyword');
+		// Build name keyword
+		$names = KeywordHelper::buildNamesKeyword($params->get('name.chinese'), $params->get('name.eng'));
 
-		return $names;
+		// Get syllabus keyword
+		$suffix = Config::get('database.syllabus.keyword');
+
+		$suffix = implode(' OR ', $suffix);
+
+		// Combine two
+		$keyword = sprintf('(%s) AND (%s)', $names, $suffix);
+
+		return $keyword;
 	}
 }
  

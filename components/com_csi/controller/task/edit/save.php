@@ -6,6 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
+use Csi\Registry\RegistryHelper;
 use Windwalker\Controller\Edit\SaveController;
 
 /**
@@ -73,7 +74,7 @@ class CsiControllerTaskEditSave extends SaveController
 		$data->entry_id = $this->entryId;
 		$data->database = $this->database->name;
 		$data->engine   = $this->database->engine;
-		$data->names    = $this->data['names'];
+		$data->params   = $this->data['params'];
 		$data->created  = $this->data['created'];
 
 		// @TODO: Build keywords.

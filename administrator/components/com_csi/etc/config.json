@@ -8,7 +8,10 @@
 		"syllabus": {
 			"name" : "syllabus",
 			"engine" : "google",
-			"keyword" : "課程大綱 課綱"
+			"keyword" : [
+				"課程大綱",
+				"\"Syllabus\""
+			]
 		},
 
 		"ethesys": {
