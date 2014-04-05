@@ -82,7 +82,7 @@ class CsiModelQueues extends ListModel
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'queue.id', $direction = null)
 	{
 		// Build ordering prefix
 		if (!$ordering)
@@ -94,7 +94,7 @@ class CsiModelQueues extends ListModel
 			$ordering = property_exists($table, 'catid') ? 'queue.catid, ' . $ordering : $ordering;
 		}
 
-		parent::populateState($ordering, 'ASC');
+		parent::populateState($ordering, 'DESC');
 	}
 
 	/**

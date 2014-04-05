@@ -8,7 +8,11 @@
 
 namespace Csi\Controller\Tasks\Engine;
 
+use Csi\Engine\AbstractEngine;
+use Csi\Model\QueueModel;
 use Windwalker\Controller\Controller;
+use Windwalker\Data\DataSet;
+use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
  * Class ParseController
@@ -18,13 +22,106 @@ use Windwalker\Controller\Controller;
 class ParseController extends Controller
 {
 	/**
+	 * Property enginePage.
+	 *
+	 * @var \Windwalker\Data\Data
+	 */
+	protected $enginePage;
+
+	/**
+	 * Property engine.
+	 *
+	 * @var AbstractEngine
+	 */
+	protected $engine;
+
+	/**
+	 * Property task.
+	 *
+	 * @var \Windwalker\Data\Data
+	 */
+	protected $task;
+
+	/**
+	 * prepareExecute
+	 *
+	 * @return  void
+	 */
+	protected function prepareExecute()
+	{
+		$id = $this->input->get('id');
+
+		$enginePage = with(new DataMapper('#__csi_enginepages'))->findOne(array('id' => $id));
+
+		// Prepare engine model to get pages
+		$engine = AbstractEngine::getInstance($enginePage->engine);
+
+		$this->engine = $engine;
+		$this->enginePage = $enginePage;
+
+		$this->task = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $enginePage->task_id));
+	}
+
+	/**
 	 * doExecute
 	 *
+	 * @throws \RuntimeException
+	 * @throws \Exception
 	 * @return mixed
 	 */
 	protected function doExecute()
 	{
-		// TODO: Implement doExecute() method.
+		$path = $this->enginePage->file;
+
+		if (!is_file($path))
+		{
+			throw new \RuntimeException(sprintf('File: %s not found', $path));
+		}
+
+		$html = file_get_contents($path);
+
+		$pages = $this->engine->parsePage($html);
+
+		$dataSet    = new DataSet($pages);
+		$mapper     = new DataMapper('#__csi_pages');
+		$queueModel = new QueueModel;
+
+		/** @var $db \JDatabaseDriver */
+		$db = $this->container->get('db');
+
+		try
+		{
+			$db->transactionStart(true);
+
+			foreach ($dataSet as $data)
+			{
+				$data->task_id = $this->task->id;
+				$data->entry_id = $this->task->entry_id;
+				$data->enginepage_id = $this->enginePage->id;
+
+				$data = $mapper->createOne($data);
+
+				$query = new \JRegistry(
+					array(
+						'id' => $data->id
+					)
+				);
+
+				$queueModel->add('page.download', $query);
+			}
+		}
+		catch (\Exception $e)
+		{
+			$db->transactionRollback(true);
+
+			throw $e;
+		}
+
+		$db->transactionCommit(true);
+
+		$msg = sprintf('Parse page links success. EnginePage ID: %s', $this->enginePage->id);
+
+		exit($msg);
 	}
 }
  

@@ -10,6 +10,7 @@ namespace Csi\Controller\Tasks\Engine;
 
 use Csi\Engine\AbstractEngine;
 use Csi\Helper\EnginepageHelper;
+use Csi\Model\QueueModel;
 use Windwalker\Controller\Controller;
 use Windwalker\Data\Data;
 use Windwalker\Helper\DateHelper;
@@ -102,6 +103,7 @@ class FetchController extends Controller
 
 		$data = new Data;
 
+		$data->task_id  = $this->task->id;
 		$data->engine   = $this->task->engine;
 		$data->url      = $this->query->get('url');
 		$data->total    = $this->query->get('total');
@@ -127,6 +129,19 @@ class FetchController extends Controller
 			$data->file = EnginepageHelper::getFilePath($data->id);
 
 			$mapper->updateOne($data);
+
+			// Add queue to parse
+			$queueModel = new QueueModel;
+
+			$query = new \JRegistry(
+				array(
+					'id' => $data->id,
+					'task_id' => $this->task->id,
+					'page' => $page
+				)
+			);
+
+			$queueModel->add('tasks.engine.parse', $query);
 		}
 		catch (\Exception $e)
 		{

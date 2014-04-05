@@ -4,16 +4,18 @@
         - '#__csi_enginepages'
     columns:
         id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        task_id: { Field: task_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
         engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
         url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        file: { Field: file, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [file] }
         total: { Field: total, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [total] }
         created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
         ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [state] }
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_enginepages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-        - { Table: '#__csi_enginepages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_enginepages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_entries':
     name: '#__csi_entries'
     from:
@@ -53,13 +55,14 @@
         entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
         task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
         enginepage_id: { Field: enginepage_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [enginepage_id] }
-        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: null, Extra: '', Comment: '', From: [state] }
+        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [state] }
         title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
         url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         filetype: { Field: filetype, Type: char(10), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filetype] }
         filepath: { Field: filepath, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filepath] }
         downloaded: { Field: downloaded, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [downloaded] }
         created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        page: { Field: page, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [page] }
         ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
         published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }

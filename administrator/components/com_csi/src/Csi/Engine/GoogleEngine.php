@@ -9,11 +9,9 @@
 namespace Csi\Engine;
 
 use Csi\Helper\KeywordHelper;
-use Csi\Helper\RefCurlHelper;
 use Joomla\String\String;
 use PHPHtmlParser\Dom;
 use Windwalker\Data\Data;
-use Windwalker\Data\DataSet;
 use Windwalker\Helper\CurlHelper;
 
 /**
@@ -133,6 +131,68 @@ class GoogleEngine extends AbstractEngine
 		$html = String::transcode($html, 'big5', 'UTF-8');
 
 		return $html;
+	}
+
+	/**
+	 * parsePage
+	 *
+	 * @param string $html
+	 *
+	 * @return  \Windwalker\Data\Data[]
+	 */
+	public function parsePage($html = null)
+	{
+		$html = $html ? : $this->state->get('parse.html');
+
+		/** @var $page Dom */
+		$page   = with(new Dom)->load($html);
+		$result = array();
+
+		// Get normal link
+		$links = $page->find('div#ires ol li.g');
+
+		foreach ($links as $k => $link)
+		{
+			/** @var $link Dom */
+			$normal = $link->find('h3.r a');
+
+			$item = array();
+
+			// Get title and url
+			$item['title'] = strip_tags($normal[0]->innerhtml);
+			$item['url']  = substr((string) $normal[0]->href, 7);
+
+			// File type
+			$fileType = $link->find('span.xsm');
+
+			$item['filetype'] = 'html';
+
+			if (isset($fileType[0]->innertext))
+			{
+				$type = $fileType[0]->innertext;
+				$type = str_replace('[', '', $type);
+				$type = str_replace(']', '', $type);
+				$type = strtolower($type);
+
+				$item['filetype'] = $type;
+			}
+
+			// Storage
+			/* We don't need storage now
+			$storage = $link->find('span.gl a');
+			$result[$k]['google-storage'] = null;
+
+			if (isset($storage[0]->href))
+			{
+				$result[$k]['google-storage'] = $result[$k]['normal'];
+				$result[$k]['google-storage']['url'] = $storage[0]->href;
+			}
+			*/
+
+			$result[] = new Data($item);
+		}
+
+		return $result;
 	}
 
 	/**

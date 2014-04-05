@@ -83,6 +83,15 @@ abstract class AbstractEngine extends \JModelDatabase
 	abstract public function getPage($page = 1);
 
 	/**
+	 * parsePage
+	 *
+	 * @param string $html
+	 *
+	 * @return  \Windwalker\Data\Data[]
+	 */
+	abstract public function parsePage($html = null);
+
+	/**
 	 * prepareUrl
 	 *
 	 * @param int $page
