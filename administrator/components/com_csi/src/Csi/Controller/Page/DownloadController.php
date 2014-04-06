@@ -10,8 +10,10 @@ namespace Csi\Controller\Page;
 
 use Csi\Helper\PageHelper;
 use Csi\Model\PageModel;
+use Csi\Model\QueueModel;
 use Windwalker\Controller\Controller;
 use Windwalker\Helper\DateHelper;
+use Windwalker\Html\HtmlElement;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
@@ -65,27 +67,51 @@ class DownloadController extends Controller
 		$this->pageMapper = new DataMapper('#__csi_pages');
 
 		$this->page = $this->pageMapper->findOne(array('id' => $this->query->get('id')));
-
-		show($this->page);
 	}
 
 	/**
 	 * doExecute
 	 *
+	 * @throws \Exception
 	 * @return mixed
 	 */
 	protected function doExecute()
 	{
 		$pageModel = new PageModel;
 
-		$pageModel->download($this->page->id, urldecode($this->page->url));
+		$pageModel->download($this->page->id, $this->page->url);
 
 		$this->page->filepath   = PageHelper::getFilePath($this->page->id, $this->page->filetype);
 		$this->page->downloaded = (string) DateHelper::getDate();
 
-		$this->pageMapper->updateOne($this->page);
+		/** @var $db \JDatabaseDriver */
+		$db = $this->container->get('db');
 
-		die;
+		try
+		{
+			$db->transactionStart(true);
+
+			// Update page
+			$this->pageMapper->updateOne($this->page);
+
+			// Analysis
+			$task = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $this->page->task_id));
+
+			$this->container->get('event.dispatcher')
+				->trigger('onPageAnalysis', array($task->database, $this->page, $task));
+		}
+		catch (\Exception $e)
+		{
+			$db->transactionRollback(true);
+
+			throw $e;
+		}
+
+		$db->transactionCommit(true);
+
+		$msg = sprintf('Download page to: %s success.', new HtmlElement('code', $this->page->filepath));
+
+		exit($msg);
 	}
 }
  

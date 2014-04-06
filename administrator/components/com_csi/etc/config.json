@@ -11,7 +11,25 @@
 			"keyword" : [
 				"課程大綱",
 				"\"Syllabus\""
-			]
+			],
+			"analysis" : {
+				"professors" : {
+					"titles" : [
+						"教授", "教師", "老師", "副教授"
+					]
+				},
+
+				"units" : 5,
+
+				"terms" : {
+					"course" : [
+						"課程大綱", "課綱", "大綱"
+					],
+					"reference" : [
+						"參考文獻", "參考資源", "參考書目"
+					]
+				}
+			}
 		},
 
 		"ethesys": {

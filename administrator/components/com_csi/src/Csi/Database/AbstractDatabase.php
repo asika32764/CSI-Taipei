@@ -15,7 +15,7 @@ use Windwalker\Data\Data;
  *
  * @since 1.0
  */
-abstract class AbstractDatabase
+abstract class AbstractDatabase extends \JModelBase
 {
 	/**
 	 * getInstance
@@ -39,5 +39,14 @@ abstract class AbstractDatabase
 	 * @return  string
 	 */
 	abstract public function getKeyword(Data $task);
+
+	/**
+	 * parseResult
+	 *
+	 * @param string $txt
+	 *
+	 * @return  \Windwalker\Data\Data
+	 */
+	abstract public function parseResult($txt);
 }
  
