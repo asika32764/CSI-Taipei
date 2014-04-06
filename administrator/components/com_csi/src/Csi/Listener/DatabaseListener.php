@@ -9,6 +9,9 @@
 namespace Csi\Listener;
 
 
+use Windwalker\Data\Data;
+use Windwalker\Joomla\DataMapper\DataMapper;
+
 class DatabaseListener extends \JEvent
 {
 	/**
@@ -33,6 +36,37 @@ class DatabaseListener extends \JEvent
 		}
 
 		return true;
+	}
+
+	/**
+	 * saveResult
+	 *
+	 * @param string                $database
+	 * @param \Windwalker\Data\Data $page
+	 * @param \Windwalker\Data\Data $task
+	 * @param \Windwalker\Data\Data $result
+	 *
+	 * @return  boolean
+	 */
+	protected function saveResult($database, Data $page, Data $task, Data $result)
+	{
+		$mapper = new DataMapper('#__csi_results');
+
+		foreach ($result as $key => $value)
+		{
+			$data = new Data;
+
+			$data->type = 'page';
+			$data->fk = $page->id;
+			$data->key = $key;
+			$data->value = $value;
+
+			$data = $mapper->createOne($data);
+
+			show($data);
+		}
+
+
 	}
 }
  

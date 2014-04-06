@@ -58,13 +58,13 @@ class SyllabusListener extends DatabaseListener
 	 * @param \Windwalker\Data\Data $page
 	 * @param \Windwalker\Data\Data $task
 	 *
-	 * @return  mixed
+	 * @return  void
 	 */
 	public function onPageAnalysis($database, $page, $task)
 	{
 		if (!$this->checkType($database))
 		{
-			return false;
+			return;
 		}
 
 		$model = AbstractDatabase::getInstance($database);
@@ -88,11 +88,8 @@ class SyllabusListener extends DatabaseListener
 		// Get result
 		$result = $model->parseResult($txt);
 
-		show($task, $model, $result, 8);
-
-		$this->saveResult($database, $result);
-
-		die;
+		// Save Result
+		$this->saveResult($database, $page, $task, $result);
 	}
 }
  
