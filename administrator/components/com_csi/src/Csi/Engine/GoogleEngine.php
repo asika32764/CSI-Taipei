@@ -160,7 +160,7 @@ class GoogleEngine extends AbstractEngine
 
 			// Get title and url
 			$item['title'] = strip_tags($normal[0]->innerhtml);
-			$item['url']  = substr((string) $normal[0]->href, 7);
+			$item['url'] = urldecode(substr((string) $normal[0]->href, 7));
 
 			// File type
 			$fileType = $link->find('span.xsm');

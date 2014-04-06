@@ -44,6 +44,8 @@ class TaskMapper
 		$this->component->registerTask('tasks.engine.fetch', '\\Csi\\Controller\\Tasks\\Engine\\FetchController');
 
 		$this->component->registerTask('tasks.engine.parse', '\\Csi\\Controller\\Tasks\\Engine\\ParseController');
+
+		$this->component->registerTask('page.download', '\\Csi\\Controller\\Page\\DownloadController');
 	}
 }
  

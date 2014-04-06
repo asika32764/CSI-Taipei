@@ -93,11 +93,13 @@ class ParseController extends Controller
 		{
 			$db->transactionStart(true);
 
-			foreach ($dataSet as $data)
+			foreach ($dataSet as $i => $data)
 			{
-				$data->task_id = $this->task->id;
+				$data->task_id  = $this->task->id;
 				$data->entry_id = $this->task->entry_id;
 				$data->enginepage_id = $this->enginePage->id;
+				$data->page     = $this->enginePage->ordering;
+				$data->ordering = $i;
 
 				$data = $mapper->createOne($data);
 
