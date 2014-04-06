@@ -57,7 +57,7 @@
         enginepage_id: { Field: enginepage_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [enginepage_id] }
         state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [state] }
         title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        url: { Field: url, Type: varchar(512), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         filetype: { Field: filetype, Type: char(10), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filetype] }
         filepath: { Field: filepath, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filepath] }
         downloaded: { Field: downloaded, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [downloaded] }
@@ -86,6 +86,19 @@
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: priority, Seq_in_index: '1', Column_name: priority, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: task, Seq_in_index: '1', Column_name: task, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_results':
+    name: '#__csi_results'
+    from:
+        - '#__csi_results'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        fk: { Field: fk, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [fk] }
+        type: { Field: type, Type: char(6), 'Null': NO, Default: null, Extra: '', Comment: '', From: [type] }
+        key: { Field: key, Type: char(30), 'Null': NO, Default: null, Extra: '', Comment: '', From: [key] }
+        value: { Field: value, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [value] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+    index:
+        - { Table: '#__csi_results', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_tasks':
     name: '#__csi_tasks'
     from:

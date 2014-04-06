@@ -212,7 +212,7 @@
         enginepage_id: { Field: enginepage_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [enginepage_id] }
         state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [state] }
         title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        url: { Field: url, Type: varchar(512), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         filetype: { Field: filetype, Type: char(10), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filetype] }
         filepath: { Field: filepath, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filepath] }
         downloaded: { Field: downloaded, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [downloaded] }
@@ -241,6 +241,19 @@
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: priority, Seq_in_index: '1', Column_name: priority, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: task, Seq_in_index: '1', Column_name: task, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_results':
+    name: '#__csi_results'
+    from:
+        - '#__csi_results'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        fk: { Field: fk, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [fk] }
+        type: { Field: type, Type: char(6), 'Null': NO, Default: null, Extra: '', Comment: '', From: [type] }
+        key: { Field: key, Type: char(30), 'Null': NO, Default: null, Extra: '', Comment: '', From: [key] }
+        value: { Field: value, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [value] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+    index:
+        - { Table: '#__csi_results', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_tasks':
     name: '#__csi_tasks'
     from:
@@ -330,7 +343,7 @@
         - ['100', PHPMailer, library, phpmailer, '', '0', '1', '1', '0', '{"name":"PHPMailer","type":"library","creationDate":"2001","author":"PHPMailer","copyright":"(c) 2001-2003, Brent R. Matzelle, (c) 2004-2009, Andy Prevost. All Rights Reserved., (c) 2010-2013, Jim Jagielski. All Rights Reserved.","authorEmail":"jimjag@gmail.com","authorUrl":"https:\/\/github.com\/PHPMailer\/PHPMailer","version":"5.2.6","description":"LIB_PHPMAILER_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['101', SimplePie, library, simplepie, '', '0', '1', '1', '0', '{"name":"SimplePie","type":"library","creationDate":"2004","author":"SimplePie","copyright":"Copyright (c) 2004-2009, Ryan Parman and Geoffrey Sneddon","authorEmail":"","authorUrl":"http:\/\/simplepie.org\/","version":"1.2","description":"LIB_SIMPLEPIE_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['102', phputf8, library, phputf8, '', '0', '1', '1', '0', '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\/\/sourceforge.net\/projects\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
-        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"e69220f7a3c13e88953b79c9e70a99b9"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"0516023d7fb763b0924e1f1079e29953"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['104', 'IDNA Convert', library, idna_convert, '', '0', '1', '1', '0', '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\/\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\/\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['105', FOF, library, fof, '', '0', '1', '1', '0', '{"name":"FOF","type":"library","creationDate":"2013-12-14","author":"Nicholas K. Dionysopoulos \/ Akeeba Ltd","copyright":"(C)2011-2013 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\/\/www.akeebabackup.com","version":"2.1.1","description":"LIB_FOF_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['106', PHPass, library, phpass, '', '0', '1', '1', '0', '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\/\/www.openwall.com\/phpass\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
@@ -923,7 +936,7 @@
         - { Table: '#__users', Non_unique: '1', Key_name: username, Seq_in_index: '1', Column_name: username, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__users', Non_unique: '1', Key_name: email, Seq_in_index: '1', Column_name: email, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['279', 'Super User', smstw, service@bm-sms.com.tw, $P$DJ9ygEXhN9o2F0v53Q5FgeaY/wIk7K/, '0', '1', '2014-03-17 08:43:46', '2014-04-05 07:52:44', '0', '', '0000-00-00 00:00:00', '0', '', '']
+        - ['279', 'Super User', smstw, service@bm-sms.com.tw, $P$DJ9ygEXhN9o2F0v53Q5FgeaY/wIk7K/, '0', '1', '2014-03-17 08:43:46', '2014-04-06 13:59:33', '0', '', '0000-00-00 00:00:00', '0', '', '']
 '#__viewlevels':
     name: '#__viewlevels'
     from:

@@ -9,6 +9,7 @@ table:
     '#__csi_notifies': cols
     '#__csi_pages': cols
     '#__csi_queues': cols
+    '#__csi_results': cols
     '#__csi_tasks': cols
     '#__csi_webpages': cols
     '#__extensions': all

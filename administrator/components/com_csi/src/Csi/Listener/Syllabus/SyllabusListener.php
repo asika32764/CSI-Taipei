@@ -88,7 +88,11 @@ class SyllabusListener extends DatabaseListener
 		// Get result
 		$result = $model->parseResult($txt);
 
-		show($task, $model, $result, 8);die;
+		show($task, $model, $result, 8);
+
+		$this->saveResult($database, $result);
+
+		die;
 	}
 }
  
