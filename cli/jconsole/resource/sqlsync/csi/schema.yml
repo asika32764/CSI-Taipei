@@ -4,7 +4,8 @@
         - '#__csi_enginepages'
     columns:
         id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        task_id: { Field: task_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
         engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
         url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         file: { Field: file, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [file] }
@@ -75,6 +76,8 @@
         - '#__csi_queues'
     columns:
         id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
         task: { Field: task, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task] }
         query: { Field: query, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [query] }
         created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
@@ -92,6 +95,8 @@
         - '#__csi_results'
     columns:
         id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
         fk: { Field: fk, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [fk] }
         type: { Field: type, Type: char(6), 'Null': NO, Default: null, Extra: '', Comment: '', From: [type] }
         key: { Field: key, Type: char(30), 'Null': NO, Default: null, Extra: '', Comment: '', From: [key] }
