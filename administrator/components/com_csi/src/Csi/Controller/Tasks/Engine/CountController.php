@@ -59,7 +59,7 @@ class CountController extends Controller
 			$query->set('total', count($pages));
 			$query->set('keyword', $task->keyword);
 
-			$queueModel->add('tasks.engine.fetch', $query);
+			$queueModel->add('tasks.engine.fetch', $query, $task);
 		}
 
 		$msg = sprintf('Count pages: %s success.', count($pages));

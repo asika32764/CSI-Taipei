@@ -103,6 +103,7 @@ class FetchController extends Controller
 
 		$data = new Data;
 
+		$data->entry_id = $this->task->entry_id;
 		$data->task_id  = $this->task->id;
 		$data->engine   = $this->task->engine;
 		$data->url      = $this->query->get('url');
@@ -141,7 +142,7 @@ class FetchController extends Controller
 				)
 			);
 
-			$queueModel->add('tasks.engine.parse', $query);
+			$queueModel->add('tasks.engine.parse', $query, $this->task);
 		}
 		catch (\Exception $e)
 		{

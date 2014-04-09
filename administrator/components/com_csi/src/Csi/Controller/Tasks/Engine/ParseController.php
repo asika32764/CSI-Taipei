@@ -109,7 +109,7 @@ class ParseController extends Controller
 					)
 				);
 
-				$queueModel->add('page.download', $query);
+				$queueModel->add('page.download', $query, $this->task);
 			}
 		}
 		catch (\Exception $e)

@@ -71,20 +71,24 @@ class QueueModel extends AdminModel
 	/**
 	 * add
 	 *
-	 * @param string     $task
-	 * @param \JRegistry $query
-	 * @param \JRegistry $params
-	 * @param int        $priority
+	 * @param string                $task
+	 * @param \JRegistry            $query
+	 * @param \Windwalker\Data\Data $taskData
+	 * @param \JRegistry            $params
+	 * @param int                   $priority
 	 *
 	 * @return  boolean
 	 */
-	public function add($task, \JRegistry $query = null, \JRegistry $params = null, $priority = 256)
+	public function add($task, \JRegistry $query = null, Data $taskData = null, \JRegistry $params = null, $priority = 256)
 	{
 		$query  = $query  ? : new \JRegistry;
 		$params = $params ? : new \JRegistry;
+		$taskData = $taskData ? : new Data;
 
 		$queue = new Data;
 		$queue->task     = $task;
+		$queue->entry_id = $taskData->entry_id;
+		$queue->task_id  = $taskData->id;
 		$queue->query    = $query->toString();
 		$queue->created  = (string) DateHelper::getDate();
 		$queue->params   = $params;
