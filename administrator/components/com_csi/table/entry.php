@@ -124,9 +124,6 @@ class CsiTableEntry extends Table
 			$queueMapper = new DataMapper('#__csi_queue');
 			$resultMapper = new DataMapper('#__csi_results');
 
-			$tasks = $taskMapper->find(array('entry_id' => $this->id));
-			$pages = $pageMapper->find(array('entry_id' => $this->id));
-
 			// Delete tasks
 			$taskMapper->delete(array('entry_id' => $this->id));
 
@@ -134,14 +131,13 @@ class CsiTableEntry extends Table
 			$pageMapper->delete(array('entry_id' => $this->id));
 
 			// Delete Results
-			$pages = (array) $pages;
-
-			$resultMapper->delete(array('type' => 'page', 'fk' => JArrayHelper::getColumn($pages, 'id')));
+			$resultMapper->delete(array('entry_id' => $this->id));
 
 			// Delete enginepages
-			$tasks = (array) $tasks;
+			$enginepageMapper->delete(array('entry_id' => $this->id));
 
-			$enginepageMapper->delete(array('task_id' => JArrayHelper::getColumn($tasks, 'id')));
+			// Delete queues
+			$queueMapper->delete(array('entry_id' => $this->id));
 		}
 		catch (\Exception $e)
 		{

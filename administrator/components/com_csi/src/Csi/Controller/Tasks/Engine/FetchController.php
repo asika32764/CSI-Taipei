@@ -138,7 +138,7 @@ class FetchController extends Controller
 				array(
 					'id' => $data->id,
 					'task_id' => $this->task->id,
-					'page' => $page
+					'page' => $this->query->get('num')
 				)
 			);
 

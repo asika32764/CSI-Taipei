@@ -56,8 +56,8 @@ class DatabaseListener extends \JEvent
 		{
 			$data = new Data;
 
-			$data->entry_id = $task->id;
-			$data->task_id  = $task->entry_id;
+			$data->entry_id = $task->entry_id;
+			$data->task_id  = $task->id;
 			$data->type = 'page';
 			$data->fk = $page->id;
 			$data->key = $key;
