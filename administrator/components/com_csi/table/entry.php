@@ -106,16 +106,49 @@ class CsiTableEntry extends Table
 	 */
 	public function delete($pk = null)
 	{
-		$result = parent::delete($pk);
-
-		if (!$result)
+		try
 		{
-			return $result;
+			$this->_db->transactionStart(true);
+
+			$result = parent::delete($pk);
+
+			if (!$result)
+			{
+				return $result;
+			}
+
+			// Prepare Mappers
+			$taskMapper = new DataMapper('#__csi_tasks', 'id', $this->_db);
+			$enginepageMapper = new DataMapper('#__csi_enginepages');
+			$pageMapper = new DataMapper('#__csi_pages');
+			$queueMapper = new DataMapper('#__csi_queue');
+			$resultMapper = new DataMapper('#__csi_results');
+
+			$tasks = $taskMapper->find(array('entry_id' => $this->id));
+			$pages = $pageMapper->find(array('entry_id' => $this->id));
+
+			// Delete tasks
+			$taskMapper->delete(array('entry_id' => $this->id));
+
+			// Delete pages
+			$pageMapper->delete(array('entry_id' => $this->id));
+
+			// Delete Results
+			$pages = (array) $pages;
+
+			$resultMapper->delete(array('type' => 'page', 'fk' => JArrayHelper::getColumn($pages, 'id')));
+
+			// Delete enginepages
+			$tasks = (array) $tasks;
+
+			$enginepageMapper->delete(array('task_id' => JArrayHelper::getColumn($tasks, 'id')));
+		}
+		catch (\Exception $e)
+		{
+			$this->_db->transactionRollback(true);
 		}
 
-		$mapper = new DataMapper('#__csi_tasks', 'id', $this->_db);
-
-		$result = $mapper->delete(array('entry_id' => $pk));
+		$this->_db->transactionCommit(true);
 
 		return true;
 	}
