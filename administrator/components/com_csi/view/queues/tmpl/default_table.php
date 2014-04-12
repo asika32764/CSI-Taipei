@@ -57,6 +57,11 @@ $asset->addCss('main.css');
 		<?php echo $grid->sortTitle('JSTATUS', 'queue.state'); ?>
 	</th>
 
+	<!--EXECUTE-->
+	<th width="5%">
+		Execute
+	</th>
+
 	<!--TITLE-->
 	<th class="center">
 		<?php echo $grid->sortTitle('Task', 'queue.task'); ?>
@@ -118,6 +123,13 @@ $asset->addCss('main.css');
 				<span class="label label-info">Finished</span>
 			<?php endif; ?>
 			</div>
+		</td>
+
+		<!--EXECUTE-->
+		<td class="center">
+			<a class="btn btn-primary btn-mini" href="<?php echo JUri::root() . sprintf('?task=%s&id=%s', $item->task, $item->id); ?>" target="_blank">
+				<i class="glyphicon glyphicon-play"></i>
+			</a>
 		</td>
 
 		<!--TITLE-->

@@ -64,11 +64,7 @@ class DatabaseListener extends \JEvent
 			$data->value = $value;
 
 			$data = $mapper->createOne($data);
-
-			show($data);
 		}
-
-
 	}
 }
  

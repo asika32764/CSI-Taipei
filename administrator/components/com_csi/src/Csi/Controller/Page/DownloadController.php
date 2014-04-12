@@ -79,7 +79,7 @@ class DownloadController extends Controller
 	{
 		$pageModel = new PageModel;
 
-		$pageModel->download($this->page->id, $this->page->url);
+		$pageModel->download($this->page);
 
 		$this->page->filepath   = PageHelper::getFilePath($this->page->id, $this->page->filetype);
 		$this->page->downloaded = (string) DateHelper::getDate();

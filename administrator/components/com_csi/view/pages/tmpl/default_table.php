@@ -7,6 +7,7 @@
  */
 
 use Windwalker\Data\Data;
+use Windwalker\Html\HtmlElement;
 
 // No direct access
 defined('_JEXEC') or die;
@@ -38,14 +39,14 @@ $grid->registerTableSort();
 <!-- TABLE HEADER -->
 <thead>
 <tr>
-	<!--SORT-->
-	<th width="1%" class="nowrap center hidden-phone">
-		<?php echo $grid->orderTitle(); ?>
-	</th>
-
 	<!--CHECKBOX-->
 	<th width="1%" class="center">
 		<?php echo JHtml::_('grid.checkAll'); ?>
+	</th>
+
+	<!--ID-->
+	<th width="1%" class="nowrap center">
+		<?php echo $grid->sortTitle('JGRID_HEADING_ID', 'page.id'); ?>
 	</th>
 
 	<!--STATE-->
@@ -58,34 +59,8 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JGLOBAL_TITLE', 'page.title'); ?>
 	</th>
 
-	<!--CATEGORY-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JCATEGORY', 'category.title'); ?>
-	</th>
-
-	<!--ACCESS VIEW LEVEL-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_ACCESS', 'viewlevel.title'); ?>
-	</th>
-
-	<!--CREATED-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JDATE', 'page.created'); ?>
-	</th>
-
-	<!--USER-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JAUTHOR', 'user.name'); ?>
-	</th>
-
-	<!--LANGUAGE-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_LANGUAGE', 'lang.title'); ?>
-	</th>
-
-	<!--ID-->
-	<th width="1%" class="nowrap center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_ID', 'page.id'); ?>
+	<th width="7%" class="center">
+		File Type
 	</th>
 </tr>
 </thead>
@@ -112,14 +87,14 @@ $grid->registerTableSort();
 	$grid->setItem($item, $i);
 	?>
 	<tr class="page-row" sortable-group-id="<?php echo $item->catid; ?>">
-		<!-- DRAG SORT -->
-		<td class="order nowrap center hidden-phone">
-			<?php echo $grid->dragSort(); ?>
-		</td>
-
 		<!--CHECKBOX-->
 		<td class="center">
 			<?php echo JHtml::_('grid.id', $i, $item->page_id); ?>
+		</td>
+
+		<!--ID-->
+		<td class="center">
+			<?php echo (int) $item->id; ?>
 		</td>
 
 		<!--STATE-->
@@ -140,54 +115,18 @@ $grid->registerTableSort();
 				<?php echo $grid->checkoutButton(); ?>
 
 				<!-- Title -->
-				<?php echo $grid->editTitle(); ?>
+				<?php echo new HtmlElement('a', $item->title, array('href' => $item->url, 'target' => '_blank')); ?>
 			</div>
 
 			<!-- Sub Title -->
-			<div class="small">
-				<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias)); ?>
+			<div class="small" style="overflow: hidden; text-overflow: ellipsis; max-width: 500px;">
+				<?php echo $item->url; ?>
 			</div>
 		</td>
 
-		<!--CATEGORY-->
 		<td class="center">
-			<?php echo $this->escape($item->category_title); ?>
+			<?php echo $item->filetype; ?>
 		</td>
-
-		<!--ACCESS VIEW LEVEL-->
-		<td class="center">
-			<?php echo $this->escape($item->viewlevel_title); ?>
-		</td>
-
-		<!--CREATED-->
-		<td class="center">
-			<?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?>
-		</td>
-
-		<!--USER-->
-		<td class="center">
-			<?php echo $this->escape($item->user_name); ?>
-		</td>
-
-		<!--LANGUAGE-->
-		<td class="center">
-			<?php
-			if ($item->language == '*')
-			{
-				echo JText::alt('JALL', 'language');
-			}
-			else
-			{
-				echo $item->lang_title ? $this->escape($item->lang_title) : JText::_('JUNDEFINED');
-			}
-			?>
-		</td>
-
-		<!--ID-->
-		<td class="center">
-			<?php echo (int) $item->id; ?>
-		</td>
-
 	</tr>
 <?php endforeach; ?>
 </tbody>

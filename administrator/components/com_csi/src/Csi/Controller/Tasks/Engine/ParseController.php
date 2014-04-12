@@ -45,13 +45,23 @@ class ParseController extends Controller
 	/**
 	 * prepareExecute
 	 *
+	 * @throws \RuntimeException
 	 * @return  void
 	 */
 	protected function prepareExecute()
 	{
 		$id = $this->input->get('id');
 
-		$enginePage = with(new DataMapper('#__csi_enginepages'))->findOne(array('id' => $id));
+		$queue = with(new DataMapper('#__csi_queues'))->findOne(array('id' => $id));
+
+		if (!(array) $queue)
+		{
+			throw new \RuntimeException('Queue: ' . $id . ' Not exists');
+		}
+
+		$queue->query = new \JRegistry($queue->query);
+
+		$enginePage = with(new DataMapper('#__csi_enginepages'))->findOne(array('id' => $queue->query->get('id')));
 
 		// Prepare engine model to get pages
 		$engine = AbstractEngine::getInstance($enginePage->engine);

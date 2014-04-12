@@ -160,16 +160,19 @@ class GoogleEngine extends AbstractEngine
 
 			// Get title and url
 			$item['title'] = strip_tags($normal[0]->innerhtml);
-			$item['url'] = urldecode(substr((string) $normal[0]->href, 7));
+
+			$url = new \JUri((string) $normal[0]->href);
+
+			$item['url'] = urldecode($url->getVar('q'));
 
 			// File type
-			$fileType = $link->find('span.xsm');
+			$fileType = $link->find('span.mime');
 
 			$item['filetype'] = 'html';
 
-			if (isset($fileType[0]->innertext))
+			if (isset($fileType[0]))
 			{
-				$type = $fileType[0]->innertext;
+				$type = trim($fileType[0]->text);
 				$type = str_replace('[', '', $type);
 				$type = str_replace(']', '', $type);
 				$type = strtolower($type);

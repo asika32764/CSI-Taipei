@@ -30,6 +30,11 @@ class CountController extends Controller
 	{
 		$id = $this->input->get('id');
 
+		if (!$id)
+		{
+			return false;
+		}
+
 		$task = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $id));
 
 		if (!(array) $task)

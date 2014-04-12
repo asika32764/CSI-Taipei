@@ -9,7 +9,9 @@
 namespace Csi\Model;
 
 use Csi\Helper\PageHelper;
+use Windwalker\Data\Data;
 use Windwalker\Helper\CurlHelper;
+use Windwalker\Helper\UriHelper;
 
 /**
  * Class PageModel
@@ -21,20 +23,19 @@ class PageModel extends \JModelDatabase
 	/**
 	 * download
 	 *
-	 * @param int    $id
-	 * @param string $url
+	 * @param Data $page
 	 *
 	 * @return  bool
 	 *
 	 * @throws \RuntimeException
 	 */
-	public function download($id, $url)
+	public function download(Data $page)
 	{
-		$path = PageHelper::getFilePath($id);
+		$path = PageHelper::getFilePath($page->id, $page->filetype);
 
-		$result = CurlHelper::download($url, $path);
+		$result = CurlHelper::download(UriHelper::safe($page->url), $path);
 
-		if (!$result->getError())
+		if (!$result || !$result->getError())
 		{
 			return true;
 		}
