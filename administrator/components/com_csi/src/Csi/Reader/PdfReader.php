@@ -34,7 +34,7 @@ class PdfReader implements ReaderInterface
 		$reader = new Pdf2text;
 		$reader->setFilename($file);
 		$reader->decodePDF();
-		$output = $reader->output();
+		echo $output = $reader->output();die;
 
 		// shell_exec("/usr/bin/pdftotext {$file} {$filetmp}.txt");
 

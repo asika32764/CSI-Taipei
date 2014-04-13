@@ -9,6 +9,8 @@
 namespace Csi\Helper;
 
 use Joomla\Filesystem\File;
+use Windwalker\Data\Data;
+use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
  * Class PageHelper
@@ -20,14 +22,25 @@ class PageHelper
 	/**
 	 * getFilePath
 	 *
-	 * @param int    $id
+	 * @param mixed  $page
 	 * @param string $filetype
 	 *
+	 * @throws \RuntimeException
 	 * @return  string
 	 */
-	public static function getFilePath($id, $filetype = 'html')
+	public static function getFilePath($page, $filetype = 'html')
 	{
-		return static::getFileFolder() . '/' . $id . '.' . $filetype;
+		if (is_numeric($page))
+		{
+			$page = with(new DataMapper('#__csi_pages'))->findOne(array('id' => $page));
+		}
+
+		if (!($page instanceof Data))
+		{
+			throw new \RuntimeException('Page not found.');
+		}
+
+		return static::getFileFolder() . '/' . $page->entry_id . '/' . $page->id . '.' . $filetype;
 	}
 
 	/**
