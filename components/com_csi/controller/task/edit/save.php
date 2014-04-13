@@ -99,12 +99,15 @@ class CsiControllerTaskEditSave extends SaveController
 
 			$diapatcher->trigger('onAfterTaskSave', $args);
 
-//			$model->addQueue(
-//				$data->database,
-//				$data->engine,
-//				$model->getState()->get('task.id'),
-//				$data
-//			);
+			$queueModel = new \Csi\Model\QueueModel;
+
+			$query = new \JRegistry(
+				array(
+					'id' => $model->getState()->get('task.id')
+				)
+			);
+
+			$queueModel->add('tasks.engine.count', $query);
 		}
 		catch (\Exception $e)
 		{
