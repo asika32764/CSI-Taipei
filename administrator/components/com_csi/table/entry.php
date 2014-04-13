@@ -6,6 +6,8 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Csi\Helper\EnginepageHelper;
+use Csi\Helper\PageHelper;
 use Windwalker\Joomla\DataMapper\DataMapper;
 use Windwalker\Table\Table;
 
@@ -121,7 +123,7 @@ class CsiTableEntry extends Table
 			$taskMapper = new DataMapper('#__csi_tasks', 'id', $this->_db);
 			$enginepageMapper = new DataMapper('#__csi_enginepages');
 			$pageMapper = new DataMapper('#__csi_pages');
-			$queueMapper = new DataMapper('#__csi_queue');
+			$queueMapper = new DataMapper('#__csi_queues');
 			$resultMapper = new DataMapper('#__csi_results');
 
 			// Delete tasks
@@ -138,10 +140,16 @@ class CsiTableEntry extends Table
 
 			// Delete queues
 			$queueMapper->delete(array('entry_id' => $this->id));
+
+			// Delete files
+			\JFolder::delete(JPATH_ROOT . '/' . PageHelper::getFileFolder() . '/' . $this->id);
+			\JFolder::delete(JPATH_ROOT . '/' . EnginepageHelper::getFileFolder() . '/' . $this->id);
 		}
 		catch (\Exception $e)
 		{
 			$this->_db->transactionRollback(true);
+
+			throw $e;
 		}
 
 		$this->_db->transactionCommit(true);
