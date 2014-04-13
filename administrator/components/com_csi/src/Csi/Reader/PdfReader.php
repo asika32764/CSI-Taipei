@@ -8,6 +8,8 @@
 
 namespace Csi\Reader;
 
+use Pdfbox\Pdf2text;
+
 /**
  * Class PdfReader
  *
@@ -29,9 +31,14 @@ class PdfReader implements ReaderInterface
 		$type    = array_pop($filetmp);
 		$filetmp = implode('.', $filetmp);
 
-		shell_exec("/usr/bin/pdftotext {$file} {$filetmp}.txt");
+		$reader = new Pdf2text;
+		$reader->setFilename($file);
+		$reader->decodePDF();
+		$output = $reader->output();
 
-		$output = file_get_contents("{$filetmp}.txt");
+		// shell_exec("/usr/bin/pdftotext {$file} {$filetmp}.txt");
+
+		// $output = file_get_contents("{$filetmp}.txt");
 
 		return $output;
 	}

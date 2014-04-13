@@ -6,10 +6,9 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-include_once JPATH_LIBRARIES . '/windwalker/Windwalker/init.php';
+// No direct access
+defined('_JEXEC') or die;
 
-JLoader::registerPrefix('Csi', JPATH_COMPONENT);
-JLoader::registerNamespace('Csi', JPATH_COMPONENT_ADMINISTRATOR . '/src');
-JLoader::register('CsiComponent', JPATH_COMPONENT . '/component.php');
+include_once JPATH_COMPONENT_ADMINISTRATOR . '/src/init.php';
 
 echo with(new CsiComponent)->execute();

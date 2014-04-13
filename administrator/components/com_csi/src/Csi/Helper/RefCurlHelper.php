@@ -71,11 +71,11 @@ class RefCurlHelper
 		$ch = curl_init();
 
 		$options = array(
-			CURLOPT_URL            => UriHelper::safe($url,
-			// CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_URL            => UriHelper::safe($url),
+			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_USERAGENT      => "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1",
-			// CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_FILE           => $fp,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_FILE           => $fp
 		);
 
 		curl_setopt_array($ch, $options);
