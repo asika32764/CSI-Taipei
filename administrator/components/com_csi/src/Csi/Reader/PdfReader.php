@@ -8,7 +8,7 @@
 
 namespace Csi\Reader;
 
-use Pdfbox\Pdf2text;
+use Asika\Pdf2text;
 
 /**
  * Class PdfReader

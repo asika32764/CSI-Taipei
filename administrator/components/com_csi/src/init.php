@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 include_once JPATH_LIBRARIES . '/windwalker/Windwalker/init.php';
+include_once __DIR__ . '/../vendor/autoload.php';
 
 JLoader::registerPrefix('Csi', JPATH_BASE . '/components/com_csi');
 JLoader::registerNamespace('Csi', JPATH_ADMINISTRATOR . '/components/com_csi/src');
@@ -18,4 +19,3 @@ JLoader::register('CsiComponent', JPATH_BASE . '/components/com_csi/component.ph
 
 // 3rd packages
 // \JLoader::registerNamespace('PHPHtmlParser', JPATH_ADMINISTRATOR . '/components/com_csi/src');
-\JLoader::registerNamespace('Pdfbox', __DIR__);

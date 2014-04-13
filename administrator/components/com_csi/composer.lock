@@ -1,0 +1,58 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "f9b77caf5990732d1774f907fa0419c6",
+    "packages": [
+        {
+            "name": "asika/pdf2text",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asika32764/php-pdf-2-text.git",
+                "reference": "30c8815a7b257ea611e3c9a5d19d2ac255835016"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asika32764/php-pdf-2-text/zipball/30c8815a7b257ea611e3c9a5d19d2ac255835016",
+                "reference": "30c8815a7b257ea611e3c9a5d19d2ac255835016",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Asika\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL v2"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Asika",
+                    "email": "asika32764@gmail.com"
+                }
+            ],
+            "description": "Simple PHP PDF to text class.",
+            "time": "2014-04-13 09:27:36"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}
