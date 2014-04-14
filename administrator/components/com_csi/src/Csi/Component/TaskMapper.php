@@ -39,6 +39,8 @@ class TaskMapper
 	 */
 	public function register()
 	{
+		$this->component->registerTask('queue.execute', '\\Csi\\Controller\\Queue\\ExecuteController');
+
 		$this->component->registerTask('tasks.engine.count', '\\Csi\\Controller\\Tasks\\Engine\\CountController');
 
 		$this->component->registerTask('tasks.engine.fetch', '\\Csi\\Controller\\Tasks\\Engine\\FetchController');

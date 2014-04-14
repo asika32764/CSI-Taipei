@@ -131,9 +131,7 @@ class ParseController extends Controller
 
 		$db->transactionCommit(true);
 
-		$msg = sprintf('Parse page links success. EnginePage ID: %s', $this->enginePage->id);
-
-		exit($msg);
+		return sprintf('Parse page links success. EnginePage ID: %s', $this->enginePage->id);
 	}
 }
  

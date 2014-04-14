@@ -118,9 +118,11 @@ $asset->addCss('main.css');
 			<?php if ($item->state == 0): ?>
 				<span class="label label-default">Close</span>
 			<?php elseif ($item->state == 1): ?>
-				<span class="label label-warning">Pending</span>
+				<span class="label label-info">Pending</span>
 			<?php elseif ($item->state == 2): ?>
-				<span class="label label-info">Finished</span>
+				<span class="label label-warning">Processing</span>
+			<?php elseif ($item->state == 3): ?>
+				<span class="label label-success">Finished</span>
 			<?php endif; ?>
 			</div>
 		</td>

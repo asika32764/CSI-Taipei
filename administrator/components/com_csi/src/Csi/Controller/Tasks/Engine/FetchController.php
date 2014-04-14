@@ -153,9 +153,7 @@ class FetchController extends Controller
 
 		$db->transactionCommit(true);
 
-		$msg = sprintf('Save Engine page success. ID: %s , File: %s', $data->id, $data->file);
-
-		exit($msg);
+		return sprintf('Save Engine page success. ID: %s , File: %s', $data->id, $data->file);
 	}
 }
  

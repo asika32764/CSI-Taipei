@@ -109,9 +109,7 @@ class DownloadController extends Controller
 
 		$db->transactionCommit(true);
 
-		$msg = sprintf('Download page to: %s success.', new HtmlElement('code', $this->page->filepath));
-
-		exit($msg);
+		return sprintf('Download page to: %s success.', new HtmlElement('code', $this->page->filepath));
 	}
 }
  
