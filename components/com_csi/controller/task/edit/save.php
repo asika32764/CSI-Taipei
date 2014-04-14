@@ -93,12 +93,19 @@ class CsiControllerTaskEditSave extends SaveController
 				&$data
 			);
 
+			// Before save event
 			$diapatcher->trigger('onBeforeTaskSave', $args);
 
+			// Do save
 			$model->save((array) $data);
 
+			// Push insert id into data
+			$data->id = $model->getState()->get('task.id');
+
+			// After save event
 			$diapatcher->trigger('onAfterTaskSave', $args);
 
+			// Get queue model to add queue
 			$queueModel = new \Csi\Model\QueueModel;
 
 			$query = new \JRegistry(
@@ -107,7 +114,7 @@ class CsiControllerTaskEditSave extends SaveController
 				)
 			);
 
-			$queueModel->add('tasks.engine.count', $query);
+			$queueModel->add('tasks.engine.count', $query, $data);
 		}
 		catch (\Exception $e)
 		{

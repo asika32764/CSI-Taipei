@@ -31,12 +31,12 @@ class EnginepageHelper
 	{
 		if (is_numeric($page))
 		{
-			$page = with(new DataMapper('#__csi_pages'))->findOne(array('id' => $page));
+			$page = with(new DataMapper('#__csi_enginepages'))->findOne(array('id' => $page));
 		}
 
 		if (!($page instanceof Data))
 		{
-			throw new \RuntimeException('Page not found.');
+			throw new \RuntimeException('EnginePage not found.');
 		}
 
 		return static::getFileFolder() . '/' . $page->entry_id . '/' . $page->id . '.html';

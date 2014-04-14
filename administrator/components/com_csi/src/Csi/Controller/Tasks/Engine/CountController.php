@@ -35,7 +35,11 @@ class CountController extends Controller
 			return false;
 		}
 
-		$task = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $id));
+		$queue = with(new DataMapper('#__csi_queues'))->findOne(array('id' => $id));
+
+		$queue->query = new \JRegistry(json_decode($queue->query));
+
+		$task = with(new DataMapper('#__csi_tasks'))->findOne(array('id' => $queue->query->get('id')));
 
 		if (!(array) $task)
 		{

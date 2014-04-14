@@ -127,7 +127,7 @@ class FetchController extends Controller
 			EnginepageHelper::saveFile($data->id, $page);
 
 			// Save file path to DB
-			$data->file = EnginepageHelper::getFilePath($data->id);
+			$data->file = EnginepageHelper::getFilePath($data);
 
 			$mapper->updateOne($data);
 
