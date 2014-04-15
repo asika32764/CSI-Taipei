@@ -1,5 +1,9 @@
 <?php
 
+use Windwalker\Helper\ArrayHelper;
+
+/** @var $query \Joomla\Registry\Registry */
+$query = $data->query;
 ?>
 <div class="container result-index">
 
@@ -12,39 +16,76 @@
 		<fieldset>
 			<legend>重新搜尋</legend>
 
-
-			<div class="row">
-				<!--Chinese Name-->
-				<div class="form-group ">
-					<label for="chineseName" class="col-lg-3 control-label">
+			<!--Chinese Name-->
+			<div class="form-group row">
+				<div class="col-lg-2">
+					<label for="chineseName" class="control-label">
 						Chinese Name
 					</label>
-					<div class="col-lg-9">
-						<input type="text" class="form-control" id="chineseName" placeholder="姓名" value="黃俊傑">
-					</div>
 				</div>
-
-				<!--English Name-->
-				<div id="eng-name-form" class="form-group">
-					<label for="engNameFirst" class="col-lg-3 control-label">
-						English Name
-					</label>
-					<div class="col-lg-9">
-						<div class="row">
-            <span class="col-lg-6">
-                <input type="text" class="form-control" id="engNameFirst" placeholder="First Name" value="Chun Chieh">
-            </span>
-            <span class="col-lg-6">
-                <input type="text" class="form-control" id="engNameLast" placeholder="Last Name" value="Huang">
-            </span>
+				<div class="col-lg-10">
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="text" name="jform[chinese_name]" class="form-control"
+								id="chineseName" placeholder="姓名" value="<?php echo $query['chinese_name']; ?>">
 						</div>
 					</div>
 				</div>
+			</div>
 
-				<div class="form-group">
-					<div class="col-lg-offset-2 col-lg-10 ">
-						<button type="submit" class="btn btn-primary pull-right">Submit</button>
+			<!--English Name-->
+			<?php
+				$engNames = $query['eng_name'];
+			?>
+			<div id="eng-name-form" class="form-group row">
+				<div class="col-lg-2">
+					<label for="engNameFirst" class="control-label">
+						English Name
+					</label>
+				</div>
+				<div class="col-lg-10">
+					<div class="row">
+                                <span class="col-lg-6 margin-b-20">
+                                    <input type="text" class="form-control" id="engNameFirst-0"
+										name="jform[eng_name][0][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.first'); ?>">
+                                </span>
+                                <span class="col-lg-6">
+                                    <input type="text" class="form-control" id="engNameFirst-0"
+										name="jform[eng_name][0][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.last'); ?>">
+                                </span>
 					</div>
+				</div>
+
+				<div class="col-lg-10 col-lg-offset-2 margin-b-20">
+					<div class="row">
+                                <span class="col-lg-6">
+                                    <input type="text" class="form-control" id="engNameFirst-1"
+										name="jform[eng_name][1][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '1.first'); ?>">
+                                </span>
+                                <span class="col-lg-6">
+                                    <input type="text" class="form-control" id="engNameFirst-1"
+										name="jform[eng_name][1][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '1.last'); ?>">
+                                </span>
+					</div>
+				</div>
+
+				<div class="col-lg-10 col-lg-offset-2 margin-b-20">
+					<div class="row">
+                                <span class="col-lg-6">
+                                    <input type="text" class="form-control" id="engNameFirst-2"
+										name="jform[eng_name][2][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '2.first'); ?>">
+                                </span>
+                                <span class="col-lg-6">
+                                    <input type="text" class="form-control" id="engNameFirst-2"
+										name="jform[eng_name][2][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '2.last'); ?>">
+                                </span>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10 ">
+					<button type="submit" class="btn btn-primary pull-right">Submit</button>
 				</div>
 			</div>
 
