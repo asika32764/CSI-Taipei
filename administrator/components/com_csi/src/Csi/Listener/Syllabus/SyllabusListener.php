@@ -13,7 +13,10 @@ use Csi\Database\AbstractDatabase;
 use Csi\Helper\KeywordHelper;
 use Csi\Listener\DatabaseListener;
 use Csi\Reader\Reader;
+use Joomla\String\Normalise;
 use Windwalker\Data\Data;
+use Windwalker\DI\Container;
+use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
  * Class SyllabusListener
@@ -108,7 +111,29 @@ class SyllabusListener extends DatabaseListener
 			return;
 		}
 
-		// exit($database);
+		$app = Container::getInstance()->get('app');
+
+		$resultFields = Config::get('database.' . $database . '.result_fields');
+
+		$taskMapper = new DataMapper('#__csi_tasks');
+
+		foreach ($resultFields as $field)
+		{
+			$class = sprintf('Csi\\Database\\%s\\%sResult', ucfirst($database), Normalise::toCamelCase($field));
+
+			if (!class_exists($class))
+			{
+				$app->enqueueMessage($class . ' not exists', 'warning');
+
+				continue;
+			}
+
+			$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
+
+			$result = with(new $class($task))->get();
+
+			show($result);
+		}
 	}
 }
  
