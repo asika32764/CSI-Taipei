@@ -13,7 +13,24 @@ use Windwalker\View\Html\HtmlView;
  *
  * @since 1.0
  */
-class CsiViewResult extends HtmlView
+class CsiViewResultHtml extends HtmlView
 {
+	/**
+	 * prepareData
+	 *
+	 * @return  void
+	 */
+	protected function prepareData()
+	{
+		$input = $this->container->get('input');
+
+		$q = $input->getString('q');
+
+		$q = json_decode($q);
+
+		$data = $this->getData();
+
+		$data->query = new \Joomla\Registry\Registry($q);
+	}
 }
  

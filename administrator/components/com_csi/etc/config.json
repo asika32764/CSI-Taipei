@@ -6,6 +6,7 @@
 
 	"database" : {
 		"syllabus": {
+			"type" : "parse",
 			"name" : "syllabus",
 			"engine" : "google",
 			"keyword" : [
@@ -33,28 +34,38 @@
 		},
 
 		"ethesys": {
+			"type" : "parse",
 			"name" : "ethesys",
 			"engine" : "google"
 		},
 
 		"paper": {
+			"type" : "parse",
 			"name" : "paper",
 			"engine" : "google"
 		},
 
 		"social": {
+			"type" : "parse",
 			"name" : "social",
 			"engine" : "google"
 		},
 
 		"wiki": {
+			"type" : "parse",
 			"name" : "wiki",
 			"engine" : "google"
 		},
 
 		"scholar": {
+			"type" : "parse",
 			"name" : "scholar",
 			"engine" : "scholar"
+		},
+
+		"webometrics": {
+			"type" : "webo",
+			"name" : "webometrics"
 		}
 	}
 }

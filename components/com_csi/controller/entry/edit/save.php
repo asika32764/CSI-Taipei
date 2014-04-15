@@ -94,6 +94,12 @@ class CsiControllerEntryEditSave extends SaveController
 
 		foreach ((array) $databases as $name => $database)
 		{
+			// Only parse type need tasks
+			if ($database->type != 'parse')
+			{
+				continue;
+			}
+
 			$data = $this->data;
 
 			// Handle data
@@ -144,7 +150,7 @@ class CsiControllerEntryEditSave extends SaveController
 		// Build query
 		$data = \Csi\Helper\EntryHelper::cleanQuery($this->data);
 
-		$url = \Csi\Router\Route::_('com_csi.result', array('id' => $entryId, 'q' => json_encode($data)));
+		$url = \Csi\Router\Route::_('com_csi.result', array('id' => $entryId, 'q' => json_encode($data)), false);
 
 		// Re allow appear message
 		$this->input->set('quiet', false);
