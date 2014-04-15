@@ -121,6 +121,13 @@ $query = $data->query;
 
 				<tbody>
 
+				<?php
+				foreach ($data->results as $name => $result)
+				{
+					echo $this->loadTemplate('result_row', array('database' => $name, 'databaseResult' => $result));
+				}
+				?>
+
 				<tr>
 					<th rowspan="3">課程大綱</th>
 					<td>

@@ -33,7 +33,7 @@ class SyllabusCountResult extends AbstractResult
 	{
 		$query = $this->db->getQuery(true);
 
-		echo $query->select('SUM(`value`) AS count')
+		$query->select('SUM(`value`) AS count')
 			->from('#__csi_results')
 			->where('`task_id` = ' . $this->task->id)
 			->where('`type` = "page"')

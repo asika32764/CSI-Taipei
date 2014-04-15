@@ -130,9 +130,7 @@ class SyllabusListener extends DatabaseListener
 
 			$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
 
-			$result = with(new $class($task))->get();
-
-			show($result);
+			$result->$field = with(new $class($task))->get();
 		}
 	}
 }
