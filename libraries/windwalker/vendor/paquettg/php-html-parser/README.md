@@ -1,14 +1,16 @@
 PHP Html Parser
 ==========================
 
-Version 1.6.1
+Version 1.6.2
+
+[![Build Status](https://travis-ci.org/paquettg/php-html-parser.png?branch=master)](https://travis-ci.org/paquettg/php-html-parser)
 
 PHPHtmlParser is a simple, flexible, html parser which allows you to select tags using any css selector, like jQuery. The goal is to assiste in the development of tools which require a quick, easy way to scrap html, whether it's valid or not! This project was original supported by [sunra/php-simple-html-dom-parser](https://github.com/sunra/php-simple-html-dom-parser) but the support seems to have stopped so this project is my adaptation of his previous work.
 
 Install
 -------
 
-This package can be found on [packagist](https://packagist.org/packages/paquettg/php-html-parser) and is best loaded using [composer](http://getcomposer.org/). It does require php 5.4 or higher, so keep that in consideration. 
+This package can be found on [packagist](https://packagist.org/packages/paquettg/php-html-parser) and is best loaded using [composer](http://getcomposer.org/). We support php 5.4, 5.5, and hhvm 2.3.
 
 Usage
 -----
@@ -57,6 +59,36 @@ This example loads the html from big.html, a real page found online, and gets al
 
 Alternativly, you can always use the load() method to load the file. It will attempt to find the file using file_exists and, if succesfull, will call loadFromFile() for you. The same applies to a URL and loadFromUrl() method.
 
+Example With Url
+----------------
+
+Loading a url is very similar to the way you would load the html from a file. 
+
+```php
+use PHPHtmlParser\Dom;
+
+$dom = new Dom;
+$dom->loadFromUrl('http://google.com');
+$html = $dom->outerHtml;
+
+// or
+$dom->load('http://google.com');
+$html = $dom->outerHtml; // same result as the first example
+```
+
+What makes the loadFromUrl method note worthy is the PHPHtmlParser\CurlInterface parameter, an optional second parameter. By default, we use the PHPHtmlParser\Curl class to get the contents of the url. On the other hand, though, you can inject your own implementation of CurlInterface and we will attempt to load the url using what ever tool/settings you want, up to you.
+
+```php
+use PHPHtmlParser\Dom;
+use App\Services\Connector;
+
+$dom = new Dom;
+$dom->loadFromUrl('http://google.com', new Connector);
+$html = $dom->outerHtml;
+```
+
+As long as the Connector object implements the PHPHtmlParser\CurlInterface interface properly it will use that object to get the content of the url instead of the default PHPHtmlParser\Curl class.
+
 Static Facade
 ------------
 
@@ -66,7 +98,7 @@ You can also mount a static facade for the Dom object.
 PHPHtmlParser\StaticDom::mount();
 
 Dom::load('tests/big.hmtl');
-$objects Dom::find('.content-border');
+$objects = Dom::find('.content-border');
 
 ```
 

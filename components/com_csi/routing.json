@@ -5,7 +5,12 @@
 	},
 
 	"result" : {
-		"pattern" : "result",
+		"pattern" : "result/:id",
 		"view" : "result"
+	},
+
+	"results" : {
+		"pattern" : "results/:id",
+		"view" : "results"
 	}
 }

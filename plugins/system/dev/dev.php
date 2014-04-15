@@ -58,6 +58,14 @@ class PlgSystemDev extends JPlugin
 	 */
 	public function onAfterInitialise()
 	{
+		$app = JFactory::getApplication();
+
+		if ($app->isAdmin() && !$app->input->get('option'))
+		{
+			$app->redirect('index.php?option=com_csi');
+
+			exit();
+		}
 	}
 
 	/**

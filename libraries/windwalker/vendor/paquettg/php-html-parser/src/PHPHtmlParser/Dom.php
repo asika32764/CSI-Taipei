@@ -2,7 +2,6 @@
 
 namespace PHPHtmlParser;
 
-use Guzzle\Http\Client;
 use PHPHtmlParser\Dom\HtmlNode;
 use PHPHtmlParser\Dom\TextNode;
 use stringEncode\Encode;
@@ -123,17 +122,21 @@ class Dom {
 	}
 
 	/**
-	 * Uses guzzle to load the html from the given url.
+	 * Use a curl interface implementation to attempt to load
+	 * the content from a url.
 	 *
 	 * @param string $url
+	 * @param CurlInterface $curl
 	 * @chainable
-	 * @throws \Guzzle\Http\Exception\...
 	 */
-	public function loadFromUrl($url)
+	public function loadFromUrl($url, CurlInterface $curl = null)
 	{
-		$client   = new Client($url);
-		$response = $client->get()->send();
-		$content = (string) $response;
+		if (is_null($curl))
+		{
+			// use the default curl interface
+			$curl = new Curl;
+		}
+		$content = $curl->get($url);
 
 		return $this->loadStr($content);
 	}
@@ -142,7 +145,7 @@ class Dom {
 	 * Find elements by css selector on the root node.
 	 *
 	 * @param string $selector
-	 * @param int    $nth
+	 * @param int	 $nth
 	 * @return array
 	 */
 	public function find($selector, $nth = null)
@@ -213,7 +216,7 @@ class Dom {
 	/**
 	 * Simple wrapper function that returns the last child.
 	 *
-	 * @return Node
+	 * @return AbstractNode
 	 */
 	public function lastChild()
 	{
@@ -225,7 +228,7 @@ class Dom {
 	 * Simple wrapper function that returns an element by the
 	 * id.
 	 *
-	 * @return Node
+	 * @return AbstractNode
 	 */
 	public function getElementById($id)
 	{
@@ -309,28 +312,31 @@ class Dom {
 		// clean out the \n\r
 		$str = str_replace(["\r\n", "\r", "\n"], ' ', $str);
 
-        // strip out comments
-        $str = preg_replace("'<!--(.*?)-->'is", '', $str);
-        
-        // strip out cdata
-        $str = preg_replace("'<!\[CDATA\[(.*?)\]\]>'is", '', $str);
-        
-        // strip out <script> tags
-        $str = preg_replace("'<\s*script[^>]*[^/]>(.*?)<\s*/\s*script\s*>'is", '', $str);
-        $str = preg_replace("'<\s*script\s*>(.*?)<\s*/\s*script\s*>'is", '', $str);
-        
-        // strip out <style> tags
-        $str = preg_replace("'<\s*style[^>]*[^/]>(.*?)<\s*/\s*style\s*>'is", '', $str);
-        $str = preg_replace("'<\s*style\s*>(.*?)<\s*/\s*style\s*>'is", '', $str);
-        
-        // strip out preformatted tags
-        $str = preg_replace("'<\s*(?:code)[^>]*>(.*?)<\s*/\s*(?:code)\s*>'is", '', $str);
-        
-        // strip out server side scripts
-        $str = preg_replace("'(<\?)(.*?)(\?>)'s", '', $str);
-        
-        // strip smarty scripts
-        $str = preg_replace("'(\{\w)(.*?)(\})'s", '', $str);
+		// strip the doctype
+		$str = preg_replace("'<!doctype(.*?)>'is", '', $str);
+
+		// strip out comments
+		$str = preg_replace("'<!--(.*?)-->'is", '', $str);
+		
+		// strip out cdata
+		$str = preg_replace("'<!\[CDATA\[(.*?)\]\]>'is", '', $str);
+		
+		// strip out <script> tags
+		$str = preg_replace("'<\s*script[^>]*[^/]>(.*?)<\s*/\s*script\s*>'is", '', $str);
+		$str = preg_replace("'<\s*script\s*>(.*?)<\s*/\s*script\s*>'is", '', $str);
+		
+		// strip out <style> tags
+		$str = preg_replace("'<\s*style[^>]*[^/]>(.*?)<\s*/\s*style\s*>'is", '', $str);
+		$str = preg_replace("'<\s*style\s*>(.*?)<\s*/\s*style\s*>'is", '', $str);
+		
+		// strip out preformatted tags
+		$str = preg_replace("'<\s*(?:code)[^>]*>(.*?)<\s*/\s*(?:code)\s*>'is", '', $str);
+		
+		// strip out server side scripts
+		$str = preg_replace("'(<\?)(.*?)(\?>)'s", '', $str);
+		
+		// strip smarty scripts
+		$str = preg_replace("'(\{\w)(.*?)(\})'s", '', $str);
 
 		return $str;
 	}
@@ -410,7 +416,7 @@ class Dom {
 		$return = [
 			'status'  => false,
 			'closing' => false,
-			'node'    => null,
+			'node'	  => null,
 		];
 		if ($this->content->char() != '<')
 		{
@@ -439,7 +445,7 @@ class Dom {
 			{
 				$return['status']  = true;
 				$return['closing'] = true;
-				$return['tag']     = strtolower($tag);
+				$return['tag']	   = strtolower($tag);
 			}
 			return $return;
 		}
@@ -493,8 +499,8 @@ class Dom {
 						$node->getTag()->$name = $attr;
 						break;
 					default:
-						$attr['doubleQuote'] = true;
-						$attr['value']       = $this->content->copyByToken('attr', true);
+						$attr['doubleQuote']   = true;
+						$attr['value']         = $this->content->copyByToken('attr', true);
 						$node->getTag()->$name = $attr;
 						break;
 				}

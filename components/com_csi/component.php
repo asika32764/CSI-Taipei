@@ -32,6 +32,8 @@ final class CsiComponent extends \Csi\Component\CsiComponent
 	{
 		parent::prepare();
 
+		\JLoader::register('JToolbarHelper', JPATH_ADMINISTRATOR . '/includes/toolbar.php');
+
 		$asset = $this->container->get('helper.asset');
 
 		$asset->addCss('main.css');

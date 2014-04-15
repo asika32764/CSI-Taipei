@@ -8,14 +8,12 @@
 
 namespace Csi\Date;
 
-use Joomla\Date\Date as JoomlaDate;
-
 /**
  * Class Date
  *
  * @since 1.0
  */
-class Date extends JoomlaDate
+class Date extends \JDate
 {
 	/**
 	 * Constructor.

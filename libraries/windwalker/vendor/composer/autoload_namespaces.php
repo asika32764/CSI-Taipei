@@ -8,15 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'stringEncode' => array($vendorDir . '/paquettg/string-encode/src'),
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
-    'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
-    'Psr' => array($vendorDir . '/joomla/framework/vendor/psr/cache'),
     'PHPHtmlParser' => array($vendorDir . '/paquettg/php-html-parser/src'),
     'Joomla\\Session' => array($vendorDir . '/joomla/session'),
     'Joomla\\Console' => array($vendorDir . '/asika/joomla-console'),
     'Joomla\\Application' => array($vendorDir . '/joomla/application'),
-    'Joomla' => array($vendorDir . '/joomla/framework/src'),
-    'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
-    'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     '' => array($vendorDir . '/asika/php-code-generator/src'),
 );

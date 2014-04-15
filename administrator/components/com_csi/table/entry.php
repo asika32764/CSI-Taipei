@@ -141,9 +141,21 @@ class CsiTableEntry extends Table
 			// Delete queues
 			$queueMapper->delete(array('entry_id' => $this->id));
 
-			// Delete files
-			\JFolder::delete(JPATH_ROOT . '/' . PageHelper::getFileFolder() . '/' . $this->id);
-			\JFolder::delete(JPATH_ROOT . '/' . EnginepageHelper::getFileFolder() . '/' . $this->id);
+			// Delete page files
+			$folder = JPATH_ROOT . '/' . PageHelper::getFileFolder() . '/' . $this->id;
+
+			if (is_dir($folder))
+			{
+				\JFolder::delete($folder);
+			}
+
+			// Delete Enginepage
+			$folder = JPATH_ROOT . '/' . EnginepageHelper::getFileFolder() . '/' . $this->id;
+
+			if (is_dir($folder))
+			{
+				\JFolder::delete($folder);
+			}
 		}
 		catch (\Exception $e)
 		{

@@ -8,6 +8,7 @@
 
 use Csi\Helper\EntryHelper;
 use Windwalker\Controller\Edit\SaveController;
+use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
  * Class CstControllerEntryEditSave
@@ -45,6 +46,15 @@ class CsiControllerEntryEditSave extends SaveController
 
 		$title = EntryHelper::regularizeTitle($this->data['chinese_name'], $this->data['eng_name']);
 
+		// If title exists, redirect to it.
+		/** @var $entry \Windwalker\Data\Data */
+		$entry = with(new DataMapper('#__csi_entries'))->findOne(array('title' => trim($title)));
+
+		if (!$entry->isNull())
+		{
+			$this->goToResult($entry->id);
+		}
+
 		// Build params
 		$params = new \JRegistry;
 
@@ -52,8 +62,6 @@ class CsiControllerEntryEditSave extends SaveController
 
 		$params->set('name.eng', EntryHelper::cleanEngNames($this->data['eng_name']));
 		// $params->set('name.eng', EntryHelper::distinctEngName($this->data['eng_name']));
-
-		// @TODO: If title exists, redirect to it.
 
 		$this->data['title']   = $title;
 		$this->data['names']   = $params->get('name');
@@ -115,6 +123,20 @@ class CsiControllerEntryEditSave extends SaveController
 	 */
 	protected function postExecute($return = null)
 	{
+		$entryId = $this->model->getState()->get('entry.id');
+
+		$this->goToResult($entryId);
+	}
+
+	/**
+	 * goToResult
+	 *
+	 * @param $entryId
+	 *
+	 * @return  void
+	 */
+	protected function goToResult($entryId)
+	{
 		// Clear the record id and data from the session.
 		$this->releaseEditId($this->context, $this->recordId);
 		$this->app->setUserState($this->context . '.data', null);
@@ -122,7 +144,7 @@ class CsiControllerEntryEditSave extends SaveController
 		// Build query
 		$data = \Csi\Helper\EntryHelper::cleanQuery($this->data);
 
-		echo $url = \Csi\Router\Route::_('com_csi.result', array('q' => json_encode($data)));
+		$url = \Csi\Router\Route::_('com_csi.result', array('id' => $entryId, 'q' => json_encode($data)));
 
 		// Re allow appear message
 		$this->input->set('quiet', false);
