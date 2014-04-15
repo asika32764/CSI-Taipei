@@ -6,6 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
+use Windwalker\Joomla\DataMapper\DataMapper;
 use Windwalker\View\Html\HtmlView;
 
 /**
@@ -23,14 +24,17 @@ class CsiViewResultHtml extends HtmlView
 	protected function prepareData()
 	{
 		$input = $this->container->get('input');
+		$data  = $this->getData();
 
+		// Prepare query
 		$q = $input->getString('q');
 
-		$q = json_decode($q);
+		$data->state = $this->get('State');
+		$data->query = new \Joomla\Registry\Registry(json_decode($q));
+		$data->entry = new \Windwalker\Data\Data($this->get('Item'));
 
-		$data = $this->getData();
-
-		$data->query = new \Joomla\Registry\Registry($q);
+		$data->state->set('databases', $data->query['database']);
+		$data->results = $this->get('Result');
 	}
 }
  

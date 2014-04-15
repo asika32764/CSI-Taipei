@@ -30,7 +30,13 @@
 						"參考文獻", "參考資源", "參考書目"
 					]
 				}
-			}
+			},
+
+			"result_fields" : [
+				"cited",
+				"self_cited",
+				"syllabus_count"
+			]
 		},
 
 		"ethesys": {

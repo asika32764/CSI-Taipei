@@ -91,5 +91,24 @@ class SyllabusListener extends DatabaseListener
 		// Save Result
 		$this->saveResult($database, $page, $task, $result);
 	}
+
+	/**
+	 * onDatabaseGetResult
+	 *
+	 * @param string $database
+	 * @param Data   $entry
+	 * @param Data   $result
+	 *
+	 * @return  void
+	 */
+	public function onDatabaseGetResult($database, Data $entry, Data $result)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		// exit($database);
+	}
 }
  
