@@ -127,7 +127,7 @@ $query = $data->query;
 					echo $this->loadTemplate('result_row', array('database' => $name, 'databaseResult' => $result));
 				}
 				?>
-
+<!--
 				<tr>
 					<th rowspan="3">課程大綱</th>
 					<td>
@@ -244,7 +244,7 @@ $query = $data->query;
 					<td>
 						555673
 					</td>
-				</tr>
+				</tr>-->
 
 				</tbody>
 			</table>

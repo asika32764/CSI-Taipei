@@ -34,7 +34,10 @@ class CsiViewResultHtml extends HtmlView
 		$data->entry = new \Windwalker\Data\Data($this->get('Item'));
 
 		$data->state->set('databases', $data->query['database']);
+		$data->state->set('entry.id', $data->entry->id);
+
 		$data->results = $this->get('Result');
+		$data->tasks = $this->get('Tasks');
 	}
 }
  

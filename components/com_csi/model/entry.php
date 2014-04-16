@@ -16,6 +16,13 @@ use Windwalker\Model\CrudModel;
 class CsiModelEntry extends CrudModel
 {
 	/**
+	 * Property tasks.
+	 *
+	 * @var \Windwalker\Data\Data
+	 */
+	protected $tasks = null;
+
+	/**
 	 * getResult
 	 *
 	 * @return  array
@@ -39,6 +46,38 @@ class CsiModelEntry extends CrudModel
 		}
 
 		return $results;
+	}
+
+	/**
+	 * getTasks
+	 *
+	 * @return  \Windwalker\Data\Data
+	 */
+	public function getTasks()
+	{
+		if ($this->tasks)
+		{
+			return $this->tasks;
+		}
+
+		$entryId = $this->state->get('entry.id');
+
+		$query = $this->db->getQuery(true);
+
+		$query->select('*')
+			->from('#__csi_tasks')
+			->where($query->format('%n = %q', 'entry_id', $entryId));
+
+		$tasks = $this->db->setQuery($query)->loadObjectList('database');
+
+		foreach ($tasks as &$task)
+		{
+			$task->params = new \Joomla\Registry\Registry(json_decode($task->params));
+
+			$task = new \Windwalker\Data\Data($task);
+		}
+
+		return $this->tasks = new \Windwalker\Data\Data($tasks);
 	}
 }
  

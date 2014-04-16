@@ -12,5 +12,10 @@
 	"results" : {
 		"pattern" : "results/:id",
 		"view" : "results"
+	},
+
+	"task_pages" : {
+		"pattern" : "task-pages/:id",
+		"view" : "pages"
 	}
 }
