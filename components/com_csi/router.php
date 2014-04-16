@@ -66,9 +66,10 @@ function CsiBuildRoute(&$query)
 function CsiParseRoute($segments)
 {
 	$router = CmsRouter::getInstance('com_csi');
+	$route  = str_replace(':', '-', implode('/', $segments));
 
 	// OK, let's fetch view name.
-	$view = $router->getView(implode('/', $segments));
+	$view = $router->getView($route);
 
 	if ($view)
 	{

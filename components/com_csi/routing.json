@@ -17,5 +17,10 @@
 	"task_pages" : {
 		"pattern" : "task-pages/:id",
 		"view" : "pages"
+	},
+
+	"task_page" : {
+		"pattern" : "task-page/:id",
+		"view" : "page"
 	}
 }
