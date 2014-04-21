@@ -17,6 +17,7 @@ use Joomla\String\Normalise;
 use Windwalker\Data\Data;
 use Windwalker\DI\Container;
 use Windwalker\Joomla\DataMapper\DataMapper;
+use Windwalker\View\Layout\FileLayout;
 
 /**
  * Class SyllabusListener
@@ -132,6 +133,28 @@ class SyllabusListener extends DatabaseListener
 
 			$result->$field = with(new $class($task))->get();
 		}
+	}
+
+	/**
+	 * onPrepareResult
+	 *
+	 * @param string $field
+	 * @param Data   $item
+	 * @param Data   $result
+	 * @param int    $i
+	 *
+	 * @return  void
+	 */
+	public function onPreparePageResult($field, $item, $result, $i)
+	{
+		$item->results->$field = with(new FileLayout('pages.result.button'))
+			->render(
+				array(
+					'result' => $result,
+					'item'   => $item,
+					'i'      => $i
+				)
+			);
 	}
 }
  

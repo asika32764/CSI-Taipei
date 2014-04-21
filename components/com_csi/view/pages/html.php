@@ -22,6 +22,7 @@ class CsiViewPagesHtml extends \Windwalker\View\Html\GridView
 	{
 		$data             = $this->getData();
 		$data->items      = $this->get('Items');
+		$data->task       = $this->get('Task');
 		$data->pagination = $this->get('Pagination');
 		$data->state      = $this->get('State');
 		$data->grid       = $this->getGridHelper($this->gridConfig);
@@ -43,6 +44,47 @@ class CsiViewPagesHtml extends \Windwalker\View\Html\GridView
 		$lang = JFactory::getLanguage();
 
 		$lang->load('', JPATH_ADMINISTRATOR);
+	}
+
+	/**
+	 * prepareData
+	 *
+	 * @return  void
+	 */
+	protected function prepareData()
+	{
+		$dispatcher = $this->container->get('event.dispatcher');
+		$data = $this->getData();
+
+		$model = new \Csi\Model\ResultModel;
+
+		$state = $model->getState();
+
+		$state->set('page.ids', \JArrayHelper::getColumn($data->items, 'id'));
+		$state->set('task.database', $data->task->database);
+
+		$data->results = $model->getPageResults();
+		$data->resultFields = $model->getResultFields();
+
+		foreach ($data->items as $i => $item)
+		{
+			$resultSet = \JArrayHelper::getValue($data->results, $item->id, new \Windwalker\Data\Data);
+
+			$item->results = new \Windwalker\Data\Data;
+
+			if (!$resultSet->isNull())
+			{
+				foreach ($resultSet as $result)
+				{
+					$dispatcher->trigger(
+						sprintf('onPreparePageResult', ucfirst($data->task->database)),
+						array($result->key, $item, $result, $i)
+					);
+				}
+			}
+		}
+
+		show($data->items[0]);
 	}
 
 	/**

@@ -1,0 +1,27 @@
+# System #
+.*
+Thumbs.db
+
+# Composer #
+composer.lock
+/vendor/*
+
+# Apache #
+# .htaccess
+
+# For whole Joomla! site #
+/logs/*
+!/logs/index.html
+/log/*
+!/log/index.html
+/cache/*
+!/cache/index.html
+/tmp/*
+!/tmp/index.html
+/configuration.php
+
+# CSI
+/files/*
+!/files/index.html
+
+!/.gitignore

@@ -36,6 +36,11 @@
 				"cited",
 				"self_cited",
 				"syllabus_count"
+			],
+			"page_result_fields" : [
+				"cited",
+				"self_cited",
+				"is_syllabus"
 			]
 		},
 

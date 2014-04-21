@@ -1,9 +1,10 @@
 <?php
-
 namespace PHPHtmlParser;
 
 use PHPHtmlParser\Dom\HtmlNode;
 use PHPHtmlParser\Dom\TextNode;
+use PHPHtmlParser\Exceptions\NotLoadedException;
+use PHPHtmlParser\Exceptions\StrictException;
 use stringEncode\Encode;
 
 class Dom {
@@ -51,6 +52,21 @@ class Dom {
 	protected $size;
 
 	/**
+	 * A global options array to be used by all load calls.
+	 *
+	 * @var array
+	 */
+	protected $globalOptions = [];
+
+	/**
+	 * A persistent option object to be used for all options in the 
+	 * parsing of the file.
+	 *
+	 * @var Options
+	 */
+	protected $options;
+
+	/**
 	 * A list of tags which will always be self closing
 	 *
 	 * @var array
@@ -92,33 +108,35 @@ class Dom {
 	 * Attempts to load the dom from any resource, string, file, or URL.
 	 *
 	 * @param string $str
+	 * @param array $option
 	 * @chainable
 	 */
-	public function load($str)
+	public function load($str, $options = [])
 	{
 		// check if it's a file
 		if (is_file($str))
 		{
-			return $this->loadFromFile($str);
+			return $this->loadFromFile($str, $options);
 		}
 		// check if it's a url
 		if (preg_match("/^https?:\/\//i",$str))
 		{
-			return $this->loadFromUrl($str);
+			return $this->loadFromUrl($str, $options);
 		}
 
-		return $this->loadStr($str);
+		return $this->loadStr($str, $options);
 	}
 
 	/**
 	 * Loads the dom from a document file/url
 	 *
 	 * @param string $file
+	 * @param array $option
 	 * @chainable
 	 */
-	public function loadFromFile($file)
+	public function loadFromFile($file, $options = [])
 	{
-		return $this->loadStr(file_get_contents($file));
+		return $this->loadStr(file_get_contents($file), $options);
 	}
 
 	/**
@@ -126,10 +144,11 @@ class Dom {
 	 * the content from a url.
 	 *
 	 * @param string $url
+	 * @param array $option
 	 * @param CurlInterface $curl
 	 * @chainable
 	 */
-	public function loadFromUrl($url, CurlInterface $curl = null)
+	public function loadFromUrl($url, $options = [], CurlInterface $curl = null)
 	{
 		if (is_null($curl))
 		{
@@ -138,7 +157,19 @@ class Dom {
 		}
 		$content = $curl->get($url);
 
-		return $this->loadStr($content);
+		return $this->loadStr($content, $options);
+	}
+
+	/**
+	 * Sets a global options array to be used by all load calls.
+	 *
+	 * @param array $options
+	 * @chainable
+	 */
+	public function setOptions(array $options)
+	{
+		$this->globalOptions = $options;
+		return $this;
 	}
 
 	/**
@@ -264,19 +295,19 @@ class Dom {
 	 * Parsers the html of the given string. Used for load(), loadFromFile(),
 	 * and loadFromUrl().
 	 *
-	 * @param string
+	 * @param string $str
+	 * @param array $option
 	 * @chainable
 	 */
-	protected function loadStr($str)
+	protected function loadStr($str, $option)
 	{
+		$this->options = new Options;
+		$this->options->setOptions($this->globalOptions)
+		              ->setOptions($option);
+
 		$this->rawSize = strlen($str);
 		$this->raw     = $str;
 
-		// clean out none-html text
-		if ( ! $this instanceof Dom)
-		{
-			throw new \Exception(get_class($this));
-		}
 		$html = $this->clean($str);
 
 		$this->size    = strlen($str);
@@ -291,13 +322,13 @@ class Dom {
 	/**
 	 * Checks if the load methods have been called.
 	 *
-	 * @throws Exception
+	 * @throws NotLoadedException
 	 */
 	protected function isLoaded()
 	{
 		if (is_null($this->content))
 		{
-			throw new Exception('Content is not loaded!');
+			throw new NotLoadedException('Content is not loaded!');
 		}
 	}
 
@@ -397,9 +428,10 @@ class Dom {
 					$activeNode = $node;
 				}
 			}
-			else
+			else if ($this->options->whitespaceTextNode or
+				     trim($str) != '')
 			{
-				// we found text
+				// we found text we care about
 				$textNode = new TextNode($str);
 				$activeNode->addChild($textNode);
 			}
@@ -508,6 +540,12 @@ class Dom {
 			else
 			{
 				// no value attribute
+				if ($this->options->strict)
+				{
+					// can't have this in strict html
+					$character = $this->content->getPosition();
+					throw new StrictException("Tag '$tag' has an attribute '$name' with out a value! (character #$character)");
+				}
 				$node->getTag()->$name = [
 					'value'       => null,
 					'doubleQuote' => true,
@@ -525,6 +563,14 @@ class Dom {
 		}
 		elseif (in_array($tag, $this->selfClosing))
 		{
+			
+			// Should be a self closing tag, check if we are strict
+			if ( $this->options->strict)
+			{
+				$character = $this->content->getPosition();
+				throw new StrictException("Tag '$tag' is not self clossing! (character #$character)");
+			}
+
 			// We force self closing on this tag.
 			$node->getTag()->selfClosing();
 		}

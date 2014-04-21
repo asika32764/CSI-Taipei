@@ -454,55 +454,6 @@
         ]
     },
     {
-        "name": "paquettg/php-html-parser",
-        "version": "1.6.2",
-        "version_normalized": "1.6.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paquettg/php-html-parser.git",
-            "reference": "be523800a4ccb25d2a3afbe50fd8477c2cb3dca7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/be523800a4ccb25d2a3afbe50fd8477c2cb3dca7",
-            "reference": "be523800a4ccb25d2a3afbe50fd8477c2cb3dca7",
-            "shasum": ""
-        },
-        "require": {
-            "paquettg/string-encode": "0.1.0",
-            "php": ">=5.4"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-04-08 15:59:51",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "PHPHtmlParser": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Gilles Paquette",
-                "email": "paquettg@gmail.com",
-                "homepage": "http://gillespaquette.ca"
-            }
-        ],
-        "description": "An HTML DOM parser. It allows you to manipulate HTML. Find tags on an HTML page with selectors just like jQuery.",
-        "homepage": "https://github.com/paquettg/php-html-parser",
-        "keywords": [
-            "dom",
-            "html",
-            "parser"
-        ]
-    },
-    {
         "name": "joomla/filesystem",
         "version": "1.2.0",
         "version_normalized": "1.2.0.0",
@@ -757,18 +708,67 @@
         ]
     },
     {
+        "name": "paquettg/php-html-parser",
+        "version": "1.6.3",
+        "version_normalized": "1.6.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/paquettg/php-html-parser.git",
+            "reference": "6660555067ed5349ed95f7942fb3ddc74c359848"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/6660555067ed5349ed95f7942fb3ddc74c359848",
+            "reference": "6660555067ed5349ed95f7942fb3ddc74c359848",
+            "shasum": ""
+        },
+        "require": {
+            "paquettg/string-encode": "0.1.0",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2014-04-15 16:44:27",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPHtmlParser": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Gilles Paquette",
+                "email": "paquettg@gmail.com",
+                "homepage": "http://gillespaquette.ca"
+            }
+        ],
+        "description": "An HTML DOM parser. It allows you to manipulate HTML. Find tags on an HTML page with selectors just like jQuery.",
+        "homepage": "https://github.com/paquettg/php-html-parser",
+        "keywords": [
+            "dom",
+            "html",
+            "parser"
+        ]
+    },
+    {
         "name": "windwalker/framework",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/ventoviro/windwalker.git",
-            "reference": "1fd04900fa654a237c198c2fe6ceac209088d1fe"
+            "reference": "21644eb9ce12e3657a5e20c9ca5410e4727e2ca7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ventoviro/windwalker/zipball/1fd04900fa654a237c198c2fe6ceac209088d1fe",
-            "reference": "1fd04900fa654a237c198c2fe6ceac209088d1fe",
+            "url": "https://api.github.com/repos/ventoviro/windwalker/zipball/21644eb9ce12e3657a5e20c9ca5410e4727e2ca7",
+            "reference": "21644eb9ce12e3657a5e20c9ca5410e4727e2ca7",
             "shasum": ""
         },
         "require": {
@@ -778,7 +778,7 @@
         "require-dev": {
             "joomla/test": "~1.0"
         },
-        "time": "2014-04-14 08:33:42",
+        "time": "2014-04-15 15:08:07",
         "type": "library",
         "installation-source": "source",
         "autoload": {

@@ -1,6 +1,9 @@
 <?php
 namespace PHPHtmlParser\Dom;
 
+use PHPHtmlParser\Exceptions\UnkownChildTypeException;
+use PHPHtmlParser\Exceptions\ChildNotFoundException;
+
 class HtmlNode extends AbstractNode {
 
 	/**
@@ -23,6 +26,14 @@ class HtmlNode extends AbstractNode {
 	protected $text = null;
 
 	/**
+	 * Remembers what the text was when we looked into all our
+	 * children nodes.
+	 *
+	 * @var string
+	 */
+	protected $textWithChildren = null;
+
+	/**
 	 * Sets up the tag of this node.
 	 */
 	public function __construct($tag)
@@ -39,6 +50,7 @@ class HtmlNode extends AbstractNode {
 	 * Gets the inner html of this node.
 	 *
 	 * @return string
+	 * @throws UnkownChildTypeException
 	 */
 	public function innerHtml()
 	{
@@ -70,14 +82,14 @@ class HtmlNode extends AbstractNode {
 			}
 			else
 			{
-				throw new Exception('Error: Unkowne child type "'.get_class($child).'" found in node');
+				throw new UnknownChildTypeException('Unknown child type "'.get_class($child).'" found in node');
 			}
 
 			try
 			{
 				$child = $this->nextChild($child->id());
 			}
-			catch (Exception $e)
+			catch (ChildNotFoundException $e)
 			{
 				// no more children
 				$child = null;
@@ -130,37 +142,54 @@ class HtmlNode extends AbstractNode {
 	}
 
 	/**
-	 * Gets the text of this node (if there is any text).
+	 * Gets the text of this node (if there is any text). Or get all the text
+	 * in this node, including children.
 	 *
+	 * @param bool $lookInChildren
 	 * @return string
 	 */
-	public function text()
+	public function text($lookInChildren = false)
 	{
-		if ( ! is_null($this->text))
+		if ($lookInChildren)
+		{
+			if ( ! is_null($this->textWithChildren))
+			{
+				// we already know the results.
+				return $this->textWithChildren;
+			}
+		}
+		elseif( ! is_null($this->text))
 		{
 			// we already know the results.
 			return $this->text;
 		}
 
 		// find out if this node has any text children
+		$text = '';
 		foreach ($this->children as $child)
 		{
 			if ($child['node'] instanceof TextNode)
 			{
-				// we found a text node
-				$text = $child['node']->text();
-
-				// remember the results
-				$this->text = $text;
-
-				return $text;
+				$text .= $child['node']->text;
+			}
+			elseif($lookInChildren and
+			       $child['node'] instanceof HtmlNode)
+			{
+				$text .= $child['node']->text($lookInChildren);
 			}
 		}
 
-		// no text found in this node
-		$this->text = '';
+		// remember our result
+		if ($lookInChildren)
+		{
+			$this->textWithChildren = $text;
+		}
+		else
+		{
+			$this->text = $text;
+		}
 
-		return '';
+		return $text;
 	}
 
 	/**

@@ -27,8 +27,6 @@ $container = $this->getContainer();
 $asset     = $container->get('helper.asset');
 $grid      = $data->grid;
 $date      = $container->get('date');
-
-show($data->items[0]);
 ?>
 
 <!-- LIST TABLE -->
@@ -51,6 +49,12 @@ show($data->items[0]);
 	<th width="15%" class="center">
 		<?php echo $grid->sortTitle('檔案類型', 'page.filetype'); ?>
 	</th>
+
+	<?php foreach ($data->resultFields as $field): ?>
+	<th>
+		<?php echo JText::_('COM_CSI_RESULT_FIELD_' . strtoupper($field)); ?>
+	</th>
+	<?php endforeach; ?>
 
 	<!--DETAIL-->
 	<th width="5%" class="center">
@@ -115,6 +119,21 @@ show($data->items[0]);
 				<?php echo $this->escape($item->filetype); ?>
 			</span>
 		</td>
+
+		<?php foreach ($data->resultFields as $field): ?>
+			<td class="center">
+				<?php
+				if (!empty($item->results[$field]))
+				{
+					echo $item->results[$field];
+				}
+				else
+				{
+					echo '-';
+				}
+				?>
+			</td>
+		<?php endforeach; ?>
 
 		<!--DETAIL-->
 		<td class="center">

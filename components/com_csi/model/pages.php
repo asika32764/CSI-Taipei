@@ -6,7 +6,10 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
+use Csi\Table\Table;
 use Windwalker\DI\Container;
+use Windwalker\Joomla\DataMapper\DataMapper;
+use Windwalker\Model\Helper\QueryHelper;
 
 /**
  * Class CsiModelEntry
@@ -60,7 +63,7 @@ class CsiModelPages extends \Windwalker\Model\ListModel
 		$queryHelper = $this->getContainer()->get('model.pages.helper.query', Container::FORCE_NEW);
 
 		$queryHelper->addTable('page', '#__csi_pages')
-//			->addTable('category',  '#__categories', 'page.catid      = category.id')
+//			->addTable('task',  '#__csi_tasks', 'page.task_id = task.id')
 //			->addTable('user',      '#__users',      'page.created_by = user.id')
 //			->addTable('viewlevel', '#__viewlevels', 'page.access     = viewlevel.id')
 //			->addTable('lang',      '#__languages',  'page.language   = lang.lang_code')
@@ -126,5 +129,15 @@ class CsiModelPages extends \Windwalker\Model\ListModel
 	public function getBatchForm($data = array(), $loadData = false)
 	{
 		return null;
+	}
+
+	/**
+	 * getTask
+	 *
+	 * @return  \Windwalker\Data\Data
+	 */
+	public function getTask()
+	{
+		return with(new DataMapper(Table::TASKS))->findOne(\JFactory::getApplication()->input->get('id'));
 	}
 }

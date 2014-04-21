@@ -12,9 +12,13 @@ use Windwalker\View\Layout\FileLayout;
 defined('_JEXEC') or die;
 
 // Prepare script
-JHtmlBootstrap::tooltip();
+// JHtmlBootstrap::tooltip();
 JHtmlFormbehavior::chosen('select');
-JHtmlDropdown::init();
+// JHtmlDropdown::init();
+
+$doc = JFactory::getDocument();
+
+$doc->addStyleSheet('administrator/templates/isis3/css/template.css');
 
 /**
  * Prepare data for this template.
@@ -45,6 +49,8 @@ $container = $this->getContainer();
 			<div id="hidden-inputs">
 				<input type="hidden" name="task" value="" />
 				<input type="hidden" name="boxchecked" value="0" />
+				<input type="hidden" name="field" value="" id="result_field" />
+				<input type="hidden" name="value" value="" id="result_value" />
 				<?php echo JHtml::_('form.token'); ?>
 			</div>
 
