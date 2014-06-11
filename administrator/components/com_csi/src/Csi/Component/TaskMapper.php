@@ -8,6 +8,8 @@
 
 namespace Csi\Component;
 
+use Windwalker\DI\Container;
+
 /**
  * Class TaskMapper
  *
@@ -16,38 +18,27 @@ namespace Csi\Component;
 class TaskMapper
 {
 	/**
-	 * Property component.
-	 *
-	 * @var  \Csi\Component\CsiComponent
-	 */
-	protected $component = null;
-
-	/**
-	 * Class init.
-	 *
-	 * @param $component
-	 */
-	public function __construct($component)
-	{
-		$this->component = $component;
-	}
-
-	/**
 	 * register
 	 *
-	 * @return  void
+	 * @param null $resolver
+	 *
+	 * @return  mixed
 	 */
-	public function register()
+	public static function register($resolver = null)
 	{
-		$this->component->registerTask('queue.execute', '\\Csi\\Controller\\Queue\\ExecuteController');
+		$resolver = $resolver ? : Container::getInstance('com_csi')->get('controller.resolver');
 
-		$this->component->registerTask('tasks.engine.count', '\\Csi\\Controller\\Tasks\\Engine\\CountController');
+		$resolver->registerTask('queue.execute', '\\Csi\\Controller\\Queue\\ExecuteController');
 
-		$this->component->registerTask('tasks.engine.fetch', '\\Csi\\Controller\\Tasks\\Engine\\FetchController');
+		$resolver->registerTask('tasks.engine.count', '\\Csi\\Controller\\Tasks\\Engine\\CountController');
 
-		$this->component->registerTask('tasks.engine.parse', '\\Csi\\Controller\\Tasks\\Engine\\ParseController');
+		$resolver->registerTask('tasks.engine.fetch', '\\Csi\\Controller\\Tasks\\Engine\\FetchController');
 
-		$this->component->registerTask('page.download', '\\Csi\\Controller\\Page\\DownloadController');
+		$resolver->registerTask('tasks.engine.parse', '\\Csi\\Controller\\Tasks\\Engine\\ParseController');
+
+		$resolver->registerTask('page.download', '\\Csi\\Controller\\Page\\DownloadController');
+
+		return $resolver;
 	}
 }
  
