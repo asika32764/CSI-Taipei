@@ -1,5 +1,6 @@
 {
 	"require" : {
-		"asika/pdf2text": "1.*"
+		"asika/pdf2text": "1.*",
+		"paquettg/php-html-parser": "1.*"
 	}
 }
