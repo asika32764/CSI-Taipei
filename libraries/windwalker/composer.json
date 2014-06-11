@@ -10,20 +10,18 @@
 		}
 	],
 	"require": {
-		"windwalker/framework": "dev-master",
+		"windwalker/framework": "1.*",
 		"asika/joomla-console": "1.1.*",
 		"asika/php-code-generator": "0.1.*",
 		"joomla/registry": "~1.0",
-		"filp/whoops": "1.*",
-
-		"paquettg/php-html-parser": "1.*"
+		"filp/whoops": "1.*"
 	},
 	"require-dev": {
 	},
 	"autoload": {
 		"psr-4": {
 			"": "../../cli/windwalker",
-			"Windwalker\\": "Windwalker"
+			"Windwalker\\": "src"
 		}
 	},
 	"scripts": {
@@ -33,7 +31,7 @@
 		"post-update-cmd": []
 	},
 	"bin": [
-		"Windwalker/init.php"
+		"src/init.php"
 	],
 	"config": {
 		"bin-dir": "../../bin"

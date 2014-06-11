@@ -9,7 +9,7 @@
 // No direct access
 defined('_JEXEC') or die;
 
-include_once JPATH_LIBRARIES . '/windwalker/Windwalker/init.php';
+include_once JPATH_LIBRARIES . '/windwalker/src/init.php';
 include_once __DIR__ . '/../vendor/autoload.php';
 
 JLoader::registerPrefix('Csi', JPATH_BASE . '/components/com_csi');

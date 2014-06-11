@@ -14,7 +14,9 @@ defined('_JEXEC') or die;
 use JFactory;
 
 /**
- * Fbimporter Pro plugin
+ * Pro listener
+ *
+ * @since 1.0
  */
 class ProListener extends \JEvent
 {
@@ -270,7 +272,7 @@ class ProListener extends \JEvent
 	 *
 	 * @return  boolean
 	 */
-	public function onUserBeforeSave($user, $isNew, $success, $msg)
+	public function onUserBeforeSave($user, $isNew, $success, $msg = null)
 	{
 		$result = array();
 
@@ -289,7 +291,7 @@ class ProListener extends \JEvent
 	 *
 	 * @return    boolean
 	 */
-	public function onUserAfterSave($user, $isNew, $success, $msg)
+	public function onUserAfterSave($user, $isNew, $success, $msg = null)
 	{
 		$result = array();
 
@@ -342,7 +344,7 @@ class ProListener extends \JEvent
 	 *
 	 * @return  boolean
 	 */
-	public function onUserBeforeDelete($user, $isnew, $success, $msg)
+	public function onUserBeforeDelete($user, $isnew, $success, $msg = null)
 	{
 		$result = array();
 
@@ -360,7 +362,7 @@ class ProListener extends \JEvent
 	 *
 	 * @return  boolean
 	 */
-	public function onUserAfterDelete($user, $success, $msg)
+	public function onUserAfterDelete($user, $success, $msg = null)
 	{
 		$result = array();
 

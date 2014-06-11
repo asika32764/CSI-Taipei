@@ -171,21 +171,12 @@ $grid->registerTableSort();
 
 		<!--LANGUAGE-->
 		<td class="center">
-			<?php
-			if ($item->language == '*')
-			{
-				echo JText::alt('JALL', 'language');
-			}
-			else
-			{
-				echo $item->lang_title ? $this->escape($item->lang_title) : JText::_('JUNDEFINED');
-			}
-			?>
+			<?php echo $grid->language(); ?>
 		</td>
 
 		<!--ID-->
 		<td class="center">
-			<?php echo (int) $item->id; ?>
+			<?php echo $item->id; ?>
 		</td>
 
 	</tr>

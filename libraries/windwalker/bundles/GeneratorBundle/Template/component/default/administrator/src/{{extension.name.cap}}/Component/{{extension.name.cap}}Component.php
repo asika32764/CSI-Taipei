@@ -12,23 +12,25 @@ use Windwalker\Helper\ProfilerHelper;
 defined('_JEXEC') or die;
 
 /**
- * Class {{extension.name.cap}}Component
+ * {{extension.name.cap}} Component
  *
  * @since 1.0
  */
 abstract class {{extension.name.cap}}Component extends Component
 {
 	/**
-	 * Property name.
+	 * Component name without `com_`.
 	 *
 	 * @var string
 	 */
 	protected $name = '{{extension.name.cap}}';
 
 	/**
-	 * prepare
+	 * Prepare hook of this component.
 	 *
-	 * @return  void
+	 * Do some customize initialise through extending this method.
+	 *
+	 * @return void
 	 */
 	protected function prepare()
 	{
@@ -50,15 +52,18 @@ abstract class {{extension.name.cap}}Component extends Component
 
 		$asset->windwalker();
 
+		// Register tasks
+		TaskMapper::register($this);
+
 		parent::prepare();
 	}
 
 	/**
-	 * postExecute
+	 * Post execute hook.
 	 *
-	 * @param mixed $result
+	 * @param mixed $result The return value of this component.
 	 *
-	 * @return  mixed
+	 * @return  mixed  The return value of this component.
 	 */
 	protected function postExecute($result)
 	{

@@ -6,10 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'stringEncode' => array($vendorDir . '/paquettg/string-encode/src'),
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
-    'PHPHtmlParser' => array($vendorDir . '/paquettg/php-html-parser/src'),
     'Joomla\\Session' => array($vendorDir . '/joomla/session'),
     'Joomla\\Console' => array($vendorDir . '/asika/joomla-console'),
     'Joomla\\Application' => array($vendorDir . '/joomla/application'),

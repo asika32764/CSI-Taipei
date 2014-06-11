@@ -6,7 +6,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-use Joomla\DI\Container;
+use Windwalker\DI\Container;
 use Windwalker\Model\Model;
 use Windwalker\View\Engine\PhpEngine;
 use Windwalker\View\Html\EditView;
@@ -16,12 +16,54 @@ use Windwalker\Xul\XulEngine;
 defined('_JEXEC') or die;
 
 /**
- * Class {{controller.list.name.cap}}HtmlView
+ * {{extension.name.cap}} {{controller.list.name.cap}} view
  *
  * @since 1.0
  */
 class {{extension.name.cap}}View{{controller.item.name.cap}}Html extends EditView
 {
+	/**
+	 * The component prefix.
+	 *
+	 * @var  string
+	 */
+	protected $prefix = '{{extension.name.lower}}';
+
+	/**
+	 * The component option name.
+	 *
+	 * @var string
+	 */
+	protected $option = '{{extension.element.lower}}';
+
+	/**
+	 * The text prefix for translate.
+	 *
+	 * @var  string
+	 */
+	protected $textPrefix = '{{extension.element.upper}}';
+
+	/**
+	 * The item name.
+	 *
+	 * @var  string
+	 */
+	protected $name = '{{controller.item.name.lower}}';
+
+	/**
+	 * The item name.
+	 *
+	 * @var  string
+	 */
+	protected $viewItem = '{{controller.item.name.lower}}';
+
+	/**
+	 * The list name.
+	 *
+	 * @var  string
+	 */
+	protected $viewList = '{{controller.list.name.lower}}';
+
 	/**
 	 * Method to instantiate the view.
 	 *
@@ -37,8 +79,13 @@ class {{extension.name.cap}}View{{controller.item.name.cap}}Html extends EditVie
 		parent::__construct($model, $container, $config, $paths);
 	}
 
-	protected function prepareRender()
+	/**
+	 * Prepare data hook.
+	 *
+	 * @return  void
+	 */
+	protected function prepareData()
 	{
-		parent::prepareRender();
+		parent::prepareData();
 	}
 }

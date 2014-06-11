@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "e8efe7ee68382e71e7dc3d9488aeb3e2",
+    "hash": "e2b910853e5669034de51058fdc15316",
     "packages": [
         {
             "name": "asika/joomla-console",
@@ -88,29 +89,28 @@
         },
         {
             "name": "filp/whoops",
-            "version": "1.1-rc",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "70e23d1c5225af13f964e78edf38e0c5bef4c20f"
+                "reference": "ae05259236204ccf904a94e5b0d96df8d4351da5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/70e23d1c5225af13f964e78edf38e0c5bef4c20f",
-                "reference": "70e23d1c5225af13f964e78edf38e0c5bef4c20f",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/ae05259236204ccf904a94e5b0d96df8d4351da5",
+                "reference": "ae05259236204ccf904a94e5b0d96df8d4351da5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "mockery/mockery": "0.9.*",
-                "php": ">=5.3.3"
+                "mockery/mockery": "0.9.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -143,7 +143,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2014-03-31 04:21:53"
+            "time": "2014-05-13 05:05:11"
         },
         {
             "name": "joomla/application",
@@ -271,6 +271,43 @@
             "time": "2014-02-09 01:18:10"
         },
         {
+            "name": "joomla/event",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joomla-framework/event.git",
+                "reference": "bb957bc45aba897e465384bbe21cd0eb79aca901"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joomla-framework/event/zipball/bb957bc45aba897e465384bbe21cd0eb79aca901",
+                "reference": "bb957bc45aba897e465384bbe21cd0eb79aca901",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.10"
+            },
+            "type": "joomla-package",
+            "autoload": {
+                "psr-4": {
+                    "Joomla\\Event\\": "src/",
+                    "Joomla\\Event\\Tests\\": "Tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Joomla Event Package",
+            "homepage": "https://github.com/joomla-framework/event",
+            "keywords": [
+                "event",
+                "framework",
+                "joomla"
+            ],
+            "time": "2014-02-09 01:30:54"
+        },
+        {
             "name": "joomla/filesystem",
             "version": "1.2.0",
             "source": {
@@ -353,16 +390,16 @@
         },
         {
             "name": "joomla/input",
-            "version": "1.1.1",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/input.git",
-                "reference": "34c26858445d13220d492a8c1e870e6778232979"
+                "reference": "9a658815033cfbcd31bd4d920fcfe2acd85abcf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/input/zipball/34c26858445d13220d492a8c1e870e6778232979",
-                "reference": "34c26858445d13220d492a8c1e870e6778232979",
+                "url": "https://api.github.com/repos/joomla-framework/input/zipball/9a658815033cfbcd31bd4d920fcfe2acd85abcf4",
+                "reference": "9a658815033cfbcd31bd4d920fcfe2acd85abcf4",
                 "shasum": ""
             },
             "require": {
@@ -390,20 +427,20 @@
                 "input",
                 "joomla"
             ],
-            "time": "2014-02-09 02:03:05"
+            "time": "2014-06-10 16:23:11"
         },
         {
             "name": "joomla/registry",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/registry.git",
-                "reference": "d4526f2fb6295fbd3c688fa817e72a1821d7c0e4"
+                "reference": "2be70676835f7457719df0418be89397bfd55900"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/registry/zipball/d4526f2fb6295fbd3c688fa817e72a1821d7c0e4",
-                "reference": "d4526f2fb6295fbd3c688fa817e72a1821d7c0e4",
+                "url": "https://api.github.com/repos/joomla-framework/registry/zipball/2be70676835f7457719df0418be89397bfd55900",
+                "reference": "2be70676835f7457719df0418be89397bfd55900",
                 "shasum": ""
             },
             "require": {
@@ -436,24 +473,25 @@
                 "joomla",
                 "registry"
             ],
-            "time": "2014-02-09 07:19:55"
+            "time": "2014-05-19 19:41:20"
         },
         {
             "name": "joomla/session",
-            "version": "1.2.0",
+            "version": "1.2.2",
             "target-dir": "Joomla/Session",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/session.git",
-                "reference": "0657610e7fe2dda15ae6ed23be64616e5c616b0d"
+                "reference": "36e0b66cd0f1fcb5b3db40d5e9d55fbb49fb165f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/session/zipball/0657610e7fe2dda15ae6ed23be64616e5c616b0d",
-                "reference": "0657610e7fe2dda15ae6ed23be64616e5c616b0d",
+                "url": "https://api.github.com/repos/joomla-framework/session/zipball/36e0b66cd0f1fcb5b3db40d5e9d55fbb49fb165f",
+                "reference": "36e0b66cd0f1fcb5b3db40d5e9d55fbb49fb165f",
                 "shasum": ""
             },
             "require": {
+                "joomla/event": "~1.1",
                 "joomla/filter": "~1.0",
                 "php": ">=5.3.10"
             },
@@ -480,7 +518,7 @@
                 "joomla",
                 "session"
             ],
-            "time": "2014-04-09 02:23:29"
+            "time": "2014-05-31 14:11:45"
         },
         {
             "name": "joomla/string",
@@ -598,99 +636,6 @@
             "time": "2014-02-09 02:57:39"
         },
         {
-            "name": "paquettg/php-html-parser",
-            "version": "1.6.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paquettg/php-html-parser.git",
-                "reference": "6660555067ed5349ed95f7942fb3ddc74c359848"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/6660555067ed5349ed95f7942fb3ddc74c359848",
-                "reference": "6660555067ed5349ed95f7942fb3ddc74c359848",
-                "shasum": ""
-            },
-            "require": {
-                "paquettg/string-encode": "0.1.0",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "PHPHtmlParser": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gilles Paquette",
-                    "email": "paquettg@gmail.com",
-                    "homepage": "http://gillespaquette.ca"
-                }
-            ],
-            "description": "An HTML DOM parser. It allows you to manipulate HTML. Find tags on an HTML page with selectors just like jQuery.",
-            "homepage": "https://github.com/paquettg/php-html-parser",
-            "keywords": [
-                "dom",
-                "html",
-                "parser"
-            ],
-            "time": "2014-04-15 16:44:27"
-        },
-        {
-            "name": "paquettg/string-encode",
-            "version": "0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paquettg/string-encoder.git",
-                "reference": "f0e6ae7e974287e28fcb6e4e70cd9231a3b62b62"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paquettg/string-encoder/zipball/f0e6ae7e974287e28fcb6e4e70cd9231a3b62b62",
-                "reference": "f0e6ae7e974287e28fcb6e4e70cd9231a3b62b62",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "stringEncode": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gilles Paquette",
-                    "email": "paquettg@gmail.com",
-                    "homepage": "http://gillespaquette.ca"
-                }
-            ],
-            "description": "Facilitating the process of altering string encoding in PHP.",
-            "homepage": "https://github.com/paquettg/string-encoder",
-            "keywords": [
-                "charset",
-                "encoding",
-                "string"
-            ],
-            "time": "2013-12-13 15:26:20"
-        },
-        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -730,16 +675,16 @@
         },
         {
             "name": "windwalker/framework",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ventoviro/windwalker.git",
-                "reference": "21644eb9ce12e3657a5e20c9ca5410e4727e2ca7"
+                "reference": "056d34f940ec5bd9565b5b7320ebd2fad4b1e6db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ventoviro/windwalker/zipball/21644eb9ce12e3657a5e20c9ca5410e4727e2ca7",
-                "reference": "21644eb9ce12e3657a5e20c9ca5410e4727e2ca7",
+                "url": "https://api.github.com/repos/ventoviro/windwalker/zipball/056d34f940ec5bd9565b5b7320ebd2fad4b1e6db",
+                "reference": "056d34f940ec5bd9565b5b7320ebd2fad4b1e6db",
                 "shasum": ""
             },
             "require": {
@@ -747,6 +692,7 @@
                 "joomla/utilities": "~1.0"
             },
             "require-dev": {
+                "joomla/application": "~1.0",
                 "joomla/test": "~1.0"
             },
             "type": "library",
@@ -767,7 +713,7 @@
             ],
             "description": "Rapido de la vento viro.",
             "homepage": "https://github.com/ventoviro/windwalker",
-            "time": "2014-04-15 15:08:07"
+            "time": "2014-06-10 15:18:15"
         }
     ],
     "packages-dev": [
@@ -777,9 +723,9 @@
 
     ],
     "minimum-stability": "beta",
-    "stability-flags": {
-        "windwalker/framework": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],

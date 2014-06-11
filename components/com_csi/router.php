@@ -13,7 +13,7 @@ use Windwalker\Helper\PathHelper;
 use Windwalker\Router\CmsRouter;
 use Windwalker\Router\Helper\RoutingHelper;
 
-include_once JPATH_LIBRARIES . '/windwalker/Windwalker/init.php';
+include_once JPATH_LIBRARIES . '/windwalker/src/init.php';
 
 JLoader::registerNamespace('Windwalker', PathHelper::getAdmin('com_csi') . '/src');
 
