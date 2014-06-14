@@ -24,7 +24,7 @@ abstract class Config extends AbstractConfig
 	 *
 	 * @var  string
 	 */
-	protected static $type = 'json';
+	protected static $type = 'yaml';
 
 	/**
 	 * getPath
