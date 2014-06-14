@@ -34,12 +34,12 @@ class Route
 		if (count($resource) == 2)
 		{
 			$data['option'] = $resource[0];
-			$data['view']   = $resource[1];
+			$data['_resource']   = $resource[1];
 		}
 		elseif (count($resource) == 1)
 		{
 			$data['option'] = $resource[0];
-			$data['view']   = null;
+			$data['_resource']   = null;
 		}
 
 		$url = new \JUri;
@@ -67,7 +67,7 @@ class Route
 		$Itemid = null;
 
 		$data['view'] = isset($data['view']) ? $data['view'] : null;
-		
+
 		// If itemid exists and view not, use itemid as menu item
 		if (isset($data['Itemid']) && empty($data['view']))
 		{

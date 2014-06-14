@@ -332,8 +332,10 @@ class Router
 
 		$pattern = $this->resources[$name];
 
-		foreach ($queries as $key => $var)
+		foreach ($this->maps[$name]['vars'] as $key)
 		{
+			$var = isset($queries[$key]) ? $queries[$key] : $this->input->get($key, 'null');
+
 			if (is_array($var) || is_object($var))
 			{
 				$var = implode('/', (array) $var);
@@ -358,6 +360,35 @@ class Router
 		$pattern = strtr($pattern, $replace);
 
 		return explode('/', $pattern);
+	}
+
+	/**
+	 * Build route by raw url.
+	 *
+	 * @param array $queries
+	 *
+	 * @return  array
+	 */
+	public function buildByRaw(&$queries)
+	{
+		if (empty($queries['view']))
+		{
+			return array();
+		}
+
+		foreach ($this->maps as $view => $map)
+		{
+			if ($map['controller'] == $queries['view'])
+			{
+				unset($queries['view']);
+
+				return $this->build($view, $map);
+
+				break;
+			}
+		}
+
+		return array();
 	}
 
 	/**
