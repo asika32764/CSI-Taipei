@@ -38,8 +38,8 @@ class Route
 		}
 		elseif (count($resource) == 1)
 		{
-			$data['option'] = $resource[0];
-			$data['_resource']   = null;
+			$data['option'] = 'com_csi';
+			$data['_resource']   = $resource[0];
 		}
 
 		$url = new \JUri;
@@ -73,7 +73,9 @@ class Route
 		{
 			if ($item = $menu->getItem($data['Itemid']))
 			{
-				return array('Itemid' => $item->id, 'option' => $data['option']);
+				$data['Itemid'] = $item->id;
+
+				return $data;
 			}
 		}
 
@@ -88,7 +90,7 @@ class Route
 
 				if ($option == $data['option'] && $view == $data['view'] && $id == $data['id'])
 				{
-					$data = array('Itemid' => $item->id, 'option' => $data['option']);
+					$data['Itemid'] = $item->id;
 
 					return $data;
 				}
@@ -96,7 +98,7 @@ class Route
 		}
 
 		// Find option and view
-		if (!$Itemid)
+		if (!$Itemid && !empty($data['view']))
 		{
 			foreach ($items as $item)
 			{
@@ -105,17 +107,17 @@ class Route
 
 				if ($option == $data['option'] && $view == $data['view'])
 				{
-					$Itemid = $item->id;
-
 					unset($data['view']);
 
-					break;
+					$data['Itemid'] = $item->id;
+
+					return $data;
 				}
 			}
 		}
 
 		// Find option
-		if (!$Itemid /* && !empty($data['view'])*/)
+		if (!$Itemid && empty($data['view']))
 		{
 			foreach ($items as $item)
 			{
@@ -123,16 +125,11 @@ class Route
 
 				if ($option == $data['option'])
 				{
-					$Itemid = $item->id;
+					$data['Itemid'] = $item->id;
 
-					break;
+					return $data;
 				}
 			}
-		}
-
-		if ($Itemid)
-		{
-			$data['Itemid'] = $Itemid;
 		}
 
 		return $data;

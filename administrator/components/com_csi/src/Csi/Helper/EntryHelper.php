@@ -10,6 +10,7 @@ namespace Csi\Helper;
 
 use Joomla\String\Normalise;
 use Joomla\String\String;
+use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
  * Class EntryHelper
@@ -174,6 +175,20 @@ class EntryHelper
 		}
 
 		return $queries;
+	}
+
+	/**
+	 * getEntryQuickLink
+	 *
+	 * @return  void
+	 */
+	public static function getEntryQuickLink()
+	{
+		$entries = with(new DataMapper('#__csi_entries'))->findAll();
+
+		$list = array();
+
+
 	}
 }
  
