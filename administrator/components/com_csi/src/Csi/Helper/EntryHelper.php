@@ -8,8 +8,10 @@
 
 namespace Csi\Helper;
 
+use Csi\Router\Route;
 use Joomla\String\Normalise;
 use Joomla\String\String;
+use Windwalker\Html\HtmlElement;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
@@ -180,7 +182,7 @@ class EntryHelper
 	/**
 	 * getEntryQuickLink
 	 *
-	 * @return  void
+	 * @return  string
 	 */
 	public static function getEntryQuickLink()
 	{
@@ -188,7 +190,28 @@ class EntryHelper
 
 		$list = array();
 
+		$query = array(
+			'database' => array(
+				"syllabus",
+				"ethesys",
+				"paper",
+				"social",
+				"wiki",
+				"scholar",
+				"webometrics"
+			),
 
+			"webo_url" => array()
+		);
+
+		foreach ($entries as $entry)
+		{
+			$link = Route::_('result', array('id' => $entry->id, 'q' => json_encode($query)));
+
+			$list[] = '<li>' . \JHtml::link($link, $entry->title) . '</li>';
+		}
+
+		return (string) new HtmlElement('ul', $list);
 	}
 }
  

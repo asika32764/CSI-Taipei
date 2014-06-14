@@ -30,7 +30,7 @@ class CsiModelEntry extends CrudModel
 	public function getResult()
 	{
 		$dispatcher = $this->container->get('event.dispatcher');
-		$databases  = $this->state->get('databases');
+		$databases  = $this->state->get('databases', array());
 		$entry = new \Windwalker\Data\Data($this->getItem());
 
 		// Get Database results

@@ -136,6 +136,13 @@
 				</div>
 			</fieldset>
 
+			<?php
+			if (JDEBUG)
+			{
+				echo \Csi\Helper\EntryHelper::getEntryQuickLink();
+			}
+			?>
+
 			<div id="hidden-inputs">
 				<?php echo JHtmlForm::token(); ?>
 			</div>

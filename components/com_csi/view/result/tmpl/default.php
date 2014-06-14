@@ -71,14 +71,14 @@ $query = $data->query;
 
 				<div class="col-lg-10 col-lg-offset-2 margin-b-20">
 					<div class="row">
-                                <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst-2"
-										name="jform[eng_name][2][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '2.first'); ?>">
-                                </span>
-                                <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst-2"
-										name="jform[eng_name][2][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '2.last'); ?>">
-                                </span>
+						<span class="col-lg-6">
+							<input type="text" class="form-control" id="engNameFirst-2"
+								name="jform[eng_name][2][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '2.first'); ?>">
+						</span>
+						<span class="col-lg-6">
+							<input type="text" class="form-control" id="engNameFirst-2"
+								name="jform[eng_name][2][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '2.last'); ?>">
+						</span>
 					</div>
 				</div>
 			</div>

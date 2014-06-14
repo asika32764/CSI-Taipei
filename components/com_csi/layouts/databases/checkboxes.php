@@ -6,8 +6,10 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
+$displayData = new \Joomla\Registry\Registry($displayData);
+
 $databases = $displayData['databases'];
-$actives = $displayData['actives'];
+$actives = $displayData['actives'] ? : array();
 ?>
 
 <?php foreach ($databases as $database): ?>
