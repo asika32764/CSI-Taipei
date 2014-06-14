@@ -111,6 +111,21 @@ class CsiViewQueuesHtml extends GridView
 	{
 		// Get default button set.
 		$buttonSet = array(
+			'execute' => array(
+				'handler' => function()
+					{
+						$bar = JToolbar::getInstance();
+
+						$html = JHtml::link(
+							JUri::root(true) . '/?option=com_csi&task=queue.execute',
+							'Execute',
+							array('class' => 'btn btn-primary btn-small', 'target' => '_blank')
+						);
+
+						$bar->appendButton('Custom', $html);
+					}
+			),
+
 			'delete' => array(
 				'handler' => 'deleteList',
 				'args'    => array($this->viewList . '.state.delete'),

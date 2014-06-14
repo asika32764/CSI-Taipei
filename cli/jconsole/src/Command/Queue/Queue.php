@@ -153,7 +153,9 @@ class Queue extends JCommand
 			// $result = $this->fetch('Csi', $this->queue->task, array('id' => $this->queue->id));
 			$controller = $this->resolver->getController('Csi', $this->queue->task, new \JInput(array('id' => $this->queue->id)));
 
-			$result = $controller->execute();
+			$result = $controller
+				->setContainer(Container::getInstance())
+				->execute();
 
 			// Set finished
 			$this->queue->state = 3;
