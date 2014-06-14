@@ -106,7 +106,7 @@ $date      = $container->get('date');
 			</div>
 
 			<!-- Sub Title -->
-			<a class="text-muted" href="<?php $item->url; ?>">
+			<a class="text-muted" href="<?php echo $item->url; ?>">
 				<div class="small">
 					<?php echo $this->escape($item->url); ?>
 				</div>

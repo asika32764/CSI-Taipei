@@ -13,6 +13,8 @@ use Csi\Component\TaskMapper;
 use JConsole\Command\JCommand;
 use Windwalker\Controller\Resolver\ControllerResolver;
 use Windwalker\DI\Container;
+use Windwalker\Event\ListenerHelper;
+use Windwalker\Helper\AssetHelper;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
 defined('JCONSOLE') or die;
@@ -90,8 +92,19 @@ class Queue extends JCommand
 	 */
 	public function configure()
 	{
+		define('JPATH_COMPONENT', JPATH_ADMINISTRATOR . '/components/com_csi');
+		define('JPATH_COMPONENT_ADMINISTRATOR', JPATH_ADMINISTRATOR . '/components/com_csi');
+
 		// $this->addCommand();
 		include JPATH_ADMINISTRATOR . '/components/com_csi/src/init.php';
+
+		define('CSI_ADMIN', JPATH_COMPONENT_ADMINISTRATOR);
+
+		ListenerHelper::registerListeners(
+			'Csi',
+			Container::getInstance()->get('event.dispatcher'),
+			JPATH_COMPONENT_ADMINISTRATOR . '/src/Csi/Listener'
+		);
 
 		parent::configure();
 	}
@@ -103,9 +116,6 @@ class Queue extends JCommand
 	 */
 	protected function doExecute()
 	{
-		define('JPATH_COMPONENT', JPATH_ADMINISTRATOR . '/components/com_csi');
-		define('JPATH_COMPONENT_ADMINISTRATOR', JPATH_ADMINISTRATOR . '/components/com_csi');
-
 		$_SERVER['HTTP_HOST'] = 'console';
 
 		$this->queueMapper = $mapper = new DataMapper('#__csi_queues');
