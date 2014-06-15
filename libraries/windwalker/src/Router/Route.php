@@ -33,13 +33,13 @@ class Route
 
 		if (count($resource) == 2)
 		{
-			$data['option'] = $resource[0];
-			$data['_resource']   = $resource[1];
+			$data['option']    = $resource[0];
+			$data['_resource'] = $resource[1];
 		}
 		elseif (count($resource) == 1)
 		{
-			$data['option'] = 'com_csi';
-			$data['_resource']   = $resource[0];
+			$data['option']    = $resource[0];
+			$data['_resource'] = null;
 		}
 
 		$url = new \JUri;

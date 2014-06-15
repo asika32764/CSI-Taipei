@@ -29,6 +29,17 @@ $grid      = $data->grid;
 $date      = $container->get('date');
 ?>
 
+<script>
+	jQuery(document).ready(function($)
+	{
+		var id = window.location.hash;
+
+		var updatedItem = $(id);
+
+		updatedItem.parents('tr').find('td').css('background', 'rgb(255, 255, 197)');
+	});
+</script>
+
 <!-- LIST TABLE -->
 <table id="taskList" class="table table-striped adminlist">
 
@@ -137,7 +148,7 @@ $date      = $container->get('date');
 
 		<!--DETAIL-->
 		<td class="center">
-			<a class="btn btn-info" href="<?php echo '#'; ?>">
+			<a class="btn btn-info" href="<?php echo \Csi\Router\Route::_('task_page', array('id' => $item->id)); ?>">
 				詳情
 			</a>
 		</td>

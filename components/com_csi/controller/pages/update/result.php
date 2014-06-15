@@ -24,6 +24,13 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 	protected $task = null;
 
 	/**
+	 * Property page.
+	 *
+	 * @var  \Windwalker\Data\Data
+	 */
+	protected $page = null;
+
+	/**
 	 * prepareExecute
 	 *
 	 * @throws \UnexpectedValueException
@@ -74,6 +81,7 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 		$dispatcher->trigger('onAfterResultUpdate', array($task->database, $page, $field, $value));
 
 		$this->task = $task;
+		$this->page = $page;
 	}
 
 	/**
@@ -85,7 +93,7 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 	 */
 	protected function postExecute($data = null)
 	{
-		$this->redirect(\Windwalker\Router\Route::_('task_pages', array('id' => $this->task->id)));
+		$this->redirect(\Csi\Router\Route::_('task_pages', array('id' => $this->task->id)) . '#cb' . $this->page->id);
 	}
 }
  
