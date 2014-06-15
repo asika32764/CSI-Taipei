@@ -76,15 +76,10 @@ class CsiViewPagesHtml extends \Windwalker\View\Html\GridView
 			{
 				foreach ($resultSet as $result)
 				{
-					$dispatcher->trigger(
-						sprintf('onPreparePageResult', ucfirst($data->task->database)),
-						array($result->key, $item, $result, $i)
-					);
+					$dispatcher->trigger('onPreparePageResult', array($data->task->database, $result->key, $item, $result, $i));
 				}
 			}
 		}
-
-		show($data->items[0]);
 	}
 
 	/**

@@ -17,6 +17,13 @@ use Windwalker\Joomla\DataMapper\DataMapper;
 class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\AbstractAdminController
 {
 	/**
+	 * Property task.
+	 *
+	 * @var  \Windwalker\Data\Data
+	 */
+	protected $task = null;
+
+	/**
 	 * prepareExecute
 	 *
 	 * @throws \UnexpectedValueException
@@ -46,7 +53,7 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 		}
 
 		$page = with(new DataMapper(Table::PAGES))->findOne($cid[0]);
-		$task = with(new DataMapper(Table::TASKS))->findOne($page->id);
+		$task = with(new DataMapper(Table::TASKS))->findOne($page->task_id);
 
 		$dispatcher->trigger('onBeforeResultUpdate', array($task->database, $page, $field, $value));
 
@@ -65,6 +72,20 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 		$resultMapper->updateOne($result, array('id'));
 
 		$dispatcher->trigger('onAfterResultUpdate', array($task->database, $page, $field, $value));
+
+		$this->task = $task;
+	}
+
+	/**
+	 * postExecute
+	 *
+	 * @param   mixed $data
+	 *
+	 * @return  mixed|void
+	 */
+	protected function postExecute($data = null)
+	{
+		$this->redirect(\Windwalker\Router\Route::_('task_pages', array('id' => $this->task->id)));
 	}
 }
  

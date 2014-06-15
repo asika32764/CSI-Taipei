@@ -13,6 +13,7 @@ use Csi\Database\AbstractDatabase;
 use Csi\Helper\KeywordHelper;
 use Csi\Listener\DatabaseListener;
 use Csi\Reader\Reader;
+use Csi\Table\Table;
 use Joomla\String\Normalise;
 use Windwalker\Data\Data;
 use Windwalker\DI\Container;
@@ -138,6 +139,7 @@ class SyllabusListener extends DatabaseListener
 	/**
 	 * onPrepareResult
 	 *
+	 * @param string $database
 	 * @param string $field
 	 * @param Data   $item
 	 * @param Data   $result
@@ -145,8 +147,13 @@ class SyllabusListener extends DatabaseListener
 	 *
 	 * @return  void
 	 */
-	public function onPreparePageResult($field, $item, $result, $i)
+	public function onPreparePageResult($database, $field, $item, $result, $i)
 	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
 		$item->results->$field = with(new FileLayout('pages.result.button'))
 			->render(
 				array(
@@ -155,6 +162,36 @@ class SyllabusListener extends DatabaseListener
 					'i'      => $i
 				)
 			);
+	}
+
+	/**
+	 * onAfterResultUpdate
+	 *
+	 * @param string $database
+	 * @param Data   $page
+	 * @param string $field
+	 * @param mixed  $value
+	 *
+	 * @return  void
+	 */
+	public function onAfterResultUpdate($database, $page, $field, $value)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		if ($field == 'is_syllabus' && $value == 0)
+		{
+			with(new DataMapper('#__csi_results'))
+				->updateAll(new Data(array('value' => 0)), array('fk' => $page->id));
+		}
+
+		if (($field == 'cited' || $field == 'self_cited') && $value == 1)
+		{
+			with(new DataMapper('#__csi_results'))
+				->updateAll(new Data(array('value' => 1)), array('fk' => $page->id, 'key' => 'is_syllabus'));
+		}
 	}
 }
  
