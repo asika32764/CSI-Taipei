@@ -53,8 +53,8 @@ $data = $this->data;
 							URL
 						</dt>
 						<dd>
-							<a class="text-muted" href="<?php echo JUri::root(true) . '/' . $data->item->filepath; ?>" target="_blank">
-								<?php echo JUri::root(true) . '/' . $data->item->filepath; ?>
+							<a class="text-muted" href="<?php echo $data->item->url; ?>" target="_blank">
+								<?php echo $data->item->url; ?>
 							</a>
 						</dd>
 					</dl>
