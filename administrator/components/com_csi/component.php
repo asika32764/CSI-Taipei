@@ -30,7 +30,7 @@ final class CsiComponent extends CsiComponentBase
 	 *
 	 * @return void
 	 */
-	protected function prepare()
+	public function prepare()
 	{
 		parent::prepare();
 	}

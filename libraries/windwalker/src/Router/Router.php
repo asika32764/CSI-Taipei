@@ -363,35 +363,6 @@ class Router
 	}
 
 	/**
-	 * Build route by raw url.
-	 *
-	 * @param array $queries
-	 *
-	 * @return  array
-	 */
-	public function buildByRaw(&$queries)
-	{
-		if (empty($queries['view']))
-		{
-			return array();
-		}
-
-		foreach ($this->maps as $view => $map)
-		{
-			if ($map['controller'] == $queries['view'])
-			{
-				unset($queries['view']);
-
-				return $this->build($view, $map);
-
-				break;
-			}
-		}
-
-		return array();
-	}
-
-	/**
 	 * Does a UTF-8 safe version of PHP parse_url function
 	 *
 	 * @param   string  $url  URL to parse

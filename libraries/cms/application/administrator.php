@@ -354,6 +354,8 @@ class JApplicationAdministrator extends JApplicationCms
 	 */
 	public static function purgeMessages()
 	{
+		return;
+
 		$user = JFactory::getUser();
 		$userid = $user->get('id');
 

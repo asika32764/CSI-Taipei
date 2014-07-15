@@ -28,7 +28,7 @@ final class CsiComponent extends \Csi\Component\CsiComponent
 	 *
 	 * @return void
 	 */
-	protected function prepare()
+	public function prepare()
 	{
 		parent::prepare();
 
