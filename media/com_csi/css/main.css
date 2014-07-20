@@ -1,4 +1,11 @@
 
+/* Admin */
+@media (min-width: 738px)
+{
+	body {
+		padding-top: 0px !important;
+	}
+}
 
 /* Bootstrap Extended */
 .margin-b-5

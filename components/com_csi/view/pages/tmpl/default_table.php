@@ -36,7 +36,7 @@ $date      = $container->get('date');
 
 		var updatedItem = $(id);
 
-		updatedItem.parents('tr').find('td').css('background', 'rgb(255, 255, 197)');
+		updatedItem.find('td').css('background', 'rgb(255, 255, 197)');
 	});
 </script>
 
@@ -100,7 +100,7 @@ $date      = $container->get('date');
 	// Prepare item for GridHelper
 	$grid->setItem($item, $i);
 	?>
-	<tr class="task-row">
+	<tr class="task-row" id="page-id-<?php echo $item->id; ?>">
 
 		<!--CHECKBOX-->
 		<td class="center">
