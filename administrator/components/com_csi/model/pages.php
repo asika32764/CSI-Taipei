@@ -65,10 +65,7 @@ class CsiModelPages extends ListModel
 		$queryHelper = $this->getContainer()->get('model.pages.helper.query', Container::FORCE_NEW);
 
 		$queryHelper->addTable('page', '#__csi_pages')
-//			->addTable('category',  '#__categories', 'page.catid      = category.id')
-//			->addTable('user',      '#__users',      'page.created_by = user.id')
-//			->addTable('viewlevel', '#__viewlevels', 'page.access     = viewlevel.id')
-//			->addTable('lang',      '#__languages',  'page.language   = lang.lang_code')
+			->addTable('task',  '#__csi_tasks', 'page.task_id = task.id')
 		;
 
 		$this->filterFields = array_merge($this->filterFields, $queryHelper->getFilterFields());
@@ -82,19 +79,9 @@ class CsiModelPages extends ListModel
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'id', $direction = 'ASC')
 	{
-		// Build ordering prefix
-		if (!$ordering)
-		{
-			$table = $this->getTable('Page');
-
-			$ordering = property_exists($table, 'ordering') ? 'page.ordering' : 'page.id';
-
-			$ordering = property_exists($table, 'catid') ? 'page.catid, ' . $ordering : $ordering;
-		}
-
-		parent::populateState($ordering, 'ASC');
+		parent::populateState($ordering, $direction);
 	}
 
 	/**

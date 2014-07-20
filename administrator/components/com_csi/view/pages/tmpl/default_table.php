@@ -59,6 +59,14 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JGLOBAL_TITLE', 'page.title'); ?>
 	</th>
 
+	<th class="canter">
+		Task
+	</th>
+
+	<th class="center">
+		File
+	</th>
+
 	<th width="7%" class="center">
 		File Type
 	</th>
@@ -122,6 +130,14 @@ $grid->registerTableSort();
 			<div class="small" style="overflow: hidden; text-overflow: ellipsis; max-width: 500px;">
 				<?php echo $item->url; ?>
 			</div>
+		</td>
+
+		<td>
+			<?php echo $item->task_title; ?>
+		</td>
+
+		<td>
+			<?php echo \Csi\Helper\UiHelper::getShortedLink(JUri::root() . $item->filepath, $item->filepath); ?>
 		</td>
 
 		<td class="center">
