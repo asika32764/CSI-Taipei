@@ -6,6 +6,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Csi\Helper\UiHelper;
 use Windwalker\Data\Data;
 
 // No direct access
@@ -33,16 +34,11 @@ $grid->registerTableSort();
 ?>
 
 <!-- LIST TABLE -->
-<table id="enginepageList" class="table table-striped adminlist">
+<table id="enginepageList" class="table table-striped table-bordered adminlist">
 
 <!-- TABLE HEADER -->
 <thead>
 <tr>
-	<!--SORT-->
-	<th width="1%" class="nowrap center hidden-phone">
-		<?php echo $grid->orderTitle(); ?>
-	</th>
-
 	<!--CHECKBOX-->
 	<th width="1%" class="center">
 		<?php echo JHtml::_('grid.checkAll'); ?>
@@ -113,11 +109,7 @@ $grid->registerTableSort();
 	// Prepare item for GridHelper
 	$grid->setItem($item, $i);
 	?>
-	<tr class="enginepage-row" sortable-group-id="<?php echo $item->catid; ?>">
-		<!-- DRAG SORT -->
-		<td class="order nowrap center hidden-phone">
-			<?php echo $grid->dragSort(); ?>
-		</td>
+	<tr class="enginepage-row">
 
 		<!--CHECKBOX-->
 		<td class="center">
@@ -149,11 +141,11 @@ $grid->registerTableSort();
 		</td>
 
 		<td class="">
-			<?php echo \Csi\Helper\UiHelper::getShortedLink($item->url); ?>
+			<?php echo UiHelper::getShortedLink($item->url); ?>
 		</td>
 
 		<td class="">
-			<?php echo \Csi\Helper\UiHelper::getShortedLink(JUri::root() . '/' . $item->file, $item->file); ?>
+			<?php echo UiHelper::getShortedLink(JUri::root() . '/' . $item->file, $item->file, UiHelper::MODAL); ?>
 		</td>
 
 		<td class="center">

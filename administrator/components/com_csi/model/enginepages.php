@@ -74,24 +74,14 @@ class CsiModelEnginepages extends ListModel
 	/**
 	 * populateState
 	 *
-	 * @param null $ordering
-	 * @param null $direction
+	 * @param string $ordering
+	 * @param string $direction
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'enginepage.id', $direction = 'asc')
 	{
-		// Build ordering prefix
-		if (!$ordering)
-		{
-			$table = $this->getTable('Enginepage');
-
-			$ordering = property_exists($table, 'ordering') ? 'enginepage.ordering' : 'enginepage.id';
-
-			$ordering = property_exists($table, 'catid') ? 'enginepage.catid, ' . $ordering : $ordering;
-		}
-
-		parent::populateState($ordering, 'ASC');
+		parent::populateState($ordering, $direction);
 	}
 
 	/**

@@ -15,16 +15,20 @@ namespace Csi\Helper;
  */
 class UiHelper
 {
+	const MODAL = 'modal';
+	const NORMAL = 'normal';
+
 	/**
 	 * getShortedLink
 	 *
 	 * @param string $url
 	 * @param string $title
+	 * @param string $type
 	 * @param int    $limit
 	 *
 	 * @return  string
 	 */
-	public static function getShortedLink($url, $title = null, $limit = 30)
+	public static function getShortedLink($url, $title = null, $type = 'normal', $limit = 30)
 	{
 		$dot = '';
 
@@ -40,6 +44,13 @@ class UiHelper
 			'class' => 'hasTooltip',
 			'title' => $url
 		);
+
+		if ($type == static::MODAL)
+		{
+			\JHtmlBehavior::modal();
+
+			$attrs['class'] .= ' modal';
+		}
 
 		\JHtmlBootstrap::tooltip();
 

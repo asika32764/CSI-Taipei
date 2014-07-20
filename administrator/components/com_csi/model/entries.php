@@ -77,24 +77,14 @@ class CsiModelEntries extends ListModel
 	/**
 	 * populateState
 	 *
-	 * @param null $ordering
-	 * @param null $direction
+	 * @param null|string $ordering
+	 * @param null|string $direction
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'entry.id', $direction = 'asc')
 	{
-		// Build ordering prefix
-		if (!$ordering)
-		{
-			$table = $this->getTable('Entry');
-
-			$ordering = property_exists($table, 'ordering') ? 'entry.ordering' : 'entry.id';
-
-			$ordering = property_exists($table, 'catid') ? 'entry.catid, ' . $ordering : $ordering;
-		}
-
-		parent::populateState($ordering, 'ASC');
+		parent::populateState($ordering, $direction);
 	}
 
 	/**

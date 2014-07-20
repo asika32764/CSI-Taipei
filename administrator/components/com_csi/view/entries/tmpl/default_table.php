@@ -33,7 +33,7 @@ $grid->registerTableSort();
 ?>
 
 <!-- LIST TABLE -->
-<table id="entryList" class="table table-striped adminlist">
+<table id="entryList" class="table table-striped table-bordered adminlist">
 
 <!-- TABLE HEADER -->
 <thead>
@@ -49,7 +49,7 @@ $grid->registerTableSort();
 	</th>
 
 	<!--CREATED-->
-	<th width="10%" class="center">
+	<th width="15%" class="center">
 		<?php echo $grid->sortTitle('JDATE', 'entry.created'); ?>
 	</th>
 

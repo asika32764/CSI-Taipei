@@ -65,11 +65,7 @@ class CsiModelTasks extends ListModel
 		$queryHelper = $this->getContainer()->get('model.tasks.helper.query', Container::FORCE_NEW);
 
 		$queryHelper->addTable('task', '#__csi_tasks')
-			// ->addTable('category',  '#__categories', 'task.catid      = category.id')
-			// ->addTable('user',      '#__users',      'task.created_by = user.id')
-			// ->addTable('viewlevel', '#__viewlevels', 'task.access     = viewlevel.id')
-			// ->addTable('lang',      '#__languages',  'task.language   = lang.lang_code')
-		;
+			->addTable('entry', '#__csi_entries', 'task.entry_id = entry.id');
 
 		$this->filterFields = array_merge($this->filterFields, $queryHelper->getFilterFields());
 	}
@@ -77,24 +73,14 @@ class CsiModelTasks extends ListModel
 	/**
 	 * populateState
 	 *
-	 * @param null $ordering
-	 * @param null $direction
+	 * @param string $ordering
+	 * @param string $direction
 	 *
 	 * @return  void
 	 */
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'task.id', $direction = 'asc')
 	{
-		// Build ordering prefix
-		if (!$ordering)
-		{
-			$table = $this->getTable('Task');
-
-			$ordering = property_exists($table, 'ordering') ? 'task.ordering' : 'task.id';
-
-			$ordering = property_exists($table, 'catid') ? 'task.catid, ' . $ordering : $ordering;
-		}
-
-		parent::populateState($ordering, 'ASC');
+		parent::populateState($ordering, $direction);
 	}
 
 	/**
@@ -107,12 +93,6 @@ class CsiModelTasks extends ListModel
 	 */
 	protected function processFilters(\JDatabaseQuery $query, $filters = array())
 	{
-		// If no state filter, set published >= 0
-		if (!isset($filters['task.state']) && property_exists($this->getTable(), 'state'))
-		{
-			$query->where($query->quoteName('task.state') . ' >= 0');
-		}
-
 		return parent::processFilters($query, $filters);
 	}
 

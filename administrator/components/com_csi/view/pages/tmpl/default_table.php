@@ -34,7 +34,7 @@ $grid->registerTableSort();
 ?>
 
 <!-- LIST TABLE -->
-<table id="pageList" class="table table-striped adminlist">
+<table id="pageList" class="table table-striped table-bordered adminlist">
 
 <!-- TABLE HEADER -->
 <thead>
@@ -109,10 +109,7 @@ $grid->registerTableSort();
 		<td class="center">
 			<div class="btn-group">
 				<!-- STATE BUTTON -->
-				<?php echo $grid->state() ?>
-
-				<!-- CHANGE STATE DROP DOWN -->
-				<?php echo $this->loadTemplate('dropdown'); ?>
+				<?php echo $grid->booleanIcon($item->state); ?>
 			</div>
 		</td>
 
