@@ -104,6 +104,7 @@ class SyllabusListener extends DatabaseListener
 	 * @param Data   $entry
 	 * @param Data   $result
 	 *
+	 * @throws  \RuntimeException
 	 * @return  void
 	 */
 	public function onDatabaseGetResult($database, Data $entry, Data $result)
@@ -131,6 +132,11 @@ class SyllabusListener extends DatabaseListener
 			}
 
 			$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
+
+			if ($task->isNull())
+			{
+				throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
+			}
 
 			$result->$field = with(new $class($task))->get();
 		}

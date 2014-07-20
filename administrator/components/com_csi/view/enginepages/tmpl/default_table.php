@@ -53,34 +53,36 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JSTATUS', 'enginepage.state'); ?>
 	</th>
 
-	<!--TITLE-->
-	<th class="center">
-		<?php echo $grid->sortTitle('JGLOBAL_TITLE', 'enginepage.title'); ?>
+	<th class="center" width="5%">
+		<?php echo $grid->sortTitle('Entry ID', 'entry.id') ?>
 	</th>
 
-	<!--CATEGORY-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JCATEGORY', 'category.title'); ?>
+	<th class="center" width="5%">
+		<?php echo $grid->sortTitle('Task ID', 'task.id') ?>
 	</th>
 
-	<!--ACCESS VIEW LEVEL-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_ACCESS', 'viewlevel.title'); ?>
+	<th class="center" width="">
+		<?php echo $grid->sortTitle('Entry', 'entry.title') ?>
 	</th>
 
-	<!--CREATED-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JDATE', 'enginepage.created'); ?>
+	<th class="center" width="">
+		<?php echo $grid->sortTitle('Task', 'task.database') ?>
 	</th>
 
-	<!--USER-->
-	<th width="10%" class="center">
-		<?php echo $grid->sortTitle('JAUTHOR', 'user.name'); ?>
+	<th class="center" width="">
+		<?php echo $grid->sortTitle('URL', 'enginepage.url') ?>
 	</th>
 
-	<!--LANGUAGE-->
-	<th width="5%" class="center">
-		<?php echo $grid->sortTitle('JGRID_HEADING_LANGUAGE', 'lang.title'); ?>
+	<th class="center" width="">
+		<?php echo $grid->sortTitle('File', 'enginepage.file') ?>
+	</th>
+
+	<th class="center" width="">
+		<?php echo $grid->sortTitle('Total', 'enginepage.total') ?>
+	</th>
+
+	<th class="center" width="">
+		<?php echo $grid->sortTitle('Ordering', 'enginepage.ordering') ?>
 	</th>
 
 	<!--ID-->
@@ -126,61 +128,40 @@ $grid->registerTableSort();
 		<td class="center">
 			<div class="btn-group">
 				<!-- STATE BUTTON -->
-				<?php echo $grid->state() ?>
-
-				<!-- CHANGE STATE DROP DOWN -->
-				<?php echo $this->loadTemplate('dropdown'); ?>
+				<?php echo $grid->booleanIcon($item->state); ?>
 			</div>
 		</td>
 
-		<!--TITLE-->
-		<td class="n/owrap has-context quick-edit-wrap">
-			<div class="item-title">
-				<!-- Checkout -->
-				<?php echo $grid->checkoutButton(); ?>
-
-				<!-- Title -->
-				<?php echo $grid->editTitle(); ?>
-			</div>
-
-			<!-- Sub Title -->
-			<div class="small">
-				<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias)); ?>
-			</div>
+		<td class="center">
+			<?php echo $item->entry_id; ?>
 		</td>
 
-		<!--CATEGORY-->
 		<td class="center">
-			<?php echo $this->escape($item->category_title); ?>
+			<?php echo $item->task_id; ?>
 		</td>
 
-		<!--ACCESS VIEW LEVEL-->
-		<td class="center">
-			<?php echo $this->escape($item->viewlevel_title); ?>
+		<td class="">
+			<?php echo $item->entry_title; ?>
 		</td>
 
-		<!--CREATED-->
-		<td class="center">
-			<?php echo JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC4')); ?>
+		<td class="">
+			<?php echo $item->task_database; ?>
 		</td>
 
-		<!--USER-->
-		<td class="center">
-			<?php echo $this->escape($item->user_name); ?>
+		<td class="">
+			<?php echo \Csi\Helper\UiHelper::getShortedLink($item->url); ?>
 		</td>
 
-		<!--LANGUAGE-->
+		<td class="">
+			<?php echo \Csi\Helper\UiHelper::getShortedLink(JUri::root() . '/' . $item->file, $item->file); ?>
+		</td>
+
 		<td class="center">
-			<?php
-			if ($item->language == '*')
-			{
-				echo JText::alt('JALL', 'language');
-			}
-			else
-			{
-				echo $item->lang_title ? $this->escape($item->lang_title) : JText::_('JUNDEFINED');
-			}
-			?>
+			<?php echo $item->total; ?>
+		</td>
+
+		<td class="center">
+			<?php echo $item->ordering; ?>
 		</td>
 
 		<!--ID-->
