@@ -20,6 +20,8 @@ class CsiViewPagesHtml extends \Windwalker\View\Html\GridView
 	 */
 	protected function prepareRender()
 	{
+		\Csi\User\UserHelper::takeUserToLogin();
+
 		$data             = $this->getData();
 		$data->items      = $this->get('Items');
 		$data->task       = $this->get('Task');

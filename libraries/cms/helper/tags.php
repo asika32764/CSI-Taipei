@@ -367,6 +367,8 @@ class JHelperTags extends JHelper
 	 */
 	public function getItemTags($contentType, $id, $getTagData = true)
 	{
+		return [];
+
 		// Initialize some variables.
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true)

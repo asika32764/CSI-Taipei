@@ -38,6 +38,7 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 	 */
 	protected function prepareExecute()
 	{
+		\Csi\User\UserHelper::takeUserToLogin();
 	}
 
 	/**

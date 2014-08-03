@@ -14,6 +14,18 @@
 class CsiViewPageHtml extends \Windwalker\View\Html\ItemHtmlView
 {
 	/**
+	 * prepareRender
+	 *
+	 * @return  void
+	 */
+	protected function prepareRender()
+	{
+		\Csi\User\UserHelper::takeUserToLogin();
+
+		parent::prepareRender();
+	}
+
+	/**
 	 * prepareData
 	 *
 	 * @return  void
