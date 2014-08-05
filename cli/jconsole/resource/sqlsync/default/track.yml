@@ -6,6 +6,7 @@ table:
     '#__core_log_searches': all
     '#__csi_enginepages': cols
     '#__csi_entries': cols
+    '#__csi_histories': cols
     '#__csi_notifies': cols
     '#__csi_pages': cols
     '#__csi_queues': cols

@@ -188,6 +188,23 @@
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: title, Seq_in_index: '1', Column_name: title, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: created_by, Seq_in_index: '1', Column_name: created_by, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_histories':
+    name: '#__csi_histories'
+    from:
+        - '#__csi_histories'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        user_id: { Field: user_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [user_id] }
+        name: { Field: name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [name] }
+        entry_id: { Field: entry_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
+        page_id: { Field: page_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [page_id] }
+        result_name: { Field: result_name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [result_name] }
+        before: { Field: before, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [before] }
+        after: { Field: after, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [after] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+    index:
+        - { Table: '#__csi_histories', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_notifies':
     name: '#__csi_notifies'
     from:
@@ -348,7 +365,7 @@
         - ['100', PHPMailer, library, phpmailer, '', '0', '1', '1', '0', '{"name":"PHPMailer","type":"library","creationDate":"2001","author":"PHPMailer","copyright":"(c) 2001-2003, Brent R. Matzelle, (c) 2004-2009, Andy Prevost. All Rights Reserved., (c) 2010-2013, Jim Jagielski. All Rights Reserved.","authorEmail":"jimjag@gmail.com","authorUrl":"https:\/\/github.com\/PHPMailer\/PHPMailer","version":"5.2.6","description":"LIB_PHPMAILER_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['101', SimplePie, library, simplepie, '', '0', '1', '1', '0', '{"name":"SimplePie","type":"library","creationDate":"2004","author":"SimplePie","copyright":"Copyright (c) 2004-2009, Ryan Parman and Geoffrey Sneddon","authorEmail":"","authorUrl":"http:\/\/simplepie.org\/","version":"1.2","description":"LIB_SIMPLEPIE_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['102', phputf8, library, phputf8, '', '0', '1', '1', '0', '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\/\/sourceforge.net\/projects\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
-        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"658915f5950fbca1465e14d9a1af87b1"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"62df1768a078b8f76386628fb453e69b"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['104', 'IDNA Convert', library, idna_convert, '', '0', '1', '1', '0', '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\/\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\/\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['105', FOF, library, fof, '', '0', '1', '1', '0', '{"name":"FOF","type":"library","creationDate":"2013-12-14","author":"Nicholas K. Dionysopoulos \/ Akeeba Ltd","copyright":"(C)2011-2013 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\/\/www.akeebabackup.com","version":"2.1.1","description":"LIB_FOF_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['106', PHPass, library, phpass, '', '0', '1', '1', '0', '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\/\/www.openwall.com\/phpass\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
@@ -406,6 +423,7 @@
         - ['10004', com_csi, component, com_csi, '', '1', '1', '1', '0', '{"name":"com_csi","type":"component","creationDate":"2014-1-11","author":"Asika","copyright":"Copyright (C) 2014. All rights reserved.","authorEmail":"asika32764@gmail.com","authorUrl":"http:\/\/asikart.com","version":"1.0.0","description":"COM_CSI_XML_DESCRIPTION","group":""}', '{}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['10005', isis3, template, isis3, '', '1', '1', '1', '0', '{"name":"isis3","type":"template","creationDate":"3\/28\/2014","author":"Simon Asika","copyright":"Copyright (C) 2012 - 2014 SMS Taiwan, Inc. All rights reserved.","authorEmail":"asika32764@gmail.com","authorUrl":"","version":"1.0","description":"TPL_ISIS_XML_DESCRIPTION","group":""}', '{"templateColor":"#13294A","headerColor":"#184A7D","sidebarColor":"#0088CC","logoFile":"","admin_menus":"1","displayHeader":"1","statusFixed":"1","stickyToolbar":"1"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['10006', astra, template, astra, '', '0', '1', '1', '0', '{"name":"astra","type":"template","creationDate":"10\/30\/2012","author":"Asika","copyright":"Copyright (C) 2012 Asikart.com. All rights reserved.","authorEmail":"asika@asikart.com","authorUrl":"","version":"1.0","description":"TPL_ASTRA_XML_DESCRIPTION","group":""}', '{"site_title":"","site_description":"","logo_file":"","responsive":"1","fluidContainer":"0","template_background_color":"#FFFFFF","template_text_color":"#111111","menutype":"mainmenu","menufixtop":"1","menucolor":"black","banner_text_color":"#111111","banner_bg_file":"","footercolor":"black","footer_logo_file":"","footer_logo_float":"pull-left","left_col_width":"3","leftinner_col_width":"2","right_col_width":"3","rightinner_col_width":"2"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['10007', 'System - Asikart Easy Set', plugin, asikart_easyset, system, '0', '1', '1', '0', '{"name":"System - Asikart Easy Set","type":"plugin","creationDate":"2011-06-28","author":"Asikart.com","copyright":"(C) 2013 Asikart.com. All rights reserved.","authorEmail":"asika@asikart.com","authorUrl":"http:\/\/asikart.com","version":"2.6.4","description":"Asikart Easy Set. Easy setup Joomla! Site!","group":""}', '{"includejQuery":"0","includeBootstrap":"0","colorTable":"0","tidyRepair":"0","smoothScroll":"0","getImages":"0","blogViewClearly":"0","blogViewImgWidth":"150","blogViewImgCrop":"0","blogViewCleanTags":"0","blogViewMaxChar":"250","autoThumbnail":"0","onlyLocalhostThumb":"1","tranAlias":"0","originLan":"","tranLan":"","spacer3":"","seo":"0","titleFix":"{%TITLE%} | {%SITE%}","titleSeparator":"|","getMeta":"0","maxMetaChar":"250","insertHeader":"","openGraph":"0","ogDefaultImage":"","ogDefaultImageOnlyFrontPage":"1","ogAdminId":"","ogPageId":"","ogAppId":"","fbLike":"0","fbLikeOnBlog":"0","fbLikePosition":"3","inputCodeBase":"","insertArticleTop":"","insertTitleBottom":"","insertContentTop":"","insertContentBottom":"","showOnBlog":"1","showNumber":"3","adminSecureCode":"ezset","languageOrphan":"0","languageOrphanPath":"logs\/language.ini","cacheManagerEnabled":"0","cacheControlType":"exclude"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
 '#__languages':
     name: '#__languages'
     from:
@@ -479,11 +497,12 @@
         - { Table: '#__menu', Non_unique: '1', Key_name: idx_path, Seq_in_index: '1', Column_name: path, Sub_part: '255', 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__menu', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['1', '', Menu_Item_Root, root, '', '', '', '', '1', '0', '0', '0', '0', '0000-00-00 00:00:00', '0', '0', '', '0', '', '0', '9', '0', '*', '0']
+        - ['1', '', Menu_Item_Root, root, '', '', '', '', '1', '0', '0', '0', '0', '0000-00-00 00:00:00', '0', '0', '', '0', '', '0', '11', '0', '*', '0']
         - ['16', menu, com_redirect, Redirect, '', Redirect, 'index.php?option=com_redirect', component, '0', '1', '1', '24', '0', '0000-00-00 00:00:00', '0', '0', 'class:redirect', '0', '', '1', '2', '0', '*', '1']
         - ['23', main, com_tags, Tags, '', Tags, 'index.php?option=com_tags', component, '0', '1', '1', '29', '0', '0000-00-00 00:00:00', '0', '1', 'class:tags', '0', '', '3', '4', '0', '', '1']
         - ['101', mainmenu, Home, home, '', home, 'index.php?option=com_csi&view=entry', component, '1', '1', '1', '10004', '0', '0000-00-00 00:00:00', '0', '1', '', '0', '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":1,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', '5', '6', '1', '*', '0']
         - ['102', main, COM_CSI, com_csi, '', com_csi, 'index.php?option=com_csi', component, '0', '1', '1', '10004', '0', '0000-00-00 00:00:00', '0', '1', 'class:component', '0', '', '7', '8', '0', '', '1']
+        - ['103', mainmenu, Login-out, login-out, '', login-out, 'index.php?option=com_users&view=login', component, '1', '1', '1', '25', '0', '0000-00-00 00:00:00', '0', '1', '', '0', '{"login_redirect_url":"","logindescription_show":"1","login_description":"","login_image":"","logout_redirect_url":"","logoutdescription_show":"1","logout_description":"","logout_image":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', '9', '10', '0', '*', '0']
 '#__menu_types':
     name: '#__menu_types'
     from:
@@ -886,6 +905,7 @@
         - { Table: '#__user_usergroup_map', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '2', Column_name: group_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
         - ['279', '8']
+        - ['280', '2']
 '#__usergroups':
     name: '#__usergroups'
     from:
@@ -941,7 +961,8 @@
         - { Table: '#__users', Non_unique: '1', Key_name: username, Seq_in_index: '1', Column_name: username, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__users', Non_unique: '1', Key_name: email, Seq_in_index: '1', Column_name: email, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['279', 'Super User', smstw, service@bm-sms.com.tw, $P$DJ9ygEXhN9o2F0v53Q5FgeaY/wIk7K/, '0', '1', '2014-03-17 08:43:46', '2014-04-15 14:00:25', '0', '', '0000-00-00 00:00:00', '0', '', '']
+        - ['279', 'Super User', smstw, service@bm-sms.com.tw, $2y$10$dyOfu4YFlUGyw2bAvA.jweurlDWMEGIW3o5zYhX/57xZaHpjWhL0O, '0', '1', '2014-03-17 08:43:46', '2014-08-05 12:19:30', '0', '{}', '0000-00-00 00:00:00', '0', '', '']
+        - ['280', test, test, test@test.test, $2y$10$pqTr2YwkKtUoLFBCJncIo.Eg3fVvYpOM2/my2Fg2MLtGJVodxNdem, '0', '0', '2014-08-03 12:38:34', '2014-08-05 12:33:22', '', '{}', '0000-00-00 00:00:00', '0', '', '']
 '#__viewlevels':
     name: '#__viewlevels'
     from:

@@ -69,6 +69,7 @@ table:
     '#__weblinks': all
     '#__csi_enginepages': all
     '#__csi_entries': all
+    '#__csi_histories': all
     '#__csi_notifies': all
     '#__csi_pages': all
     '#__csi_queues': cols

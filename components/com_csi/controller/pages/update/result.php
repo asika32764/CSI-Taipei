@@ -66,6 +66,7 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 		$dispatcher->trigger('onBeforeResultUpdate', array($task->database, $page, $field, $value));
 
 		$resultMapper = new DataMapper(Table::RESULTS);
+		$historyMapper = new DataMapper(Table::HISTORIES);
 
 		$result = $resultMapper->findOne(
 			array(
@@ -75,11 +76,31 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 			)
 		);
 
+		$before = $result->value;
+
 		$result->value = $value;
 
+		// Do update
 		$resultMapper->updateOne($result, array('id'));
 
+		// Event
 		$dispatcher->trigger('onAfterResultUpdate', array($task->database, $page, $field, $value));
+
+		// Add history
+		$user = JFactory::getUser();
+
+		$history = array(
+			'user_id' => $user->id,
+			'name' => $user->name,
+			'entry_id' => $task->entry_id,
+			'task_id' => $task->id,
+			'page_id' => $page->id,
+			'result_name' => $field,
+			'before' => $before,
+			'after' => $value
+		);
+
+		$historyMapper->createOne(new \Windwalker\Data\Data($history));
 
 		$this->task = $task;
 		$this->page = $page;

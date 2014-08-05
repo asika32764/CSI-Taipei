@@ -33,6 +33,23 @@
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: title, Seq_in_index: '1', Column_name: title, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: created_by, Seq_in_index: '1', Column_name: created_by, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_histories':
+    name: '#__csi_histories'
+    from:
+        - '#__csi_histories'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        user_id: { Field: user_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [user_id] }
+        name: { Field: name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [name] }
+        entry_id: { Field: entry_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
+        page_id: { Field: page_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [page_id] }
+        result_name: { Field: result_name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [result_name] }
+        before: { Field: before, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [before] }
+        after: { Field: after, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [after] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+    index:
+        - { Table: '#__csi_histories', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_notifies':
     name: '#__csi_notifies'
     from:

@@ -47,11 +47,8 @@ class CheckPHP extends JCommand
 
 		if ($this->getOption('d'))
 		{
-			if (is_file(JPATH_BASE . '/logs/jconsole.missing.constants.php'))
-			{
-				unlink(JPATH_BASE . '/logs/jconsole.missing.constants.php');
-			}
-			
+			unlink(JPATH_BASE . '/logs/jconsole.missing.constants.php');
+
 			\JLog::addLogger(
 				array(
 					//Sets file name

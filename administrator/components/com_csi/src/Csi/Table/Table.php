@@ -19,6 +19,8 @@ class Table
 
 	const ENTRIES = '#__csi_entries';
 
+	const HISTORIES = '#__csi_histories';
+
 	const NOTIFIES = '#__csi_notifies';
 
 	const PAGES = '#__csi_pages';
