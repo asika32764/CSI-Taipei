@@ -97,7 +97,8 @@ class CsiControllerPagesUpdateResult extends \Windwalker\Controller\Admin\Abstra
 			'page_id' => $page->id,
 			'result_name' => $field,
 			'before' => $before,
-			'after' => $value
+			'after' => $value,
+			'created' => (string) \Windwalker\Helper\DateHelper::getDate()
 		);
 
 		$historyMapper->createOne(new \Windwalker\Data\Data($history));

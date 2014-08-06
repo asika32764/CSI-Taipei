@@ -82,15 +82,13 @@ $data = $this->data;
 							<legend>修改紀錄</legend>
 
 							<ul>
+								<?php foreach ($data->histories as $history): ?>
 								<li>
-									<a href="#">Simon</a> 將此頁面的 <strong>被引</strong> 設為 <strong>是</strong> - 2013-10-10
+									<span class="text-info"><?php echo $history->user_username; ?></span> 將此頁面的
+									<strong><?php echo JText::_('COM_CSI_RESULT_FIELD_' . strtoupper($history->result_name)); ?></strong> 設為
+									<strong><?php echo $history->after ? '是' : '否'; ?></strong> - <?php echo $history->created; ?>
 								</li>
-								<li>
-									<a href="#">Eddy</a> 將此頁面的 <strong>被引</strong> 設為 <strong>否</strong> - 2013-09-05
-								</li>
-								<li>
-									<a href="#">Andy</a> 將此頁面的 <strong>自引</strong> 設為 <strong>是</strong> - 2013-08-17
-								</li>
+								<?php endforeach; ?>
 							</ul>
 						</fieldset>
 					</div>

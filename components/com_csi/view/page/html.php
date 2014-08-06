@@ -33,7 +33,10 @@ class CsiViewPageHtml extends \Windwalker\View\Html\ItemHtmlView
 	protected function prepareData()
 	{
 		$this->data->state->set('entry.id', $this->data->item->entry_id);
+		$this->data->state->set('page.id', $this->data->item->id);
+
 		$this->data->entry = $this->get('Entry');
+		$this->data->histories = $this->get('Histories');
 
 		$this->setTitle('頁面詳情: ' . $this->data->item->title);
 	}

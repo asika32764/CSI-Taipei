@@ -8,6 +8,7 @@
 
 use Csi\Table\Table;
 use Windwalker\Joomla\DataMapper\DataMapper;
+use Windwalker\Joomla\DataMapper\RelationDataMapper;
 use Windwalker\Model\CrudModel;
 
 /**
@@ -30,6 +31,13 @@ class CsiModelPage extends CrudModel
 	 * @var  \Windwalker\Data\Data
 	 */
 	protected $entry = null;
+
+	/**
+	 * Property histories.
+	 *
+	 * @var  \Windwalker\Data\DataSet
+	 */
+	protected $histories = null;
 
 	/**
 	 * getTask
@@ -71,6 +79,31 @@ class CsiModelPage extends CrudModel
 		$pk = $pk ? : $this->getItem()->entry_id;
 
 		return $this->entry = with(new DataMapper(Table::ENTRIES))->findOne($pk);
+	}
+
+	/**
+	 * getHistories
+	 *
+	 * @param integer $pageId
+	 *
+	 * @return  \Windwalker\Data\DataSet
+	 */
+	public function getHistories($pageId = null)
+	{
+		$closure = function ($pageId)
+		{
+			$pageId = $pageId ? : $this->state->get('page.id');
+
+			$pageId = $pageId ? : $this->getItem()->id;
+
+			return with(new RelationDataMapper('history', Table::HISTORIES))
+				->addTable('user', '#__users', 'history.user_id = user.id')
+				->find(array('page_id' => $pageId));
+		};
+
+		$cache = \Windwalker\Cache\RuntimeCache::getCache();
+
+		return $cache->call('histories', $closure, $pageId);
 	}
 }
  
