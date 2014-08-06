@@ -47,3 +47,7 @@ database:
     webometrics:
         type: webo
         name: webometrics
+engines:
+    - google
+    # - scholar
+    - yahoo

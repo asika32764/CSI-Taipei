@@ -8,6 +8,9 @@
 
 namespace Csi\Engine;
 
+use Windwalker\Helper\CurlHelper;
+use Windwalker\String\String;
+
 /**
  * Class AbstractEngine
  *
@@ -80,7 +83,27 @@ abstract class AbstractEngine extends \JModelDatabase
 	 *
 	 * @throws \InvalidArgumentException
 	 */
-	abstract public function getPage($page = 1);
+	public function getPage($page = 1)
+	{
+		if ($page < 1)
+		{
+			throw new \InvalidArgumentException('Page should bigger than 0.');
+		}
+
+		if (!$this->state->get('keyword'))
+		{
+			return null;
+		}
+
+		$uri = $this->prepareUrl($page);
+
+		// return RefCurlHelper::getPageHTML((string) $uri);
+		$html = CurlHelper::get((string) $uri, 'get', null, array(CURLOPT_ENCODING => 'UTF-8'))->body;
+
+		$html = String::transcode($html, 'big5', 'UTF-8');
+
+		return $html;
+	}
 
 	/**
 	 * parsePage

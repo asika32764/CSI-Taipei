@@ -4,7 +4,16 @@ use Windwalker\Helper\ArrayHelper;
 
 /** @var $query \Joomla\Registry\Registry */
 $query = $data->query;
+
+$data->asset->jquery();
+$data->asset->addJS('webometrics.js');
 ?>
+<script>
+	jQuery(document).ready(function()
+	{
+		Webometrics.fetchWebometrics();
+	});
+</script>
 <div class="container result-index">
 
 <div class="row">
@@ -45,27 +54,27 @@ $query = $data->query;
 				</div>
 				<div class="col-lg-10">
 					<div class="row">
-                                <span class="col-lg-6 margin-b-20">
-                                    <input type="text" class="form-control" id="engNameFirst-0"
-										name="jform[eng_name][0][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.first'); ?>">
-                                </span>
-                                <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst-0"
-										name="jform[eng_name][0][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.last'); ?>">
-                                </span>
+						<span class="col-lg-6 margin-b-20">
+							<input type="text" class="form-control" id="engNameFirst-0"
+								name="jform[eng_name][0][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.first'); ?>">
+						</span>
+						<span class="col-lg-6">
+							<input type="text" class="form-control" id="engNameFirst-0"
+								name="jform[eng_name][0][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.last'); ?>">
+						</span>
 					</div>
 				</div>
 
 				<div class="col-lg-10 col-lg-offset-2 margin-b-20">
 					<div class="row">
-                                <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst-1"
-										name="jform[eng_name][1][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '1.first'); ?>">
-                                </span>
-                                <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst-1"
-										name="jform[eng_name][1][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '1.last'); ?>">
-                                </span>
+						<span class="col-lg-6">
+							<input type="text" class="form-control" id="engNameFirst-1"
+								name="jform[eng_name][1][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '1.first'); ?>">
+						</span>
+						<span class="col-lg-6">
+							<input type="text" class="form-control" id="engNameFirst-1"
+								name="jform[eng_name][1][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '1.last'); ?>">
+						</span>
 					</div>
 				</div>
 
@@ -95,10 +104,15 @@ $query = $data->query;
 				<?php echo \Csi\Helper\DatabaseHelper::generateCheckboxes($data->query['database']); ?>
 			</div>
 
+			<!-- Webometrics URL -->
+			<?php
+			$urls = $query['webo_url'];
 
-			<div class="form-group">
-				<input type="text" class="col-lg-12 form-control" placeholder="Enter URL" value="http://getbootstrap.com/">
-			</div>
+			foreach (range(1, 3) as $i => $v): ?>
+				<div class="form-group">
+					<input type="text" class="col-lg-12 form-control" placeholder="Enter URL" value="<?php echo isset($urls[$i]) ? $urls[$i] : ''; ?>">
+				</div>
+			<?php endforeach; ?>
 
 
 		</fieldset>
@@ -121,130 +135,33 @@ $query = $data->query;
 
 				<tbody>
 
+				<!--Databases-->
 				<?php
 				foreach ($data->results as $name => $result)
 				{
 					echo $this->loadTemplate('result_row', array('database' => $name, 'databaseResult' => $result));
 				}
 				?>
-<!--
-				<tr>
-					<th rowspan="3">課程大綱</th>
-					<td>
-						<a href="/csi-proto/result/list/index">被引用</a>
-					</td>
-					<td>
-						2899
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="/csi-proto/result/list/index">自我引用</a>
-					</td>
-					<td>
-						84
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="/csi-proto/result/list/index">課程大綱數量</a>
-					</td>
-					<td>
-						106
-					</td>
-				</tr>
 
-				<tr>
-					<th rowspan="2">
-						博碩士論文資料庫
-					</th>
-					<td>
-						<a href="/csi-proto/result/list/index">指導論文次數</a>
-					</td>
-					<td>
-						92
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="/csi-proto/result/list/index">論文參考文獻次數</a>
-					</td>
-					<td>
-						0
-					</td>
-				</tr>
+				<!-- Webometrics -->
+				<?php foreach ($urls as $i => $url): ?>
+					<tr>
+					<?php if ($i == 0): ?>
+						<td rowspan="<?php echo count($urls); ?>">
+							Webometrics
+						</td>
+					<?php endif; ?>
 
-				<tr>
-					<th rowspan="2">
-						報紙資料庫
-					</th>
-					<td>
-						<a href="/csi-proto/result/list/index">著作篇數</a>
-					</td>
-					<td>
-						20
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="/csi-proto/result/list/index">被提及次數</a>
-					</td>
-					<td>
-						5
-					</td>
-				</tr>
-
-				<tr>
-					<th rowspan="2">
-						雜誌資料庫
-					</th>
-					<td>
-						<a href="/csi-proto/result/list/index">著作篇數</a>
-					</td>
-					<td>
-						57
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="/csi-proto/result/list/index">被提及次數</a>
-					</td>
-					<td>
-						49
-					</td>
-				</tr>
-
-				<tr>
-					<th>
-						維基百科
-					</th>
-					<td>
-						<a href="/csi-proto/result/list/index">被提及次與列為參考文獻</a>
-					</td>
-					<td>
-						6
-					</td>
-				</tr>
-
-				<tr>
-					<th rowspan="2">
-						Webometrics
-					</th>
-					<td>
-						<a href="/csi-proto/result/list/index">Google</a>
-					</td>
-					<td>
-						5252201
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<a href="/csi-proto/result/list/index">Yahoo</a>
-					</td>
-					<td>
-						555673
-					</td>
-				</tr>-->
+						<td>
+							<?php echo $url; ?>
+						</td>
+						<td>
+							<div class="webo-result" data-url="<?php echo $url; ?>">
+								<img src="<?php echo JUri::root() . '/images/csi/ajax-loader.gif'; ?>" alt="Ajax loading" />
+							</div>
+						</td>
+					</tr>
+				<?php endforeach; ?>
 
 				</tbody>
 			</table>

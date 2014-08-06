@@ -6,6 +6,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+use Windwalker\Joomla\DataMapper\DataMapper;
 use Windwalker\Table\Table;
 
 // No direct access
@@ -59,7 +60,11 @@ class CsiTableWebpage extends Table
 	 */
 	public function bind($src, $ignore = array())
 	{
-		return parent::bind($src, $ignore);
+		$result = parent::bind($src, $ignore);
+
+		$this->url = trim($this->url, '/');
+
+		return $result;
 	}
 
 	/**
@@ -68,11 +73,24 @@ class CsiTableWebpage extends Table
 	 * method to make sure the data they are storing in the database is safe and
 	 * as expected before storage.
 	 *
+	 * @throws  RuntimeException
 	 * @return  boolean  True if the instance is sane and able to be stored in the database.
 	 */
 	public function check()
 	{
-		return parent::check();
+		parent::check();
+
+		if ($this->url)
+		{
+			$webpage = with(new DataMapper(\Csi\Table\Table::WEB_PAGES))->findOne(array('url' => $this->url));
+
+			if (!$webpage->isNull() && $webpage->id != $this->id)
+			{
+				throw new \RuntimeException('Duplicate url of webpages.');
+			}
+		}
+
+		return true;
 	}
 
 	/**
