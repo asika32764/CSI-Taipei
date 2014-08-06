@@ -106,4 +106,3 @@ class CsiModelPage extends CrudModel
 		return $cache->call('histories', $closure, $pageId);
 	}
 }
- 

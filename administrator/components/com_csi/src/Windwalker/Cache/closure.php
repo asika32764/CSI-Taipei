@@ -1,8 +1,8 @@
 <?php
 /**
- * Part of csi project. 
+ * Part of Windwalker project.
  *
- * @copyright  Copyright (C) 2014 {ORGANIZATION}. All rights reserved.
+ * @copyright  Copyright (C) 2014 SMS Taiwan. All rights reserved.
  * @license    GNU General Public License version 2 or later;
  */
 
@@ -43,9 +43,9 @@ class JCacheControllerClosure extends \JCacheControllerCallback
 
 		$value = call_user_func_array($callback, $args);
 
-		$this->cache->store($value, $key, 'closure');
+		$this->cache->store($value, $key, 'windwalker');
 
-		return $this->cache->get($key, 'closure');
+		return $this->cache->get($key, 'windwalker');
 	}
 }
  
