@@ -45,12 +45,22 @@ class CsiControllerResultAjaxWebometrics extends \Windwalker\Controller\Controll
 
 		$webpage = $mapper->findOne(array('url' => trim($this->url, '/')));
 
-		if (!$webpage->isNull())
+		$nowDate = \Windwalker\Helper\DateHelper::getDate();
+		$lastDate = new JDate($webpage->modified);
+
+		$interval = $nowDate->diff($lastDate);
+
+		if (!$webpage->isNull() && $interval->format('%a') < 30)
 		{
 			return $webpage;
 		}
 
 		$data = array('url' => $this->url);
+
+		if ($webpage->id)
+		{
+			$data['id'] = $webpage->id;
+		}
 
 		$model = new WebpageModel;
 

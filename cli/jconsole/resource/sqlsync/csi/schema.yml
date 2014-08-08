@@ -47,6 +47,7 @@
         result_name: { Field: result_name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [result_name] }
         before: { Field: before, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [before] }
         after: { Field: after, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [after] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__csi_histories', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -150,6 +151,8 @@
         url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         count: { Field: count, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [count] }
         published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified] }
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_webpages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
