@@ -32,9 +32,10 @@ class PdfReader implements ReaderInterface
 		$filetmp = implode('.', $filetmp);
 
 		$reader = new Pdf2text;
+		$reader->showprogress(false);
 		$reader->setFilename($file);
 		$reader->decodePDF();
-		echo $output = $reader->output();die;
+		$output = $reader->output();
 
 		// shell_exec("/usr/bin/pdftotext {$file} {$filetmp}.txt");
 

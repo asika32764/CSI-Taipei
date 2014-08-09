@@ -62,7 +62,7 @@ $date      = $container->get('date');
 	</th>
 
 	<?php foreach ($data->resultFields as $field): ?>
-	<th>
+	<th class="nowrap">
 		<?php echo JText::_('COM_CSI_RESULT_FIELD_' . strtoupper($field)); ?>
 	</th>
 	<?php endforeach; ?>

@@ -173,7 +173,7 @@ class PaperListener extends DatabaseListener
 		}
 		else
 		{
-			$item->results->$field = $result;
+			$item->results->$field = $result->value;
 		}
 	}
 

@@ -36,6 +36,10 @@ database:
             - cited
             - author
             - mentioned
+        page_result_fields:
+            - author
+            - cited
+            - mentioned
 #    social:
 #        type: parse
 #        name: social
