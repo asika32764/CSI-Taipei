@@ -115,7 +115,10 @@ class GoogleEngine extends AbstractEngine
 	{
 		$html = parent::getPage($page);
 
-		$html = String::transcode($html, 'big5', 'UTF-8');
+		if(strtolower(mb_detect_encoding($html)) != 'utf-8')
+		{
+			$html = String::transcode($html, 'big5', 'UTF-8');
+		}
 
 		return $html;
 	}
@@ -200,7 +203,7 @@ class GoogleEngine extends AbstractEngine
 		$text = KeywordHelper::encode($this->state->get('keyword'));
 
 		$uri->setQuery($this->query) ;
-		$uri->setVar('q', $text);
+		$uri->setVar('q', $this->state->get('keyword'));
 
 		$uri->setVar('start' , ($page - 1) * $this->links);
 

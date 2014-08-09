@@ -42,7 +42,7 @@ class UiHelper
 		$attrs = array(
 			'target' => '_blank',
 			'class' => 'hasTooltip',
-			'title' => $url
+			'title' => htmlentities($url)
 		);
 
 		if ($type == static::MODAL)
@@ -54,7 +54,7 @@ class UiHelper
 
 		\JHtmlBootstrap::tooltip();
 
-		return \JHtml::link($url, $title . $dot, $attrs);
+		return \JHtml::link(htmlentities($url), $title . $dot, $attrs);
 	}
 }
  

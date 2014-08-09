@@ -125,6 +125,7 @@ class CsiTableEntry extends Table
 			$pageMapper = new DataMapper('#__csi_pages');
 			$queueMapper = new DataMapper('#__csi_queues');
 			$resultMapper = new DataMapper('#__csi_results');
+			$historyMapper = new DataMapper('#__csi_histories');
 
 			// Delete tasks
 			$taskMapper->delete(array('entry_id' => $this->id));
@@ -140,6 +141,9 @@ class CsiTableEntry extends Table
 
 			// Delete queues
 			$queueMapper->delete(array('entry_id' => $this->id));
+
+			// Delete histories
+			$historyMapper->delete(array('entry_id' => $this->id));
 
 			// Delete page files
 			$folder = JPATH_ROOT . '/' . PageHelper::getFileFolder() . '/' . $this->id;

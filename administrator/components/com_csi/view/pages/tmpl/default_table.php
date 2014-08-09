@@ -134,7 +134,12 @@ $grid->registerTableSort();
 		</td>
 
 		<td>
-			<?php echo \Csi\Helper\UiHelper::getShortedLink(JUri::root() . $item->filepath, $item->filepath); ?>
+			<?php
+			if ($item->filepath)
+			{
+				echo \Csi\Helper\UiHelper::getShortedLink(JUri::root() . $item->filepath, $item->filepath);
+			}
+			?>
 		</td>
 
 		<td class="center">

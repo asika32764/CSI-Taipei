@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Csi\Listener\Syllabus;
+namespace Csi\Listener\Paper;
 
 use Csi\Config\Config;
 use Csi\Database\AbstractDatabase;
@@ -25,14 +25,14 @@ use Windwalker\View\Layout\FileLayout;
  *
  * @since 1.0
  */
-class SyllabusListener extends DatabaseListener
+class PaperListener extends DatabaseListener
 {
 	/**
 	 * Property type.
 	 *
 	 * @var  string
 	 */
-	protected $type = 'syllabus';
+	protected $type = 'paper';
 
 	/**
 	 * onBeforeTaskSave
@@ -84,11 +84,11 @@ class SyllabusListener extends DatabaseListener
 		$names = KeywordHelper::arrangeNames($params->get('name.chinese'), $params->get('name.eng'));
 
 		// Prepare states
-		$state->set('professors.titles', Config::get('database.syllabus.analysis.professors.titles'));
-		$state->set('professors.names',  $names);
-		$state->set('ranges.units',      Config::get('database.syllabus.analysis.units'));
-		$state->set('terms.course',      Config::get('database.syllabus.analysis.terms.course'));
-		$state->set('terms.reference',   Config::get('database.syllabus.analysis.terms.reference'));
+//		$state->set('professors.titles', Config::get('database.syllabus.analysis.professors.titles'));
+//		$state->set('professors.names',  $names);
+//		$state->set('ranges.units',      Config::get('database.syllabus.analysis.units'));
+//		$state->set('terms.course',      Config::get('database.syllabus.analysis.terms.course'));
+//		$state->set('terms.reference',   Config::get('database.syllabus.analysis.terms.reference'));
 
 		// Get result
 		$result = $model->parseResult($txt);
@@ -120,6 +120,13 @@ class SyllabusListener extends DatabaseListener
 
 		$taskMapper = new DataMapper('#__csi_tasks');
 
+		$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
+
+		if ($task->isNull())
+		{
+			throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
+		}
+
 		foreach ($resultFields as $field)
 		{
 			$class = sprintf('Csi\\Database\\%s\\%sResult', ucfirst($database), Normalise::toCamelCase($field));
@@ -129,13 +136,6 @@ class SyllabusListener extends DatabaseListener
 				$app->enqueueMessage($class . ' not exists', 'warning');
 
 				continue;
-			}
-
-			$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
-
-			if ($task->isNull())
-			{
-				throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
 			}
 
 			$result->$field = with(new $class($task))->get();
@@ -160,14 +160,21 @@ class SyllabusListener extends DatabaseListener
 			return;
 		}
 
-		$item->results->$field = with(new FileLayout('pages.result.button'))
-			->render(
-				array(
-					'result' => $result,
-					'item'   => $item,
-					'i'      => $i
-				)
-			);
+		if ($field == 'author')
+		{
+			$item->results->$field = with(new FileLayout('pages.result.button'))
+				->render(
+					array(
+						'result' => $result,
+						'item'   => $item,
+						'i'      => $i
+					)
+				);
+		}
+		else
+		{
+			$item->results->$field = $result;
+		}
 	}
 
 	/**
@@ -185,18 +192,6 @@ class SyllabusListener extends DatabaseListener
 		if (!$this->checkType($database))
 		{
 			return;
-		}
-
-		if ($field == 'is_syllabus' && $value == 0)
-		{
-			with(new DataMapper('#__csi_results'))
-				->updateAll(new Data(array('value' => 0)), array('fk' => $page->id));
-		}
-
-		if (($field == 'cited' || $field == 'self_cited') && $value == 1)
-		{
-			with(new DataMapper('#__csi_results'))
-				->updateAll(new Data(array('value' => 1)), array('fk' => $page->id, 'key' => 'is_syllabus'));
 		}
 	}
 }
