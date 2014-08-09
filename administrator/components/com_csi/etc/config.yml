@@ -28,26 +28,33 @@ database:
 #        type: parse
 #        name: ethesys
 #        engine: google
-    paper:
-        type: parse
-        name: paper
-        engine: google
-        result_fields:
-            - cited
-            - author
-            - mentioned
-        page_result_fields:
-            - author
-            - cited
-            - mentioned
+#    paper:
+#        type: parse
+#        name: paper
+#        engine: google
+#        result_fields:
+#            - cited
+#            - author
+#            - mentioned
+#        page_result_fields:
+#            - author
+#            - cited
+#            - mentioned
 #    social:
 #        type: parse
 #        name: social
 #        engine: google
-#    wiki:
-#        type: parse
-#        name: wiki
-#        engine: google
+    wiki:
+        type: parse
+        name: wiki
+        engine: google
+        result_fields:
+            - citmentioned
+            - entry
+        page_result_fields:
+            - cited
+            - mentioned
+            - entry
 #    scholar:
 #        type: parse
 #        name: scholar

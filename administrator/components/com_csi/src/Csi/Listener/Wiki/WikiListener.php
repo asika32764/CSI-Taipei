@@ -6,14 +6,13 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Csi\Listener\Paper;
+namespace Csi\Listener\Wiki;
 
 use Csi\Config\Config;
 use Csi\Database\AbstractDatabase;
 use Csi\Helper\KeywordHelper;
 use Csi\Listener\DatabaseListener;
 use Csi\Reader\Reader;
-use Csi\Table\Table;
 use Joomla\String\Normalise;
 use Windwalker\Data\Data;
 use Windwalker\DI\Container;
@@ -25,14 +24,14 @@ use Windwalker\View\Layout\FileLayout;
  *
  * @since 1.0
  */
-class PaperListener extends DatabaseListener
+class WikiListener extends DatabaseListener
 {
 	/**
 	 * Property type.
 	 *
 	 * @var  string
 	 */
-	protected $type = 'paper';
+	protected $type = 'wiki';
 
 	/**
 	 * onBeforeTaskSave
@@ -124,9 +123,7 @@ class PaperListener extends DatabaseListener
 
 		if ($task->isNull())
 		{
-			// throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
-
-			return;
+			throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
 		}
 
 		foreach ($resultFields as $field)
@@ -162,21 +159,14 @@ class PaperListener extends DatabaseListener
 			return;
 		}
 
-		if ($field == 'author')
+		if ($field == 'entry')
 		{
-			$item->results->$field = with(new FileLayout('pages.result.button'))
-				->render(
-					array(
-						'result' => $result,
-						'item'   => $item,
-						'i'      => $i
-					)
-				);
+			$item->results->$field = $result->value ? '是' : '否';
+
+			return;
 		}
-		else
-		{
-			$item->results->$field = $result->value;
-		}
+
+		$item->results->$field = $result->value;
 	}
 
 	/**

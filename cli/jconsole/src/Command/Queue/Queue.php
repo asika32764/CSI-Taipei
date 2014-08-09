@@ -118,6 +118,8 @@ class Queue extends JCommand
 	{
 		$_SERVER['HTTP_HOST'] = 'console';
 
+		$sleep = $this->getArgument(0, 5);
+
 		$this->queueMapper = $mapper = new DataMapper('#__csi_queues');
 
 		$this->resolver = TaskMapper::register(new ControllerResolver(new \JApplicationCms, Container::getInstance()));
@@ -126,7 +128,7 @@ class Queue extends JCommand
 		{
 			$this->executeQueue();
 
-			sleep(5);
+			sleep($sleep);
 		}
 	}
 
