@@ -2,35 +2,47 @@ system:
     debug: true
     development: true
 database:
-#    syllabus:
-#        type: parse
-#        name: syllabus
-#        engine: google
-#        keyword:
-#            - 課程大綱
-#            - '"Syllabus"'
-#        analysis:
-#            professors:
-#                titles: [教授, 教師, 老師, 副教授]
-#            units: 5
-#            terms:
-#                course: [課程大綱, 課綱, 大綱]
-#                reference: [參考文獻, 參考資源, 參考書目]
-#        result_fields:
-#            - cited
-#            - self_cited
-#            - syllabus_count
-#        page_result_fields:
-#            - cited
-#            - self_cited
-#            - is_syllabus
+    syllabus:
+        type: parse
+        name: syllabus
+        engine: google
+        keyword:
+            - 課程大綱
+            - '"Syllabus"'
+        analysis:
+            professors:
+                titles: [教授, 教師, 老師, 副教授]
+            units: 5
+            terms:
+                course: [課程大綱, 課綱, 大綱]
+                reference: [參考文獻, 參考資源, 參考書目]
+        result_fields:
+            - cited
+            - self_cited
+            - syllabus_count
+        page_result_fields:
+            - cited
+            - self_cited
+            - is_syllabus
 #    ethesys:
 #        type: parse
 #        name: ethesys
 #        engine: google
-#    paper:
+    paper:
+        type: parse
+        name: paper
+        engine: google
+        result_fields:
+            - cited
+            - author
+            - mentioned
+        page_result_fields:
+            - author
+            - cited
+            - mentioned
+#    social:
 #        type: parse
-#        name: paper
+#        name: social
 #        engine: google
 #        result_fields:
 #            - cited
@@ -40,10 +52,6 @@ database:
 #            - author
 #            - cited
 #            - mentioned
-#    social:
-#        type: parse
-#        name: social
-#        engine: google
     wiki:
         type: parse
         name: wiki
