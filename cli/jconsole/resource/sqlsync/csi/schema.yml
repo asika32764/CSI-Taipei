@@ -7,7 +7,7 @@
         entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
         task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
         engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        url: { Field: url, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         file: { Field: file, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [file] }
         total: { Field: total, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [total] }
         created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
