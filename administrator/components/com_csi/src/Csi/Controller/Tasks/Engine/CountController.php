@@ -49,9 +49,11 @@ class CountController extends Controller
 		// Prepare engine model to parse page
 		$engine = AbstractEngine::getInstance($task->engine);
 
-		$engine->getState()->set('keyword', $task->keyword);
+		$engine->getState()->set('keyword', $queue->query->get('keyword'));
 
 		$pages = $engine->getPageList();
+
+		$this->app->triggerEvent('onAfterCountEnginepages', array($task->database, &$pages));
 
 		// Get Queue model
 		$queueModel = new QueueModel;
@@ -66,7 +68,9 @@ class CountController extends Controller
 			$query->set('url', $page->url);
 			$query->set('num', $page->num);
 			$query->set('total', count($pages));
-			$query->set('keyword', $task->keyword);
+			$query->set('keyword', $queue->query->get('keyword'));
+
+			$this->app->triggerEvent('onBeforeFetchQueue', array($task->database, $task, &$page, &$query));
 
 			$queueModel->add('tasks.engine.fetch', $query, $task);
 		}

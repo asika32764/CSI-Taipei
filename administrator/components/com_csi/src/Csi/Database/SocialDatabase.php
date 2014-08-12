@@ -8,16 +8,18 @@
 
 namespace Csi\Database;
 
+use Csi\Config\Config;
 use Csi\Helper\KeywordHelper;
 use Csi\Registry\RegistryHelper;
 use Windwalker\Data\Data;
+use Windwalker\String\String;
 
 /**
  * The WikiDatabase class.
  * 
  * @since  {DEPLOY_VERSION}
  */
-class WikiDatabase extends AbstractDatabase
+class SocialDatabase extends AbstractDatabase
 {
 	/**
 	 * getKeyword
@@ -33,15 +35,17 @@ class WikiDatabase extends AbstractDatabase
 		// Build name keyword
 		$names = KeywordHelper::buildNamesKeyword($params->get('name.chinese'), $params->get('name.eng'));
 
-		// Search keyword
-		$keyword = <<<KWD
-facebook(“教授中文姓名”OR”教授英文姓名”) (“機構名稱簡寫”OR”機構全名”) site:facebook.com                                                              twitter： (“教授中文姓名”OR”教授英文姓名”) (“機構名稱簡寫”OR”機構全名”) site:twitter.com
-google plus：(“教授中文姓名” OR “教授英文姓名”) (""機構名稱簡寫""OR""機構全名"")site:plus.google.com
-KWD;
-		// Combine two
-		$keyword = sprintf('(%s) %s', $names, $keyword);
+		$instNames = '"國立台灣大學" OR "台大"';
 
-		return str_replace(array("\n", "\r"), '', $keyword);
+		$keyword = array();
+
+		foreach (Config::get('database.social.sites', array()) as $site)
+		{
+			// Combine two
+			$keyword[$site] = sprintf('(%s) (%s) site:%s', $names, $instNames, $site);
+		}
+
+		return json_encode(str_replace(array("\n", "\r"), '', $keyword));
 	}
 
 	/**
@@ -55,7 +59,7 @@ KWD;
 	{
 		// @TODO: Implement this parser.
 
-		$returnValue['entry'] = rand(1, 0);
+		$returnValue['author'] = rand(0, 1);
 		$returnValue['cited'] = rand(0, 15);
 		$returnValue['mentioned'] = rand(0, 15);
 

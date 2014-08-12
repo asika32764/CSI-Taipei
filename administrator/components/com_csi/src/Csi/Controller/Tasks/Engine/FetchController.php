@@ -142,6 +142,8 @@ class FetchController extends Controller
 				)
 			);
 
+			$this->app->triggerEvent('onBeforeParseQueue', array($this->task->database, $this->task, &$data, &$query));
+
 			$queueModel->add('tasks.engine.parse', $query, $this->task);
 		}
 		catch (\Exception $e)

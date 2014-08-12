@@ -108,7 +108,7 @@ $date      = $container->get('date');
 		</td>
 
 		<!--TITLE-->
-		<td class="n/owrap has-context quick-edit-wrap">
+		<td class="n/owrap has-context quick-edit-wrap title-cell">
 			<div class="item-title">
 				<!-- Title -->
 				<a href="<?php echo \Csi\Router\Route::_('com_csi.task_page', array('id' => $item->id)); ?>">

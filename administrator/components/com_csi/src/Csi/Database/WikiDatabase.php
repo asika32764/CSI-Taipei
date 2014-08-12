@@ -54,7 +54,7 @@ KWD;
 	{
 		// @TODO: Implement this parser.
 
-		$returnValue['entry'] = rand(1, 0);
+		$returnValue['entry'] = rand(0, 1);
 		$returnValue['cited'] = rand(0, 15);
 		$returnValue['mentioned'] = rand(0, 15);
 

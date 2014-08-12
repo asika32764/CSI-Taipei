@@ -27,7 +27,12 @@ $doc->addStyleSheet('administrator/templates/isis3/css/template.css');
  */
 $container = $this->getContainer();
 ?>
-
+<style>
+	.table td.title-cell
+	{
+		word-break: break-all;
+	}
+</style>
 <div id="csi" class="windwalker tasks tablelist row-fluid">
 	<form action="<?php echo JURI::getInstance(); ?>" method="post" name="adminForm" id="adminForm" enctype="multipart/form-data">
 

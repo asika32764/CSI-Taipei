@@ -55,6 +55,39 @@ class SocialListener extends DatabaseListener
 		$data->keyword = $task->getKeyword($data);
 	}
 
+	public function onBeforeCountQueue($database, $engine, $id, Data $data, \JRegistry $query)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		$keywords = json_decode($data->keyword, true);
+
+		// Send first back
+		$site = key($keywords);
+		$first = array_shift($keywords);
+
+		$query->set('keyword', $first);
+		$query->set('site', $site);
+
+		// Prepare others
+		$queueModel = new \Csi\Model\QueueModel;
+
+		foreach ($keywords as $name => $keyword)
+		{
+			$query = new \JRegistry(
+				array(
+					'id' => $data->id,
+					'keyword' => $keyword,
+					'site' => $name
+				)
+			);
+
+			$queueModel->add('tasks.engine.count', $query, $data);
+		}
+	}
+
 	/**
 	 * onPageAnalysis
 	 *
@@ -159,14 +192,21 @@ class SocialListener extends DatabaseListener
 			return;
 		}
 
-		if ($field == 'entry')
+		if ($field == 'author')
 		{
-			$item->results->$field = $result->value ? '是' : '否';
-
-			return;
+			$item->results->$field = with(new FileLayout('pages.result.button'))
+				->render(
+					array(
+						'result' => $result,
+						'item'   => $item,
+						'i'      => $i
+					)
+				);
 		}
-
-		$item->results->$field = $result->value;
+		else
+		{
+			$item->results->$field = $result->value;
+		}
 	}
 
 	/**

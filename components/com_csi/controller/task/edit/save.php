@@ -110,9 +110,15 @@ class CsiControllerTaskEditSave extends SaveController
 
 			$query = new \JRegistry(
 				array(
-					'id' => $model->getState()->get('task.id')
+					'id' => $model->getState()->get('task.id'),
+					'keyword' => $data->keyword
 				)
 			);
+
+			// Before queue
+			$args[] = $query;
+
+			$diapatcher->trigger('onBeforeCountQueue', $args);
 
 			$queueModel->add('tasks.engine.count', $query, $data);
 		}

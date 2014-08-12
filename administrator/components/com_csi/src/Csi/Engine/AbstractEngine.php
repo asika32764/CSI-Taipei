@@ -70,7 +70,7 @@ abstract class AbstractEngine extends \JModelDatabase
 	/**
 	 * getPageList
 	 *
-	 * @return  array
+	 * @return  \Windwalker\Data\Data[]
 	 */
 	abstract public function getPageList();
 
