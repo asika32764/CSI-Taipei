@@ -13,6 +13,7 @@ use Csi\Database\AbstractDatabase;
 use Csi\Helper\KeywordHelper;
 use Csi\Listener\DatabaseListener;
 use Csi\Reader\Reader;
+use Csi\Result\ResultHelper;
 use Joomla\String\Normalise;
 use Windwalker\Data\Data;
 use Windwalker\DI\Container;
@@ -159,14 +160,9 @@ class WikiListener extends DatabaseListener
 			return;
 		}
 
-		if ($field == 'entry')
-		{
-			$item->results->$field = $result->value ? '是' : '否';
+		$resultHandler = ResultHelper::getHandler($field);
 
-			return;
-		}
-
-		$item->results->$field = $result->value;
+		$item->results->$field = $resultHandler::render($field, $item, $result, $i);
 	}
 
 	/**

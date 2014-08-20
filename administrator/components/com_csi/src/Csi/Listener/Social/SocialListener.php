@@ -13,6 +13,7 @@ use Csi\Database\AbstractDatabase;
 use Csi\Helper\KeywordHelper;
 use Csi\Listener\DatabaseListener;
 use Csi\Reader\Reader;
+use Csi\Result\ResultHelper;
 use Joomla\String\Normalise;
 use Windwalker\Data\Data;
 use Windwalker\DI\Container;
@@ -195,21 +196,9 @@ class SocialListener extends DatabaseListener
 			return;
 		}
 
-		if ($field == 'author')
-		{
-			$item->results->$field = with(new FileLayout('pages.result.button'))
-				->render(
-					array(
-						'result' => $result,
-						'item'   => $item,
-						'i'      => $i
-					)
-				);
-		}
-		else
-		{
-			$item->results->$field = $result->value;
-		}
+		$resultHandler = ResultHelper::getHandler($field);
+
+		$item->results->$field = $resultHandler::render($field, $item, $result, $i);
 	}
 
 	/**
