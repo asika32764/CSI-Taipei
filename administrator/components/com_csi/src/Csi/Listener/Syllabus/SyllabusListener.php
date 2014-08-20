@@ -183,17 +183,17 @@ class SyllabusListener extends DatabaseListener
 			return;
 		}
 
-		if ($field == 'is_syllabus' && $value == 0)
-		{
-			with(new DataMapper('#__csi_results'))
-				->updateAll(new Data(array('value' => 0)), array('fk' => $page->id));
-		}
-
-		if (($field == 'cited' || $field == 'self_cited') && $value == 1)
-		{
-			with(new DataMapper('#__csi_results'))
-				->updateAll(new Data(array('value' => 1)), array('fk' => $page->id, 'key' => 'is_syllabus'));
-		}
+//		if ($field == 'is_syllabus' && $value == 0)
+//		{
+//			with(new DataMapper('#__csi_results'))
+//				->updateAll(new Data(array('value' => 0)), array('fk' => $page->id));
+//		}
+//
+//		if (($field == 'cited' || $field == 'self_cited') && $value == 1)
+//		{
+//			with(new DataMapper('#__csi_results'))
+//				->updateAll(new Data(array('value' => 1)), array('fk' => $page->id, 'key' => 'is_syllabus'));
+//		}
 	}
 }
  

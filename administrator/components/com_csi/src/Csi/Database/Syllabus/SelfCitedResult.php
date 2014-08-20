@@ -33,11 +33,15 @@ class SelfCitedResult extends AbstractResult
 	{
 		$query = $this->db->getQuery(true);
 
-		$query->select('SUM(`value`) AS count')
-			->from('#__csi_results')
-			->where('`task_id` = ' . $this->task->id)
-			->where('`type` = "page"')
-			->where('`key` = ' . $query->q($this->name));
+		$query->select('SUM(a.value) AS count')
+			->from('#__csi_results AS a')
+			->from('#__csi_results AS b')
+			->where('a.`task_id` = ' . $this->task->id)
+			->where('a.`type` = "page"')
+			->where('a.`key` = ' . $query->q($this->name))
+			->where('a.fk = b.fk')
+			->where('b.key = ' . $query->q('is_syllabus'))
+			->where('b.value > 0');
 
 		return $this->db->setQuery($query)->loadResult();
 	}

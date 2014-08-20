@@ -30,7 +30,7 @@ class CitedResultButton implements ResultButtonInterface
 	 */
 	public static function render($item, $field, $result, $i)
 	{
-		return with(new FileLayout('pages.result.button'))
+		return with(new FileLayout('pages.result.updown'))
 			->render(
 				array(
 					'result' => $result,
