@@ -8,10 +8,9 @@
 
 namespace Csi\Listener;
 
-
+use Csi\Model\QueueModel;
 use Windwalker\Data\Data;
 use Windwalker\Joomla\DataMapper\DataMapper;
-use Windwalker\View\Layout\FileLayout;
 
 class DatabaseListener extends \JEvent
 {
@@ -37,6 +36,73 @@ class DatabaseListener extends \JEvent
 		}
 
 		return true;
+	}
+
+	/**
+	 * onBeforeTaskSave
+	 *
+	 * @param string                $database
+	 * @param string                $engine
+	 * @param int                   $id
+	 * @param \Windwalker\Data\Data $data
+	 *
+	 * @return  void
+	 */
+	public function onAfterTaskSave($database, $engine, $id, Data $data)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		// Get queue model to add queue
+		$model = new QueueModel;
+
+		$query = new \JRegistry(
+			array(
+				'id' => $id,
+				'keyword' => $data->keyword
+			)
+		);
+
+		$model->add('tasks.engine.count', $query, $data);
+	}
+
+	/**
+	 * onAfterCountEnginepages
+	 *
+	 * @param string $database
+	 * @param Data   $lastQueue
+	 * @param Data   $pages
+	 * @param Data   $task
+	 * @param Data   $engine
+	 *
+	 * @return  void
+	 */
+	public function onAfterCountEnginepages($database, $lastQueue, $pages, $task, $engine)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		// Get Queue model
+		$queueModel = new QueueModel;
+
+		// Build query
+		$query = new \JRegistry;
+
+		$query->set('id', $task->id);
+
+		foreach ($pages as $page)
+		{
+			$query->set('url', $page->url);
+			$query->set('num', $page->num);
+			$query->set('total', count($pages));
+			$query->set('keyword', $lastQueue->query->get('keyword'));
+
+			$queueModel->add('tasks.engine.fetch', $query, $task);
+		}
 	}
 
 	/**

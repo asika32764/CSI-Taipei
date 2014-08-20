@@ -53,27 +53,7 @@ class CountController extends Controller
 
 		$pages = $engine->getPageList();
 
-		$this->app->triggerEvent('onAfterCountEnginepages', array($task->database, &$pages));
-
-		// Get Queue model
-		$queueModel = new QueueModel;
-
-		// Build query
-		$query = new \JRegistry;
-
-		$query->set('id', $task->id);
-
-		foreach ($pages as $page)
-		{
-			$query->set('url', $page->url);
-			$query->set('num', $page->num);
-			$query->set('total', count($pages));
-			$query->set('keyword', $queue->query->get('keyword'));
-
-			$this->app->triggerEvent('onBeforeFetchQueue', array($task->database, $task, &$page, &$query));
-
-			$queueModel->add('tasks.engine.fetch', $query, $task);
-		}
+		$this->app->triggerEvent('onAfterCountEnginepages', array($task->database, $queue, &$pages, $task, $engine));
 
 		return sprintf('Count pages: %s success.', count($pages));
 	}

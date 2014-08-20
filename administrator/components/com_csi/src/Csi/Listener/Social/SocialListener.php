@@ -55,7 +55,17 @@ class SocialListener extends DatabaseListener
 		$data->keyword = $task->getKeyword($data);
 	}
 
-	public function onBeforeCountQueue($database, $engine, $id, Data $data, \JRegistry $query)
+	/**
+	 * onBeforeTaskSave
+	 *
+	 * @param string                $database
+	 * @param string                $engine
+	 * @param int                   $id
+	 * @param \Windwalker\Data\Data $data
+	 *
+	 * @return  void
+	 */
+	public function onAfterTaskSave($database, $engine, $id, Data $data)
 	{
 		if (!$this->checkType($database))
 		{
@@ -64,13 +74,6 @@ class SocialListener extends DatabaseListener
 
 		$keywords = json_decode($data->keyword, true);
 
-		// Send first back
-		$site = key($keywords);
-		$first = array_shift($keywords);
-
-		$query->set('keyword', $first);
-		$query->set('site', $site);
-
 		// Prepare others
 		$queueModel = new \Csi\Model\QueueModel;
 
@@ -78,7 +81,7 @@ class SocialListener extends DatabaseListener
 		{
 			$query = new \JRegistry(
 				array(
-					'id' => $data->id,
+					'id' => $id,
 					'keyword' => $keyword,
 					'site' => $name
 				)
