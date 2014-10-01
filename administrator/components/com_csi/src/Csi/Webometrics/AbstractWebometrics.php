@@ -72,11 +72,40 @@ abstract class AbstractWebometrics extends \JModelDatabase
 	 */
 	public function getWebometrics($url)
 	{
-		$this->engine->getState()->set('keyword', sprintf($this->keywordTmpl, $url));
+		$uri = new \JUri($url);
 
-		$page = $this->engine->getPage(1);
+		$uri->setScheme('');
 
-		return (int) $this->countWebometrics($page);
+		$url = $uri->toString();
+
+		$result = 0;
+
+		// Only url
+		$this->engine->getState()->set('keyword', $url);
+
+		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+
+		// Add site:...
+		$this->engine->getState()->set('keyword', 'site:' . $url);
+
+		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+
+		// PDF
+		$this->engine->getState()->set('keyword', 'site:' . $url . ' filetype:pdf');
+
+		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+
+		// PPT
+		$this->engine->getState()->set('keyword', 'site:' . $url . ' filetype:ppt');
+
+		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+
+		// DOC
+		$this->engine->getState()->set('keyword', 'site:' . $url . ' filetype:doc');
+
+		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+
+		return $result;
 	}
 
 	/**

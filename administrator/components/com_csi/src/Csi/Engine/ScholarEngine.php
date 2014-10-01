@@ -156,6 +156,11 @@ class ScholarEngine extends AbstractEngine
 			/** @var $link Dom */
 			$normal = $link->find('h3.gs_rt a');
 
+			if (!count($normal))
+			{
+				continue;
+			}
+
 			$item = array();
 
 			// Get title and url

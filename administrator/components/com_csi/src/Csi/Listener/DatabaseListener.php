@@ -106,6 +106,38 @@ class DatabaseListener extends \JEvent
 	}
 
 	/**
+	 * onAfterPageFetch
+	 *
+	 * @param string $database
+	 * @param Data   $lastQueue
+	 * @param Data   $data
+	 * @param Data   $task
+	 * @param Data   $engine
+	 *
+	 * @return  void
+	 */
+	public function onAfterFetchPage($database, $lastQueue, Data $data, $task, $engine)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		// Add queue to parse
+		$queueModel = new QueueModel;
+
+		$query = new \JRegistry(
+			array(
+				'id' => $data->id,
+				'task_id' => $task->id,
+				'page' => $lastQueue->query->get('num')
+			)
+		);
+
+		$queueModel->add('tasks.engine.parse', $query, $task);
+	}
+
+	/**
 	 * saveResult
 	 *
 	 * @param string                $database

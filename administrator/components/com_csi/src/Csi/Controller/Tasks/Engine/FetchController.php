@@ -131,20 +131,7 @@ class FetchController extends Controller
 
 			$mapper->updateOne($data);
 
-			// Add queue to parse
-			$queueModel = new QueueModel;
-
-			$query = new \JRegistry(
-				array(
-					'id' => $data->id,
-					'task_id' => $this->task->id,
-					'page' => $this->query->get('num')
-				)
-			);
-
-			$this->app->triggerEvent('onBeforeParseQueue', array($this->task->database, $this->task, &$data, &$query));
-
-			$queueModel->add('tasks.engine.parse', $query, $this->task);
+			$this->app->triggerEvent('onAfterFetchPage', array($this->task->database, $this->queue, $this->task, $data, $this->query));
 		}
 		catch (\Exception $e)
 		{

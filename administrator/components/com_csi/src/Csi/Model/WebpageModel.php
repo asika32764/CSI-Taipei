@@ -83,6 +83,13 @@ class WebpageModel extends AdminModel
 		}
 	}
 
+	/**
+	 * countWebometrics
+	 *
+	 * @param string $url
+	 *
+	 * @return  array
+	 */
 	public function countWebometrics($url)
 	{
 		$engines = Config::get('engines', array());
