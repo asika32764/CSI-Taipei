@@ -69,7 +69,7 @@ $data = $this->data;
 						頁面預覽
 					</legend>
 
-					<iframe width="100%" height="640px" src="<?php echo JUri::root(true) . '/' . $data->item->filepath; ?>" frameborder="0">
+					<iframe width="100%" height="640px" src="<?php echo \Csi\Helper\PageHelper::getPreviewUrl($data->item->url, $data->item->filetype); ?>" frameborder="0">
 
 					</iframe>
 				</fieldset>

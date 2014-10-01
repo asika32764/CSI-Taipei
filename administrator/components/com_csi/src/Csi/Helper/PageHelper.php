@@ -72,5 +72,23 @@ class PageHelper
 
 		return File::write(JPATH_ROOT . '/' . $path, $html);
 	}
+
+	/**
+	 * getPreviewUrl
+	 *
+	 * @param string $url
+	 * @param string $filetype
+	 *
+	 * @return  string
+	 */
+	public static function getPreviewUrl($url, $filetype = 'html')
+	{
+		if ($filetype != 'html')
+		{
+			$url = 'http://docs.google.com/viewer?url=' . urlencode($url) . '&embedded=true';
+		}
+
+		return $url;
+	}
 }
  
