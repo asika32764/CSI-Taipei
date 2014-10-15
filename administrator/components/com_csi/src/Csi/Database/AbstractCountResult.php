@@ -16,6 +16,13 @@ namespace Csi\Database;
 class AbstractCountResult extends AbstractResult
 {
 	/**
+	 * Property type.
+	 *
+	 * @var  string
+	 */
+	protected $type = 'engine';
+
+	/**
 	 * get
 	 *
 	 * @return  mixed
@@ -27,7 +34,7 @@ class AbstractCountResult extends AbstractResult
 		$query->select('SUM(`value`) AS count')
 			->from('#__csi_results')
 			->where('`task_id` = ' . $this->task->id)
-			->where('`type` = "page"')
+			->where('`type` = ' . $query->quote($this->type))
 			->where('`key` = ' . $query->q($this->name));
 
 		return $this->db->setQuery($query)->loadResult();

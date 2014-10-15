@@ -147,7 +147,7 @@ class DatabaseListener extends \JEvent
 	 *
 	 * @return  boolean
 	 */
-	protected function saveResult($database, Data $page, Data $task, Data $result)
+	protected function saveResult($database, Data $page, Data $task, Data $result, $type = 'page')
 	{
 		$mapper = new DataMapper('#__csi_results');
 
@@ -157,7 +157,7 @@ class DatabaseListener extends \JEvent
 
 			$data->entry_id = $task->entry_id;
 			$data->task_id  = $task->id;
-			$data->type = 'page';
+			$data->type = $type;
 			$data->fk = $page->id;
 			$data->key = $key;
 			$data->value = $value;

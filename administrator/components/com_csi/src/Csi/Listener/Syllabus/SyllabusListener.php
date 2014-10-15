@@ -121,6 +121,13 @@ class SyllabusListener extends DatabaseListener
 
 		$taskMapper = new DataMapper('#__csi_tasks');
 
+		$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
+
+		if ($task->isNull())
+		{
+			throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
+		}
+
 		foreach ($resultFields as $field)
 		{
 			$class = sprintf('Csi\\Database\\%s\\%sResult', ucfirst($database), Normalise::toCamelCase($field));
@@ -130,13 +137,6 @@ class SyllabusListener extends DatabaseListener
 				$app->enqueueMessage($class . ' not exists', 'warning');
 
 				continue;
-			}
-
-			$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
-
-			if ($task->isNull())
-			{
-				throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
 			}
 
 			$result->$field = with(new $class($task))->get();

@@ -9,8 +9,12 @@
 namespace Csi\Database;
 
 use Csi\Config\Config;
+use Csi\Encoding\Encoding;
 use Csi\Helper\KeywordHelper;
 use Csi\Registry\RegistryHelper;
+use Joomla\Filter\InputFilter;
+use PHPHtmlParser\Dom;
+use PHPHtmlParser\Dom\HtmlNode;
 use Windwalker\Data\Data;
 
 /**
@@ -46,27 +50,12 @@ class ScholarDatabase extends AbstractDatabase
 	 */
 	public function parseResult($txt)
 	{
-		// Prepare params
-		$professors_titles = $this->state->get('professors.titles', array());
-		$professors_names  = $this->state->get('professors.names', array());
-		$units             = $this->state->get('ranges.units', 5);
-		$course_terms      = $this->state->get('terms.course', array());
-		$reference_terms   = $this->state->get('terms.reference', array());
-
-		$patterns = "/<script(.*?)script>/s";
-		$replace  = "";
-		$txt      = preg_replace($patterns, $replace, $txt);
-
-		$patterns = "/<SCRIPT(.*?)SCRIPT>/s";
-		$replace  = "";
-		$txt      = preg_replace($patterns, $replace, $txt);
-
-		$patterns = "/<style(.*?)style>/s";
-		$replace  = "";
-		$txt      = preg_replace($patterns, $replace, $txt);
-
-		// Convert to text
-		$txt = strip_tags($txt);
+		$returnValue = new Data(
+			array(
+				'cited' => 0,
+				'author' => 0
+			)
+		);
 
 		// Detect encoding
 		$encoding = mb_detect_encoding($txt);
@@ -77,117 +66,32 @@ class ScholarDatabase extends AbstractDatabase
 			$txt = iconv("CP950", "UTF-8//IGNORE", $txt);
 		}
 
-		$txtmp  = $txt;
-		$txtmp2 = str_replace(array("\r\n", "\r", "\n"), "\t", trim($txt));
-		$txtmp2 = str_replace(array("　"), '', $txtmp2);
-		$txtmp2 = mb_ereg_replace("[\t \.\(\)\~\\\"，；、：‧（）【】〔〕「」『』〈〉《》＜＞★☆…？！〃◎" . "\xEF\xBC\x8F" . "]", '', $txtmp2);
+		$filter = new InputFilter;
 
-		// Detect self_cited OR Cited.
-		$self_cited = false;
+		$html = new Dom;
 
-		$titleRegString = "";
+		$html->load($txt);
 
-		for ($i = 0; $i < count($professors_titles); $i++)
+		$cites = $html->find('div.gs_fl a');
+
+		foreach ($cites as $cite)
 		{
-			$titleRegString .= preg_quote($professors_titles[$i]);
+			/** @var HtmlNode $cite */
+			$text = $cite->text;
 
-			if ($i != (count($professors_titles) - 1))
+			$text = Encoding::toUtf8($text);
+
+			if (strpos($text, '引用') !== false)
 			{
-				$titleRegString .= "|";
+				$returnValue['cited'] += $filter->clean($text, 'int');
 			}
 		}
 
-		$nameRegString = "";
+		$lists = $html->find('#gs_ccl div.gs_r');
 
-		for ($i = 0; $i < count($professors_names); $i++)
-		{
-			$nameRegString .= preg_quote($professors_names[$i]);
+		$returnValue['author'] = count($lists);
 
-			if ($i != (count($professors_names) - 1))
-			{
-				$nameRegString .= "|";
-			}
-		}
-
-		//echo "/(".$titleRegString.")(.{0,".$units."})(".$nameRegString."))/u";
-		if (preg_match("/(" . $titleRegString . ")(.{0," . $units . "})(" . $nameRegString . ")/u", $txtmp2, $match))
-		{
-			$self_cited = true;
-		}
-
-		// detect is before course terms?
-		$p = false;
-
-		foreach ($course_terms as $course_term)
-		{
-			$p = strpos($txt, $course_term);
-
-			if ($p !== false)
-			{
-				break;
-			}
-		}
-
-		if ($p > 0)
-		{
-			$txtmp = substr($txtmp, $p);
-		}
-
-		// detect is before reference terms?
-		$p = false;
-
-		foreach ($reference_terms as $reference_term)
-		{
-			$p = strpos($txt, $reference_term);
-
-			if ($p !== false)
-			{
-				break;
-			}
-		}
-
-		if ($p > 0)
-		{
-			$txtmp = substr($txtmp, $p);
-		}
-
-		// detect professors name
-		$txtmps = explode("\n", $txtmp);
-		$result = array();
-
-		foreach ($txtmps as $row)
-		{
-			$p = false;
-
-			foreach ($professors_names as $professors_name)
-			{
-				$p = strpos($row, $professors_name);
-
-				if ($p !== false)
-				{
-					$result[] = $row;
-
-					break;
-				}
-			}
-		}
-
-		if ($self_cited)
-		{
-			$returnValue['self_cited'] = count($result);
-			$returnValue['cited'] = 0;
-			$returnValue['self_syllabus'] = true;
-			$returnValue['is_syllabus'] = true;
-		}
-		else
-		{
-			$returnValue['self_cited'] = 0;
-			$returnValue['cited'] = count($result);
-			$returnValue['self_syllabus'] = false;
-			$returnValue['is_syllabus'] = true;
-		}
-
-		return new Data($returnValue);
+		return $returnValue;
 	}
 }
  

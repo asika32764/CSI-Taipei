@@ -36,6 +36,8 @@ class TaskMapper
 
 		$resolver->registerTask('tasks.engine.parse', '\\Csi\\Controller\\Tasks\\Engine\\ParseController');
 
+		$resolver->registerTask('tasks.scholar.count', '\\Csi\\Controller\\Tasks\\Scholar\\CountController');
+
 		$resolver->registerTask('page.download', '\\Csi\\Controller\\Page\\DownloadController');
 
 		return $resolver;

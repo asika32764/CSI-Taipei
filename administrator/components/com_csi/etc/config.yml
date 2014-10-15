@@ -69,10 +69,14 @@ database:
 #            - cited
 #            - mentioned
 #            - entry
+
     scholar:
         type: parse
         name: scholar
         engine: scholar
+        result_fields:
+            - cited
+            - author
 #    webometrics:
 #        type: webo
 #        name: webometrics

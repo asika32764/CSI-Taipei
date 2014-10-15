@@ -81,7 +81,7 @@ class ScholarListener extends DatabaseListener
 
 		$query = new \JRegistry(
 			array(
-				'id' => $data->id,
+				'enginepage_id' => $data->id,
 				'task_id' => $task->id,
 				'page' => $lastQueue->query->get('num')
 			)
@@ -106,29 +106,22 @@ class ScholarListener extends DatabaseListener
 			return;
 		}
 
-		$model = AbstractDatabase::getInstance($database);
+		// $page is EnginePage
+		$path = $page->file;
 
-		$txt = Reader::read($page->filepath);
+		if (!is_file($path))
+		{
+			throw new \RuntimeException(sprintf('File: %s not found', $path));
+		}
 
-		$state = $model->getState();
+		$model = AbstractDatabase::getInstance('scholar');
 
-		// Prepare professors names
-		$params = new \JRegistry(json_decode($task->params));
+		$html = file_get_contents($path);
 
-		$names = KeywordHelper::arrangeNames($params->get('name.chinese'), $params->get('name.eng'));
-
-		// Prepare states
-		$state->set('professors.titles', Config::get('database.syllabus.analysis.professors.titles'));
-		$state->set('professors.names',  $names);
-		$state->set('ranges.units',      Config::get('database.syllabus.analysis.units'));
-		$state->set('terms.course',      Config::get('database.syllabus.analysis.terms.course'));
-		$state->set('terms.reference',   Config::get('database.syllabus.analysis.terms.reference'));
-
-		// Get result
-		$result = $model->parseResult($txt);
+		$result = $model->parseResult($html);
 
 		// Save Result
-		$this->saveResult($database, $page, $task, $result);
+		$this->saveResult($database, $page, $task, $result, 'engine');
 	}
 
 	/**
