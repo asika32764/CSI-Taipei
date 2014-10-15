@@ -182,6 +182,7 @@ class ScholarListener extends DatabaseListener
 	 */
 	public function onPreparePageResult($database, $field, $item, $result, $i)
 	{
+		/*
 		if (!$this->checkType($database))
 		{
 			return;
@@ -190,6 +191,7 @@ class ScholarListener extends DatabaseListener
 		$resultHandler = ResultHelper::getHandler($field);
 
 		$item->results->$field = $resultHandler::render($field, $item, $result, $i);
+		*/
 	}
 
 	/**

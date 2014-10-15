@@ -38,6 +38,8 @@ class ScholarDatabase extends AbstractDatabase
 		// Build name keyword
 		$keyword = KeywordHelper::buildNamesKeyword($params->get('name.chinese'), $params->get('name.eng'));
 
+		$keyword = 'author:' . str_replace('OR ', 'OR author:', $keyword);
+
 		return $keyword;
 	}
 

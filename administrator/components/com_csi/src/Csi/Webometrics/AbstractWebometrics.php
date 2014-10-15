@@ -9,6 +9,7 @@
 namespace Csi\Webometrics;
 
 use Csi\Engine\AbstractEngine;
+use Windwalker\Data\Data;
 
 /**
  * The AbstractWebometrics class.
@@ -78,32 +79,22 @@ abstract class AbstractWebometrics extends \JModelDatabase
 
 		$url = $uri->toString();
 
-		$result = 0;
+		$result = new Data;
 
-		// Only url
-		$this->engine->getState()->set('keyword', $url);
+		// Visibility
+		$this->engine->getState()->set('keyword', sprintf('"%s" -site:%s', $url, $url));
 
-		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+		$result['visibility'] = (int) $this->countWebometrics($this->engine->getPage(1));
 
-		// Add site:...
-		$this->engine->getState()->set('keyword', 'site:' . $url);
+		// Size
+		$this->engine->getState()->set('keyword', sprintf('%s site:%s', $url, $url));
 
-		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+		$result['size'] = (int) $this->countWebometrics($this->engine->getPage(1));
 
-		// PDF
-		$this->engine->getState()->set('keyword', 'site:' . $url . ' filetype:pdf');
+		// Rich files
+		$this->engine->getState()->set('keyword', sprintf('%s site:%s filetype:(pdf or ppt or doc)', $url, $url));
 
-		$result += (int) $this->countWebometrics($this->engine->getPage(1));
-
-		// PPT
-		$this->engine->getState()->set('keyword', 'site:' . $url . ' filetype:ppt');
-
-		$result += (int) $this->countWebometrics($this->engine->getPage(1));
-
-		// DOC
-		$this->engine->getState()->set('keyword', 'site:' . $url . ' filetype:doc');
-
-		$result += (int) $this->countWebometrics($this->engine->getPage(1));
+		$result['rich_files'] = (int) $this->countWebometrics($this->engine->getPage(1));
 
 		return $result;
 	}

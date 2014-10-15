@@ -11,6 +11,8 @@ namespace Csi\Model;
 use Csi\Config\Config;
 use Csi\Engine\AbstractEngine;
 use Csi\Webometrics\AbstractWebometrics;
+use Windwalker\Data\Data;
+use Windwalker\Data\DataSet;
 use Windwalker\Model\AdminModel;
 
 /**
@@ -73,11 +75,20 @@ class WebpageModel extends AdminModel
 	{
 		parent::prepareTable($table);
 
+		$uri = new \JUri($table->url);
+
+		if (!$uri->getScheme())
+		{
+			$uri->setScheme('http');
+		}
+
+		$table->url = $uri->toString();
+
 		if ($table->url)
 		{
 			$counts = $this->countWebometrics($table->url);
 
-			$table->count = array_sum($counts);
+			$table->count = array_sum((array) $counts);
 
 			$table->params = array('counts' => $counts);
 		}
@@ -92,9 +103,9 @@ class WebpageModel extends AdminModel
 	 */
 	public function countWebometrics($url)
 	{
-		$engines = Config::get('engines', array());
+		$engines = Config::get('database.webometrics.engines', array());
 
-		$results = array();
+		$results = new DataSet;
 
 		foreach ($engines as $engineName)
 		{
@@ -103,7 +114,13 @@ class WebpageModel extends AdminModel
 			$results[$engineName] = $webo->getWebometrics($url);
 		}
 
-		return $results;
+		$result = new Data;
+
+		$result['visibility'] = array_sum($results->visibility);
+		$result['size']       = array_sum($results->size);
+		$result['rich_files'] = array_sum($results->rich_files);
+
+		return $result;
 	}
 
 	/**

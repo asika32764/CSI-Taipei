@@ -77,9 +77,8 @@ database:
         result_fields:
             - cited
             - author
-#    webometrics:
-#        type: webo
-#        name: webometrics
-engines:
-    - google
-    - yahoo
+    webometrics:
+        type: webo
+        name: webometrics
+        engines:
+            - yahoo

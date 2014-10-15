@@ -32,6 +32,15 @@ class CsiControllerResultAjaxWebometrics extends \Windwalker\Controller\Controll
 	protected function prepareExecute()
 	{
 		$this->url = $this->input->getString('url');
+
+		$this->url = new JUri($this->url);
+
+		if (!$this->url->getScheme())
+		{
+			$this->url->setScheme('http');
+		}
+
+		$this->url = $this->url->toString();
 	}
 
 	/**
