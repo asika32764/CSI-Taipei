@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<request xmlns="http://www.isinet.com/xrpc41"
+	src="app.id=PartnerApp,env.id=PartnerAppEnv,partner.email=EmailAddress" >
+	<fn name="LinksAMR.retrieve">
+		<list>
+			<!-- WHO'S REQUESTING -->
+			<map>
+				<val name="username">username</val>
+				<val name="password">test</val>
+			</map>
+			<!-- WHAT'S REQUESTED -->
+			<map>
+				<list name="WOS">
+					<val>timesCited</val>
+					<val>ut</val>
+					<val>doi</val>
+					<val>sourceURL</val>
+					<val>citingArticlesURL</val>
+					<val>relatedRecordsURL</val>
+				</list>
+			</map> <!--end "return_data" -->
+			<!-- LOOKUP DATA -->
+			<map>
+				<!-- QUERY "cite_id" -->
+				<map name="cite_id">
+					<val name="atitle">article title string</val>
+					<val name="stitle">full journal title</val>
+					<val name="issn">1234-5678</val>
+					<val name="vol">12</val>
+					<val name="issue">12</val>
+					<val name="year">2008</val>
+					<val name="doi">doi_string</val>
+					<val name="ut">isi_ut_num</val>
+					<val name="spage">1234</val>
+					<!-- authors list can be used to specify multiple authors -->
+					<list name="authors">
+						<val>First, AU</val>
+						<val>Second, AU</val>
+						<val>Third, AU</val>
+					</list>
+				</map> <!-- end of cite_id-->
+				<!-- QUERY "cite_id"
+				<map name="cite_id">
+					...
+				</map>
+				-->
+			</map> <!-- end of citations -->
+		</list>
+	</fn>
+</request>

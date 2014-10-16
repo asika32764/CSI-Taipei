@@ -122,6 +122,29 @@
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__csi_results', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_schools':
+    name: '#__csi_schools'
+    from:
+        - '#__csi_schools'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        parent_id: { Field: parent_id, Type: int(11), 'Null': YES, Default: null, Extra: '', Comment: '', From: [parent_id] }
+        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'Record title', From: [title] }
+        tel: { Field: tel, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [tel] }
+        fax: { Field: fax, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [fax] }
+        address: { Field: address, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [address] }
+        nick: { Field: nick, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [nick] }
+        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: URL, From: [url] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: Author, From: [created_by] }
+        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Modified time', From: [modified] }
+        modified_by: { Field: modified_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: 'Modified user', From: [modified_by] }
+        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: 'Record state', From: [state] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+    index:
+        - { Table: '#__csi_schools', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_schools', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_schools', Non_unique: '1', Key_name: idx_created_by, Seq_in_index: '1', Column_name: created_by, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_tasks':
     name: '#__csi_tasks'
     from:

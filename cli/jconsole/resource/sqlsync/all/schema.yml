@@ -162,7 +162,7 @@
         entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
         task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
         engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
+        url: { Field: url, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         file: { Field: file, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [file] }
         total: { Field: total, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [total] }
         created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
@@ -188,9 +188,24 @@
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: title, Seq_in_index: '1', Column_name: title, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: created_by, Seq_in_index: '1', Column_name: created_by, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-    data:
-        - ['1', '唐牧群;Muh-Chyun Tang;Tang Muh-Chyun', '2014-04-15 16:39:00', '0', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyun"},{"first":"Muh-Chyun","last":"Tang"}]}}']
-        - ['4', '唐牧群;Muh-Chyu Tang;Tang Muh-Chyu', '2014-04-15 18:29:09', '0', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyu"},{"first":"Muh-Chyu","last":"Tang"}]}}']
+'#__csi_histories':
+    name: '#__csi_histories'
+    from:
+        - '#__csi_histories'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        user_id: { Field: user_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [user_id] }
+        name: { Field: name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [name] }
+        entry_id: { Field: entry_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
+        page_id: { Field: page_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [page_id] }
+        result_name: { Field: result_name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [result_name] }
+        before: { Field: before, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [before] }
+        after: { Field: after, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [after] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+    index:
+        - { Table: '#__csi_histories', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_notifies':
     name: '#__csi_notifies'
     from:
@@ -262,6 +277,29 @@
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__csi_results', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+'#__csi_schools':
+    name: '#__csi_schools'
+    from:
+        - '#__csi_schools'
+    columns:
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        parent_id: { Field: parent_id, Type: int(11), 'Null': YES, Default: null, Extra: '', Comment: '', From: [parent_id] }
+        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'Record title', From: [title] }
+        tel: { Field: tel, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [tel] }
+        fax: { Field: fax, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [fax] }
+        address: { Field: address, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [address] }
+        nick: { Field: nick, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [nick] }
+        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: URL, From: [url] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: Author, From: [created_by] }
+        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Modified time', From: [modified] }
+        modified_by: { Field: modified_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: 'Modified user', From: [modified_by] }
+        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: 'Record state', From: [state] }
+        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+    index:
+        - { Table: '#__csi_schools', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_schools', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+        - { Table: '#__csi_schools', Non_unique: '1', Key_name: idx_created_by, Seq_in_index: '1', Column_name: created_by, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_tasks':
     name: '#__csi_tasks'
     from:
@@ -282,13 +320,6 @@
         - { Table: '#__csi_tasks', Non_unique: '1', Key_name: entry_id, Seq_in_index: '1', Column_name: entry_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_tasks', Non_unique: '1', Key_name: engine, Seq_in_index: '1', Column_name: engine, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_tasks', Non_unique: '1', Key_name: database, Seq_in_index: '1', Column_name: database, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
-    data:
-        - ['1', '1', google, syllabus, '唐牧群;Muh-Chyun Tang;Tang Muh-Chyun [syllabus]', '("唐牧群" OR "Tang Muh-Chyun" OR "Muh-Chyun, Tang" OR "Muh-Chyun Tang" OR "Tang, Muh-Chyun") AND (課程大綱 OR "Syllabus")', '2014-04-15 16:39:00', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyun"},{"first":"Muh-Chyun","last":"Tang"}]}}']
-        - ['2', '1', google, ethesys, '唐牧群;Muh-Chyun Tang;Tang Muh-Chyun [ethesys]', null, '2014-04-15 16:39:00', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyun"},{"first":"Muh-Chyun","last":"Tang"}]}}']
-        - ['3', '1', google, paper, '唐牧群;Muh-Chyun Tang;Tang Muh-Chyun [paper]', null, '2014-04-15 16:39:00', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyun"},{"first":"Muh-Chyun","last":"Tang"}]}}']
-        - ['4', '1', google, social, '唐牧群;Muh-Chyun Tang;Tang Muh-Chyun [social]', null, '2014-04-15 16:39:00', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyun"},{"first":"Muh-Chyun","last":"Tang"}]}}']
-        - ['5', '1', google, wiki, '唐牧群;Muh-Chyun Tang;Tang Muh-Chyun [wiki]', null, '2014-04-15 16:39:00', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyun"},{"first":"Muh-Chyun","last":"Tang"}]}}']
-        - ['6', '1', scholar, scholar, '唐牧群;Muh-Chyun Tang;Tang Muh-Chyun [scholar]', null, '2014-04-15 16:39:00', '1', '{"name":{"chinese":"\u5510\u7267\u7fa4","eng":[{"first":"Tang","last":"Muh-Chyun"},{"first":"Muh-Chyun","last":"Tang"}]}}']
 '#__csi_webpages':
     name: '#__csi_webpages'
     from:
@@ -298,10 +329,15 @@
         url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
         count: { Field: count, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [count] }
         published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
+        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
+        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified] }
         params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_webpages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_webpages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+    data:
+        - ['22', 'http://asika.tw', '2760', '1', '2014-10-15 21:44:43', '2014-10-15 21:47:44', '{"counts":{"visibility":1350,"size":1410,"rich_files":0}}']
+        - ['24', 'http://animapp.tw', '4590', '1', '2014-10-15 21:52:50', '2014-10-15 21:57:21', '{"counts":{"visibility":3230,"size":1360,"rich_files":0}}']
 '#__extensions':
     name: '#__extensions'
     from:
@@ -358,7 +394,7 @@
         - ['100', PHPMailer, library, phpmailer, '', '0', '1', '1', '0', '{"name":"PHPMailer","type":"library","creationDate":"2001","author":"PHPMailer","copyright":"(c) 2001-2003, Brent R. Matzelle, (c) 2004-2009, Andy Prevost. All Rights Reserved., (c) 2010-2013, Jim Jagielski. All Rights Reserved.","authorEmail":"jimjag@gmail.com","authorUrl":"https:\/\/github.com\/PHPMailer\/PHPMailer","version":"5.2.6","description":"LIB_PHPMAILER_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['101', SimplePie, library, simplepie, '', '0', '1', '1', '0', '{"name":"SimplePie","type":"library","creationDate":"2004","author":"SimplePie","copyright":"Copyright (c) 2004-2009, Ryan Parman and Geoffrey Sneddon","authorEmail":"","authorUrl":"http:\/\/simplepie.org\/","version":"1.2","description":"LIB_SIMPLEPIE_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['102', phputf8, library, phputf8, '', '0', '1', '1', '0', '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\/\/sourceforge.net\/projects\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
-        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"658915f5950fbca1465e14d9a1af87b1"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['103', 'Joomla! Platform', library, joomla, '', '0', '1', '1', '0', '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\/\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":""}', '{"mediaversion":"53852d79a8e8550f31a9e4aa3718a27d"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['104', 'IDNA Convert', library, idna_convert, '', '0', '1', '1', '0', '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\/\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\/\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['105', FOF, library, fof, '', '0', '1', '1', '0', '{"name":"FOF","type":"library","creationDate":"2013-12-14","author":"Nicholas K. Dionysopoulos \/ Akeeba Ltd","copyright":"(C)2011-2013 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\/\/www.akeebabackup.com","version":"2.1.1","description":"LIB_FOF_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['106', PHPass, library, phpass, '', '0', '1', '1', '0', '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\/\/www.openwall.com\/phpass\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":""}', '', '', '', '0', '0000-00-00 00:00:00', '0', '0']
@@ -416,6 +452,7 @@
         - ['10004', com_csi, component, com_csi, '', '1', '1', '1', '0', '{"name":"com_csi","type":"component","creationDate":"2014-1-11","author":"Asika","copyright":"Copyright (C) 2014. All rights reserved.","authorEmail":"asika32764@gmail.com","authorUrl":"http:\/\/asikart.com","version":"1.0.0","description":"COM_CSI_XML_DESCRIPTION","group":""}', '{}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['10005', isis3, template, isis3, '', '1', '1', '1', '0', '{"name":"isis3","type":"template","creationDate":"3\/28\/2014","author":"Simon Asika","copyright":"Copyright (C) 2012 - 2014 SMS Taiwan, Inc. All rights reserved.","authorEmail":"asika32764@gmail.com","authorUrl":"","version":"1.0","description":"TPL_ISIS_XML_DESCRIPTION","group":""}', '{"templateColor":"#13294A","headerColor":"#184A7D","sidebarColor":"#0088CC","logoFile":"","admin_menus":"1","displayHeader":"1","statusFixed":"1","stickyToolbar":"1"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
         - ['10006', astra, template, astra, '', '0', '1', '1', '0', '{"name":"astra","type":"template","creationDate":"10\/30\/2012","author":"Asika","copyright":"Copyright (C) 2012 Asikart.com. All rights reserved.","authorEmail":"asika@asikart.com","authorUrl":"","version":"1.0","description":"TPL_ASTRA_XML_DESCRIPTION","group":""}', '{"site_title":"","site_description":"","logo_file":"","responsive":"1","fluidContainer":"0","template_background_color":"#FFFFFF","template_text_color":"#111111","menutype":"mainmenu","menufixtop":"1","menucolor":"black","banner_text_color":"#111111","banner_bg_file":"","footercolor":"black","footer_logo_file":"","footer_logo_float":"pull-left","left_col_width":"3","leftinner_col_width":"2","right_col_width":"3","rightinner_col_width":"2"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
+        - ['10007', 'System - Asikart Easy Set', plugin, asikart_easyset, system, '0', '1', '1', '0', '{"name":"System - Asikart Easy Set","type":"plugin","creationDate":"2011-06-28","author":"Asikart.com","copyright":"(C) 2013 Asikart.com. All rights reserved.","authorEmail":"asika@asikart.com","authorUrl":"http:\/\/asikart.com","version":"2.6.4","description":"Asikart Easy Set. Easy setup Joomla! Site!","group":""}', '{"includejQuery":"0","includeBootstrap":"0","colorTable":"0","tidyRepair":"0","smoothScroll":"0","getImages":"0","blogViewClearly":"0","blogViewImgWidth":"150","blogViewImgCrop":"0","blogViewCleanTags":"0","blogViewMaxChar":"250","autoThumbnail":"0","onlyLocalhostThumb":"1","tranAlias":"0","originLan":"","tranLan":"","spacer3":"","seo":"0","titleFix":"{%TITLE%} | {%SITE%}","titleSeparator":"|","getMeta":"0","maxMetaChar":"250","insertHeader":"","openGraph":"0","ogDefaultImage":"","ogDefaultImageOnlyFrontPage":"1","ogAdminId":"","ogPageId":"","ogAppId":"","fbLike":"0","fbLikeOnBlog":"0","fbLikePosition":"3","inputCodeBase":"","insertArticleTop":"","insertTitleBottom":"","insertContentTop":"","insertContentBottom":"","showOnBlog":"1","showNumber":"3","adminSecureCode":"ezset","languageOrphan":"0","languageOrphanPath":"logs\/language.ini","cacheManagerEnabled":"0","cacheControlType":"exclude"}', '', '', '0', '0000-00-00 00:00:00', '0', '0']
 '#__languages':
     name: '#__languages'
     from:
@@ -489,11 +526,12 @@
         - { Table: '#__menu', Non_unique: '1', Key_name: idx_path, Seq_in_index: '1', Column_name: path, Sub_part: '255', 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__menu', Non_unique: '1', Key_name: idx_language, Seq_in_index: '1', Column_name: language, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['1', '', Menu_Item_Root, root, '', '', '', '', '1', '0', '0', '0', '0', '0000-00-00 00:00:00', '0', '0', '', '0', '', '0', '9', '0', '*', '0']
+        - ['1', '', Menu_Item_Root, root, '', '', '', '', '1', '0', '0', '0', '0', '0000-00-00 00:00:00', '0', '0', '', '0', '', '0', '11', '0', '*', '0']
         - ['16', menu, com_redirect, Redirect, '', Redirect, 'index.php?option=com_redirect', component, '0', '1', '1', '24', '0', '0000-00-00 00:00:00', '0', '0', 'class:redirect', '0', '', '1', '2', '0', '*', '1']
         - ['23', main, com_tags, Tags, '', Tags, 'index.php?option=com_tags', component, '0', '1', '1', '29', '0', '0000-00-00 00:00:00', '0', '1', 'class:tags', '0', '', '3', '4', '0', '', '1']
         - ['101', mainmenu, Home, home, '', home, 'index.php?option=com_csi&view=entry', component, '1', '1', '1', '10004', '0', '0000-00-00 00:00:00', '0', '1', '', '0', '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":1,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', '5', '6', '1', '*', '0']
         - ['102', main, COM_CSI, com_csi, '', com_csi, 'index.php?option=com_csi', component, '0', '1', '1', '10004', '0', '0000-00-00 00:00:00', '0', '1', 'class:component', '0', '', '7', '8', '0', '', '1']
+        - ['103', mainmenu, Login-out, login-out, '', login-out, 'index.php?option=com_users&view=login', component, '1', '1', '1', '25', '0', '0000-00-00 00:00:00', '0', '1', '', '0', '{"login_redirect_url":"","logindescription_show":"1","login_description":"","login_image":"","logout_redirect_url":"","logoutdescription_show":"1","logout_description":"","logout_image":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', '9', '10', '0', '*', '0']
 '#__menu_types':
     name: '#__menu_types'
     from:
@@ -630,8 +668,7 @@
         - { Table: '#__session', Non_unique: '1', Key_name: userid, Seq_in_index: '1', Column_name: userid, Sub_part: null, 'Null': YES, Comment: '', Index_comment: '' }
         - { Table: '#__session', Non_unique: '1', Key_name: time, Seq_in_index: '1', Column_name: time, Sub_part: null, 'Null': YES, Comment: '', Index_comment: '' }
     data:
-        - [d3qi8qltknb18q3pnlod16f662, '0', '1', '1397570441', '__default|a:8:{s:15:"session.counter";i:21;s:19:"session.timer.start";i:1397569485;s:18:"session.timer.last";i:1397570433;s:17:"session.timer.now";i:1397570441;s:22:"session.client.browser";s:109:"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36";s:8:"registry";O:9:"JRegistry":1:{s:7:"\0\0\0data";O:8:"stdClass":1:{s:10:"windwalker";O:8:"stdClass":1:{s:6:"system";O:8:"stdClass":1:{s:8:"profiler";O:8:"stdClass":1:{s:10:"Windwalker";s:0:"";}}}}}s:4:"user";O:5:"JUser":24:{s:9:"\0\0\0isRoot";N;s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:5:"block";N;s:9:"sendEmail";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:6:"groups";a:1:{i:0;s:1:"9";}s:5:"guest";i:1;s:13:"lastResetTime";N;s:10:"resetCount";N;s:10:"\0\0\0_params";O:9:"JRegistry":1:{s:7:"\0\0\0data";O:8:"stdClass":0:{}}s:14:"\0\0\0_authGroups";N;s:14:"\0\0\0_authLevels";a:3:{i:0;i:1;i:1;i:1;i:2;i:5;}s:15:"\0\0\0_authActions";N;s:12:"\0\0\0_errorMsg";N;s:10:"\0\0\0_errors";a:0:{}s:3:"aid";i:0;}s:13:"session.token";s:32:"28ae172697f19e0664d3dbaa58ce41c3";}', '0', '']
-        - [fhhncndap6ed16udugs7msash0, '1', '0', '1397570494', '__default|a:8:{s:15:"session.counter";i:6;s:19:"session.timer.start";i:1397570423;s:18:"session.timer.last";i:1397570430;s:17:"session.timer.now";i:1397570493;s:22:"session.client.browser";s:109:"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36";s:8:"registry";O:9:"JRegistry":1:{s:7:"\0\0\0data";O:8:"stdClass":3:{s:11:"application";O:8:"stdClass":1:{s:4:"lang";s:0:"";}s:13:"com_languages";O:8:"stdClass":1:{s:9:"installed";O:8:"stdClass":2:{s:8:"ordercol";s:6:"a.name";s:10:"limitstart";s:1:"0";}}s:10:"windwalker";O:8:"stdClass":1:{s:6:"system";O:8:"stdClass":1:{s:8:"profiler";O:8:"stdClass":1:{s:10:"Windwalker";s:0:"";}}}}}s:4:"user";O:5:"JUser":26:{s:9:"\0\0\0isRoot";b:1;s:2:"id";s:3:"279";s:4:"name";s:10:"Super User";s:8:"username";s:5:"smstw";s:5:"email";s:21:"service@bm-sms.com.tw";s:8:"password";s:34:"$P$DJ9ygEXhN9o2F0v53Q5FgeaY/wIk7K/";s:14:"password_clear";s:0:"";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"1";s:12:"registerDate";s:19:"2014-03-17 08:43:46";s:13:"lastvisitDate";s:19:"2014-04-15 08:32:03";s:10:"activation";s:1:"0";s:6:"params";s:0:"";s:6:"groups";a:1:{i:8;s:1:"8";}s:5:"guest";i:0;s:13:"lastResetTime";s:19:"0000-00-00 00:00:00";s:10:"resetCount";s:1:"0";s:10:"\0\0\0_params";O:9:"JRegistry":1:{s:7:"\0\0\0data";O:8:"stdClass":0:{}}s:14:"\0\0\0_authGroups";a:2:{i:0;i:1;i:1;i:8;}s:14:"\0\0\0_authLevels";a:5:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:6;}s:15:"\0\0\0_authActions";N;s:12:"\0\0\0_errorMsg";N;s:10:"\0\0\0_errors";a:0:{}s:3:"aid";i:0;s:6:"otpKey";s:0:"";s:4:"otep";s:0:"";}s:13:"session.token";s:32:"5e1ae116bdfa96b989045c6740ae5ecf";}', '279', smstw]
+        - [t54uv47rpqcr0v097eofle3vg6, '1', '0', '1413458950', '__default|a:8:{s:15:"session.counter";i:10;s:19:"session.timer.start";i:1413458926;s:18:"session.timer.last";i:1413458946;s:17:"session.timer.now";i:1413458949;s:22:"session.client.browser";s:109:"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36";s:8:"registry";O:9:"JRegistry":1:{s:7:"\0\0\0data";O:8:"stdClass":2:{s:11:"application";O:8:"stdClass":1:{s:4:"lang";s:0:"";}s:10:"windwalker";O:8:"stdClass":1:{s:6:"system";O:8:"stdClass":1:{s:8:"profiler";O:8:"stdClass":1:{s:10:"Windwalker";s:0:"";}}}}}s:4:"user";O:5:"JUser":27:{s:9:"\0\0\0isRoot";b:1;s:2:"id";s:3:"279";s:4:"name";s:10:"Super User";s:8:"username";s:5:"smstw";s:5:"email";s:21:"service@bm-sms.com.tw";s:8:"password";s:60:"$2y$10$dyOfu4YFlUGyw2bAvA.jweurlDWMEGIW3o5zYhX/57xZaHpjWhL0O";s:14:"password_clear";s:0:"";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"1";s:12:"registerDate";s:19:"2014-03-17 08:43:46";s:13:"lastvisitDate";s:19:"2014-10-15 10:52:50";s:10:"activation";s:1:"0";s:6:"params";s:2:"{}";s:6:"groups";a:1:{i:8;s:1:"8";}s:5:"guest";i:0;s:13:"lastResetTime";s:19:"0000-00-00 00:00:00";s:10:"resetCount";s:1:"0";s:12:"requireReset";N;s:10:"\0\0\0_params";O:9:"JRegistry":1:{s:7:"\0\0\0data";O:8:"stdClass":0:{}}s:14:"\0\0\0_authGroups";a:2:{i:0;i:1;i:1;i:8;}s:14:"\0\0\0_authLevels";a:5:{i:0;i:1;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:6;}s:15:"\0\0\0_authActions";N;s:12:"\0\0\0_errorMsg";N;s:10:"\0\0\0_errors";a:0:{}s:3:"aid";i:0;s:6:"otpKey";s:0:"";s:4:"otep";s:0:"";}s:13:"session.token";s:32:"c11a66b8bf4cc6a75dbff3b51f29a9aa";}', '279', smstw]
 '#__tags':
     name: '#__tags'
     from:
@@ -899,6 +936,7 @@
         - { Table: '#__user_usergroup_map', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '2', Column_name: group_id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
         - ['279', '8']
+        - ['280', '2']
 '#__usergroups':
     name: '#__usergroups'
     from:
@@ -954,7 +992,8 @@
         - { Table: '#__users', Non_unique: '1', Key_name: username, Seq_in_index: '1', Column_name: username, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__users', Non_unique: '1', Key_name: email, Seq_in_index: '1', Column_name: email, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
     data:
-        - ['279', 'Super User', smstw, service@bm-sms.com.tw, $P$DJ9ygEXhN9o2F0v53Q5FgeaY/wIk7K/, '0', '1', '2014-03-17 08:43:46', '2014-04-15 14:00:25', '0', '', '0000-00-00 00:00:00', '0', '', '']
+        - ['279', 'Super User', smstw, service@bm-sms.com.tw, $2y$10$dyOfu4YFlUGyw2bAvA.jweurlDWMEGIW3o5zYhX/57xZaHpjWhL0O, '0', '1', '2014-03-17 08:43:46', '2014-10-16 11:29:01', '0', '{}', '0000-00-00 00:00:00', '0', '', '']
+        - ['280', test, test, test@test.test, $2y$10$pqTr2YwkKtUoLFBCJncIo.Eg3fVvYpOM2/my2Fg2MLtGJVodxNdem, '0', '0', '2014-08-03 12:38:34', '2014-10-15 11:57:41', '', '{}', '0000-00-00 00:00:00', '0', '', '']
 '#__viewlevels':
     name: '#__viewlevels'
     from:
