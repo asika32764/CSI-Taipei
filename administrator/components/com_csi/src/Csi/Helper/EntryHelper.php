@@ -81,7 +81,7 @@ class EntryHelper
 	}
 
 	/**
-	 * distinctEngName
+	 * Make english name distinct.
 	 *
 	 * @param array $engNames
 	 *
@@ -115,6 +115,13 @@ class EntryHelper
 		return $names;
 	}
 
+	/**
+	 * cleanEngNames
+	 *
+	 * @param array $engNames
+	 *
+	 * @return  array
+	 */
 	public static function cleanEngNames($engNames)
 	{
 		$names = array();
@@ -176,7 +183,56 @@ class EntryHelper
 			unset($queries['id']);
 		}
 
-		return $queries;
+		$data = array();
+
+		$data['chinese_name'] = $queries['chinese_name'];
+		$data['eng_name']     = $queries['eng_name'];
+		$data['school']       = $queries['school'];
+		$data['database']     = $queries['database'];
+		$data['webo_url']     = $queries['webo_url'];
+
+		return $data;
+	}
+
+	public static function regularizeSchoolName($name)
+	{
+		$name = str_replace('台', '臺', $name);
+
+		$db = \JFactory::getDbo();
+
+		$query = $db->getQuery(true);
+
+		$query->select('*')
+			->from('#__csi_schools')
+			->where('title = ' . $query->q($name))
+			->where('state > 0');
+
+		$result = $db->setQuery($query)->loadObject();
+
+		// Is nick name
+		if ($result->parent_id)
+		{
+			$query->clear()
+				->select('title')
+				->from('#__csi_schools')
+				->where('id = ' . $result->parent_id . ' OR parent_id = ' . $result->parent_id)
+				->where('state > 0');
+		}
+		// Is main name
+		else
+		{
+			$query->clear()
+				->select('title')
+				->from('#__csi_schools')
+				->where('id = ' . $result->id . ' OR parent_id = ' . $result->id)
+				->where('state > 0');
+		}
+
+		$names = $db->setQuery($query)->loadColumn() ? : array();
+
+		sort($names);
+
+		return $names;
 	}
 
 	/**

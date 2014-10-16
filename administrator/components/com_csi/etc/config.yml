@@ -42,22 +42,22 @@ database:
 #            - author
 #            - cited
 #            - mentioned
-#    social:
-#        type: parse
-#        name: social
-#        engine: google
-#        sites:
-#            - facebook.com
-#            - plus.google.com
-#            - twitter.com
-#        result_fields:
-#            - cited
-#            - author
-#            - mentioned
-#        page_result_fields:
-#            - author
-#            - cited
-#            - mentioned
+    social:
+        type: parse
+        name: social
+        engine: google
+        sites:
+            - facebook.com
+            - plus.google.com
+            - twitter.com
+        result_fields:
+            - cited
+            - author
+            - mentioned
+        page_result_fields:
+            - author
+            - cited
+            - mentioned
 #    wiki:
 #        type: parse
 #        name: wiki
@@ -69,16 +69,16 @@ database:
 #            - cited
 #            - mentioned
 #            - entry
-
-    scholar:
-        type: parse
-        name: scholar
-        engine: scholar
-        result_fields:
-            - cited
-            - author
-    webometrics:
-        type: webo
-        name: webometrics
-        engines:
-            - yahoo
+#
+#    scholar:
+#        type: parse
+#        name: scholar
+#        engine: scholar
+#        result_fields:
+#            - cited
+#            - author
+#    webometrics:
+#        type: webo
+#        name: webometrics
+#        engines:
+#            - yahoo

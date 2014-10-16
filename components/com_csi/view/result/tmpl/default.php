@@ -92,6 +92,22 @@ $data->asset->addJS('webometrics.js');
 				</div>
 			</div>
 
+			<!-- School -->
+			<div id="eng-name-form" class="form-group row">
+				<div class="col-lg-2">
+					<label for="engNameFirst" class="control-label">
+						School
+					</label>
+				</div>
+				<div class="col-lg-10">
+					<div class="row">
+						<span class="col-lg-6 margin-b-20">
+							<input type="text" class="form-control" id="school" name="jform[school]" placeholder="School" value="<?php echo $query['school']; ?>">
+						</span>
+					</div>
+				</div>
+			</div>
+
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10 ">
 					<button type="submit" class="btn btn-primary pull-right">Submit</button>

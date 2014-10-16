@@ -45,6 +45,9 @@ class CsiControllerEntryEditSave extends SaveController
 		}
 
 		$title = EntryHelper::regularizeTitle($this->data['chinese_name'], $this->data['eng_name']);
+		$schoolNames = EntryHelper::regularizeSchoolName($this->data['school']);
+
+		$title .= $schoolNames ? '::' . implode(';', $schoolNames) : '';
 
 		// If title exists, redirect to it.
 		/** @var $entry \Windwalker\Data\Data */
@@ -61,7 +64,7 @@ class CsiControllerEntryEditSave extends SaveController
 		$params->set('name.chinese', trim($this->data['chinese_name']));
 
 		$params->set('name.eng', EntryHelper::cleanEngNames($this->data['eng_name']));
-		// $params->set('name.eng', EntryHelper::distinctEngName($this->data['eng_name']));
+		$params->set('name.school', $schoolNames);
 
 		$this->data['title']   = $title;
 		$this->data['names']   = $params->get('name');

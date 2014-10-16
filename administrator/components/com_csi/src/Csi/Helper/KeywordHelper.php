@@ -74,6 +74,18 @@ class KeywordHelper
 	{
 		$names = static::arrangeNames($chineseName, $engNames);
 
+		return static::buildNameConditions($names);
+	}
+
+	/**
+	 * buildNameConditions
+	 *
+	 * @param array $names
+	 *
+	 * @return  string
+	 */
+	public static function buildNameConditions($names)
+	{
 		// Quote names
 		$names = array_map(
 			function($value)

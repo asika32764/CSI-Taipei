@@ -35,14 +35,16 @@ class SocialDatabase extends AbstractDatabase
 		// Build name keyword
 		$names = KeywordHelper::buildNamesKeyword($params->get('name.chinese'), $params->get('name.eng'));
 
-		$instNames = '"國立台灣大學" OR "台大"';
+		$instNames = KeywordHelper::buildNameConditions($params->get('name.school'));
+
+		$instNames = $instNames ? ' (' . $instNames . ')' : null;
 
 		$keyword = array();
 
 		foreach (Config::get('database.social.sites', array()) as $site)
 		{
 			// Combine two
-			$keyword[$site] = sprintf('(%s) (%s) site:%s', $names, $instNames, $site);
+			$keyword[$site] = sprintf('(%s)%s site:%s', $names, $instNames, $site);
 		}
 
 		return json_encode(str_replace(array("\n", "\r"), '', $keyword));
