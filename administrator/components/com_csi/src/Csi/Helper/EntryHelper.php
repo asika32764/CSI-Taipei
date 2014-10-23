@@ -194,6 +194,13 @@ class EntryHelper
 		return $data;
 	}
 
+	/**
+	 * regularizeSchoolName
+	 *
+	 * @param string $name
+	 *
+	 * @return  array
+	 */
 	public static function regularizeSchoolName($name)
 	{
 		$name = str_replace('台', '臺', $name);
@@ -208,6 +215,11 @@ class EntryHelper
 			->where('state > 0');
 
 		$result = $db->setQuery($query)->loadObject();
+
+		if (!$result)
+		{
+			return array();
+		}
 
 		// Is nick name
 		if ($result->parent_id)

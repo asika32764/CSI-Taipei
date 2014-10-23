@@ -40,6 +40,10 @@ class TaskMapper
 
 		$resolver->registerTask('page.download', '\\Csi\\Controller\\Page\\DownloadController');
 
+		$resolver->registerTask('tci.author.count', '\\Csi\\Controller\\Tci\\Author\\CountController');
+
+		$resolver->registerTask('tci.cited.count', '\\Csi\\Controller\\Tci\\Cited\\CountController');
+
 		return $resolver;
 	}
 }

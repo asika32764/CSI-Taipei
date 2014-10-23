@@ -131,7 +131,7 @@ class FetchController extends Controller
 
 			$mapper->updateOne($data);
 
-			$this->app->triggerEvent('onAfterFetchPage', array($this->task->database, $this->queue, $this->task, $data, $this->query));
+			$this->app->triggerEvent('onAfterFetchPage', array($this->task->database, $this->queue, $data, $this->task, $this->query));
 		}
 		catch (\Exception $e)
 		{

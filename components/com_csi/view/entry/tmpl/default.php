@@ -99,42 +99,7 @@
 			<fieldset class="margin-t-50">
 				<legend>請選擇檢索項目</legend>
 
-
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="jform[database][]" value="syllabus"> 課程大綱
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="jform[database][]" value="ethesys"> 博碩士論文
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="jform[database][]" value="paper"> 報章雜誌
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="jform[database][]" value="social"> 社群媒體
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="jform[database][]" value="wiki"> 維基百科
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="jform[database][]" value="scholar"> Google Scholar
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="jform[database][]" value="webometrics"> Webometrics
-					</label>
-				</div>
+				<?php echo \Csi\Helper\DatabaseHelper::generateCheckboxes($data->query['database']); ?>
 
 			</fieldset>
 

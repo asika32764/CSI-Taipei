@@ -8,6 +8,9 @@
 
 namespace Csi\Engine;
 
+use Joomla\String\String;
+use Windwalker\Helper\CurlHelper;
+
 /**
  * The TciEngine class.
  * 
@@ -57,6 +60,41 @@ class TciEngine extends AbstractEngine
 //		'safe'  => 'on',
 //		'start' => null
 	);
+
+	/**
+	 * getPage
+	 *
+	 * @param int $page
+	 *
+	 * @return  string|null
+	 *
+	 * @throws \InvalidArgumentException
+	 */
+	public function getPage($page = 1)
+	{
+		if ($page < 1)
+		{
+			throw new \InvalidArgumentException('Page should bigger than 0.');
+		}
+
+		if (!$this->state->get('keyword'))
+		{
+			return null;
+		}
+
+		$uri = $this->prepareUrl($page);
+
+		echo $uri;die;
+
+		$queries;
+
+		// return RefCurlHelper::getPageHTML((string) $uri);
+		$html = CurlHelper::get((string) $uri, 'post', $queries, array(CURLOPT_ENCODING => 'UTF-8'))->body;
+
+		$html = String::transcode($html, 'big5', 'UTF-8');
+
+		return $html;
+	}
 
 	/**
 	 * getPageList
