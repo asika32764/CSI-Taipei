@@ -8,6 +8,7 @@
 
 namespace Csi\Controller\Tci\Author;
 
+use Csi\Database\AbstractDatabase;
 use Csi\Database\TciDatabase;
 use Csi\Engine\AbstractEngine;
 use Windwalker\Controller\Controller;
@@ -54,11 +55,14 @@ class CountController extends Controller
 		$state->set('keyword', $queue->query->get('keyword'));
 		$state->set('type', TciDatabase::TYPE_AUTHOR);
 
-		$pages = $engine->getPage(1);
+		$page = $engine->getPage(1);
 
-		$this->app->triggerEvent('onAfterCountEnginepages', array($task->database, $queue, &$pages, $task, $engine));
+		$tci = AbstractDatabase::getInstance($task->database);
+		$result = $tci->parseAuthor($page);
 
-		return sprintf('Count pages: %s success.', count($pages));
+		$this->app->triggerEvent('onAfterTciCountAuthor', array($task->database, $task, $result));
+
+		return 'Count Tci Author: success.';
 	}
 }
  

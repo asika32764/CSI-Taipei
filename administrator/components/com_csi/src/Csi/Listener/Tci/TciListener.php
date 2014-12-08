@@ -88,6 +88,25 @@ class TciListener extends DatabaseListener
 	}
 
 	/**
+	 * onAfterTciCountAuthor
+	 *
+	 * @param string  $database
+	 * @param Data    $task
+	 * @param integer $result
+	 *
+	 * @return  void
+	 */
+	public function onAfterTciCountAuthor($database, Data $task, $result)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		$this->saveResult($database, $task, $task, new Data(['author' => $result]), 'task');
+	}
+
+	/**
 	 * onPageAnalysis
 	 *
 	 * @param string                $database
