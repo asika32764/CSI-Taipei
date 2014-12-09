@@ -186,6 +186,24 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * Tests the behavior of the \Countable interface implementation
+	 *
+	 * @return  void
+	 *
+	 * @covers  Joomla\Registry\Registry::count
+	 * @since   1.3.0
+	 */
+	public function testCountable()
+	{
+		$a = new Registry;
+		$a->set('foo1', 'testtoarray1');
+		$a->set('foo2', 'testtoarray2');
+		$a->set('config.foo3', 'testtoarray3');
+
+		$this->assertEquals(3, count($a), 'count() should correctly count the number of data elements.');
+	}
+
+	/**
 	 * Test the Joomla\Registry\Registry::exists method.
 	 *
 	 * @return  void
@@ -282,6 +300,20 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
 			$this->logicalNot($this->identicalTo($c)),
 			'Line: ' . __LINE__ . '.'
 		);
+	}
+
+	/**
+	 * Tests the Joomla\Registry\Registry::getIterator method.
+	 *
+	 * @return  void
+	 *
+	 * @covers  Joomla\Registry\Registry::getIterator
+	 * @since   1.3.0
+	 */
+	public function testGetIterator()
+	{
+		$a = new Registry;
+		$this->assertInstanceOf('ArrayIterator', $a->getIterator());
 	}
 
 	/**
@@ -574,6 +606,45 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * Test the Joomla\Registry\Registry::extract method
+	 *
+	 * @return  void
+	 *
+	 * @covers  Joomla\Registry\Registry::extract
+	 * @since   1.2.0
+	 */
+	public function testExtract()
+	{
+		$a = new Registry(
+			array(
+				'foo'    => 'bar',
+				'subset' => array(
+					'data1' => 'test1',
+					'data2' => 'test2',
+					'data3' => array(1, 2, 3)
+				)
+			)
+		);
+
+		$b = $a->extract('subset');
+		$c = $a->extract('subset.data3');
+
+		$this->assertInstanceOf(
+			'\\Joomla\\Registry\\Registry',
+			$b,
+			'Line ' . __LINE__ . ' - Object $b should be an instance of Registry.'
+		);
+
+		$this->assertInstanceOf(
+			'\\Joomla\\Registry\\Registry',
+			$c,
+			'Line ' . __LINE__ . ' - Object $c should be an instance of Registry.'
+		);
+
+		$this->assertEquals('test2', $b->get('data2'), 'Test sub-registry path');
+	}
+
+	/**
 	 * Test the Joomla\Registry\Registry::offsetExists method.
 	 *
 	 * @return  void
@@ -749,5 +820,28 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
 			),
 			'Line: ' . __LINE__ . '.'
 		);
+	}
+
+	/**
+	 * Test flatten.
+	 *
+	 * @return  void
+	 *
+	 * @covers  Joomla\Registry\Registry::flatten
+	 * @since   1.3.0
+	 */
+	public function testFlatten()
+	{
+		$a = new Registry;
+		$a->set('flower.sunflower', 'light');
+		$a->set('flower.sakura', 'samurai');
+
+		$flatted = $a->flatten();
+
+		$this->assertEquals($flatted['flower.sunflower'], 'light');
+
+		$flatted = $a->flatten('/');
+
+		$this->assertEquals($flatted['flower/sakura'], 'samurai');
 	}
 }

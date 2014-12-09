@@ -83,7 +83,10 @@ class TciListener extends DatabaseListener
 			)
 		);
 
-		$model->add('tci.cited.count', $query, $data);
+		// Cited
+		$model->add('tasks.engine.count', $query, $data);
+
+		// Author
 		$model->add('tci.author.count', $query, $data);
 	}
 
@@ -104,6 +107,43 @@ class TciListener extends DatabaseListener
 		}
 
 		$this->saveResult($database, $task, $task, new Data(['author' => $result]), 'task');
+	}
+
+	/**
+	 * onAfterCountEnginepages
+	 *
+	 * @param string $database
+	 * @param Data   $lastQueue
+	 * @param Data   $pages
+	 * @param Data   $task
+	 * @param Data   $engine
+	 *
+	 * @return  void
+	 */
+	public function onAfterCountEnginepages($database, $lastQueue, $pages, $task, $engine)
+	{
+		if (!$this->checkType($database))
+		{
+			return;
+		}
+
+		// Get Queue model
+		$queueModel = new QueueModel;
+
+		// Build query
+		$query = new \JRegistry;
+
+		$query->set('id', $task->id);
+
+		foreach ($pages as $page)
+		{
+			$query->set('url', $page->url);
+			$query->set('num', $page->num);
+			$query->set('total', count($pages));
+			$query->set('keyword', $lastQueue->query->get('keyword'));
+
+			$queueModel->add('tci.cited.analysis', $query, $task);
+		}
 	}
 
 	/**

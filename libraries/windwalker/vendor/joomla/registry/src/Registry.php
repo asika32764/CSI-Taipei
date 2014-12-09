@@ -15,7 +15,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.0
  */
-class Registry implements \JsonSerializable, \ArrayAccess
+class Registry implements \JsonSerializable, \ArrayAccess, \IteratorAggregate, \Countable
 {
 	/**
 	 * Registry Object
@@ -78,6 +78,26 @@ class Registry implements \JsonSerializable, \ArrayAccess
 	public function __toString()
 	{
 		return $this->toString();
+	}
+
+	/**
+	 * Count elements of the data object
+	 *
+	 * @return  integer  The custom count as an integer.
+	 *
+	 * @link    http://php.net/manual/en/countable.count.php
+	 * @since   1.3.0
+	 */
+	public function count()
+	{
+		$i = 0;
+
+		foreach ($this->data as $item)
+		{
+			$i++;
+		}
+
+		return $i++;
 	}
 
 	/**
@@ -226,6 +246,21 @@ class Registry implements \JsonSerializable, \ArrayAccess
 	}
 
 	/**
+	 * Gets this object represented as an ArrayIterator.
+	 *
+	 * This allows the data properties to be accessed via a foreach statement.
+	 *
+	 * @return  \ArrayIterator  This object represented as an ArrayIterator.
+	 *
+	 * @see     IteratorAggregate::getIterator()
+	 * @since   1.3.0
+	 */
+	public function getIterator()
+	{
+		return new \ArrayIterator($this->data);
+	}
+
+	/**
 	 * Load a associative array of values into the default namespace
 	 *
 	 * @param   array  $array  Associative array of value to load
@@ -307,11 +342,37 @@ class Registry implements \JsonSerializable, \ArrayAccess
 	 *
 	 * @since   1.0
 	 */
-	public function merge(Registry $source, $recursive = false)
+	public function merge($source, $recursive = false)
 	{
+		if (!$source instanceof Registry)
+		{
+			return false;
+		}
+
 		$this->bindData($this->data, $source->toArray(), $recursive, false);
 
 		return $this;
+	}
+
+	/**
+	 * Method to extract a sub-registry from path
+	 *
+	 * @param   string  $path     Registry path (e.g. joomla.content.showauthor)
+	 *
+	 * @return  Registry|null  Registry object if data is present
+	 *
+	 * @since   1.2.0
+	 */
+	public function extract($path)
+	{
+		$data = $this->get($path);
+
+		if (is_null($data))
+		{
+			return null;
+		}
+
+		return new Registry($data);
 	}
 
 	/**
@@ -463,6 +524,7 @@ class Registry implements \JsonSerializable, \ArrayAccess
 	 * @param   object   $parent     The parent object on which to attach the data values.
 	 * @param   mixed    $data       An array or object of data to bind to the parent object.
 	 * @param   boolean  $recursive  True to support recursive bindData.
+	 * @param   boolean  $allowNull  True to allow null values.
 	 *
 	 * @return  void
 	 *
@@ -534,5 +596,54 @@ class Registry implements \JsonSerializable, \ArrayAccess
 		}
 
 		return $array;
+	}
+
+	/**
+	 * Dump to one dimension array.
+	 *
+	 * @param   string  $separator  The key separator.
+	 *
+	 * @return  string[]  Dumped array.
+	 *
+	 * @since   1.3.0
+	 */
+	public function flatten($separator = '.')
+	{
+		$array = array();
+
+		$this->toFlatten($separator, $this->data, $array);
+
+		return $array;
+	}
+
+	/**
+	 * Method to recursively convert data to one dimension array.
+	 *
+	 * @param   string        $separator  The key separator.
+	 * @param   array|object  $data       Data source of this scope.
+	 * @param   array         &$array     The result array, it is pass by reference.
+	 * @param   string        $prefix     Last level key prefix.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.3.0
+	 */
+	protected function toFlatten($separator = '.', $data = null, &$array = array(), $prefix = '')
+	{
+		$data = (array) $data;
+
+		foreach ($data as $k => $v)
+		{
+			$key = $prefix ? $prefix . $separator . $k : $k;
+
+			if (is_object($v) || is_array($v))
+			{
+				$this->toFlatten($separator, $v, $array, $key);
+			}
+			else
+			{
+				$array[$key] = $v;
+			}
+		}
 	}
 }

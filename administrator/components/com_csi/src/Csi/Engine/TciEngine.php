@@ -10,6 +10,7 @@ namespace Csi\Engine;
 
 use Csi\Database\TciDatabase;
 use Joomla\String\String;
+use Windwalker\Data\Data;
 use Windwalker\Helper\CurlHelper;
 
 /**
@@ -70,14 +71,20 @@ class TciEngine extends AbstractEngine
 			'extrasearch' => 'es0',
 			'ltsysbc' => 2000,
 			'histlist' => 1,
-			'_status_' => 'tcisearch_opt1'
+			'_status_' => 'tcisearch_opt1',
+			'_path' => 'tcisearch_opt1',
 		],
 		TciDatabase::TYPE_CITED => [
+			'limitcitype' => 'range',
+			'limitscope' => 'limit1',
+			'maylimitonly' => 1,
 			'qs0' => null,
-			'dcf' => 'au',
 			'displayonerecdisable' => 1,
 			'extrasearch' => 'es0',
-			'_status_' => 'tcisearch_opt2'
+			'SubmitChangePage' => 1,
+			'jpsize' => 100,
+			'_status_' => 'tcisearch_opt2_result',
+			'_path' => 'tcisearch_opt2',
 		]
 	];
 
@@ -108,8 +115,8 @@ class TciEngine extends AbstractEngine
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'http://tci.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclresource&tcihsspage=tcisearcharea&loadingjs=1&ssoauth=1&cache=' . time());
-		curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/32.0.1700.107 Chrome/32.0.1700.107 Safari/537.36');
-		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/32.0.1700.107 Chrome/32.0.1700.107 Safari/537.36');
+		curl_setopt($ch, CURLOPT_POST, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_COOKIESESSION, true);
 		curl_setopt($ch, CURLOPT_COOKIEJAR, JPATH_ROOT . '/tmp/cookie/tci');
@@ -128,6 +135,12 @@ class TciEngine extends AbstractEngine
 
 		$keywords = json_decode($this->state->get('keyword', '[]'));
 
+		if (count($keywords) < 4)
+		{
+			$keywords[] = null;
+			$keywords[] = null;
+		}
+
 		foreach ($keywords as $i => $keyword)
 		{
 			$queries['qs' . $i] = $keyword;
@@ -135,7 +148,13 @@ class TciEngine extends AbstractEngine
 			$queries['qo' . ($i + 1)] = 'or';
 		}
 
-		curl_setopt($ch, CURLOPT_URL, 'http://tci.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/ccd=' . $ccd . '/' . $queries['_status_'] .'_search#result');
+		if ($page > 1)
+		{
+			$queries['jmpage'] = $page;
+			$queries['jumpfmt1page'] = '跳至';
+		}
+
+		curl_setopt($ch, CURLOPT_URL, 'http://tci.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi/ccd=' . $ccd . '/' . $queries['_path'] .'_search#result');
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($queries));
 		$html = curl_exec($ch);
@@ -154,7 +173,27 @@ class TciEngine extends AbstractEngine
 	 */
 	public function getPageList()
 	{
+		$this->state->set('type', TciDatabase::TYPE_CITED);
 
+		$html = $this->getPage(1);
+
+		preg_match('/<input type=text name="jmpage" value="[\d]" class="text_jpg" >\s\/([\d]*)<font class=gs32sys_12pt>頁/', $html, $matched);
+
+		$num = $matched ? $matched[1] : 1;
+
+		$pages = array();
+
+		foreach (range(1, $num) as $row)
+		{
+			$page = new Data;
+
+			$page->num = $row;
+			$page->url = (string) $this->prepareUrl($row);
+
+			$pages[] = $page;
+		}
+
+		return $pages;
 	}
 
 	/**
