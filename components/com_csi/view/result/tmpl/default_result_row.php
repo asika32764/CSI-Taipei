@@ -16,7 +16,7 @@ foreach ($data->databaseResult as $title => $result)
 :
 	$task = $data->tasks->{$data->database};
 
-	$nolink = ($user->guest || $data->database == 'scholar');
+	$nolink = ($user->guest || $data->database == 'scholar' || $data->database == 'tci');
 ?>
 <tr>
 	<?php if ($i == 0): ?>
