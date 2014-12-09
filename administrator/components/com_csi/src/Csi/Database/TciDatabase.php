@@ -65,5 +65,19 @@ class TciDatabase extends AbstractDatabase
 
 		return $r ? $matched[1] : 0;
 	}
+
+	/**
+	 * parseCited
+	 *
+	 * @param string $txt
+	 *
+	 * @return  integer
+	 */
+	public function parseCited($txt)
+	{
+		$r = preg_match_all('/title="引用此篇引文資料列表">([\d]*)<\/a>/', $txt, $matched);
+
+		return !empty($matched[1]) ? array_sum($matched[1]) : 0;
+	}
 }
  

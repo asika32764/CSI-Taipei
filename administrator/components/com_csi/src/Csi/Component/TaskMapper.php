@@ -42,7 +42,7 @@ class TaskMapper
 
 		$resolver->registerTask('tci.author.count', '\\Csi\\Controller\\Tci\\Author\\CountController');
 
-		$resolver->registerTask('tci.cited.count', '\\Csi\\Controller\\Tci\\Cited\\CountController');
+		$resolver->registerTask('tci.cited.analysis', '\\Csi\\Controller\\Tci\\Cited\\AnalysisController');
 
 		return $resolver;
 	}

@@ -149,42 +149,15 @@ class TciListener extends DatabaseListener
 	/**
 	 * onPageAnalysis
 	 *
-	 * @param string                $database
-	 * @param \Windwalker\Data\Data $page
-	 * @param \Windwalker\Data\Data $task
+	 * @param integer $result
+	 * @param Data    $task
 	 *
 	 * @return  void
 	 */
-	public function onPageAnalysis($database, $page, $task)
+	public function onTciAfterAnalysis($result, Data $task)
 	{
-		if (!$this->checkType($database))
-		{
-			return;
-		}
-
-		$model = AbstractDatabase::getInstance($database);
-
-		$txt = Reader::read($page->filepath);
-
-		$state = $model->getState();
-
-		// Prepare professors names
-		$params = new \JRegistry(json_decode($task->params));
-
-		$names = KeywordHelper::arrangeNames($params->get('name.chinese'), $params->get('name.eng'));
-
-		// Prepare states
-		$state->set('professors.titles', Config::get('database.syllabus.analysis.professors.titles'));
-		$state->set('professors.names',  $names);
-		$state->set('ranges.units',      Config::get('database.syllabus.analysis.units'));
-		$state->set('terms.course',      Config::get('database.syllabus.analysis.terms.course'));
-		$state->set('terms.reference',   Config::get('database.syllabus.analysis.terms.reference'));
-
-		// Get result
-		$result = $model->parseResult($txt);
-
 		// Save Result
-		$this->saveResult($database, $page, $task, $result);
+		$this->saveResult('tci', new Data, $task, new Data(['cited' => $result]), 'engine');
 	}
 
 	/**
