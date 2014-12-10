@@ -1,0 +1,9 @@
+{
+	"name": "sms",
+	"dependencies": {
+		"jquery": "1.8.3",
+		"backbone-amd": null,
+		"underscore-amd": null,
+		"requirejs": null
+	}
+}

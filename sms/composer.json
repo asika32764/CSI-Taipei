@@ -1,0 +1,17 @@
+{
+	"minimum-stability": "dev",
+	"require" : {
+		"windwalker/console": "~2.0"
+	},
+	"require-dev" : {
+		"smstw/php-code-sniffer" : "*",
+		"squizlabs/php_codesniffer": "~1.0@stable",
+		"phpunit/phpunit": "~3.0@stable",
+		"phpunit/dbunit": "~1.0@stable"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "src/"
+		}
+	}
+}
