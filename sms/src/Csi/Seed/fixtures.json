@@ -1,0 +1,45 @@
+[
+	{
+		"name": {
+			"chinese": "石之瑜",
+			"eng": [
+				{
+					"first": "Chih-Yu",
+					"last": "Shih"
+				}
+			]
+		},
+		"school": "臺灣大學",
+		"title": "石之瑜;Chih-Yu Shih"
+	},
+	{
+		"name": {
+			"chinese": "唐牧群",
+			"eng": [
+				{
+					"first": "Muh-Chyun",
+					"last": "Tang"
+				}
+			]
+		},
+		"school": "臺灣大學",
+		"title": "唐牧群;Muh-Chyun Tang"
+	},
+	{
+		"name": {
+			"chinese": "唐牧群",
+			"eng": [
+				{
+					"first": "Muh-Chyun",
+					"last": "Tang"
+				},
+				{
+					"first": "MC",
+					"last": "Tang"
+				}
+			]
+		},
+		"school": "臺灣大學",
+		"title": "唐牧群;Muh-Chyun Tang;MC Tang"
+	}
+]

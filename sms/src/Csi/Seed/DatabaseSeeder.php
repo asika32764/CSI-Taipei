@@ -24,7 +24,8 @@ class DatabaseSeeder extends AbstractSeeder
 	 */
 	public function doExecute()
 	{
-
+		$this->execute(new EntrySeeder);
+		$this->execute(new TaskSeeder);
 	}
 
 	/**
@@ -34,7 +35,8 @@ class DatabaseSeeder extends AbstractSeeder
 	 */
 	public function doClean()
 	{
-
+		$this->db->truncateTable('#__csi_entries');
+		$this->db->truncateTable('#__csi_tasks');
 	}
 }
  

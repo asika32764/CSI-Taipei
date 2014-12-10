@@ -74,8 +74,8 @@ class CleanCommand extends Command
 			throw new \RuntimeException('Class: ' . $class . ' should be sub class of SMS\Seeder\AbstractSeeder.');
 		}
 
-		/** @var \Windwalker\Core\Seeder\AbstractSeeder $seeder */
-		$seeder = new $class(\JFactory::getConfig(), $this);
+		/** @var \SMS\Seeder\AbstractSeeder $seeder */
+		$seeder = new $class(\JFactory::getDbo(), $this);
 
 		$seeder->doClean();
 
