@@ -1,0 +1,6 @@
+{
+	"project": {
+		"component": "com_sms",
+		"prefix": "SMS"
+	}
+}

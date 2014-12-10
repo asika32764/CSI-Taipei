@@ -26,7 +26,7 @@ ini_set('precision', 14);
  */
 if (!defined('JPATH_TESTS'))
 {
-	define('JPATH_TESTS', realpath(__DIR__));
+	define('JPATH_TESTS', __DIR__);
 }
 if (!defined('JPATH_TEST_DATABASE'))
 {
@@ -38,15 +38,15 @@ if (!defined('JPATH_TEST_STUBS'))
 }
 if (!defined('JPATH_PLATFORM'))
 {
-	define('JPATH_PLATFORM', realpath(dirname(dirname(__DIR__)) . '/libraries'));
+	define('JPATH_PLATFORM', realpath(JPATH_TESTS . '/../../libraries'));
 }
 if (!defined('JPATH_LIBRARIES'))
 {
-	define('JPATH_LIBRARIES', realpath(dirname(dirname(__DIR__)) . '/libraries'));
+	define('JPATH_LIBRARIES', JPATH_PLATFORM);
 }
 if (!defined('JPATH_BASE'))
 {
-	define('JPATH_BASE', realpath(dirname(dirname(__DIR__))));
+	define('JPATH_BASE', realpath(JPATH_TESTS . '/../..'));
 }
 if (!defined('JPATH_ROOT'))
 {
@@ -84,23 +84,47 @@ if (!defined('JPATH_THEMES'))
 {
 	define('JPATH_THEMES', JPATH_BASE . '/templates');
 }
-if (!defined('JDEBUG'))
-{
-	define('JDEBUG', false);
-}
 
-// Import the platform in legacy mode.
-require_once JPATH_PLATFORM . '/import.legacy.php';
+//// Import the platform in legacy mode.
+//require_once JPATH_PLATFORM . '/import.php';
+//
+//// Force library to be in JError legacy mode
+//JError::setErrorHandling(E_NOTICE, 'message');
+//JError::setErrorHandling(E_WARNING, 'message');
+//
+//// Bootstrap the CMS libraries.
+//require_once JPATH_PLATFORM . '/cms.php';
 
-// Force library to be in JError legacy mode
-JError::setErrorHandling(E_NOTICE, 'message');
-JError::setErrorHandling(E_WARNING, 'message');
-
-// Bootstrap the CMS libraries.
-require_once JPATH_LIBRARIES . '/cms.php';
-
-// Register the core Joomla test classes.
-JLoader::registerPrefix('Test', __DIR__ . '/core');
+include_once JPATH_BASE . '/includes/framework.php';
 
 // Include Composer
 include_once __DIR__ . '/../vendor/autoload.php';
+
+// Restore error handler
+//restore_error_handler();
+//restore_exception_handler();
+
+// Fake HTTP
+$_SERVER['HTTP_HOST'] = 'windwalker.io';
+
+// Init Application
+$app = JFactory::getApplication('administrator');
+
+// Load Classes
+JLoader::registerNamespace('SMS', __DIR__);
+
+// Load Config
+if (is_file(__DIR__ . '/../etc/config.json'))
+{
+	$config = JFactory::getConfig();
+
+	$config->loadFile(__DIR__ . '/../etc/config.json');
+}
+
+// Include Windwalker
+//$windwalker = JPATH_LIBRARIES . '/windwalker/src/init.php';
+//
+//if (is_file($windwalker))
+//{
+//	include_once $windwalker;
+//}

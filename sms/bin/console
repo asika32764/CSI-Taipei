@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+include_once __DIR__ . '/../src/init.php';
+
+$console = new \SMS\Console\SMSConsole;
+
+$console->addCommand(new \SMS\Seeder\Command\SeedCommand);
+
+$console->execute();

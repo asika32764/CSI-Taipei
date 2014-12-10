@@ -1,7 +1,9 @@
 {
 	"minimum-stability": "dev",
 	"require" : {
-		"windwalker/console": "~2.0"
+		"windwalker/console": "~2.0",
+		"windwalker/string": "~2.0",
+		"windwalker/utilities": "~2.0"
 	},
 	"require-dev" : {
 		"smstw/php-code-sniffer" : "*",
