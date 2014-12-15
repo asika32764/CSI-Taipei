@@ -1,0 +1,13 @@
+# System
+
+# Bower
+/media
+
+# SMS
+# /etc/config.json
+
+# Composer
+/vendor
+
+# Test
+/phpunit.xml

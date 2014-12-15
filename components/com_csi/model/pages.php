@@ -101,6 +101,14 @@ class CsiModelPages extends \Windwalker\Model\ListModel
 			$query->where($query->quoteName('page.state') . ' >= 0');
 		}
 
+		/** @var \JInput $input */
+		$input = $this->container->get('input');
+
+		if ($input->getInt('id'))
+		{
+			$query->where('page.task_id = ' . $input->getInt('id'));
+		}
+
 		return parent::processFilters($query, $filters);
 	}
 

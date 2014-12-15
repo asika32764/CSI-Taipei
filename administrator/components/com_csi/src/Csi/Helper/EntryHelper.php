@@ -266,6 +266,7 @@ class EntryHelper
 				"social",
 				"wiki",
 				"scholar",
+				"tci",
 				"webometrics"
 			),
 

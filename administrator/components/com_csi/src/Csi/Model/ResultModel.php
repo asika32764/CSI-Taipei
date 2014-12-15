@@ -29,7 +29,7 @@ class ResultModel extends \JModelDatabase
 	{
 		$pageIds = $this->state->get('page.ids', array());
 
-		$results = with(new DataMapper(Table::RESULTS))->find(array('type' => 'page', 'fk' => $pageIds));
+		$results = with(new DataMapper(Table::RESULTS))->find(array('fk' => $pageIds));
 
 		$resultFields = $this->getResultFields();
 

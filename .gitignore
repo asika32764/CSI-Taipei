@@ -25,3 +25,4 @@ composer.lock
 !/files/index.html
 
 !/.gitignore
+!/sms/.gitignore

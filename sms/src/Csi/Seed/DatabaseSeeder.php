@@ -26,6 +26,9 @@ class DatabaseSeeder extends AbstractSeeder
 	{
 		$this->execute(new EntrySeeder);
 		$this->execute(new TaskSeeder);
+		$this->execute(new EnginepageSeeder);
+		$this->execute(new PageSeeder);
+		$this->execute(new ResultSeeder);
 	}
 
 	/**
@@ -37,6 +40,9 @@ class DatabaseSeeder extends AbstractSeeder
 	{
 		$this->db->truncateTable('#__csi_entries');
 		$this->db->truncateTable('#__csi_tasks');
+		$this->db->truncateTable('#__csi_enginepages');
+		$this->db->truncateTable('#__csi_pages');
+		$this->db->truncateTable('#__csi_results');
 	}
 }
  
