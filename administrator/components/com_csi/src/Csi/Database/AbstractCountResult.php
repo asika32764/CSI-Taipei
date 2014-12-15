@@ -20,7 +20,7 @@ class AbstractCountResult extends AbstractResult
 	 *
 	 * @var  string
 	 */
-	protected $type = 'engine';
+	protected $type = 'page';
 
 	/**
 	 * get

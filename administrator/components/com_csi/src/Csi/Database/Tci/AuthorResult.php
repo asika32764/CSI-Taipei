@@ -29,6 +29,5 @@ class AuthorResult extends AbstractCountResult
 	 *
 	 * @var  string
 	 */
-	protected $type = 'task';
+	protected $type = 'engine';
 }
- 

@@ -43,12 +43,13 @@ class ResultSeeder extends AbstractSeeder
 			{
 				switch ($database)
 				{
-					case 'syllabus':
-						$type = 'page';
+					case 'scholar':
+					case 'tci':
+						$type = 'engine';
 						break;
 
 					default:
-						$type = 'engine';
+						$type = 'page';
 						break;
 				}
 

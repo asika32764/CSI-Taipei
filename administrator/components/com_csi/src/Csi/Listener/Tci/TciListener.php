@@ -106,7 +106,7 @@ class TciListener extends DatabaseListener
 			return;
 		}
 
-		$this->saveResult($database, $task, $task, new Data(['author' => $result]), 'task');
+		$this->saveResult($database, $task, $task, new Data(['author' => $result]), 'engine');
 	}
 
 	/**

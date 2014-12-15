@@ -23,5 +23,12 @@ class CitedResult extends AbstractCountResult
 	 * @var  string
 	 */
 	protected $name = 'cited';
+
+	/**
+	 * Property type.
+	 *
+	 * @var  string
+	 */
+	protected $type = 'engine';
 }
  
