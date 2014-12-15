@@ -96,7 +96,7 @@
 
 			</fieldset>
 
-			<fieldset class="margin-t-50">
+			<fieldset class="margin-t-50 form-inline">
 				<legend>請選擇檢索項目</legend>
 
 				<?php echo \Csi\Helper\DatabaseHelper::generateCheckboxes($data->query['database']); ?>

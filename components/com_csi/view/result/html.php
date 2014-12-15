@@ -6,7 +6,9 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-use Windwalker\Joomla\DataMapper\DataMapper;
+use Joomla\Registry\Registry;
+use Windwalker\Data\Data;
+use Windwalker\Helper\ArrayHelper;
 use Windwalker\View\Html\HtmlView;
 
 /**
@@ -38,6 +40,51 @@ class CsiViewResultHtml extends HtmlView
 
 		$data->results = $this->get('Result');
 		$data->tasks = $this->get('Tasks');
+		$data->relates = $this->get('Relates');
+
+		$this->prepareQueries($data->entry, $data->query);
+
+		foreach ($data->relates as $relate)
+		{
+			$query = clone $data->query;
+
+			$this->overrideQueries($relate, $query);
+
+			$queries['id'] = $relate->id;
+			$queries['q'] = $query->toString();
+
+			$relate->link = \Csi\Router\Route::_('result', $queries);
+		}
+	}
+
+	/**
+	 * prepareQueries
+	 *
+	 * @param Data     $entry
+	 * @param Registry $query
+	 *
+	 * @return  void
+	 */
+	protected function prepareQueries(Data $entry, Registry $query)
+	{
+		$query->def('chinese_name', ArrayHelper::getByPath($entry->params, 'name.chinese'));
+		$query->def('eng_name',     ArrayHelper::getByPath($entry->params, 'name.eng'));
+		$query->def('school',       ArrayHelper::getByPath($entry->params, 'school'));
+	}
+
+	/**
+	 * overrideQueries
+	 *
+	 * @param Data     $entry
+	 * @param Registry $query
+	 *
+	 * @return  void
+	 */
+	protected function overrideQueries(Data $entry, Registry $query)
+	{
+		$query->set('chinese_name', ArrayHelper::getByPath($entry->params, 'name.chinese'));
+		$query->set('eng_name',     ArrayHelper::getByPath($entry->params, 'name.eng'));
+		$query->set('school',       ArrayHelper::getByPath($entry->params, 'school'));
 	}
 }
  

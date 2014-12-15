@@ -6,6 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
+use Windwalker\Data\DataSet;
 use Windwalker\Model\CrudModel;
 
 /**
@@ -77,7 +78,38 @@ class CsiModelEntry extends CrudModel
 			$task = new \Windwalker\Data\Data($task);
 		}
 
-		return $this->tasks = new \Windwalker\Data\Data($tasks);
+		return $this->tasks = new \Windwalker\Data\DataSet($tasks);
+	}
+
+	/**
+	 * getRelates
+	 *
+	 * @return  DataSet
+	 */
+	public function getRelates()
+	{
+		$entry = $this->getItem();
+
+		$query = $this->db->getQuery(true);
+
+		$query->select('*')
+			->from('#__csi_entries')
+			->where($query->format('%n LIKE %q', 'title', '%' . $entry->title . '%'))
+			->where('id != ' . $entry->id);
+
+		$entries = $this->db->setQuery($query)->loadObjectList();
+
+		array_map(
+			function ($entry)
+			{
+				$entry->params = json_decode($entry->params);
+
+				return new \Windwalker\Data\Data($entry);
+			},
+			$entries
+		);
+
+		return new \Windwalker\Data\DataSet($entries);
 	}
 }
  
