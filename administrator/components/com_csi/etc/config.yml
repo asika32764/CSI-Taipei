@@ -2,94 +2,102 @@ system:
     debug: true
     development: true
 database:
-    syllabus:
-        type: parse
-        name: syllabus
-        engine: google
-        keyword:
-            - 課程大綱
-            - '"Syllabus"'
-        analysis:
-            professors:
-                titles: [教授, 教師, 老師, 副教授]
-            units: 5
-            terms:
-                course: [課程大綱, 課綱, 大綱]
-                reference: [參考文獻, 參考資源, 參考書目]
-        result_fields:
-            - cited
-            - self_cited
-            - syllabus_count
-        page_result_fields:
-            - cited
-            - self_cited
-            - is_syllabus
-
-#    ethesys:
+#    syllabus:
 #        type: parse
-#        name: ethesys
+#        name: syllabus
 #        engine: google
+#        keyword:
+#            - 課程大綱
+#            - '"Syllabus"'
+#        analysis:
+#            professors:
+#                titles: [教授, 教師, 老師, 副教授]
+#            units: 5
+#            terms:
+#                course: [課程大綱, 課綱, 大綱]
+#                reference: [參考文獻, 參考資源, 參考書目]
+#        result_fields:
+#            - cited
+#            - self_cited
+#            - syllabus_count
+#        page_result_fields:
+#            - cited
+#            - self_cited
+#            - is_syllabus
+#
+##    ethesys:
+##        type: parse
+##        name: ethesys
+##        engine: google
+#
+#    paper:
+#        type: parse
+#        name: paper
+#        engine: google
+#        result_fields:
+#            - cited
+#            - author
+#            - mentioned
+#        page_result_fields:
+#            - author
+#            - cited
+#            - mentioned
+#    social:
+#        type: parse
+#        name: social
+#        engine: google
+#        sites:
+#            - facebook.com
+#            - plus.google.com
+#            - twitter.com
+#        result_fields:
+#            - cited
+#            - author
+#            - mentioned
+#        page_result_fields:
+#            - author
+#            - cited
+#            - mentioned
+#    wiki:
+#        type: parse
+#        name: wiki
+#        engine: google
+#        result_fields:
+#            - citmentioned
+#            - entry
+#        page_result_fields:
+#            - cited
+#            - mentioned
+#            - entry
+#
+#    scholar:
+#        type: parse
+#        name: scholar
+#        engine: scholar
+#        result_fields:
+#            - cited
+#            - author
+#        page_result_fields:
+#            - cited
+#            - author
+#    tci:
+#        type: parse
+#        name: tci
+#        engine: tci
+#        result_fields:
+#            - author
+#            - cited
+#        page_result_fields:
+#            - author
+#            - cited
 
-    paper:
+    wos:
         type: parse
-        name: paper
-        engine: google
+        name: wos
+        engine: wos
         result_fields:
             - cited
-            - author
-            - mentioned
-        page_result_fields:
-            - author
-            - cited
-            - mentioned
-    social:
-        type: parse
-        name: social
-        engine: google
-        sites:
-            - facebook.com
-            - plus.google.com
-            - twitter.com
-        result_fields:
-            - cited
-            - author
-            - mentioned
-        page_result_fields:
-            - author
-            - cited
-            - mentioned
-    wiki:
-        type: parse
-        name: wiki
-        engine: google
-        result_fields:
-            - citmentioned
-            - entry
-        page_result_fields:
-            - cited
-            - mentioned
-            - entry
 
-    scholar:
-        type: parse
-        name: scholar
-        engine: scholar
-        result_fields:
-            - cited
-            - author
-        page_result_fields:
-            - cited
-            - author
-    tci:
-        type: parse
-        name: tci
-        engine: tci
-        result_fields:
-            - author
-            - cited
-        page_result_fields:
-            - author
-            - cited
     webometrics:
         type: webo
         name: webometrics
