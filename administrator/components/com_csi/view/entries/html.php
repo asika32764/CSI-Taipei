@@ -113,7 +113,7 @@ class CsiViewEntriesHtml extends GridView
 		$buttonSet = parent::configureToolbar($buttonSet, $canDo);
 
 		// In debug mode, we remove trash button but use delete button instead.
-		if (JDEBUG)
+		// if (JDEBUG)
 		{
 			$buttonSet['trash']['access']  = false;
 			$buttonSet['delete']['access'] = true;
