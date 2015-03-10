@@ -53,8 +53,8 @@ abstract class Config extends AbstractConfig
 		}
 
 		$config = with(new Registry)
-			->loadFile(static::getPath(), static::$type)
-			->loadFile(CSI_ADMIN . '/etc/wos.yml', 'yaml');
+			->loadFile(static::getPath(), static::$type);
+			//->loadFile(CSI_ADMIN . '/etc/wos.yml', 'yaml');
 
 		return static::$config = $config;
 	}
