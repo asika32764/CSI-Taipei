@@ -129,6 +129,49 @@ class WosEngine extends AbstractEngine
 	}
 
 	/**
+	 * getCited
+	 *
+	 * @param string $doi
+	 *
+	 * @return  \SimpleXMLElement
+	 */
+	public function getCited($doi)
+	{
+		if (Config::get('database.wos.test'))
+		{
+			return simplexml_load_string(file_get_contents(CSI_ADMIN . '/test/wos/author.xml'));
+		}
+
+		$http = \JHttpFactory::getHttp(null, 'curl');
+
+		$xml = <<<XML
+<request xmlns="http://www.isinet.com/xrpc41" src="app.id=PartnerApp,env.id=PartnerAppEnv,partner.email=tingchiang@ntu.edu.tw">
+	<fn name="LinksAMR.retrieve">
+		<list>
+			<map></map>
+			<map>
+				<list name="WOS">
+					<val>timesCited</val>
+					<val>sourceURL</val>
+					<val>citingArticlesURL</val>
+				</list>
+			</map>
+			<map>
+				<map name="84857">
+					<val name="doi">{$doi}</val>
+				</map>
+			</map>
+		</list>
+	</fn>
+</request>
+XML;
+
+		$result = $http->post('https://ws.isiknowledge.com/cps/xrpc', $xml, array('Content-Type' => 'text/xml'));
+
+		return simplexml_load_string($result->body);
+	}
+
+	/**
 	 * parsePage
 	 *
 	 * @param string $html

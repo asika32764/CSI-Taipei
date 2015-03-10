@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<response xmlns="http://www.isinet.com/xrpc41" src="app.id=PartnerApp, env.id=PartnerAppEnv, partner.email=tingchiang@ntu.edu.tw">
+	<fn name="LinksAMR.retrieve" rc="OK">
+		<map>
+			<map name="84857">
+				<map name="WOS">
+					<val name="sourceURL"><![CDATA[http://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=PARTNER_APP&SrcAuth=LinksAMR&KeyUT=WOS:000251701000022&DestLinkType=FullRecord&DestApp=ALL_WOS&UsrCustomerID=31c17a52e948e3a9c859e0d90b2cc672]]></val>
+					<val name="timesCited">9</val>
+					<val name="citingArticlesURL"><![CDATA[http://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&SrcApp=PARTNER_APP&SrcAuth=LinksAMR&KeyUT=WOS:000251701000022&DestLinkType=CitingArticles&DestApp=ALL_WOS&UsrCustomerID=31c17a52e948e3a9c859e0d90b2cc672]]></val>
+				</map>
+			</map>
+		</map>
+	</fn>
+</response>

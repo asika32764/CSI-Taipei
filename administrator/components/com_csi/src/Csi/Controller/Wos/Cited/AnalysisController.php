@@ -6,11 +6,12 @@
  * @license    GNU General Public License version 2 or later;
  */
 
-namespace Csi\Controller\Tci\Cited;
+namespace Csi\Controller\Wos\Cited;
 
 use Csi\Database\AbstractDatabase;
-use Csi\Database\TciDatabase;
+use Csi\Database\WosDatabase;
 use Csi\Engine\AbstractEngine;
+use Csi\Engine\WosEngine;
 use Joomla\Registry\Registry;
 use Windwalker\Controller\Controller;
 use Windwalker\Data\Data;
@@ -26,7 +27,7 @@ class AnalysisController extends Controller
 	/**
 	 * Property engine.
 	 *
-	 * @var AbstractEngine
+	 * @var WosEngine
 	 */
 	protected $engine;
 
@@ -47,7 +48,7 @@ class AnalysisController extends Controller
 	/**
 	 * Property database.
 	 *
-	 * @var TciDatabase
+	 * @var WosDatabase
 	 */
 	protected $database;
 
@@ -70,13 +71,13 @@ class AnalysisController extends Controller
 		$queue->query = new Registry($queue->query);
 
 		// Prepare engine model to get pages
-		$engine = AbstractEngine::getInstance('tci');
+		$engine = AbstractEngine::getInstance('wos');
 
 		$this->engine = $engine;
 		$this->queue  = $queue;
 		$this->query  = $queue->query;
 		$this->task   = (new DataMapper('#__csi_tasks'))->findOne(array('id' => $queue->query['id']));
-		$this->database = AbstractDatabase::getInstance('tci');
+		$this->database = AbstractDatabase::getInstance('wos');
 	}
 
 	/**
@@ -86,17 +87,12 @@ class AnalysisController extends Controller
 	 */
 	protected function doExecute()
 	{
-		$state = $this->engine->getState();
+		$result = $this->engine->getCited($this->query->get('page.doi'));
 
-		$state->set('keyword', $this->query['keyword']);
-		$state->set('type', TciDatabase::TYPE_CITED);
+		$cited = (string) $result->fn->map->map->map->val[1];
 
-		$page = $this->engine->getPage($this->query['num']);
+		$this->app->triggerEvent('onWosAfterAnalysis', array($cited, $this->task));
 
-		$result = $this->database->parseCited($page);
-
-		$this->app->triggerEvent('onTciAfterAnalysis', array($result, $this->task));
-
-		return sprintf('Analysis TCI page success, result: %s.', $result);
+		return sprintf('Analysis WOS page success, result: %s.', $cited);
 	}
 }

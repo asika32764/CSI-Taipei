@@ -10,6 +10,7 @@ namespace Csi\Listener\Wos;
 
 use Csi\Config\Config;
 use Csi\Database\AbstractDatabase;
+use Csi\Engine\AbstractEngine;
 use Csi\Helper\KeywordHelper;
 use Csi\Listener\DatabaseListener;
 use Csi\Model\QueueModel;
@@ -75,17 +76,31 @@ class WosListener extends DatabaseListener
 			return;
 		}
 
-		// Get queue model to add queue
-		$model = new QueueModel;
+		$engine = AbstractEngine::getInstance($engine);
 
-		$query = new \JRegistry(
-			array(
-				'id' => $id,
-				'keyword' => $data->keyword
-			)
-		);
+		$engine->getState()->set('keyword', $data->keyword);
 
-		$model->add('wos.engine.count', $query, $data);
+		$result = $engine->getPage();
+
+		$found = $result->return->recordsFound;
+
+		$pages = ceil($found / 100);
+
+		foreach (range(1, $pages) as $i)
+		{
+			// Get queue model to add queue
+			$model = new QueueModel;
+
+			$query = new \JRegistry(
+				array(
+					'id' => $id,
+					'keyword' => $data->keyword,
+					'start' => (($i - 1) * 100) + 1
+				)
+			);
+
+			$model->add('wos.engine.count', $query, $data);
+		}
 	}
 
 	/**
@@ -116,54 +131,27 @@ class WosListener extends DatabaseListener
 
 		foreach ($pages as $page)
 		{
-			$query->set('url', $page->url);
-			$query->set('num', $page->num);
-			$query->set('total', count($pages));
 			$query->set('keyword', $lastQueue->query->get('keyword'));
+			$query->set('page.uid', $page['uid']);
+			$query->set('page.title', $page->title->value);
+			$query->set('page.doi', isset($page->other[3]->value) ? $page->other[3]->value : null);
 
-			$queueModel->add('tasks.cited.analysis', $query, $task);
+			$queueModel->add('wos.cited.analysis', $query, $task);
 		}
 	}
 
 	/**
 	 * onPageAnalysis
 	 *
-	 * @param string                $database
-	 * @param \Windwalker\Data\Data $page
-	 * @param \Windwalker\Data\Data $task
+	 * @param integer $result
+	 * @param Data    $task
 	 *
 	 * @return  void
 	 */
-	public function onPageAnalysis($database, $page, $task)
+	public function onWosAfterAnalysis($result, Data $task)
 	{
-		if (!$this->checkType($database))
-		{
-			return;
-		}
-
-		$model = AbstractDatabase::getInstance($database);
-
-		$txt = Reader::read($page->filepath);
-
-		$state = $model->getState();
-
-		// Prepare professors names
-		$params = new \JRegistry(json_decode($task->params));
-
-		$names = KeywordHelper::arrangeNames($params->get('name.chinese'), $params->get('name.eng'));
-
-		// Prepare states
-		$state->set('professors.titles', Config::get('database.syllabus.analysis.professors.titles'));
-		$state->set('professors.names',  $names);
-		$state->set('ranges.units',      Config::get('database.syllabus.analysis.units'));
-		$state->set('terms.course',      Config::get('database.syllabus.analysis.terms.course'));
-		$state->set('terms.reference',   Config::get('database.syllabus.analysis.terms.reference'));
-
-		// Get result
-		$result = $model->parseResult($txt);
-
 		// Save Result
-		$this->saveResult($database, $page, $task, $result);
+		$this->saveResult('wos', new Data, $task, new Data(['cited' => $result]), 'engine');
 	}
 
 	/**

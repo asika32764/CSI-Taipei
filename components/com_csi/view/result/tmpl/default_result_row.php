@@ -14,7 +14,7 @@ $user = JFactory::getUser();
 
 foreach ($data->databaseResult as $title => $result)
 :
-	$task = $data->tasks->{$data->database};
+	$task = $data->tasks[$i];
 
 	$nolink = ($user->guest || $data->database == 'scholar' || $data->database == 'tci');
 ?>

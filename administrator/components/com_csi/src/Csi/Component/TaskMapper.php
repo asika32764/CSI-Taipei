@@ -46,6 +46,8 @@ class TaskMapper
 
 		$resolver->registerTask('wos.engine.count', '\\Csi\\Controller\\Wos\\Engine\\CountController');
 
+		$resolver->registerTask('wos.cited.analysis', '\\Csi\\Controller\\Wos\\Cited\\AnalysisController');
+
 		return $resolver;
 	}
 }

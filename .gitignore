@@ -26,3 +26,5 @@ composer.lock
 
 !/.gitignore
 !/sms/.gitignore
+
+/administrator/components/com_csi/etc/config.yml
