@@ -170,6 +170,33 @@ class WosListener extends DatabaseListener
 		{
 			return;
 		}
+
+		$app = Container::getInstance()->get('app');
+
+		$resultFields = Config::get('database.' . $database . '.result_fields', array());
+
+		$taskMapper = new DataMapper('#__csi_tasks');
+
+		$task = $taskMapper->findOne(array('entry_id' => $entry->id, 'database' => $database));
+
+		if ($task->isNull())
+		{
+			throw new \RuntimeException(sprintf('Can not get task by entry_id: %s and database: %s.', $entry->id, $database));
+		}
+
+		foreach ($resultFields as $field)
+		{
+			$class = sprintf('Csi\\Database\\%s\\%sResult', ucfirst($database), Normalise::toCamelCase($field));
+
+			if (!class_exists($class))
+			{
+				$app->enqueueMessage($class . ' not exists', 'warning');
+
+				continue;
+			}
+
+			$result->$field = with(new $class($task))->get();
+		}
 	}
 
 	/**

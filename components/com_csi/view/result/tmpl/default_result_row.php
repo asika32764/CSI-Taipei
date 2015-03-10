@@ -16,7 +16,13 @@ foreach ($data->databaseResult as $title => $result)
 :
 	$task = $data->tasks[$i];
 
-	$nolink = ($user->guest || $data->database == 'scholar' || $data->database == 'tci');
+	$nolinks = array(
+		'scholar',
+		'tci',
+		'wos'
+	);
+
+	$nolink = ($user->guest || in_array($data->database, $nolinks));
 ?>
 <tr>
 	<?php if ($i == 0): ?>
