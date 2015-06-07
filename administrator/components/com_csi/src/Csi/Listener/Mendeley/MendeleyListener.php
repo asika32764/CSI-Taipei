@@ -134,10 +134,10 @@ class MendeleyListener extends DatabaseListener
 	 *
 	 * @return  void
 	 */
-	public function onWosAfterAnalysis($result, Data $task)
+	public function onMendeleyAfterAnalysis($result, Data $task)
 	{
 		// Save Result
-		$this->saveResult('wos', new Data, $task, new Data(['cited' => $result]), 'engine');
+		$this->saveResult('mendeley', new Data, $task, new Data(['cited' => $result]), 'engine');
 	}
 
 	/**

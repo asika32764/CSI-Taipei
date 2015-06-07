@@ -10,6 +10,8 @@ namespace Csi\Engine;
 
 use Csi\Config\Config;
 use Csi\Mendeley\Mendeley;
+use Csi\Registry\RegistryHelper;
+use Joomla\Registry\Registry;
 use Joomla\String\String;
 use PHPHtmlParser\Dom;
 use Windwalker\Data\Data;
@@ -84,6 +86,8 @@ class MendeleyEngine extends AbstractEngine
 	{
 		$uri = $this->prepareUrl($page);
 
+		$uri->setVar('author', $this->state->get('keyword'));
+
 		$queries = $uri->getQuery(true);
 
 		$mendeley = new Mendeley(Config::get('mendeley.id'), Config::get('mendeley.secret'));
@@ -94,13 +98,25 @@ class MendeleyEngine extends AbstractEngine
 	/**
 	 * parsePage
 	 *
-	 * @param string $html
+	 * @param string $data
 	 *
 	 * @return  \Windwalker\Data\Data[]
 	 */
-	public function parsePage($html = null)
+	public function parsePage($data = null)
 	{
-		return new Data;
+		$items = json_decode($data);
+
+		$result = new Data(array('cited' => 0));
+
+		foreach ($items as $item)
+		{
+			if (isset($item->reader_count))
+			{
+				$result['cited'] += $item->reader_count;
+			}
+		}
+
+		return $result;
 	}
 
 	/**
@@ -115,7 +131,6 @@ class MendeleyEngine extends AbstractEngine
 		$uri = parent::prepareUrl($page);
 
 		$uri->setQuery($this->query) ;
-		$uri->setVar('author', $this->state->get('keyword'));
 		$uri->setVar('access_token', Config::get('mendeley.token'));
 
 		return $uri;

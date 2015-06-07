@@ -28,3 +28,4 @@ composer.lock
 !/sms/.gitignore
 
 /administrator/components/com_csi/etc/config.yml
+/administrator/components/com_csi/src/Csi/Config/Config.php

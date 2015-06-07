@@ -4,3 +4,14 @@ system:
 mendeley:
     id:
     secret:
+@import:
+    - database/syllabus.yml
+    - database/paper.yml
+    - database/social.yml
+    - database/airiti.yml
+    - database/ethesys.yml
+    - database/wiki.yml
+    - database/tci.yml
+    - database/wos.yml
+    - database/mendeley.yml
+    - database/webometrics.yml

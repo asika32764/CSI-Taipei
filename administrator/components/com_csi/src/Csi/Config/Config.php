@@ -57,16 +57,12 @@ abstract class Config extends AbstractConfig
 			->loadFile(static::getPath(), static::$type);
 			//->loadFile(CSI_ADMIN . '/etc/wos.yml', 'yaml');
 
-//		$config->loadFile(CSI_ADMIN . '/etc/database/syllabus.yml', 'yaml');
-//		$config->loadFile(CSI_ADMIN . '/etc/database/paper.yml', 'yaml');
-//		$config->loadFile(CSI_ADMIN . '/etc/database/social.yml', 'yaml');
-//		$config->loadFile(CSI_ADMIN . '/etc/database/airiti.yml', 'yaml');
-//		$config->loadFile(CSI_ADMIN . '/etc/database/ethesys.yml', 'yaml');
-//		$config->loadFile(CSI_ADMIN . '/etc/database/wiki.yml', 'yaml');
-//		$config->loadFile(CSI_ADMIN . '/etc/database/tci.yml', 'yaml');
-//		$config->loadFile(CSI_ADMIN . '/etc/database/wos.yml', 'yaml');
-		$config->loadFile(CSI_ADMIN . '/etc/database/mendeley.yml', 'yaml');
-		$config->loadFile(CSI_ADMIN . '/etc/database/webometrics.yml', 'yaml');
+		$imports = $config->get('@import', array());
+
+		foreach ($imports as $import)
+		{
+			$config->loadFile(CSI_ADMIN . '/etc/' . $import, 'yaml');
+		}
 
 		return static::$config = $config;
 	}
