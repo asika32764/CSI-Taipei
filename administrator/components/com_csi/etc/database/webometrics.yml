@@ -1,0 +1,6 @@
+database:
+    webometrics:
+        type: webo
+        name: webometrics
+        engines:
+            - yahoo

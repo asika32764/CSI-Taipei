@@ -1,0 +1,12 @@
+database:
+    wiki:
+        type: parse
+        name: wiki
+        engine: google
+        result_fields:
+            - citmentioned
+            - entry
+        page_result_fields:
+            - cited
+            - mentioned
+            - entry

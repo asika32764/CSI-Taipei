@@ -1,0 +1,17 @@
+database:
+    social:
+        type: parse
+        name: social
+        engine: google
+        sites:
+            - facebook.com
+            - plus.google.com
+            - twitter.com
+        result_fields:
+            - cited
+            - author
+            - mentioned
+        page_result_fields:
+            - author
+            - cited
+            - mentioned

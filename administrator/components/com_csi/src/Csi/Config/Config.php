@@ -52,9 +52,21 @@ abstract class Config extends AbstractConfig
 			return static::$config;
 		}
 
+		/** @var \JRegistry $config */
 		$config = with(new Registry)
 			->loadFile(static::getPath(), static::$type);
 			//->loadFile(CSI_ADMIN . '/etc/wos.yml', 'yaml');
+
+//		$config->loadFile(CSI_ADMIN . '/etc/database/syllabus.yml', 'yaml');
+//		$config->loadFile(CSI_ADMIN . '/etc/database/paper.yml', 'yaml');
+//		$config->loadFile(CSI_ADMIN . '/etc/database/social.yml', 'yaml');
+//		$config->loadFile(CSI_ADMIN . '/etc/database/airiti.yml', 'yaml');
+//		$config->loadFile(CSI_ADMIN . '/etc/database/ethesys.yml', 'yaml');
+//		$config->loadFile(CSI_ADMIN . '/etc/database/wiki.yml', 'yaml');
+//		$config->loadFile(CSI_ADMIN . '/etc/database/tci.yml', 'yaml');
+//		$config->loadFile(CSI_ADMIN . '/etc/database/wos.yml', 'yaml');
+		$config->loadFile(CSI_ADMIN . '/etc/database/mendeley.yml', 'yaml');
+		$config->loadFile(CSI_ADMIN . '/etc/database/webometrics.yml', 'yaml');
 
 		return static::$config = $config;
 	}

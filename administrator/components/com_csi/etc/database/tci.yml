@@ -1,0 +1,11 @@
+database:
+    tci:
+        type: parse
+        name: tci
+        engine: tci
+        result_fields:
+            - author
+            - cited
+        page_result_fields:
+            - author
+            - cited

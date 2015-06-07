@@ -1,0 +1,5 @@
+database:
+    ethesys:
+        type: parse
+        name: ethesys
+        engine: google

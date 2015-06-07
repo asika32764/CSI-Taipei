@@ -1,0 +1,7 @@
+database:
+    wos:
+        type: parse
+        name: wos
+        engine: wos
+        result_fields:
+            - cited

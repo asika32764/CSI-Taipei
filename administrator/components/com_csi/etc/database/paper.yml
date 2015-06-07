@@ -1,0 +1,13 @@
+database:
+    paper:
+        type: parse
+        name: paper
+        engine: google
+        result_fields:
+            - cited
+            - author
+            - mentioned
+        page_result_fields:
+            - author
+            - cited
+            - mentioned

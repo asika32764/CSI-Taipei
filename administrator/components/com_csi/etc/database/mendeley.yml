@@ -1,0 +1,7 @@
+database:
+    mendeley:
+        type: parse
+        name: mendeley
+        engine: mendeley
+        result_fields:
+            - cited
