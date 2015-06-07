@@ -2,4 +2,5 @@ system:
     debug: true
     development: true
 mendeley:
-    token:
+    id:
+    secret:

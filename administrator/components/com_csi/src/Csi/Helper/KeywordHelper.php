@@ -18,7 +18,7 @@ use Windwalker\String\String;
 class KeywordHelper
 {
 	/**
-	 * arrangeNames
+	 * Make First Last name to: ["First Last", "Last, First"]
 	 *
 	 * @param array  $engNames
 	 *
@@ -78,7 +78,7 @@ class KeywordHelper
 	}
 
 	/**
-	 * buildNameConditions
+	 * Implode all names to '"A" OR "B" OR "C"'
 	 *
 	 * @param array $names
 	 *

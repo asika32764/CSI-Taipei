@@ -23,49 +23,6 @@ use Windwalker\Helper\CurlHelper;
 class WosEngine extends AbstractEngine
 {
 	/**
-	 * Property pages.
-	 *
-	 * @var  int
-	 */
-	public $pages = 10 ;
-
-	/**
-	 * Property links.
-	 *
-	 * @var  int
-	 */
-	public $links = 100 ;
-
-	/**
-	 * Property host.
-	 *
-	 * @var  string
-	 */
-	protected $host = 'https://www.google.com.tw';
-
-	/**
-	 * Property path.
-	 *
-	 * @var  string
-	 */
-	public $path = '/search' ;
-
-	/**
-	 * Property query.
-	 *
-	 * @var  array
-	 */
-	public $query = array(
-		'q'     => null ,
-		'hl'    => 'zh-TW' ,
-		'ie'    => 'UTF-8',
-		'num'   => 100 ,
-		'filter'=> 0 ,
-		// 'safe'  => 'on',
-		'start' => null
-	);
-
-	/**
 	 * getPageList
 	 *
 	 * @return  \Windwalker\Data\Data[]
@@ -80,7 +37,7 @@ class WosEngine extends AbstractEngine
 	 *
 	 * @param int $page
 	 *
-	 * @return  string|null
+	 * @return  object
 	 *
 	 * @throws \InvalidArgumentException
 	 */
@@ -180,60 +137,7 @@ XML;
 	 */
 	public function parsePage($html = null)
 	{
-		$html = $html ? : $this->state->get('parse.html');
-
-		/** @var $page Dom */
-		$page   = with(new Dom)->load($html);
-		$result = array();
-
-		// Get normal link
-		$links = $page->find('div#ires ol li.g');
-
-		foreach ($links as $k => $link)
-		{
-			/** @var $link Dom */
-			$normal = $link->find('h3.r a');
-
-			$item = array();
-
-			// Get title and url
-			$item['title'] = strip_tags($normal[0]->innerhtml);
-
-			$url = new \JUri((string) $normal[0]->href);
-
-			$item['url'] = urldecode($url->getVar('q'));
-
-			// File type
-			$fileType = $link->find('span.mime');
-
-			$item['filetype'] = 'html';
-
-			if (isset($fileType[0]))
-			{
-				$type = trim($fileType[0]->text);
-				$type = str_replace('[', '', $type);
-				$type = str_replace(']', '', $type);
-				$type = strtolower($type);
-
-				$item['filetype'] = $type;
-			}
-
-			// Storage
-			/* We don't need storage now
-			$storage = $link->find('span.gl a');
-			$result[$k]['google-storage'] = null;
-
-			if (isset($storage[0]->href))
-			{
-				$result[$k]['google-storage'] = $result[$k]['normal'];
-				$result[$k]['google-storage']['url'] = $storage[0]->href;
-			}
-			*/
-
-			$result[] = new Data($item);
-		}
-
-		return $result;
+		return new Data;
 	}
 
 	/**
@@ -245,17 +149,7 @@ XML;
 	 */
 	public function prepareUrl($page = 1)
 	{
-		$uri = parent::prepareUrl($page);
-
-		// Prepare keyword
-		$text = KeywordHelper::encode($this->state->get('keyword'));
-
-		$uri->setQuery($this->query) ;
-		$uri->setVar('q', $this->state->get('keyword'));
-
-		$uri->setVar('start' , ($page - 1) * $this->links);
-
-		return $uri;
+		return parent::prepareUrl($page);
 	}
 }
  
