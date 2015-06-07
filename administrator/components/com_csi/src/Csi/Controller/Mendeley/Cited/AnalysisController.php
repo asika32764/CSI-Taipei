@@ -91,9 +91,7 @@ class AnalysisController extends Controller
 
 		$this->engine->getState()->set('keyword', $keyword);
 
-		// $result = $this->engine->getPage();
-
-		$result = file_get_contents(CSI_ADMIN . '/test/mendeley/mendeley.json');
+		$result = $this->engine->getPage();
 
 		$result = $this->engine->parsePage($result);
 

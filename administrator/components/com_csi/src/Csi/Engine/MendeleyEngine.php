@@ -130,8 +130,7 @@ class MendeleyEngine extends AbstractEngine
 	{
 		$uri = parent::prepareUrl($page);
 
-		$uri->setQuery($this->query) ;
-		$uri->setVar('access_token', Config::get('mendeley.token'));
+		$uri->setQuery($this->query);
 
 		return $uri;
 	}
