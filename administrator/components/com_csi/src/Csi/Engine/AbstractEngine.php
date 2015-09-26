@@ -100,7 +100,7 @@ abstract class AbstractEngine extends \JModelDatabase
 		// return RefCurlHelper::getPageHTML((string) $uri);
 		$html = CurlHelper::get((string) $uri, 'get', null, array(CURLOPT_ENCODING => 'UTF-8'))->body;
 
-		$html = String::transcode($html, 'big5', 'UTF-8');
+		// $html = String::transcode($html, 'big5', 'UTF-8');
 
 		return $html;
 	}

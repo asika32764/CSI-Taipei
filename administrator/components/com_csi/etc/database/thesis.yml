@@ -1,0 +1,8 @@
+database:
+    thesis:
+        type: parse
+        name: thesis
+        engine: google
+        result_fields:
+            - cited
+            - advisor

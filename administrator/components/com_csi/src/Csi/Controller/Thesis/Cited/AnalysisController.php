@@ -1,25 +1,26 @@
 <?php
 /**
- * Part of csi project. 
+ * Part of csi project.
  *
  * @copyright  Copyright (C) 2015 {ORGANIZATION}. All rights reserved.
- * @license    GNU General Public License version 2 or later;
+ * @license    GNU General Public License version 2 or later.
  */
 
-namespace Csi\Controller\Mendeley\Cited;
+namespace Csi\Controller\Thesis\Cited;
 
 use Csi\Database\AbstractDatabase;
-use Csi\Database\MendeleyDatabase;
+use Csi\Database\ThesisDatabase;
 use Csi\Engine\AbstractEngine;
-use Csi\Engine\MendeleyEngine;
+use Csi\Engine\AiritiEngine;
+use Csi\Engine\EthesysEngine;
 use Joomla\Registry\Registry;
 use Windwalker\Controller\Controller;
 use Windwalker\Data\Data;
 use Windwalker\Joomla\DataMapper\DataMapper;
 
 /**
- * The AnalysisController class.
- * 
+ * The CsiControllerThesisAdvisorAnalysis class.
+ *
  * @since  {DEPLOY_VERSION}
  */
 class AnalysisController extends Controller
@@ -27,7 +28,7 @@ class AnalysisController extends Controller
 	/**
 	 * Property engine.
 	 *
-	 * @var MendeleyEngine
+	 * @var  AiritiEngine|EthesysEngine
 	 */
 	protected $engine;
 
@@ -48,7 +49,7 @@ class AnalysisController extends Controller
 	/**
 	 * Property database.
 	 *
-	 * @var MendeleyDatabase
+	 * @var ThesisDatabase
 	 */
 	protected $database;
 
@@ -71,13 +72,13 @@ class AnalysisController extends Controller
 		$queue->query = new Registry($queue->query);
 
 		// Prepare engine model to get pages
-		$engine = AbstractEngine::getInstance('mendeley');
+		$engine = AbstractEngine::getInstance($queue->query['engine']);
 
 		$this->engine = $engine;
 		$this->queue  = $queue;
 		$this->query  = $queue->query;
 		$this->task   = (new DataMapper('#__csi_tasks'))->findOne(array('id' => $queue->query['id']));
-		$this->database = AbstractDatabase::getInstance('mendeley');
+		$this->database = AbstractDatabase::getInstance('thesis');
 	}
 
 	/**
@@ -95,8 +96,8 @@ class AnalysisController extends Controller
 
 		$result = $this->engine->parsePage($result);
 
-		$this->app->triggerEvent('onMendeleyAfterAnalysis', array($result->cited, $this->task));
+		$this->app->triggerEvent('onThesisAfterCitedAnalysis', array($result->cited, $this->task));
 
-		return sprintf('Analysis Mendeley author success, result: %s.', $result->cited);
+		return sprintf('Analysis Ethesys cited success, result: %s.', $result->cited);
 	}
 }

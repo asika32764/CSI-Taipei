@@ -48,6 +48,10 @@ $grid->registerTableSort();
 		<?php echo $grid->sortTitle('JGRID_HEADING_ID', 'result.id'); ?>
 	</th>
 
+	<th width="25%">
+		<?php echo $grid->sortTitle('Task', 'result.task_id'); ?>
+	</th>
+
 	<!--FK-->
 	<th width="5%" class="nowrap center">
 		<?php echo $grid->sortTitle('FK', 'result.fk'); ?>
@@ -101,6 +105,10 @@ $grid->registerTableSort();
 		<!--ID-->
 		<td class="center">
 			<?php echo (int) $item->id; ?>
+		</td>
+
+		<td>
+			<?php echo $item->task_title; ?>
 		</td>
 
 		<!--FK-->

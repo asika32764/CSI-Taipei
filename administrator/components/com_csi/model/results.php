@@ -65,7 +65,8 @@ class CsiModelResults extends ListModel
 		$queryHelper = $this->getContainer()->get('model.results.helper.query', Container::FORCE_NEW);
 
 		$queryHelper->addTable('result', '#__csi_results')
-//			->addTable('category',  '#__categories', 'result.catid      = category.id')
+			->addTable('task',  \Csi\Table\Table::TASKS, 'task.id = result.task_id')
+			->addTable('entry',  \Csi\Table\Table::ENTRIES, 'entry.id = task.entry_id')
 //			->addTable('user',      '#__users',      'result.created_by = user.id')
 //			->addTable('viewlevel', '#__viewlevels', 'result.access     = viewlevel.id')
 //			->addTable('lang',      '#__languages',  'result.language   = lang.lang_code')

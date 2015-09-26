@@ -1,5 +1,0 @@
-database:
-    airiti:
-        type: parse
-        name: airiti
-        engine: google

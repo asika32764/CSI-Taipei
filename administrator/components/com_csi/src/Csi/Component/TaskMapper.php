@@ -40,15 +40,23 @@ class TaskMapper
 
 		$resolver->registerTask('page.download', '\\Csi\\Controller\\Page\\DownloadController');
 
+		// TCI
 		$resolver->registerTask('tci.author.count', '\\Csi\\Controller\\Tci\\Author\\CountController');
 
 		$resolver->registerTask('tci.cited.analysis', '\\Csi\\Controller\\Tci\\Cited\\AnalysisController');
 
+		// WOS
 		$resolver->registerTask('wos.engine.count', '\\Csi\\Controller\\Wos\\Engine\\CountController');
 
 		$resolver->registerTask('wos.cited.analysis', '\\Csi\\Controller\\Wos\\Cited\\AnalysisController');
 
+		// Mendeley
 		$resolver->registerTask('mendeley.cited.analysis', '\\Csi\\Controller\\Mendeley\\Cited\\AnalysisController');
+
+		// Thesis
+		$resolver->registerTask('thesis.cited.analysis', '\\Csi\\Controller\\Thesis\\Cited\\AnalysisController');
+
+		$resolver->registerTask('thesis.advisor.analysis', '\\Csi\\Controller\\Thesis\\Advisor\\AnalysisController');
 
 		return $resolver;
 	}
