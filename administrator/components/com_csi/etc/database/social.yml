@@ -7,6 +7,12 @@ database:
             - facebook.com
             - plus.google.com
             - twitter.com
+        analysis:
+            professors:
+                titles: [教授, 教師, 老師, 副教授]
+            units: 5
+            terms:
+                reference: [參考文獻, 參考資源, 參考書目, Reference]
         result_fields:
             - cited
             - author

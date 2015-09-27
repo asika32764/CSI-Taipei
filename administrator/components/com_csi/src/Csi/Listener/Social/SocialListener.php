@@ -10,6 +10,7 @@ namespace Csi\Listener\Social;
 
 use Csi\Config\Config;
 use Csi\Database\AbstractDatabase;
+use Csi\Database\SocialDatabase;
 use Csi\Helper\KeywordHelper;
 use Csi\Listener\DatabaseListener;
 use Csi\Reader\Reader;
@@ -119,12 +120,35 @@ class SocialListener extends DatabaseListener
 
 		$names = KeywordHelper::arrangeNames($params->get('name.chinese'), $params->get('name.eng'));
 
+		$uri = new \JUri($page->url);
+
+		switch (strtolower($uri->getHost()))
+		{
+			case 'www.facebook.com':
+			case 'facebook.com':
+				$platform = SocialDatabase::FACEBOOK;
+				break;
+
+			case 'www.twitter.com':
+			case 'twitter.com':
+				$platform = SocialDatabase::TWITTER;
+				break;
+
+			case 'plus.google.com':
+				$platform = SocialDatabase::GOOGLE_PLUS;
+				break;
+
+			default:
+				$platform = null;
+		}
+
+
 		// Prepare states
-//		$state->set('professors.titles', Config::get('database.syllabus.analysis.professors.titles'));
-//		$state->set('professors.names',  $names);
-//		$state->set('ranges.units',      Config::get('database.syllabus.analysis.units'));
-//		$state->set('terms.course',      Config::get('database.syllabus.analysis.terms.course'));
-//		$state->set('terms.reference',   Config::get('database.syllabus.analysis.terms.reference'));
+		$state->set('platform', $platform);
+		$state->set('professors.titles', Config::get('database.social.analysis.professors.titles'));
+		$state->set('professors.names',  $names);
+		$state->set('ranges.units',      Config::get('database.social.analysis.units'));
+		$state->set('terms.reference',   Config::get('database.social.analysis.terms.reference'));
 
 		// Get result
 		$result = $model->parseResult($txt);
