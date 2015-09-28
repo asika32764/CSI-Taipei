@@ -10,6 +10,7 @@ namespace Csi\Database;
 
 use Csi\Helper\KeywordHelper;
 use Csi\Registry\RegistryHelper;
+use PHPHtmlParser\Dom;
 use Windwalker\Data\Data;
 
 /**
@@ -52,11 +53,78 @@ KWD;
 	 */
 	public function parseResult($txt)
 	{
-		// @TODO: Implement this parser.
+		$names = $this->state->get('professors.names', array());
 
-		$returnValue['entry'] = rand(0, 1);
-		$returnValue['cited'] = rand(0, 15);
-		$returnValue['mentioned'] = rand(0, 15);
+		$dom = new Dom;
+		$dom->load($txt);
+		$entry = 0;
+
+		$title = $dom->find('#firstHeading');
+
+		foreach ($names as $name)
+		{
+			if (strtolower($name) == strtolower($title->text))
+			{
+				$entry++;
+
+				break;
+			}
+		}
+
+		$cited = 0;
+		$mentioned = 0;
+
+		if (!$entry)
+		{
+			$reference_terms  = $this->state->get('terms.reference', array());
+			$content = strtolower(strip_tags($txt));
+
+			$reference = null;
+
+			foreach ($reference_terms as $reference_term)
+			{
+				$reference_term = strtolower($reference_term);
+
+				if (strpos($content, $reference_term) !== false)
+				{
+					$tmp = explode($reference_term, $content);
+
+					if (isset($content[1]))
+					{
+						list($content, $reference) = $tmp;
+					}
+
+					break;
+				}
+			}
+
+			// Find Mentioned
+			foreach ($names as $professorName)
+			{
+				$mentioned += substr_count($content, strtolower($professorName));
+			}
+
+			// Find Cited
+			$refs = explode("\n", $reference);
+
+			foreach ($refs as $ref)
+			{
+				$ref = trim($ref);
+
+				foreach ($names as $professorName)
+				{
+					if (strpos($ref, strtolower($professorName)) !== false)
+					{
+						$cited++;
+						break;
+					}
+				}
+			}
+		}
+
+		$returnValue['entry'] = $entry;
+		$returnValue['cited'] = $cited;
+		$returnValue['mentioned'] = $mentioned;
 
 		return new Data($returnValue);
 	}

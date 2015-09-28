@@ -8,9 +8,9 @@
 
 namespace Csi\Database;
 
-use Csi\Config\Config;
 use Csi\Helper\KeywordHelper;
 use Csi\Registry\RegistryHelper;
+use PHPHtmlParser\Dom;
 use Windwalker\Data\Data;
 
 /**
@@ -71,22 +71,88 @@ KWD;
 	 */
 	public function parseResult($txt)
 	{
-		$isAuthor = rand(0, 1);
+		$isAuthor = 0;
+		$names = $this->state->get('professors.names');
 
-		// @TODO: Implement this parser.
+		// Check Author
+		preg_match_all('/<[a-zA-Z1-9]+.*class=\"[\sa-zA-Z1-9-_]*author[\sa-zA-Z1-9-_]*\".*>.*<\/[a-zA-Z1-9]+>/i', $txt, $matches);
 
-		if ($isAuthor)
+		foreach ($matches as $match)
 		{
-			$returnValue['cited'] = 0;
-			$returnValue['author'] = 1;
-			$returnValue['mentioned'] = 0;
+			if (isset($match[0]))
+			{
+				$author = strip_tags($match[0]);
+
+				foreach ($names as $name)
+				{
+					if (strpos(strtolower($author), strtolower($name)) !== false)
+					{
+						$isAuthor = 1;
+						break;
+					}
+				}
+			}
+
+			if ($isAuthor)
+			{
+				break;
+			}
 		}
-		else
+
+		$cited = 0;
+		$mentioned = 0;
+
+		if (!$isAuthor)
 		{
-			$returnValue['cited'] = rand(1, 5);
-			$returnValue['author'] = 0;
-			$returnValue['mentioned'] = 1;
+			$reference_terms  = $this->state->get('terms.reference', array());
+			$content = strtolower(strip_tags($txt));
+
+			$reference = null;
+
+			foreach ($reference_terms as $reference_term)
+			{
+				$reference_term = strtolower($reference_term);
+
+				if (strpos($content, $reference_term) !== false)
+				{
+					$tmp = explode($reference_term, $content);
+
+					if (isset($content[1]))
+					{
+						list($content, $reference) = $tmp;
+					}
+
+					break;
+				}
+			}
+
+			// Find Mentioned
+			foreach ($names as $professorName)
+			{
+				$mentioned += substr_count($content, strtolower($professorName));
+			}
+
+			// Find Cited
+			$refs = explode("\n", $reference);
+
+			foreach ($refs as $ref)
+			{
+				$ref = trim($ref);
+
+				foreach ($names as $professorName)
+				{
+					if (strpos($ref, strtolower($professorName)) !== false)
+					{
+						$cited++;
+						break;
+					}
+				}
+			}
 		}
+
+		$returnValue['cited'] = $cited;
+		$returnValue['author'] = $isAuthor;
+		$returnValue['mentioned'] = $mentioned;
 
 		return new Data($returnValue);
 	}

@@ -3,6 +3,9 @@ database:
         type: parse
         name: wiki
         engine: google
+        analysis:
+            terms:
+                reference: [參考文獻, 參考資源, 參考書目]
         result_fields:
             - citmentioned
             - entry

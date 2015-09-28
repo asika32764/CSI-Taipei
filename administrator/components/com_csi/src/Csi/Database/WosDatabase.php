@@ -51,7 +51,7 @@ class WosDatabase extends AbstractDatabase
 	 */
 	public function parseResult($txt)
 	{
-
+		// In engine layer
 	}
 }
  

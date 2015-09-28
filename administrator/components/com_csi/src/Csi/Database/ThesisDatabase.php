@@ -50,6 +50,6 @@ class ThesisDatabase extends AbstractDatabase
 	 */
 	public function parseResult($txt)
 	{
-
+		// implemented in Ethesys and Airiti Engine
 	}
 }

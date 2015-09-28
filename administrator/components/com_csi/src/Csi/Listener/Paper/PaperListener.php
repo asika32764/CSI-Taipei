@@ -85,11 +85,11 @@ class PaperListener extends DatabaseListener
 		$names = KeywordHelper::arrangeNames($params->get('name.chinese'), $params->get('name.eng'));
 
 		// Prepare states
-//		$state->set('professors.titles', Config::get('database.syllabus.analysis.professors.titles'));
-//		$state->set('professors.names',  $names);
-//		$state->set('ranges.units',      Config::get('database.syllabus.analysis.units'));
-//		$state->set('terms.course',      Config::get('database.syllabus.analysis.terms.course'));
-//		$state->set('terms.reference',   Config::get('database.syllabus.analysis.terms.reference'));
+//		$state->set('professors.titles', Config::get('database.paper.analysis.professors.titles'));
+		$state->set('professors.names',  $names);
+//		$state->set('ranges.units',      Config::get('database.paper.analysis.units'));
+//		$state->set('terms.course',      Config::get('database.paper.analysis.terms.course'));
+		$state->set('terms.reference',   Config::get('database.paper.analysis.terms.reference'));
 
 		// Get result
 		$result = $model->parseResult($txt);
