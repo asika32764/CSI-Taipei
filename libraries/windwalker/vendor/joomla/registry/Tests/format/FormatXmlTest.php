@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright  Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -16,7 +16,7 @@ use Joomla\Registry\AbstractRegistryFormat;
 class JRegistryFormatXMLTest extends \PHPUnit_Framework_TestCase
 {
 	/**
-	 * Test the Cml::objectToString method.
+	 * Test the Xml::objectToString method.
 	 *
 	 * @return  void
 	 *
@@ -120,10 +120,15 @@ class JRegistryFormatXMLTest extends \PHPUnit_Framework_TestCase
 	{
 		$class = AbstractRegistryFormat::getInstance('XML');
 
+		// Check for different PHP behavior of displaying boolean false in XML.
+		$checkFalse = '<check/>' == simplexml_load_string('<test/>')->addChild('check', false)->asXML()
+			? '/>'
+			: '></node>';
+
 		$input = "<?xml version=\"1.0\"?>\n<registry>" .
 			"<node name=\"foo\" type=\"string\">bar</node>" .
 			"<node name=\"booleantrue\" type=\"boolean\">1</node>" .
-			"<node name=\"booleanfalse1\" type=\"boolean\"></node>" .
+			"<node name=\"booleanfalse\" type=\"boolean\"" . $checkFalse .
 			"<node name=\"numericint\" type=\"integer\">42</node>" .
 			"<node name=\"numericfloat\" type=\"double\">3.1415</node>" .
 			"<node name=\"section\" type=\"object\">" .

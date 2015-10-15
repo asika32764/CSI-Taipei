@@ -1,0 +1,7 @@
+database:
+    wos:
+        type: parse
+        name: scopus
+        engine: scopus
+        result_fields:
+            - cited

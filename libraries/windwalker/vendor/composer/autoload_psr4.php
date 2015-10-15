@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Windwalker\\' => array($baseDir . '/src', $vendorDir . '/windwalker/framework/src'),
+    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Joomla\\Utilities\\Tests\\' => array($vendorDir . '/joomla/utilities/Tests'),
     'Joomla\\Utilities\\' => array($vendorDir . '/joomla/utilities/src'),
     'Joomla\\Uri\\Tests\\' => array($vendorDir . '/joomla/uri/Tests'),
@@ -21,8 +22,6 @@ return array(
     'Joomla\\Filter\\' => array($vendorDir . '/joomla/filter/src'),
     'Joomla\\Filesystem\\Tests\\' => array($vendorDir . '/joomla/filesystem/Tests'),
     'Joomla\\Filesystem\\' => array($vendorDir . '/joomla/filesystem/src'),
-    'Joomla\\Event\\Tests\\' => array($vendorDir . '/joomla/event/Tests'),
-    'Joomla\\Event\\' => array($vendorDir . '/joomla/event/src'),
     'Joomla\\Application\\Tests\\' => array($vendorDir . '/joomla/application/Tests'),
     'Joomla\\Application\\' => array($vendorDir . '/joomla/application/src'),
     '' => array($baseDir . '/../../cli/windwalker'),

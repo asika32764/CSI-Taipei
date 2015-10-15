@@ -32,7 +32,7 @@ require_once JPATH_BASE . '/includes/framework.php';
 
 // Mark afterLoad in the profiler.
 JDEBUG ? $_PROFILER->mark('afterLoad') : null;
-
+error_reporting(32767);
 // Instantiate the application.
 $app = JFactory::getApplication('site');
 
