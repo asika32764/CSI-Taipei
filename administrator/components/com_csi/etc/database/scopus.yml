@@ -1,5 +1,5 @@
 database:
-    wos:
+    scopus:
         type: parse
         name: scopus
         engine: scopus

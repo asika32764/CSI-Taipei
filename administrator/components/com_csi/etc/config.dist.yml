@@ -4,6 +4,8 @@ system:
 mendeley:
     id:
     secret:
+scopus:
+    key:
 @import:
     - database/syllabus.yml
     - database/paper.yml
