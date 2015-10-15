@@ -124,9 +124,24 @@ class Queue extends JCommand
 
 		$this->resolver = TaskMapper::register(new ControllerResolver(new \JApplicationCms, Container::getInstance()));
 
+		\JLog::addLogger(
+			array('text_file' => 'queue.errors.php'),
+			\JLog::ALL,
+			array('queue')
+		);
+
 		while (true)
 		{
-			$this->executeQueue();
+			try
+			{
+				$this->executeQueue();
+			}
+			catch (\Exception $e)
+			{
+				$this->renderException($e);
+
+				\JLog::add($e->getMessage(), \JLog::ERROR, 'queue');
+			}
 
 			sleep($sleep);
 		}
@@ -144,7 +159,7 @@ class Queue extends JCommand
 
 		if (!(array) $this->queue)
 		{
-			throw new \RuntimeException('No queue found.');
+			$this->application->close('No queue found.');
 		}
 
 		/** @var $db \JDatabaseDriver */
@@ -177,6 +192,11 @@ class Queue extends JCommand
 		catch (\Exception $e)
 		{
 			$db->transactionRollback(true);
+
+			// Set closed
+			$this->queue->state = 0;
+
+			$this->queueMapper->updateOne($this->queue);
 
 			throw $e;
 		}
