@@ -51,7 +51,7 @@ class CurlHelper
 			CURLOPT_USERAGENT      => "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1",
 			CURLOPT_FOLLOWLOCATION => !ini_get('open_basedir') ? true : false,
 			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_TIMEOUT => 1000
+			CURLOPT_TIMEOUT => 150
 		);
 
 		// Merge option
