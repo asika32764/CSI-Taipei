@@ -16,6 +16,7 @@
 		"joomla/registry": "~1.0",
 		"joomla/filesystem": "~1.0",
 		"joomla/uri": "~1.0",
+		"windwalker/http": "~2.0",
 		"symfony/yaml": "2.*",
 		"filp/whoops": "1.*"
 	},

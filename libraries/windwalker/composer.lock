@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b944c14bba053c7264eb54401de61e3a",
-    "content-hash": "f3a91dd2bdac5d4f7f47c2230543180e",
+    "hash": "5e0b4a8ed66837f894b143d50f1561b4",
     "packages": [
         {
             "name": "asika/joomla-console",
@@ -570,6 +569,55 @@
             "time": "2015-03-28 17:52:43"
         },
         {
+            "name": "psr/http-message",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "85d63699f0dbedb190bbd4b0d2b9dc707ea4c298"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
+                "reference": "85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2015-05-04 20:22:00"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -697,6 +745,106 @@
             "description": "Rapido de la vento viro.",
             "homepage": "https://github.com/ventoviro/windwalker",
             "time": "2014-06-16 08:39:10"
+        },
+        {
+            "name": "windwalker/http",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ventoviro/windwalker-http.git",
+                "reference": "5a2120382f17371cb18f5994978615c9210b80dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ventoviro/windwalker-http/zipball/5a2120382f17371cb18f5994978615c9210b80dd",
+                "reference": "5a2120382f17371cb18f5994978615c9210b80dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.10",
+                "psr/http-message": "1.*",
+                "windwalker/uri": "~2.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "~1.0"
+            },
+            "require-dev": {
+                "windwalker/environment": "~2.0",
+                "windwalker/test": "~2.0"
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Windwalker\\Http\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.0+"
+            ],
+            "description": "Windwalker Http package",
+            "homepage": "https://github.com/ventoviro/windwalker-http",
+            "keywords": [
+                "framework",
+                "http",
+                "psr7",
+                "request",
+                "windwalker"
+            ],
+            "time": "2015-08-11 14:43:44"
+        },
+        {
+            "name": "windwalker/uri",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ventoviro/windwalker-uri.git",
+                "reference": "a5fb721f0e7d35f604cd14b1f8c0b901123ac3f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ventoviro/windwalker-uri/zipball/a5fb721f0e7d35f604cd14b1f8c0b901123ac3f2",
+                "reference": "a5fb721f0e7d35f604cd14b1f8c0b901123ac3f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.10"
+            },
+            "require-dev": {
+                "psr/http-message": "1.*",
+                "windwalker/test": "~2.0"
+            },
+            "suggest": {
+                "psr/http-message": "Install 1.* if you need PsrUri support."
+            },
+            "type": "windwalker-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Windwalker\\Uri\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.0+"
+            ],
+            "description": "Windwalker Uri package",
+            "homepage": "https://github.com/ventoviro/windwalker-uri",
+            "keywords": [
+                "framework",
+                "uri",
+                "windwalker"
+            ],
+            "time": "2015-08-11 08:56:05"
         }
     ],
     "packages-dev": [],

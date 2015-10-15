@@ -6,8 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Windwalker\\Uri\\' => array($vendorDir . '/windwalker/uri'),
+    'Windwalker\\Http\\' => array($vendorDir . '/windwalker/http'),
     'Windwalker\\' => array($baseDir . '/src', $vendorDir . '/windwalker/framework/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Joomla\\Utilities\\Tests\\' => array($vendorDir . '/joomla/utilities/Tests'),
     'Joomla\\Utilities\\' => array($vendorDir . '/joomla/utilities/src'),
     'Joomla\\Uri\\Tests\\' => array($vendorDir . '/joomla/uri/Tests'),

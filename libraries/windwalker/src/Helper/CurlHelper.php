@@ -8,6 +8,7 @@
 
 namespace Windwalker\Helper;
 
+use Windwalker\Http\HttpClient;
 use Windwalker\Object\NullObject;
 use Windwalker\Object\Object;
 
@@ -49,33 +50,27 @@ class CurlHelper
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_USERAGENT      => "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1",
 			CURLOPT_FOLLOWLOCATION => !ini_get('open_basedir') ? true : false,
-			CURLOPT_SSL_VERIFYPEER => false
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_TIMEOUT => 1000
 		);
 
 		// Merge option
 		$options = $option + $options;
 
-		$http = \JHttpFactory::getHttp(new \JRegistry($options), 'curl');
+		$http = new HttpClient(array('options' => $options));
 
 		try
 		{
-			switch ($method)
-			{
-				case 'post':
-				case 'put':
-				case 'patch':
-					$result = $http->$method(UriHelper::safe($url), $query);
-					break;
-
-				default:
-					$result = $http->$method(UriHelper::safe($url));
-					break;
-			}
+			$result = $http->request($method, UriHelper::safe($url), $query);
 		}
 		catch (\Exception $e)
 		{
 			return new NullObject;
 		}
+
+		$response = new \JHttpResponse;
+		$response->code = $result->getStatusCode();
+		$response->body = $result->getBody()->__toString();
 
 		return $result;
 	}
