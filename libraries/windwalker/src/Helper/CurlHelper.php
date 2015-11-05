@@ -72,7 +72,7 @@ class CurlHelper
 		$response->code = $result->getStatusCode();
 		$response->body = $result->getBody()->__toString();
 
-		return $result;
+		return $response;
 	}
 
 	/**
