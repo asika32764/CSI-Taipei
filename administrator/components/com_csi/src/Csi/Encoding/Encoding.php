@@ -30,7 +30,7 @@ class Encoding
 		// If is BIG5, convert encoding to utf-8
 		if ($encoding != 'UTF-8')
 		{
-			$text = iconv($encoding, "UTF-8//IGNORE", $text);
+			$text = iconv("CP950", "UTF-8//IGNORE", $text);
 		}
 
 		return $text;
