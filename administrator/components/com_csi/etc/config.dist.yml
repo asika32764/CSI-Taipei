@@ -10,6 +10,7 @@ scopus:
     - database/syllabus.yml
     - database/paper.yml
     - database/social.yml
+    - database/scholar.yml
     - database/thesis.yml
     - database/wiki.yml
     - database/tci.yml
