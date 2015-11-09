@@ -50,6 +50,11 @@ class TaskMapper
 
 		$resolver->registerTask('wos.cited.analysis', '\\Csi\\Controller\\Wos\\Cited\\AnalysisController');
 
+		// Scopus
+		$resolver->registerTask('scopus.engine.count', '\\Csi\\Controller\\Scopus\\Engine\\CountController');
+
+		$resolver->registerTask('scopus.cited.analysis', '\\Csi\\Controller\\Scopus\\Cited\\AnalysisController');
+
 		// Mendeley
 		$resolver->registerTask('mendeley.cited.analysis', '\\Csi\\Controller\\Mendeley\\Cited\\AnalysisController');
 
