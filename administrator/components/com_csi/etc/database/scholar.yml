@@ -4,9 +4,8 @@ database:
         name: scholar
         engine: scholar
         result_fields:
-            - citmentioned
-            - entry
+            - cited
+            - author
         page_result_fields:
             - cited
-            - mentioned
-            - entry
+            - author

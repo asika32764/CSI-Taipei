@@ -76,18 +76,20 @@ class ScholarEngine extends AbstractEngine
 		$dom = new Dom;
 		$dom->load($html);
 
-		$td = $dom->find('#gs_n table td') ;
+		$rows = $dom->find('#gs_ab_md') ;
 
-		// Count pagination buttons
-		$num = count($td) ;
+		$rows = $rows[0]->text;
 
-		// Remove previous and next buttons
-		$num = $num - 2 ;
-
-		// If no page buttons, means only 1 page, or we get buttons number as pages number.
-		$num = ($num < 1) ? 1 : $num ;
+		preg_match('/\d+/', $rows, $match);
 
 		$pages = array();
+
+		if (!isset($match[0]))
+		{
+			return $pages;
+		}
+
+		$num = ceil($match[0] / $this->links);
 
 		foreach (range(1, $num) as $row)
 		{

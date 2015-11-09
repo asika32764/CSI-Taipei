@@ -121,7 +121,7 @@ class ParseController extends Controller
 
 				$this->app->triggerEvent('onBeforeDownloadQueue', array($this->task->database, $this->enginePage, &$data, &$query));
 
-				$queueModel->add('page.download', $query, $this->task, null, 128);
+				$queueModel->add('page.download', $query, $this->task, null, 512);
 			}
 		}
 		catch (\Exception $e)
