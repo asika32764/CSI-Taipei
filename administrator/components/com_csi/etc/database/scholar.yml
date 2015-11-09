@@ -1,8 +1,8 @@
 database:
-    wiki:
+    scholar:
         type: parse
-        name: wiki
-        engine: google
+        name: scholar
+        engine: scholar
         result_fields:
             - citmentioned
             - entry
