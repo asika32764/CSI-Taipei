@@ -81,7 +81,7 @@ class ScholarDatabase extends AbstractDatabase
 			/** @var HtmlNode $cite */
 			$text = $cite->text;
 
-			$text = Encoding::toUtf8($text);
+			// $text = Encoding::toUtf8($text);
 
 			if (strpos($text, '引用') !== false)
 			{
