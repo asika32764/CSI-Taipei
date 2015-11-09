@@ -87,7 +87,7 @@ class ScholarListener extends DatabaseListener
 			)
 		);
 
-		$queueModel->add('tasks.scholar.count', $query, $task, null, 512);
+		$queueModel->add('tasks.scholar.count', $query, $task);
 	}
 
 	/**
