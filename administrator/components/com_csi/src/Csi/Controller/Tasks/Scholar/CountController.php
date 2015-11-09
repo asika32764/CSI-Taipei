@@ -70,7 +70,7 @@ class CountController extends Controller
 
 		$queue->query = new \JRegistry($queue->query);
 
-		$enginePage = with(new DataMapper('#__csi_enginepages'))->findOne(array('id' => $queue->query->get('id')));
+		$enginePage = with(new DataMapper('#__csi_enginepages'))->findOne(array('id' => $queue->query->get('enginepage_id')));
 
 		// Prepare engine model to get pages
 		$engine = AbstractEngine::getInstance($enginePage->engine);
