@@ -134,7 +134,7 @@ class DatabaseListener extends \JEvent
 			)
 		);
 
-		$queueModel->add('tasks.engine.parse', $query, $task);
+		$queueModel->add('tasks.engine.parse', $query, $task, null, 384);
 	}
 
 	/**

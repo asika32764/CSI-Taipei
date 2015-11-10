@@ -72,6 +72,11 @@ $asset->addCss('main.css');
 		<?php echo $grid->sortTitle('Query', 'queue.query'); ?>
 	</th>
 
+	<!--PRIORITY-->
+	<th width="" class="center">
+		<?php echo $grid->sortTitle('Priority', 'queue.priority'); ?>
+	</th>
+
 	<!--CREATED-->
 	<th width="20%" class="center">
 		<?php echo $grid->sortTitle('JDATE', 'queue.created'); ?>
@@ -143,9 +148,14 @@ $asset->addCss('main.css');
 		</td>
 
 		<!--Query-->
-		<td class="">
+		<td class="center">
 			<?php echo \Windwalker\Helper\ModalHelper::modalLink('See Query', 'query-' . $item->id); ?>
 			<?php echo \Windwalker\Helper\ModalHelper::renderModal('query-' . $item->id, '<pre>' . print_r(json_decode($item->query, true), true) . '</pre>'); ?>
+		</td>
+
+		<!--Priority-->
+		<td class="center">
+			<?php echo $item->priority; ?>
 		</td>
 
 		<!--CREATED-->
