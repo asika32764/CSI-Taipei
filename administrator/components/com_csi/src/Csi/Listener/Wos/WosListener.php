@@ -134,7 +134,15 @@ class WosListener extends DatabaseListener
 			$query->set('keyword', $lastQueue->query->get('keyword'));
 			$query->set('page.uid', $page['uid']);
 			$query->set('page.title', $page->title->value);
-			$query->set('page.doi', isset($page->other[3]->value) ? $page->other[3]->value : null);
+
+			// Find DOI
+			foreach ($page->other as $other)
+			{
+				if (isset($other['label']) && strpos(strtolower($other['label']), 'doi') !== false)
+				{
+					$query->set('page.doi', isset($other['value']) ? $other['value'] : null);
+				}
+			}
 
 			$queueModel->add('wos.cited.analysis', $query, $task);
 		}
