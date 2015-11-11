@@ -132,16 +132,16 @@ class Queue extends JCommand
 
 		while (true)
 		{
-			try
-			{
+//			try
+//			{
 				$this->executeQueue();
-			}
-			catch (\Exception $e)
-			{
-				$this->renderException($e);
-
-				\JLog::add($e->getMessage(), \JLog::ERROR, 'queue');
-			}
+//			}
+//			catch (\Exception $e)
+//			{
+//				$this->renderException($e);
+//
+//				\JLog::add($e->getMessage(), \JLog::ERROR, 'queue');
+//			}
 
 			sleep($sleep);
 		}

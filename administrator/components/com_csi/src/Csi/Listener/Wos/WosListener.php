@@ -138,9 +138,9 @@ class WosListener extends DatabaseListener
 			// Find DOI
 			foreach ($page->other as $other)
 			{
-				if (isset($other['label']) && strpos(strtolower($other['label']), 'doi') !== false)
+				if (isset($other->label) && strpos(strtolower($other->label), 'doi') !== false)
 				{
-					$query->set('page.doi', isset($other['value']) ? $other['value'] : null);
+					$query->set('page.doi', isset($other->value) ? $other->value : null);
 				}
 			}
 
