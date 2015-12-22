@@ -14,6 +14,8 @@ use Csi\Database\AbstractResult;
  * The CitmentionedResult class.
  * 
  * @since  {DEPLOY_VERSION}
+ *
+ * @deprecated No longer used.
  */
 class CitmentionedResult extends AbstractResult
 {

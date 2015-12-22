@@ -10,6 +10,7 @@ namespace Csi\Seed;
 
 use Joomla\Registry\Registry;
 use SMS\Seeder\AbstractSeeder;
+use Windwalker\Helper\PathHelper;
 
 /**
  * The ResultSeeder class.
@@ -28,6 +29,14 @@ class ResultSeeder extends AbstractSeeder
 		$config = new Registry;
 		$config->loadFile(JPATH_ADMINISTRATOR . '/components/com_csi/etc/config.yml', 'yaml');
 
+		$imports = $config->get('@import', array());
+
+		foreach ($imports as $import)
+		{
+			$config->loadFile(PathHelper::getAdmin('com_csi') . '/etc/' . $import, 'yaml');
+		}
+
+		// Page result
 		$pages = $this->db->setQuery(
 			$this->db->getQuery(true)
 				->select('*')
@@ -45,6 +54,10 @@ class ResultSeeder extends AbstractSeeder
 				{
 					case 'scholar':
 					case 'tci':
+					case 'mendeley':
+					case 'scopus':
+					case 'thesis':
+					case 'wos':
 						$type = 'engine';
 						break;
 

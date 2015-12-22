@@ -30,9 +30,13 @@ class TaskSeeder extends AbstractSeeder
 			'syllabus',
 			'paper',
 			'social',
-			'wiki',
 			'scholar',
-			'tci',
+			'thesis',
+			'wiki',
+			// 'tci',
+			'wos',
+			'scopus',
+			'mendeley'
 		];
 
 		foreach ($entries as $entry)

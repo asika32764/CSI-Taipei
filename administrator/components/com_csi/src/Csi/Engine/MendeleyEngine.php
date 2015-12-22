@@ -112,7 +112,7 @@ class MendeleyEngine extends AbstractEngine
 		{
 			if (isset($item->reader_count))
 			{
-				$result['cited'] += $item->reader_count;
+				$result['collected'] += $item->reader_count;
 			}
 		}
 

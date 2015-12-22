@@ -41,14 +41,14 @@ $data->asset->addJS('webometrics.js');
 							<div class="form-group row">
 								<div class="col-lg-2">
 									<label for="chineseName" class="control-label">
-										Chinese Name
+										* Chinese Name
 									</label>
 								</div>
 								<div class="col-lg-10">
 									<div class="row">
 										<div class="col-lg-12">
 											<input type="text" name="jform[chinese_name]" class="form-control"
-												id="chineseName" placeholder="姓名" value="<?php echo $query['chinese_name']; ?>">
+												id="chineseName" placeholder="姓名 (必填)" value="<?php echo $query['chinese_name']; ?>">
 										</div>
 									</div>
 								</div>
@@ -61,18 +61,18 @@ $data->asset->addJS('webometrics.js');
 							<div id="eng-name-form" class="form-group row">
 								<div class="col-lg-2">
 									<label for="engNameFirst" class="control-label">
-										English Name
+										* English Name
 									</label>
 								</div>
 								<div class="col-lg-10">
 									<div class="row">
 						<span class="col-lg-6 margin-b-20">
 							<input type="text" class="form-control" id="engNameFirst-0"
-								name="jform[eng_name][0][first]" placeholder="First Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.first'); ?>">
+								name="jform[eng_name][0][first]" placeholder="First Name (必填)" value="<?php echo ArrayHelper::getByPath($engNames, '0.first'); ?>">
 						</span>
 						<span class="col-lg-6">
 							<input type="text" class="form-control" id="engNameFirst-0"
-								name="jform[eng_name][0][last]" placeholder="Last Name" value="<?php echo ArrayHelper::getByPath($engNames, '0.last'); ?>">
+								name="jform[eng_name][0][last]" placeholder="Last Name (必填)" value="<?php echo ArrayHelper::getByPath($engNames, '0.last'); ?>">
 						</span>
 									</div>
 								</div>
@@ -113,9 +113,9 @@ $data->asset->addJS('webometrics.js');
 								</div>
 								<div class="col-lg-10">
 									<div class="row">
-						<span class="col-lg-6 margin-b-20">
-							<input type="text" class="form-control" id="school" name="jform[school]" placeholder="School" value="<?php echo $query['school']; ?>">
-						</span>
+										<span class="col-lg-6 margin-b-20">
+											<input type="text" class="form-control" id="school" name="jform[school]" placeholder="School (必填)" value="<?php echo $query['school']; ?>">
+										</span>
 									</div>
 								</div>
 							</div>
@@ -141,7 +141,6 @@ $data->asset->addJS('webometrics.js');
 									<input type="text" class="col-lg-12 form-control" placeholder="Enter URL" value="<?php echo isset($urls[$i]) ? $urls[$i] : ''; ?>">
 								</div>
 							<?php endforeach; ?>
-
 
 						</fieldset>
 					</div>

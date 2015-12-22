@@ -28,7 +28,7 @@ class EnginepageSeeder extends AbstractSeeder
 			$this->db->getQuery(true)
 				->select('*')
 				->from('#__csi_tasks')
-				->where('`database` NOT IN ("scholar", "tci")')
+				->where('`database` IN ("syllabus", "paper", "social", "wiki")')
 		)->loadObjectList();
 
 		foreach ($tasks as $task)

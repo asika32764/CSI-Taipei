@@ -9,3 +9,6 @@
 include_once __DIR__ . '/init-joomla.php';
 
 // Your init code here
+
+// Prevent command class conflict
+include_once JPATH_ROOT . '/sms/vendor/windwalker/console/Command/Command.php';

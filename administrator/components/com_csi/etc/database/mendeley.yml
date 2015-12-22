@@ -4,4 +4,4 @@ database:
         name: mendeley
         engine: mendeley
         result_fields:
-            - cited
+            - collected

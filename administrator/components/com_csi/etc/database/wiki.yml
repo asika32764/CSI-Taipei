@@ -7,7 +7,8 @@ database:
             terms:
                 reference: [參考文獻, 參考資源, 參考書目]
         result_fields:
-            - citmentioned
+            - cited
+            - mentioned
             - entry
         page_result_fields:
             - cited

@@ -44,6 +44,11 @@ class CsiControllerEntryEditSave extends SaveController
 			throw new \RuntimeException('請勾選資料來源');
 		}
 
+		if (empty($this->data['school']))
+		{
+			throw new \RuntimeException('請填寫學校');
+		}
+
 		$title = EntryHelper::regularizeTitle($this->data['chinese_name'], $this->data['eng_name']);
 		$schoolNames = EntryHelper::regularizeSchoolName($this->data['school']);
 
@@ -51,7 +56,7 @@ class CsiControllerEntryEditSave extends SaveController
 
 		// If title exists, redirect to it.
 		/** @var $entry \Windwalker\Data\Data */
-		$entry = with(new DataMapper('#__csi_entries'))->findOne(array('title' => trim($title)));
+		$entry = with(new DataMapper('#__csi_entries'))->findOne(array('title LIKE "' . trim($title) . '%"'));
 
 		if (!$entry->isNull())
 		{

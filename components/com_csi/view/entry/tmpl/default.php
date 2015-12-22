@@ -7,6 +7,37 @@
  */
 
 ?>
+<style>
+	#nav-placeholder {
+		height: 0;
+	}
+</style>
+<script>
+	jQuery(document).ready(function($)
+	{
+		var weboChk = $('input[value=webometrics]');
+		var weboBox = $('.webometrics-box');
+
+		if (weboChk.prop('checked'))
+		{
+			weboBox.collapse('show');
+		}
+
+		weboChk.on('click', function(e)
+		{
+			var $this = $(this);
+
+			if ($this.prop('checked'))
+			{
+				weboBox.collapse('show');
+			}
+			else
+			{
+				weboBox.collapse('hide');
+			}
+		});
+	});
+</script>
 <div class="row-fluid">
 	<div class="col-lg-6 col-lg-offset-2 span12">
 
@@ -25,7 +56,7 @@
 					<div class="col-lg-10">
 						<div class="row">
 							<div class="col-lg-12">
-								<input type="text" name="jform[chinese_name]" class="form-control" id="chineseName" placeholder="姓名">
+								<input type="text" name="jform[chinese_name]" class="form-control" id="chineseName" placeholder="姓名 (必填)">
 							</div>
 						</div>
 					</div>
@@ -41,10 +72,10 @@
 					<div class="col-lg-10">
 						<div class="row">
                                 <span class="col-lg-6 margin-b-20">
-                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][first]" placeholder="First Name">
+                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][first]" placeholder="First Name (必填)">
                                 </span>
                                 <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][last]" placeholder="Last Name">
+                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][last]" placeholder="Last Name (必填)">
                                 </span>
 						</div>
 					</div>
@@ -82,15 +113,9 @@
 					<div class="col-lg-10">
 						<div class="row">
                                 <span class="col-lg-6 margin-b-20">
-                                    <input type="text" class="form-control" id="school" name="jform[school]" placeholder="School">
+                                    <input type="text" class="form-control" id="school" name="jform[school]" placeholder="School (必填)">
                                 </span>
 						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-lg-offset-2 col-lg-10 ">
-						<button type="submit" class="btn btn-primary pull-right">Submit</button>
 					</div>
 				</div>
 
@@ -103,19 +128,27 @@
 
 			</fieldset>
 
-			<fieldset class="margin-t-50">
-				<legend>個人網站網址</legend>
+			<div class="webometrics-box collapse">
+				<fieldset class="margin-t-50">
+					<legend>個人網站網址</legend>
 
-				<div class="form-group">
-					<input type="text" name="jform[webo_url][]" class="col-lg-12 form-control" placeholder="Enter URL">
+					<div class="margin-b-20">
+						<input type="text" name="jform[webo_url][]" class="form-control" placeholder="Enter URL">
+					</div>
+					<div class="margin-b-20">
+						<input type="text" name="jform[webo_url][]" class="form-control" placeholder="Enter URL">
+					</div>
+					<div class="margin-b-20">
+						<input type="text" name="jform[webo_url][]" class="form-control" placeholder="Enter URL">
+					</div>
+				</fieldset>
+			</div>
+
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10 ">
+					<button type="submit" class="btn btn-primary pull-right">Submit</button>
 				</div>
-				<div class="form-group">
-					<input type="text" name="jform[webo_url][]" class="col-lg-12 form-control" placeholder="Enter URL">
-				</div>
-				<div class="form-group">
-					<input type="text" name="jform[webo_url][]" class="col-lg-12 form-control" placeholder="Enter URL">
-				</div>
-			</fieldset>
+			</div>
 
 			<?php
 			if (JDEBUG)
