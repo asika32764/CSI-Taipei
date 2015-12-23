@@ -50,7 +50,7 @@
 				<div class="form-group row">
 					<div class="col-lg-2">
 						<label for="chineseName" class="control-label">
-							Chinese Name
+							* Chinese Name
 						</label>
 					</div>
 					<div class="col-lg-10">
@@ -66,7 +66,7 @@
 				<div id="eng-name-form" class="form-group row">
 					<div class="col-lg-2">
 						<label for="engNameFirst" class="control-label">
-							English Name
+							* English Name
 						</label>
 					</div>
 					<div class="col-lg-10">
@@ -107,7 +107,7 @@
 				<div id="eng-name-form" class="form-group row">
 					<div class="col-lg-2">
 						<label for="engNameFirst" class="control-label">
-							School
+							* School
 						</label>
 					</div>
 					<div class="col-lg-10">
@@ -121,7 +121,7 @@
 
 			</fieldset>
 
-			<fieldset class="margin-t-50 form-inline">
+			<fieldset class="form-inline">
 				<legend>請選擇檢索項目</legend>
 
 				<?php echo \Csi\Helper\DatabaseHelper::generateCheckboxes($data->query['database']); ?>
@@ -144,7 +144,7 @@
 				</fieldset>
 			</div>
 
-			<div class="form-group">
+			<div class="margin-t-20 form-group">
 				<div class="col-lg-offset-2 col-lg-10 ">
 					<button type="submit" class="btn btn-primary pull-right">Submit</button>
 				</div>

@@ -14,6 +14,32 @@ $data->asset->addJS('webometrics.js');
 		Webometrics.fetchWebometrics();
 	});
 </script>
+<script>
+	jQuery(document).ready(function($)
+	{
+		var weboChk = $('input[value=webometrics]');
+		var weboBox = $('.webometrics-box');
+
+		if (weboChk.prop('checked'))
+		{
+			weboBox.collapse('show');
+		}
+
+		weboChk.on('click', function(e)
+		{
+			var $this = $(this);
+
+			if ($this.prop('checked'))
+			{
+				weboBox.collapse('show');
+			}
+			else
+			{
+				weboBox.collapse('hide');
+			}
+		});
+	});
+</script>
 <div class="container result-index">
 
 <div class="row">
@@ -132,6 +158,7 @@ $data->asset->addJS('webometrics.js');
 								<?php echo \Csi\Helper\DatabaseHelper::generateCheckboxes($data->query['database']); ?>
 							</div>
 
+							<div class="webometrics-box collapse">
 							<!-- Webometrics URL -->
 							<?php
 							$urls = $query['webo_url'];
@@ -141,6 +168,7 @@ $data->asset->addJS('webometrics.js');
 									<input type="text" class="col-lg-12 form-control" placeholder="Enter URL" value="<?php echo isset($urls[$i]) ? $urls[$i] : ''; ?>">
 								</div>
 							<?php endforeach; ?>
+							</div>
 
 						</fieldset>
 					</div>
