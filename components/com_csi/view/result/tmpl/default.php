@@ -8,6 +8,11 @@ $query = $data->query;
 $data->asset->jquery();
 $data->asset->addJS('webometrics.js');
 ?>
+<style>
+	.form-horizontal .control-label {
+		width: auto;
+	}
+</style>
 <script>
 	jQuery(document).ready(function()
 	{
@@ -189,13 +194,13 @@ $data->asset->addJS('webometrics.js');
 							<div id="eng-name-form" class="form-group row">
 								<div class="col-lg-2">
 									<label for="engNameFirst" class="control-label">
-										School
+										* School
 									</label>
 								</div>
 								<div class="col-lg-10">
 									<div class="row">
 										<span class="col-lg-6 margin-b-20">
-											<input type="text" class="form-control" id="school" name="jform[school]" placeholder="School (必填)" value="<?php echo $query['school']; ?>">
+											<input type="text" class="form-control" id="school" name="jform[school]" placeholder="School (必填)" value="<?php echo $query['school']; ?>" required>
 										</span>
 									</div>
 								</div>

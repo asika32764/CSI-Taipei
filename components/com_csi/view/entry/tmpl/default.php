@@ -95,6 +95,8 @@ JHtmlBehavior::formvalidation();
 <div class="row-fluid">
 	<div class="col-lg-6 col-lg-offset-2 span12">
 
+		<h2 class="text-center">CSI Taipei (citation and social impact)</h2>
+
 		<form action="<?php echo \Csi\Router\Route::_('com_csi.entry', array('task' => 'entry.edit.save')); ?>" class="form-horizontal form-validate"
 			method="post">
 			<fieldset>

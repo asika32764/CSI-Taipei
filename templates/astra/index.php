@@ -105,13 +105,19 @@ include_once JPATH_THEMES.'/astra/includes/init.php' ;
 							<span class="icon-bar"></span>
 						</button>
 						
-						<div class="nav-collapse navbar-responsive-collapse <?php if( $this->params->get('responsive', 1) ) echo 'collapse' ?>" style="float: left;">
+						<div class="nav-collapse navbar-responsive-collapse <?php if( $this->params->get('responsive', 1) ) echo 'collapse' ?>" style="">
 							<?php if( $this->countModules('search-navbar') ): ?>
 							<div class="navbar-search pull-right">
 								<jdoc:include type="modules" name="search-navbar" />
 							</div>
-							<?php endif; ?>	
-							
+							<?php endif; ?>
+
+							<?php if( $this->countModules('login-navbar') ): ?>
+								<div class="navbar-login pull-right">
+									<jdoc:include type="modules" name="login-navbar" />
+								</div>
+							<?php endif; ?>
+
 							<?php echo AstraHelper::_('menu.render', $this->params->get('menutype', 'mainmenu')); ?>
 							
 						</div>

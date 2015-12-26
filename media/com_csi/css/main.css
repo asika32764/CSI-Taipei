@@ -16,6 +16,11 @@
 	display: none;
 }
 
+.navbar-header {
+	position: relative;
+	z-index: 1500;
+}
+
 /* Bootstrap Extended */
 .margin-b-5
 {

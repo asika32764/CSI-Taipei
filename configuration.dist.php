@@ -27,8 +27,8 @@ class JConfig
 	public $debug_lang = '0';
 
 	// Site Information
-	public $sitename = '{{Site Name}}';
-	public $fromname = '{{Site Name}}';
+	public $sitename = 'CSI Taipei';
+	public $fromname = 'CSI (citation and social impact)';
 	public $MetaDesc = 'A site by Joomla CMF';
 	public $MetaKeys = 'joomla, cmf';
 
