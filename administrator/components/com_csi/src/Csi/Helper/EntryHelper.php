@@ -8,6 +8,7 @@
 
 namespace Csi\Helper;
 
+use Csi\Config\Config;
 use Csi\Router\Route;
 use Joomla\String\Normalise;
 use Joomla\String\String;
@@ -258,18 +259,10 @@ class EntryHelper
 
 		$list = array();
 
-		$query = array(
-			'database' => array(
-				"syllabus",
-				"ethesys",
-				"paper",
-				"social",
-				"wiki",
-				"scholar",
-				"tci",
-				"webometrics"
-			),
+		$databases = array_keys((array) Config::get('database'));
 
+		$query = array(
+			'database' => $databases,
 			"webo_url" => array()
 		);
 

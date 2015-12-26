@@ -12,13 +12,15 @@ $databases = $displayData['databases'];
 $actives = $displayData['actives'] ? : array();
 ?>
 
-<?php foreach ($databases as $database): ?>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="jform[database][]" value="<?php echo $database; ?>"
-				<?php echo in_array($database, $actives) ? 'checked' : ''; ?>>
-			<?php echo JText::_('COM_CSI_DATABASE_' . strtoupper($database)); ?>
-		</label>
-	</div>
-	&nbsp;&nbsp;
-<?php endforeach; ?>
+<div id="databases-box" class="databases-box checkboxes">
+	<?php foreach ($databases as $database): ?>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name="jform[database][]" value="<?php echo $database; ?>"
+					<?php echo in_array($database, $actives) ? 'checked' : ''; ?>>
+				<?php echo JText::_('COM_CSI_DATABASE_' . strtoupper($database)); ?>
+			</label>
+		</div>
+		&nbsp;&nbsp;
+	<?php endforeach; ?>
+</div>

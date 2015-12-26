@@ -19,7 +19,10 @@ foreach ($data->databaseResult as $title => $result)
 	$nolinks = array(
 		'scholar',
 		'tci',
-		'wos'
+		'wos',
+		'thesis',
+		'scopus',
+		'mendeley'
 	);
 
 	$nolink = ($user->guest || in_array($data->database, $nolinks));
@@ -30,9 +33,11 @@ foreach ($data->databaseResult as $title => $result)
 		<?php if ($nolink): ?>
 			<?php echo JText::_('COM_CSI_DATABASE_' . strtoupper($data->database)); ?>
 		<?php else: ?>
-		<a target="_blank" href="<?php echo \Csi\Router\Route::_('com_csi.task_pages', array('id' => $task->id)); ?>">
+		<a target="_blank" href="<?php echo \Csi\Router\Route::_('com_csi.task_pages', array('id' => $task->id)); ?>"
+			title="<?php echo JText::_('COM_CSI_DATABASE_' . strtoupper($data->database) . '_RESULT_DESC') ?>">
 			<?php echo JText::_('COM_CSI_DATABASE_' . strtoupper($data->database)); ?>
 		</a>
+			<i class="icon-question-sign hasTooltip" title="<?php echo JText::_('COM_CSI_DATABASE_CAN_EDIT') ?>"></i>
 		<?php endif; ?>
 	</th>
 	<?php endif; ?>

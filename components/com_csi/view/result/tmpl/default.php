@@ -17,6 +17,7 @@ $data->asset->addJS('webometrics.js');
 <script>
 	jQuery(document).ready(function($)
 	{
+		// Webometrics
 		var weboChk = $('input[value=webometrics]');
 		var weboBox = $('.webometrics-box');
 
@@ -36,6 +37,58 @@ $data->asset->addJS('webometrics.js');
 			else
 			{
 				weboBox.collapse('hide');
+			}
+		});
+
+		// Validate
+		$('form.form-validate').on('submit', function(e)
+		{
+			try
+			{
+				var databases = $('#databases-box');
+				var checked = false;
+
+				databases.find('input[type=checkbox]').each(function(i)
+				{
+					if ($(this).prop('checked'))
+					{
+						checked = true;
+					}
+				});
+
+				if (!checked)
+				{
+					throw '請勾選資料來源';
+				}
+
+				// Webo
+				var weboChk = $('input[value=webometrics]');
+
+				if (weboChk.prop('checked'))
+				{
+					var inputs = $('.webometrics-box input');
+					var hasWebo = false;
+
+					inputs.each(function(i)
+					{
+						if ($(this).val())
+						{
+							hasWebo = true;
+						}
+					});
+
+					if (!hasWebo)
+					{
+						throw '請填寫 Webometrics 網址';
+					}
+				}
+			}
+			catch (error)
+			{
+				alert(error);
+
+				e.preventDefault();
+				e.stopPropagation();
 			}
 		});
 	});
@@ -146,12 +199,6 @@ $data->asset->addJS('webometrics.js');
 								</div>
 							</div>
 
-							<div class="form-group">
-								<div class="col-lg-offset-2 col-lg-10 ">
-									<button type="submit" class="btn btn-primary pull-right">Submit</button>
-								</div>
-							</div>
-
 							<hr>
 
 							<div class="form-inline">
@@ -168,6 +215,13 @@ $data->asset->addJS('webometrics.js');
 									<input type="text" class="col-lg-12 form-control" placeholder="Enter URL" value="<?php echo isset($urls[$i]) ? $urls[$i] : ''; ?>">
 								</div>
 							<?php endforeach; ?>
+							</div>
+
+							<div class="form-group">
+								<hr />
+								<div class="col-lg-10 ">
+									<button type="submit" class="btn btn-primary pull-left">Submit</button>
+								</div>
 							</div>
 
 						</fieldset>

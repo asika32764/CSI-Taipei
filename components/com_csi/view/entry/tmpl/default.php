@@ -6,6 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
+JHtmlBehavior::formvalidation();
 ?>
 <style>
 	#nav-placeholder {
@@ -15,6 +16,7 @@
 <script>
 	jQuery(document).ready(function($)
 	{
+		// Webometrics
 		var weboChk = $('input[value=webometrics]');
 		var weboBox = $('.webometrics-box');
 
@@ -36,12 +38,64 @@
 				weboBox.collapse('hide');
 			}
 		});
+
+		// Validate
+		$('form.form-validate').on('submit', function(e)
+		{
+			try
+			{
+				var databases = $('#databases-box');
+				var checked = false;
+
+				databases.find('input[type=checkbox]').each(function(i)
+				{
+					if ($(this).prop('checked'))
+					{
+						checked = true;
+					}
+				});
+
+				if (!checked)
+				{
+					throw '請勾選資料來源';
+				}
+
+				// Webo
+				var weboChk = $('input[value=webometrics]');
+
+				if (weboChk.prop('checked'))
+				{
+					var inputs = $('.webometrics-box input');
+					var hasWebo = false;
+
+					inputs.each(function(i)
+					{
+						if ($(this).val())
+						{
+							hasWebo = true;
+						}
+					});
+
+					if (!hasWebo)
+					{
+						throw '請填寫 Webometrics 網址';
+					}
+				}
+			}
+			catch (error)
+			{
+				alert(error);
+
+				e.preventDefault();
+				e.stopPropagation();
+			}
+		});
 	});
 </script>
 <div class="row-fluid">
 	<div class="col-lg-6 col-lg-offset-2 span12">
 
-		<form action="<?php echo \Csi\Router\Route::_('com_csi.entry', array('task' => 'entry.edit.save')); ?>" class="form-horizontal"
+		<form action="<?php echo \Csi\Router\Route::_('com_csi.entry', array('task' => 'entry.edit.save')); ?>" class="form-horizontal form-validate"
 			method="post">
 			<fieldset>
 				<legend>請輸入檢索字串</legend>
@@ -56,7 +110,7 @@
 					<div class="col-lg-10">
 						<div class="row">
 							<div class="col-lg-12">
-								<input type="text" name="jform[chinese_name]" class="form-control" id="chineseName" placeholder="姓名 (必填)">
+								<input type="text" name="jform[chinese_name]" class="form-control" id="chineseName" placeholder="姓名 (必填)" required>
 							</div>
 						</div>
 					</div>
@@ -72,10 +126,10 @@
 					<div class="col-lg-10">
 						<div class="row">
                                 <span class="col-lg-6 margin-b-20">
-                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][first]" placeholder="First Name (必填)">
+                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][first]" placeholder="First Name (必填)" required>
                                 </span>
                                 <span class="col-lg-6">
-                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][last]" placeholder="Last Name (必填)">
+                                    <input type="text" class="form-control" id="engNameFirst-0" name="jform[eng_name][0][last]" placeholder="Last Name (必填)" required>
                                 </span>
 						</div>
 					</div>
@@ -113,7 +167,7 @@
 					<div class="col-lg-10">
 						<div class="row">
                                 <span class="col-lg-6 margin-b-20">
-                                    <input type="text" class="form-control" id="school" name="jform[school]" placeholder="School (必填)">
+                                    <input type="text" class="form-control" id="school" name="jform[school]" placeholder="School (必填)" required>
                                 </span>
 						</div>
 					</div>
@@ -145,8 +199,9 @@
 			</div>
 
 			<div class="margin-t-20 form-group">
-				<div class="col-lg-offset-2 col-lg-10 ">
-					<button type="submit" class="btn btn-primary pull-right">Submit</button>
+				<hr />
+				<div class="col-lg-10 ">
+					<button type="submit" class="btn btn-primary btn-large pull-left">Submit</button>
 				</div>
 			</div>
 

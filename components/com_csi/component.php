@@ -37,5 +37,8 @@ final class CsiComponent extends \Csi\Component\CsiComponent
 		$asset = $this->container->get('helper.asset');
 
 		$asset->addCss('main.css');
+		$asset->getDoc()->addScriptVersion('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js');
+		$asset->getDoc()->addStylesheetVersion('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css');
+		$asset->internalJS('var alert = function(text) { swal(text, null, "warning") }');
 	}
 }

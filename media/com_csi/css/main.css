@@ -7,6 +7,15 @@
 	}
 }
 
+/* Fix */
+.hasTooltip {
+	display: inline-block !important;
+}
+
+.sweet-alert fieldset {
+	display: none;
+}
+
 /* Bootstrap Extended */
 .margin-b-5
 {
