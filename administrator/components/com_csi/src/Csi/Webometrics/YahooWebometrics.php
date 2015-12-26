@@ -29,7 +29,7 @@ class YahooWebometrics extends AbstractWebometrics
 	{
 		$html = with(new Dom)->load($html);
 
-		$result = $html->find('div#pg span');
+		$result = $html->find('div.compPagination span');
 
 		$filter = new InputFilter;
 

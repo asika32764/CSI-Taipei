@@ -54,8 +54,9 @@ abstract class Config extends AbstractConfig
 
 		/** @var \JRegistry $config */
 		$config = with(new Registry)
-			->loadFile(static::getPath(), static::$type);
-			//->loadFile(CSI_ADMIN . '/etc/wos.yml', 'yaml');
+			->loadFile(static::getPath(), static::$type)
+			->loadFile(CSI_ADMIN . '/etc/wos.yml', 'yaml')
+		;
 
 		$imports = $config->get('@import', array());
 

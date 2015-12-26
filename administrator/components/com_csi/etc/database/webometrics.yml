@@ -4,3 +4,4 @@ database:
         name: webometrics
         engines:
             - yahoo
+            - google

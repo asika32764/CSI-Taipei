@@ -114,7 +114,9 @@ $data->asset->addJS('webometrics.js');
 				</div>
 				<div id="collapseOne" class="accordion-body collapse">
 					<div class="accordion-inner">
-						<fieldset style="padding: 20px;">
+						<form action="<?php echo \Csi\Router\Route::_('com_csi.entry', array('task' => 'entry.edit.save')); ?>" class="form-horizontal form-validate"
+							method="post">
+							<fieldset style="padding: 20px;">
 
 							<!--Chinese Name-->
 							<div class="form-group row">
@@ -212,7 +214,7 @@ $data->asset->addJS('webometrics.js');
 
 							foreach (range(1, 3) as $i => $v): ?>
 								<div class="form-group">
-									<input type="text" class="col-lg-12 form-control" placeholder="Enter URL" value="<?php echo isset($urls[$i]) ? $urls[$i] : ''; ?>">
+									<input type="text" name="jform[webo_url][]" class="col-lg-12 form-control" placeholder="Enter URL" value="<?php echo isset($urls[$i]) ? $urls[$i] : ''; ?>">
 								</div>
 							<?php endforeach; ?>
 							</div>
@@ -224,7 +226,12 @@ $data->asset->addJS('webometrics.js');
 								</div>
 							</div>
 
+								<div id="hidden-inputs">
+									<?php echo JHtmlForm::token(); ?>
+								</div>
+
 						</fieldset>
+						</form>
 					</div>
 				</div>
 			</div>

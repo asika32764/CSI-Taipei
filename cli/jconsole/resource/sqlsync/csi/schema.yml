@@ -3,17 +3,17 @@
     from:
         - '#__csi_enginepages'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
-        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
-        engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
-        url: { Field: url, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
-        file: { Field: file, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [file] }
-        total: { Field: total, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [total] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
-        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [state] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [task_id] }
+        engine: { Field: engine, Type: char(15), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [engine] }
+        url: { Field: url, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [url] }
+        file: { Field: file, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [file] }
+        total: { Field: total, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [total] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created] }
+        ordering: { Field: ordering, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ordering] }
+        state: { Field: state, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [state] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_enginepages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_enginepages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -22,12 +22,12 @@
     from:
         - '#__csi_entries'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [created_by] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created_by] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_entries', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_entries', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -38,17 +38,17 @@
     from:
         - '#__csi_histories'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        user_id: { Field: user_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [user_id] }
-        name: { Field: name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [name] }
-        entry_id: { Field: entry_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
-        task_id: { Field: task_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
-        page_id: { Field: page_id, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [page_id] }
-        result_name: { Field: result_name, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [result_name] }
-        before: { Field: before, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [before] }
-        after: { Field: after, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [after] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        user_id: { Field: user_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [user_id] }
+        name: { Field: name, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [name] }
+        entry_id: { Field: entry_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [task_id] }
+        page_id: { Field: page_id, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [page_id] }
+        result_name: { Field: result_name, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [result_name] }
+        before: { Field: before, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [before] }
+        after: { Field: after, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [after] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__csi_histories', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_notifies':
@@ -56,12 +56,12 @@
     from:
         - '#__csi_notifies'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        mail: { Field: mail, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [mail] }
-        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        mail: { Field: mail, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [mail] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [entry_id] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_notifies', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_notifies', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -70,21 +70,21 @@
     from:
         - '#__csi_pages'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
-        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
-        enginepage_id: { Field: enginepage_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [enginepage_id] }
-        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [state] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        url: { Field: url, Type: varchar(512), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
-        filetype: { Field: filetype, Type: char(10), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filetype] }
-        filepath: { Field: filepath, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [filepath] }
-        downloaded: { Field: downloaded, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [downloaded] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        page: { Field: page, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [page] }
-        ordering: { Field: ordering, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: '', From: [ordering] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [task_id] }
+        enginepage_id: { Field: enginepage_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [enginepage_id] }
+        state: { Field: state, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [state] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title] }
+        url: { Field: url, Type: varchar(512), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [url] }
+        filetype: { Field: filetype, Type: char(10), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [filetype] }
+        filepath: { Field: filepath, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [filepath] }
+        downloaded: { Field: downloaded, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [downloaded] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created] }
+        page: { Field: page, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [page] }
+        ordering: { Field: ordering, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [ordering] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_pages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_pages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -93,15 +93,15 @@
     from:
         - '#__csi_queues'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
-        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
-        task: { Field: task, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [task] }
-        query: { Field: query, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [query] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
-        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: 'Record state', From: [state] }
-        priority: { Field: priority, Type: int(3), 'Null': NO, Default: null, Extra: '', Comment: '', From: [priority] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [task_id] }
+        task: { Field: task, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [task] }
+        query: { Field: query, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [query] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: 'Created time', From: [created] }
+        state: { Field: state, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: 'Record state', From: [state] }
+        priority: { Field: priority, Type: int(3), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [priority] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__csi_queues', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_queues', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -112,14 +112,14 @@
     from:
         - '#__csi_results'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
-        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [task_id] }
-        fk: { Field: fk, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [fk] }
-        type: { Field: type, Type: char(6), 'Null': NO, Default: null, Extra: '', Comment: '', From: [type] }
-        key: { Field: key, Type: char(30), 'Null': NO, Default: null, Extra: '', Comment: '', From: [key] }
-        value: { Field: value, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [value] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [entry_id] }
+        task_id: { Field: task_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [task_id] }
+        fk: { Field: fk, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [fk] }
+        type: { Field: type, Type: char(6), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [type] }
+        key: { Field: key, Type: char(30), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [key] }
+        value: { Field: value, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [value] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__csi_results', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
 '#__csi_schools':
@@ -127,38 +127,396 @@
     from:
         - '#__csi_schools'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
-        parent_id: { Field: parent_id, Type: int(11), 'Null': YES, Default: null, Extra: '', Comment: '', From: [parent_id] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: 'Record title', From: [title] }
-        tel: { Field: tel, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [tel] }
-        fax: { Field: fax, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [fax] }
-        address: { Field: address, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [address] }
-        nick: { Field: nick, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [nick] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: URL, From: [url] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Created time', From: [created] }
-        created_by: { Field: created_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: Author, From: [created_by] }
-        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: 'Modified time', From: [modified] }
-        modified_by: { Field: modified_by, Type: int(11), 'Null': NO, Default: null, Extra: '', Comment: 'Modified user', From: [modified_by] }
-        state: { Field: state, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: 'Record state', From: [state] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: Params, From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: 'Primary Key', From: [id] }
+        parent_id: { Field: parent_id, Type: int(11), 'Null': 'YES', Default: null, Extra: '', Comment: '', From: [parent_id] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: 'Record title', From: [title] }
+        tel: { Field: tel, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [tel] }
+        fax: { Field: fax, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [fax] }
+        address: { Field: address, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [address] }
+        nick: { Field: nick, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [nick] }
+        url: { Field: url, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: URL, From: [url] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: 'Created time', From: [created] }
+        created_by: { Field: created_by, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: Author, From: [created_by] }
+        modified: { Field: modified, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: 'Modified time', From: [modified] }
+        modified_by: { Field: modified_by, Type: int(11), 'Null': 'NO', Default: null, Extra: '', Comment: 'Modified user', From: [modified_by] }
+        state: { Field: state, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: 'Record state', From: [state] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: Params, From: [params] }
     index:
         - { Table: '#__csi_schools', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_schools', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: state, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_schools', Non_unique: '1', Key_name: idx_created_by, Seq_in_index: '1', Column_name: created_by, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
+    data:
+        - ['1', '0', 國立政治大學, 02-2939-3091, 02-2937-9611, '11605 臺北市文山區指南路2段64號', '["\u653f\u5927"]', 'http://www.nccu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['2', '0', 國立清華大學, 03-571-5131, 03-572-4038, '30013 新竹市光復路2段101號', '["\u6e05\u83ef","\u6e05\u5927"]', 'http://www.nthu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['3', '0', 國立臺灣大學, 02-3366-3366, 02-2362-7651, '10617 臺北市大安區羅斯福路4段1號', '["\u81fa\u5927"]', 'http://www.ntu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['4', '0', 國立臺灣師範大學, 02-7734-1111, 02-7734-1111, '10610 臺北市大安區和平東路1段162號', '["\u81fa\u5e2b\u5927"]', 'http://www.ntnu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['5', '0', 國立成功大學, 06-275-7575, 06-276-6439, '70101 臺南市大學路1號', '["\u6210\u5927"]', 'http://www.ncku.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['6', '0', 國立中興大學, 04-2287-3181, 04-2287-3702, '40227 臺中市南區國光路250號', '["\u8208\u5927"]', 'http://www.nchu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['7', '0', 國立交通大學, 03-571-2121, 03-573-1776, '30010 新竹市大學路1001號', '["\u4ea4\u5927"]', 'http://www.nctu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['8', '0', 國立中央大學, '03-422-7151 #9', 03-425-4842, '32001 桃園縣中壢市中大路300號', '["\u592e\u5927"]', 'http://www.ncu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['9', '0', 國立中山大學, '07-525-2000 #2015', 07-525-2375, '80424 高雄市鼓山區蓮海路70號', '["\u4e2d\u5c71"]', 'http://www.nsysu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['10', '0', 國立臺灣海洋大學, 02-2462-2192, 02-2462-0724, '20224 基隆市北寧路2號', '["\u6d77\u5927"]', 'http://www.ntou.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['11', '0', 國立中正大學, '05-272-0411 #10200', 05-272-0401, '62102 嘉義縣民雄鄉大學路168號', '["\u4e2d\u6b63\u5927"]', 'http://www.ccu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['12', '0', 國立高雄師範大學, 07-717-2930, 07-605-1022, '80201 高雄市苓雅區和平一路116號', '["\u9ad8\u5e2b\u5927"]', 'http://www.nknu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['13', '0', 國立彰化師範大學, '04-723-2105 #1020', 04-721-1098, '50007 彰化市進德路1號', '["\u5f70\u5e2b\u5927","\u5f70\u5316\u5e2b\u5927"]', 'http://www.ncue.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['14', '0', 國立陽明大學, 02-2826-7000, 02-2825-0936, '11221 臺北市北投區立農街2段155號', '["\u967d\u660e","\u967d\u5927"]', 'http://www.ym.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['15', '0', 國立臺北大學, '02-8674-1111 #66024', 02-8671-8000, '23741 新北市三峽區大學路151號', '["\u5317\u5927"]', 'http://www.ntpu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['16', '0', 國立嘉義大學, 05-271-7000, 05-271-7095, '60004 嘉義市鹿寮里學府路300號', '["\u5609\u5927"]', 'http://www.ncyu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['17', '0', 國立高雄大學, 07-591-9000, 07-591-9083, '81148 高雄市楠梓區高雄大學路700號', '["\u96c4\u5927"]', 'http://www.nuk.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['18', '0', 國立東華大學, 03-863-5000, 03-863-2010, '97401 花蓮縣壽豐鄉志學村大學路2段1號', '["\u6771\u83ef"]', 'http://www.ndhu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['19', '0', 國立暨南國際大學, 049-291-0960, 049-291-0413, '54561 南投縣埔里鎮大學路1號', '["\u66a8\u5927"]', 'http://www.ncnu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['20', '0', 國立臺灣科技大學, 02-2733-3141, 02-2733-1044, '10607 臺北市大安區基隆路四段43號', '["\u53f0\u79d1\u5927"]', 'http://www.ntust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['21', '0', 國立雲林科技大學, 05-534-2601, 05-532-1719, '64002 雲林縣斗六市大學路三段123號', '["\u96f2\u79d1\u5927"]', 'http://www.yuntech.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['22', '0', 國立屏東科技大學, 08-770-3202, 08-770-2226, '91201 屏東縣內埔鄉老埤村學府路1號', '["\u5c4f\u79d1\u5927"]', 'http://www.npust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['23', '0', 國立臺北科技大學, 02-2771-2171, 02-2781-5578, '10608 臺北市忠孝東路三段1號', '["\u5317\u79d1\u5927"]', 'http://www.ntut.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['24', '0', 國立高雄第一科技大學, 07-601-1000, 07-601-1069, '81164 高雄市楠梓區卓越路2號', '["\u9ad8\u96c4\u7b2c\u4e00\u79d1\u5927","\u7b2c\u4e00\u79d1\u5927"]', 'http://www.nkfust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['25', '0', 國立高雄應用科技大學, '07-381-4526 #9', 07-383-8435, '80778 高雄市三民區建工路415號', '["\u9ad8\u61c9\u5927"]', 'http://www.kuas.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['26', '0', 國立臺北藝術大學, 02-2896-1000, 02-2893-8845, '11201 臺北市北投區學園路1號', '["\u5317\u85dd\u5927"]', 'http://www.tnua.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['27', '0', 國立台灣藝術大學, '02-2272-2181#1931', 02-2969-4830, '22058 新北市板橋區大觀路1段59號', '["\u81fa\u85dd\u5927"]', 'http://www.ntua.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['28', '0', 國立臺東大學, '089-318-855 #1003', 089-517-316, '95092 臺東市西康路2段369號', '["\u6771\u5927"]', 'http://www.nttu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['29', '0', 國立宜蘭大學, '03-935-7400 #7220', 03-935-9339, '26047 宜蘭市神農路1段1號', '["\u5b9c\u5927"]', 'http://www.niu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['30', '0', 國立聯合大學, 037-381-000, 037-331-165, '36003 苗栗縣苗栗市恭敬里聯大1號', '["\u806f\u5927"]', 'http://www.nuu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['31', '0', 國立虎尾科技大學, 05-631-5000, 05-631-5999, '63201 雲林縣虎尾鎮文化路64號', '["\u864e\u5c3e\u79d1\u5927","\u864e\u79d1\u5927"]', 'http://www.nfu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['32', '0', 國立高雄海洋科技大學, 07-361-7141, 07-362-8844, '81157 高雄市楠梓區海專路142號', '["\u9ad8\u6d77","\u9ad8\u6d77\u79d1\u5927"]', 'http://www.nkmu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['33', '0', 國立臺南藝術大學, 06-693-0100, 06-693-0121, '72045 臺南縣官田鄉大崎村66號', '["\u5357\u85dd","\u5357\u85dd\u5927"]', 'http://www.tnnua.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['34', '0', 國立臺南大學, 06-213-3111, 06-214-4409, '70005 臺南市中西區樹林街2段33號', '["\u5357\u5927"]', 'http://www.nutn.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['35', '0', 國立臺北教育大學, 02-2732-1104, 02-2733-0473, '10671 臺北市和平東路2段134號', '["\u570b\u5317\u6559\u5927","\u570b\u5317\u6559"]', 'http://www.ntue.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['36', '0', 國立新竹教育大學, '03-521-3132 #1125', 03-523-1380, '30014 新竹市南大路521號', '["\u7af9\u6559\u5927"]', 'http://www.nhcue.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['37', '0', 國立臺中教育大學, 04-2218-3199, 04-2218-3180, '40306 臺中市西區民生路140號', '["\u4e2d\u6559\u5927"]', 'http://www.ntcu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['38', '0', 國立屏東教育大學, 08-722-6141, 08-723-4406, '90003 屏東市民生路4-18號', '["\u5c4f\u6559\u5927"]', 'http://web.npue.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['39', '0', 國立澎湖科技大學, 06-926-4115, 06-926-4265, '88046 澎湖縣馬公市六合路300號', '["\u6f8e\u79d1\u5927"]', 'http://www.npu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['40', '0', 國立勤益科技大學, 04-2392-4505, 04-2393-0062, '41170 臺中市太平區坪林里中山路二段57號', '["\u52e4\u76ca\u79d1\u5927"]', 'http://web2.ncut.edu.tw/bin/home.php', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['41', '0', 國立體育大學, 03-328-3201, 03-328-4047, '33301 桃園縣龜山鄉文化一路250號', '["\u570b\u9ad4","\u9ad4\u5927","\u570b\u9ad4\u5927"]', 'http://www.ntsu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['42', '0', 國立臺北護理健康大學, 02-2822-7101, 02-2820-5680, '11219 臺北市北投區明德路365號', '["\u570b\u5317\u8b77\u5927","\u5317\u8b77\u5927"]', 'http://www.ntunhs.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['43', '0', 國立高雄餐旅大學, 07-806-0505, 07-806-1473, '81271 高雄市小港區松和路1號', '["\u9ad8\u9910\u65c5","\u9ad8\u9910\u5927","\u9ad8\u9910"]', 'http://www.nkuht.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['44', '0', 國立金門大學, 082-313-300, 082-313-304, '89250 金門縣金寧鄉大學路1號', '["\u91d1\u5927"]', 'http://www.nqu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['45', '0', 國立臺灣體育運動大學, '04-2221-3108 #2002', 04-2223-2463, '40404 臺中市北區雙十路1段16號', '["\u81fa\u9ad4","\u53f0\u9ad4\u5927","\u53f0\u7063\u9ad4\u5927"]', 'http://www.ntupes.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['46', '0', 國立屏東商業技術學院, 08-723-8700, 08-723-8720, '90004 屏東市民生東路51號', '["\u5c4f\u5546\u9662","\u5c4f\u5546\u6280"]', 'http://www.npic.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['47', '0', 國立臺中科技大學, 04-2219-5678, 04-2219-5011, '40401 臺中巿北區三民路三段129號', '["\u4e2d\u79d1\u5927"]', 'http://www.nutc.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['48', '0', 國立臺北商業技術學院, 02-2393-5263, 02-2322-6009, '10051 臺北市中正區濟南路一段321號', '["\u5317\u5546"]', 'http://www.ntcb.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['49', '0', 國立臺灣戲曲學院, 02-2796-2666, 02-2794-1529, '11464 臺北市內湖區內湖路二段177號', '["\u6232\u66f2\u5b78\u9662","\u81fa\u6232\u5b78\u9662"]', 'http://www.tcpa.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['50', '0', 國立空中大學, 02-2282-9355, 02-8281-3274, '24701 新北市蘆洲區中正路 172 號', '["\u7a7a\u5927"]', 'http://www.nou.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['51', '0', 東海大學, '04-2359-0121 #30009', 04-2350-0847, '40704 臺中市西屯區臺灣大道4段1727號', '["\u6771\u6d77"]', 'http://www.thu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['52', '0', 輔仁大學, 02-2905-2000, 02-2903-9809, '24205 新北市新莊區中正路510號', '["\u8f14\u5927"]', 'http://www.fju.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['53', '0', 東吳大學, '02-2881-9471 #5413', 02-2882-9310, '11102 臺北市士林區臨溪路70號', '["\u6771\u5433"]', 'http://www.scu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['54', '0', 中原大學, 03-265-9999, 03-265-8888, '32023 桃園縣中壢市中北路200號', '["\u4e2d\u539f"]', 'http://www.cycu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['55', '0', 淡江大學, '02-2621-5656 #2356', 02-2622-3204, '25137 新北市淡水區英專路151號', '["\u6de1\u6c5f","\u6de1\u5927"]', 'http://www.tku.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['56', '0', 中國文化大學, 02-2861-0511, 02-2861-5031, '11114 臺北市士林區華岡路55號', '["\u6587\u5927"]', 'http://www.pccu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['57', '0', 逢甲大學, 04-2451-7250, 04-2451-0081, '40724 臺中市西屯區文華路100號', '["\u9022\u7532","\u9022\u5927"]', 'http://www.fcu.edu.tw/wsite/mp?mp=1', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['58', '0', 靜宜大學, '04-2632-8001 #11003', 04-2631-1170, '43301 臺中市沙鹿區中棲路200號\,(臺中市沙鹿區臺灣大道7段200號)', '["\u975c\u5b9c"]', 'http://www.pu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['59', '0', 長庚大學, 03-211-8800, 03-211-8700, '33302 桃園縣龜山鄉文化一路259號', '["\u9577\u5e9a"]', 'http://www.cgu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['60', '0', 元智大學, 03-463-8800, 03-463-8900, '32003 桃園縣中壢市遠東路135號', '["\u5143\u667a"]', 'http://www.yzu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['61', '0', 中華大學, 03-537-4281, 03-537-3771, '30012 新竹市東香里六鄰五福路2段707號', '["\uff08\u7121\uff09"]', 'http://www.chu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['62', '0', 大葉大學, '04-851-1888 #1006', 04-851-1666, '51591 彰化縣大村鄉學府路168號', '["\uff08\u7121\uff09"]', 'http://www.dyu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['63', '0', 華梵大學, 02-2663-2102, 02-2663-3234, '22301 新北市石碇區華梵路1號', '["\u83ef\u68b5"]', 'http://www.hfu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['64', '0', 義守大學, 07-657-7711, 07-657-7056, '84001 高雄市大樹區學城路1段1號', '["\u7fa9\u5927"]', 'http://www.isu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['65', '0', 世新大學, '02-2236-8225 #2004', 02-2236-5133, '11604 臺北市文山區木柵路1段17巷1號', '["\u4e16\u65b0"]', 'http://www.shu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['66', '0', 銘傳大學, 02-2882-4564, 02-2882-0521, '11103 臺北市士林區中山北路5段250號', '["\u9298\u50b3"]', 'http://www.mcu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['67', '0', 實踐大學, 02-2538-1111, 02-2533-6293, '10462 臺北市中山區大直街70號', '["\u5be6\u8e10"]', 'http://www.usc.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['68', '0', 朝陽科技大學, 04-2332-3000, 04-2332-9898, '41349 臺中市霧峰區吉峰東路168號', '["\u671d\u967d\u79d1\u5927","\u671d\u79d1\u5927"]', 'http://www.cyut.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['69', '0', 高雄醫學大學, 07-312-1101, 07-321-2062, '80708 高雄市三民區十全一路100號', '["\u9ad8\u91ab\u5927","\u9ad8\u91ab"]', 'http://www2.kmu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['70', '0', 南華大學, 05-272-1001, 05-242-7147, '62248 嘉義縣大林鎮中坑里10鄰南華路1段55號', '["\uff08\u7121\uff09"]', 'http://www.nhu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['71', '0', 真理大學, '02-2621-2121 #1101', 02-2623-5533, '25103 新北市淡水區真理街32號', '["\uff08\u7121\uff09"]', 'http://www.au.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['72', '0', 大同大學, 02-2182-2928, 02-2595-2109, '10452 臺北市中山北路3段40號', '["\uff08\u7121\uff09"]', 'http://www.ttu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['73', '0', 南臺科技大學, 06-253-3131, 06-254-3031, '71005 臺南市永康區南臺街1號', '["\u5357\u81fa\u79d1\u5927"]', 'http://www.stust.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['74', '0', 崑山科技大學, 06-272-7175, 06-272-8944, '71003 臺南市永康區大灣路949號', '["\u5d11\u5c71\u79d1\u5927","\u5d11\u79d1\u5927"]', 'http://www.ksu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['75', '0', 嘉南藥理科技大學, 06-266-4911, 06-266-8920, '71710 臺南市仁德區二仁路一段60號', '["\u5609\u85e5","\u5609\u5357\u85e5\u7406\u79d1\u5927","\u5609\u85e5\u79d1\u5927"]', 'http://www.chna.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['76', '0', 樹德科技大學, 07-615-8000, 07-615-8999, '82445 高雄市燕巢區橫山路59號', '["\u6a39\u5fb7\u79d1\u5927","\u6a39\u79d1\u5927"]', 'http://www.stu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['77', '0', 慈濟學校財團法人慈濟大學, 03-856-5301, 03-856-2500, '97004 花蓮市中央路3段701號', '["\u6148\u5927"]', 'http://www.tcu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['78', '0', 臺北醫學大學, '02-2736-1661 #2016', 02-2378-7795, '11031 臺北市信義區吳興街250號', '["\u5317\u91ab","\u81fa\u5317\u91ab\u5927"]', 'http://www.tmu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['79', '0', 中山醫學大學, '04-2473-0022 #11012', 04-2475-9950, '40201 臺中市南區建國北路1段110號', '["\u4e2d\u5c71\u91ab\u5927","\u4e2d\u5c71\u91ab"]', 'http://www.csmu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['80', '0', 龍華科技大學, 02-8209-3211, 02-8209-1476, '33306 桃園縣龜山鄉萬壽路一段300號', '["\u9f8d\u83ef\u79d1\u5927","\u9f8d\u79d1\u5927"]', 'http://www.lhu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['81', '0', 輔英科技大學, 07-781-1151, 07-782-6146, '83102 高雄市大寮區進學路151號', '["\u8f14\u82f1","\u8f14\u82f1\u79d1\u5927"]', 'http://www.fy.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['82', '0', 明新科技大學, '03-559-3142 #2120', 03-559-5142, '30401 新竹縣新豐鄉新興路1號', '["\u660e\u65b0\u79d1\u5927"]', 'http://www.must.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['83', '0', 長榮大學, 06-278-5123, 06-278-5555, '71101 臺南市歸仁區長大路1號', '["\uff08\u7121\uff09"]', 'http://www.cjcu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['84', '0', 弘光科技大學, 04-2631-8652, 04-2631-0744, '43302 臺中市沙鹿區臺灣大道六段1018號', '["\u5f18\u5149\u79d1\u5927"]', 'http://www.hk.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['85', '0', 中國醫藥大學, '04-2205-3366 #1013', 04-2206-0248, '40402 臺中市北區學士路91號', '["\u4e2d\u570b\u91ab","\u4e2d\u91ab\u5927","\u4e2d\u91ab"]', 'http://www.cmu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['86', '0', 健行學校財團法人健行科技大學, '03-458-1196 #9', 無, '32097 桃園縣中壢市健行路229號', '["\u5065\u884c\u79d1\u5927"]', 'http://www.uch.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['87', '0', 正修科技大學, 07-735-8800, 07-731-5367, '83347 高雄市鳥松區澄清路840號', '["\u6b63\u4fee\u79d1\u5927"]', 'http://www.csu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['88', '0', 萬能學校財團法人萬能科技大學, 03-451-5811, 03-451-3786, '32061 桃園縣中壢市萬能路1號', '["\u842c\u80fd\u79d1\u5927"]', 'http://www.vnu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['89', '0', 玄奘大學, 03-530-2255, 03-539-7400, '30092 新竹市香山區玄奘路48號', '["\u7384\u5927"]', 'http://www.hcu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['90', '0', 建國科技大學, 04-711-1111, 04-711-1171, '50094 彰化縣彰化市介壽北路1號', '["\u5efa\u570b\u79d1\u5927"]', 'http://www.ctu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['91', '0', 明志科技大學, 02-2908-9899, 02-2904-1914, '24301 新北市泰山區貴子里工專路84號', '["\u660e\u5fd7\u79d1\u5927"]', 'http://www.mcut.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['92', '0', 高苑科技大學, 07-607-7868, 07-607-7877, '82151 高雄市路竹區中山路1821號', '["\u9ad8\u82d1\u79d1\u5927"]', 'http://www.kyu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['93', '0', 大仁科技大學, 08-762-4002, 08-762-3924, '90741 屏東縣鹽埔鄉維新路20號', '["\u5927\u4ec1\u79d1\u5927"]', 'http://www.tajen.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['94', '0', 聖約翰科技大學, 02-2801-3131, 02-2801-3021, '25135 新北市淡水區淡金路四段499號', '["\u8056\u7d04\u7ff0\u79d1\u5927"]', 'http://www.sju.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['95', '0', 嶺東科技大學, 04-2839-2088, 04-2389-5293, '40852 臺中市南屯區嶺東路1號', '["\u5dba\u6771\u79d1\u5927"]', 'http://www.ltu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['96', '0', 中國科技大學, 02-2931-3416, 02-8931-8847, '11695 臺北市文山區興隆路三段56號', '["\u4e2d\u570b\u79d1\u5927"]', 'http://www.cute.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['97', '0', 中臺科技大學, '04-2239-1647 #2101', 04-2239-5751, '40601 臺中市北屯區?子路666號', '["\u4e2d\u81fa\u79d1\u5927"]', 'http://www.ctust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['98', '0', 亞洲大學, 04-2332-3456, 04-2331-6699, '41354 臺中市霧峰區柳豐路500號', '["\u4e9e\u5927"]', 'http://www.asia.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['99', '0', 開南大學, '03-341-2500 #1202', 03-341-3253, '33857 桃園縣蘆竹鄉開南路1號', '["\u958b\u5357"]', 'http://www.knu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['100', '0', 佛光大學, '03-987-1000 #11541', 03-987-4806, '26247 宜蘭縣礁溪鄉林美村林尾路160號', '["\u4f5b\u5927"]', 'http://www.fgu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['101', '0', 台南家專學校財團法人台南應用科技大學, '06-253-2106 #259', 06-254-9527, '71002 臺南市永康區中正路529號', '["\u53f0\u5357\u79d1\u5927","\u53f0\u5357\u61c9\u5927","\u5357\u61c9\u5927"]', 'http://www.tut.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['102', '0', 遠東科技大學, 06-597-9566, 06-597-7050, '74448 臺南市新市區中華路49號', '["\u9060\u6771\u79d1\u5927","\u9060\u79d1\u5927"]', 'http://www.feu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['103', '0', 元培科技大學, 03-610-2251, 03-538-5353, '30015 新竹市元培街306號', '["\u5143\u57f9\u79d1\u5927"]', 'http://www.ypu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['104', '0', 景文科技大學, 02-8212-2000, 02-8212-2199, '23154 新北市新店區安忠路99號', '["\u666f\u6587\u79d1\u5927","\u666f\u79d1\u5927"]', 'http://www.just.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['105', '0', 中華醫事科技大學, '06-267-1214 #0', 06-335-6723, '71703 臺南市仁德區文華一街89號', '["\u83ef\u91ab","\u83ef\u91ab\u79d1\u5927"]', 'http://www.hwai.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['106', '0', 東南科技大學, 02-8662-5859, 02-2662-4052, '22202 新北市深坑區北深路三段152號', '["\u6771\u5357\u79d1\u5927"]', 'http://www.tnu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['107', '0', 德明財經科技大學, 02-2658-5801, 02-2658-2507, '11451 臺北市內湖區環山路一段56號', '["\u5fb7\u660e\u79d1\u5927"]', 'http://www.takming.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['108', '0', 明道學校財團法人明道大學, '04-887-6660 #1532', 04-887-9036, '52345 彰化縣埤頭鄉文化路369號', '["(\u7121)"]', 'http://www.mdu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['109', '0', 康寧大學, 06-255-2500, 06-255-3086, '70970 臺南市安南區安中路5段188號', '["(\u7121)"]', 'http://www.ukn.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['110', '0', 南開科技大學, 049-256-3489, 049-256-3788, '54243 南投縣草屯鎮中正路568號', '["\u5357\u958b\u79d1\u5927"]', 'http://www.nkut.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['111', '0', 中華學校財團法人中華科技大學, 02-2782-1862, 02-2788-9145, '11581 臺北市南港區研究院路三段245號', '["\u4e2d\u83ef\u79d1\u5927"]', 'http://www.cust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['112', '0', 僑光科技大學, 04-2701-6855, 04-2707-5420, '40721 臺中市西屯區僑光路100號', '["\u50d1\u5149\u79d1\u5927"]', 'http://www.ocu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['113', '0', 廣亞學校財團法人育達科技大學, 037-651-188, 037-651-201, '36143 苗栗縣造橋鄉談文村學府路168號', '["\u80b2\u9054\u79d1\u5927"]', 'http://www.ydu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['114', '0', 美和學校財團法人美和科技大學, '08-779-9821 #8115', 08-779-9711, '91202 屏東縣內埔鄉美和村屏光路23號', '["\u7f8e\u548c\u79d1\u5927"]', 'http://www.meiho.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['115', '0', 吳鳳科技大學, 05-226-7125, 05-206-3455, '62153 嘉義縣民雄鄉建國路二段117號', '["\u5433\u9cf3\u79d1\u5927"]', 'http://www.wfu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['116', '0', 環球學校財團法人環球科技大學, 05-537-0988, 05-537-0989, '64063 雲林縣斗六市嘉東里鎮南路1221號', '["\u74b0\u7403\u79d1\u5927","\u74b0\u79d1\u5927"]', 'http://www.twu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['117', '0', 台灣首府學校財團法人台灣首府大學, '06-571-8888 #331', 06-572-2858, '72153 臺南市麻豆區南勢里168號', '["\u53f0\u9996\u5927"]', 'http://www.tsu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['118', '0', 中州學校財團法人中州科技大學, '04-835-9000 #1511', 04-831-4515, '51060 彰化縣員林鎮山腳路三段2巷6號', '["\u4e2d\u5dde\u79d1\u5927"]', 'http://www.ccut.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['119', '0', 修平學校財團法人修平科技大學, 04-2496-1100, 04-2496-1187, '41280 臺中市大里區工業路11號', '["\u4fee\u5e73\u79d1\u5927"]', 'http://www.hust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['120', '0', 長庚學校財團法人長庚科技大學, '03-211-8999 #8', 03-211-8866, '33303 桃園縣龜山鄉文化一路261號', '["\u9577\u5e9a\u79d1\u5927"]', 'http://www.cgust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['121', '0', 興國管理學院, 06-287-3335, 06-287-3536, '70963 臺南市安南區台江大道3段600號', '["\u8208\u570b\u5b78\u9662"]', 'http://www.hku.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['122', '0', 大華學校財團法人大華科技大學, '03-592-7700 #2440', 03-592-7871, '30740 新竹縣芎林鄉大華路1號', '["\u5927\u83ef\u79d1\u5927"]', 'http://www.tust.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['123', '0', 文藻學校財團法人文藻外語大學, 07-342-6031, 07-342-7942, '80793 高雄市三民區民族一路900號', '["\u6587\u85fb"]', 'http://www.wzu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['124', '0', 大漢技術學院, 03-821-0888, 03-826-2916, '97145 花蓮縣新城鄉大漢村樹人街1號', '["\u5927\u6f22\u5b78\u9662"]', 'http://www.dahan.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['125', '0', 慈濟學校財團法人慈濟技術學院, 03-857-2158, 03-857-7261, '97005 花蓮市建國路二段880號', '["\uff08\u7121\uff09"]', 'http://www.tccn.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['126', '0', 永達技術學院, 08-723-3733, 08-722-7024, '90942 屏東縣麟洛鄉麟洛村中山路316號', '["\u6c38\u9054\u5b78\u9662"]', 'http://www.ytit.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['127', '0', 和春技術學院, 07-788-9888, 07-788-9777, '83160 高雄市大寮區琉球里至學路288號', '["\u548c\u6625"]', 'http://www.fotech.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['128', '0', 城市學校財團法人臺北城市科技大學, 02-2892-7154, 02-2896-7170, '11202 臺北市北投區學園路2號', '["\u81fa\u5317\u57ce\u5e02\u5927\u5b78","\u57ce\u5e02\u79d1\u5927"]', 'http://www.tpcu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['129', '0', 致理技術學院, '02-2257-6167 #1202', 02-2258-3710, '22050 新北市板橋區文化路1段313號', '["\u81f4\u7406"]', 'http://www.chihlee.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['130', '0', 醒吾學校財團法人醒吾科技大學, 02-2601-5310, 02-2601-0748, '24452 新北市林口區粉寮路一段101號', '["\u9192\u543e\u79d1\u5927"]', 'http://www.hwu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['131', '0', 亞東技術學院, 02-7738-8000, 02-7738-2678, '22061 新北市板橋區四川路二段58號', '["\u4e9e\u6771"]', 'http://www.oit.edu.tw/bin/home.php', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['132', '0', 桃園創新科技學校財團法人桃園創新技術學院, 03-436-1070, 03-438-8198, '32091 桃園縣中壢市中山東路三段414號', '["\u6843\u5275"]', 'http://www.tiit.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['133', '0', 稻江科技暨管理學院, '05-362-2889 #112', 05-362-0707, '61363 嘉義縣朴子市學府路2段51號', '["\u7a3b\u6c5f\u5b78\u9662"]', 'http://www.toko.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['134', '0', 德霖技術學院, 02-2273-3567, 02-2273-3995, '23654 新北市土城區青雲路380巷1號', '["\u5fb7\u9716\u6280\u9662"]', 'http://w3.dlit.edu.tw/index.phtml', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['135', '0', 南榮學校財團法人南榮科技大學, 06-652-3111, 06-652-3614, '73746 臺南市鹽水區朝琴路178號', '["\u5357\u69ae\u79d1\u5927"]', 'http://www.nju.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['136', '0', 蘭陽技術學院, 03-977-1997, 03-978-9899, '26141 宜蘭縣頭城鎮復興路79號', '["\u862d\u6280"]', 'http://www.fit.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['137', '0', 黎明技術學院, 02-2909-7811, 02-2296-5911, '24305 新北市泰山區黎專路2-2號', '["\u9ece\u660e\u5b78\u9662"]', 'http://www.lit.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['138', '0', 東方學校財團法人東方設計學院, 07-693-2011, 07-693-1611, '82941 高雄市湖內區東方路110號', '["\uff08\u7121\uff09"]', 'http://www.tf.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['139', '0', 經國管理暨健康學院, '02-2437-2093 #402', 02-2437-6209, '20301 基隆市中山區復興路336號', '["\u7d93\u570b\u5b78\u9662"]', 'http://www.cku.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['140', '0', 崇右技術學院, 02-2423-7785, 02-2429-3639, '20103 基隆市信義區義七路40號', '[" \u5d07\u53f3\u5b78\u9662"]', 'http://www.cit.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['141', '0', 大同技術學院, 05-222-3124, 05-225-2393, '60005 嘉義市彌陀路253號', '["\uff08\u7121\uff09"]', 'http://www.ttc.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['142', '0', 亞太學校財團法人亞太創意技術學院, 037-605-500, 037-605-556, '35153 苗栗縣頭份鎮珊湖里學府路110號', '["\u4e9e\u592a\u5b78\u9662"]', 'http://www.apic.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['143', '0', 高鳳數位內容學院, 08-762-6365, 08-762-7882, '90841 屏東縣長治鄉復興村新興路38號', '["\u9ad8\u9cf3\u5b78\u9662"]', 'http://www.kfcdc.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['144', '0', 華夏技術學院, 02-8941-5100, 02-8941-5730, '23568 新北市中和區工專路111號', '["\uff08\u7121\uff09"]', 'http://www.hwh.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['145', '0', 臺灣觀光學院, 03-865-3906, 03-865-0411, '97448 花蓮縣壽豐鄉豐山村中興街268號', '["\u81fa\u89c0\u9662"]', 'http://www.tht.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['146', '0', 台北海洋技術學院, 02-2810-2292, 02-2810-6688, '11174 臺北市士林區延平北路九段212號', '["\uff08\u7121\uff09"]', 'http://www.tcmt.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['147', '0', 馬偕醫學院, 02-2636-0303, 02-2636-1134, '25245 新北市三芝區中正路3段46號', '["\uff08\u7121\uff09"]', 'http://www.mmc.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['148', '0', 法鼓佛教學院, 02-2498-0707, 02-2408-2317, '20842 新北市金山區西勢湖 2-6號', '["\uff08\u7121\uff09"]', 'http://www.ddbc.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['149', '0', 學校財團法人中華浸信會基督教臺灣浸會神學院, '02-2723-9500 #143', 02-2722-4646, '11045 臺北市吳興街394巷1號', '["\uff08\u7121\uff09"]', 'http://www.tbts.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['150', '0', 臺北基督學院, '02-2809-7661 #1100', 02-2809-6631, '25162 新北市淡水區自強路51號', '["\uff08\u7121\uff09"]', 'http://www.cct.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['151', '0', 臺北市立大學, 02-2311-3040, 02-2381-4067, '10048 臺北市中正區愛國西路1號', '["\u5317\u5e02\u5927"]', 'http://www.utaipei.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['152', '0', 高雄市立空中大學, 07-801-2008, 07-806-6725, '81249 高雄市小港區大業北路436號', '["\u9ad8\u96c4\u7a7a\u5927"]', 'http://www.ouk.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['153', '0', 中華民國陸軍軍官學校, 07-746-2151, 07-719-3168, '83059 高雄市鳳山區維武路1號', '["\u9678\u8ecd\u5b98\u6821"]', 'http://www.cma.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['154', '0', 海軍軍官學校, 07-581-7366, 07-588-2447, '81345 高雄市左營區軍校路669號', '["\u6d77\u8ecd\u5b98\u6821"]', 'http://www.cna.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['155', '0', 中華民國空軍軍官學校, 07-625-4141, 07-626-3263, '820 高雄市岡山區介壽西路西首1號', '["\u7a7a\u8ecd\u5b98\u6821"]', 'http://http：//www.cafa.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['156', '0', 國防大學, 03-380-1126, 03-373-2032, '33448 桃園縣八德市興豐路1000號', '["\uff08\u7121\uff09"]', 'http://www.ndu.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['157', '0', 中央警察大學, 03-328-2321, 03-328-4118, '33304 桃園縣龜山鄉大崗村樹人路56號', '["\u8b66\u5927"]', 'http://www.cpu.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['158', '0', 國防醫學院, 02-8792-3100, 02-8792-3311, '11490 台北市內湖區民權東路6段161號', '["\u570b\u9632\u91ab"]', 'http://www.ndmctsgh.edu.tw', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['159', '0', 國立空軍航空技術學院, 07-625-4141, 07-625-6530, '82047 高雄市岡山區介壽西路198號', '["\u7a7a\u8ecd\u822a\u9662","\u822a\u9662"]', 'http://www.afats.khc.edu.tw/', '2015-12-26 16:17:47', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['160', '1', 政大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['161', '2', 清華, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['162', '2', 清大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['163', '3', 臺大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['164', '4', 臺師大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['165', '5', 成大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['166', '6', 興大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['167', '7', 交大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['168', '8', 央大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['169', '9', 中山, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['170', '10', 海大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['171', '11', 中正大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['172', '12', 高師大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['173', '13', 彰師大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['174', '13', 彰化師大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['175', '14', 陽明, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['176', '14', 陽大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['177', '15', 北大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['178', '16', 嘉大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['179', '17', 雄大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['180', '18', 東華, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['181', '19', 暨大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['182', '20', 台科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['183', '21', 雲科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['184', '22', 屏科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['185', '23', 北科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['186', '24', 高雄第一科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['187', '24', 第一科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['188', '25', 高應大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['189', '26', 北藝大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['190', '27', 臺藝大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['191', '28', 東大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['192', '29', 宜大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['193', '30', 聯大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['194', '31', 虎尾科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['195', '31', 虎科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['196', '32', 高海, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['197', '32', 高海科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['198', '33', 南藝, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['199', '33', 南藝大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['200', '34', 南大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['201', '35', 國北教大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['202', '35', 國北教, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['203', '36', 竹教大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['204', '37', 中教大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['205', '38', 屏教大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['206', '39', 澎科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['207', '40', 勤益科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['208', '41', 國體, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['209', '41', 體大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['210', '41', 國體大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['211', '42', 國北護大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['212', '42', 北護大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['213', '43', 高餐旅, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['214', '43', 高餐大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['215', '43', 高餐, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['216', '44', 金大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['217', '45', 臺體, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['218', '45', 台體大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['219', '45', 台灣體大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['220', '46', 屏商院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['221', '46', 屏商技, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['222', '47', 中科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['223', '48', 北商, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['224', '49', 戲曲學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['225', '49', 臺戲學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['226', '50', 空大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['227', '51', 東海, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['228', '52', 輔大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['229', '53', 東吳, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['230', '54', 中原, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['231', '55', 淡江, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['232', '55', 淡大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['233', '56', 文大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['234', '57', 逢甲, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['235', '57', 逢大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['236', '58', 靜宜, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['237', '59', 長庚, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['238', '60', 元智, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['239', '61', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['240', '62', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['241', '63', 華梵, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['242', '64', 義大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['243', '65', 世新, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['244', '66', 銘傳, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['245', '67', 實踐, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['246', '68', 朝陽科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['247', '68', 朝科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['248', '69', 高醫大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['249', '69', 高醫, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['250', '70', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['251', '71', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['252', '72', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['253', '73', 南臺科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['254', '74', 崑山科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['255', '74', 崑科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['256', '75', 嘉藥, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['257', '75', 嘉南藥理科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['258', '75', 嘉藥科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['259', '76', 樹德科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['260', '76', 樹科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['261', '77', 慈大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['262', '78', 北醫, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['263', '78', 臺北醫大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['264', '79', 中山醫大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['265', '79', 中山醫, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['266', '80', 龍華科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['267', '80', 龍科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['268', '81', 輔英, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['269', '81', 輔英科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['270', '82', 明新科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['271', '83', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['272', '84', 弘光科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['273', '85', 中國醫, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['274', '85', 中醫大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['275', '85', 中醫, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['276', '86', 健行科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['277', '87', 正修科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['278', '88', 萬能科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['279', '89', 玄大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['280', '90', 建國科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['281', '91', 明志科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['282', '92', 高苑科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['283', '93', 大仁科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['284', '94', 聖約翰科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['285', '95', 嶺東科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['286', '96', 中國科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['287', '97', 中臺科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['288', '98', 亞大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['289', '99', 開南, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['290', '100', 佛大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['291', '101', 台南科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['292', '101', 台南應大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['293', '101', 南應大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['294', '102', 遠東科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['295', '102', 遠科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['296', '103', 元培科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['297', '104', 景文科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['298', '104', 景科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['299', '105', 華醫, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['300', '105', 華醫科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['301', '106', 東南科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['302', '107', 德明科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['303', '108', (無), '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['304', '109', (無), '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['305', '110', 南開科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['306', '111', 中華科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['307', '112', 僑光科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['308', '113', 育達科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['309', '114', 美和科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['310', '115', 吳鳳科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['311', '116', 環球科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['312', '116', 環科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['313', '117', 台首大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['314', '118', 中州科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['315', '119', 修平科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['316', '120', 長庚科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['317', '121', 興國學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['318', '122', 大華科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['319', '123', 文藻, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['320', '124', 大漢學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['321', '125', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['322', '126', 永達學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['323', '127', 和春, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['324', '128', 臺北城市大學, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['325', '128', 城市科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['326', '129', 致理, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['327', '130', 醒吾科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['328', '131', 亞東, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['329', '132', 桃創, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['330', '133', 稻江學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['331', '134', 德霖技院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['332', '135', 南榮科大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['333', '136', 蘭技, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['334', '137', 黎明學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['335', '138', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['336', '139', 經國學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['337', '140', ' 崇右學院', '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['338', '141', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['339', '142', 亞太學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['340', '143', 高鳳學院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['341', '144', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['342', '145', 臺觀院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['343', '146', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['344', '147', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['345', '148', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['346', '149', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['347', '150', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['348', '151', 北市大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['349', '152', 高雄空大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['350', '153', 陸軍官校, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['351', '154', 海軍官校, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['352', '155', 空軍官校, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['353', '156', （無）, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['354', '157', 警大, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['355', '158', 國防醫, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['356', '159', 空軍航院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
+        - ['357', '159', 航院, '', '', '', '', '', '0000-00-00 00:00:00', '0', '0000-00-00 00:00:00', '0', '1', '']
 '#__csi_tasks':
     name: '#__csi_tasks'
     from:
         - '#__csi_tasks'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [entry_id] }
-        engine: { Field: engine, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [engine] }
-        database: { Field: database, Type: char(15), 'Null': NO, Default: null, Extra: '', Comment: '', From: [database] }
-        title: { Field: title, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [title] }
-        keyword: { Field: keyword, Type: text, 'Null': YES, Default: null, Extra: '', Comment: '', From: [keyword] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        entry_id: { Field: entry_id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [entry_id] }
+        engine: { Field: engine, Type: char(15), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [engine] }
+        database: { Field: database, Type: char(15), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [database] }
+        title: { Field: title, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [title] }
+        keyword: { Field: keyword, Type: text, 'Null': 'YES', Default: null, Extra: '', Comment: '', From: [keyword] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [published] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_tasks', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_tasks', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
@@ -170,13 +528,13 @@
     from:
         - '#__csi_webpages'
     columns:
-        id: { Field: id, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: auto_increment, Comment: '', From: [id] }
-        url: { Field: url, Type: varchar(255), 'Null': NO, Default: null, Extra: '', Comment: '', From: [url] }
-        count: { Field: count, Type: 'int(11) unsigned', 'Null': NO, Default: null, Extra: '', Comment: '', From: [count] }
-        published: { Field: published, Type: tinyint(1), 'Null': NO, Default: '1', Extra: '', Comment: '', From: [published] }
-        created: { Field: created, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [created] }
-        modified: { Field: modified, Type: datetime, 'Null': NO, Default: null, Extra: '', Comment: '', From: [modified] }
-        params: { Field: params, Type: text, 'Null': NO, Default: null, Extra: '', Comment: '', From: [params] }
+        id: { Field: id, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: auto_increment, Comment: '', From: [id] }
+        url: { Field: url, Type: varchar(255), 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [url] }
+        count: { Field: count, Type: 'int(11) unsigned', 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [count] }
+        published: { Field: published, Type: tinyint(1), 'Null': 'NO', Default: '1', Extra: '', Comment: '', From: [published] }
+        created: { Field: created, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [created] }
+        modified: { Field: modified, Type: datetime, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [modified] }
+        params: { Field: params, Type: text, 'Null': 'NO', Default: null, Extra: '', Comment: '', From: [params] }
     index:
         - { Table: '#__csi_webpages', Non_unique: '0', Key_name: PRIMARY, Seq_in_index: '1', Column_name: id, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
         - { Table: '#__csi_webpages', Non_unique: '1', Key_name: cat_index, Seq_in_index: '1', Column_name: published, Sub_part: null, 'Null': '', Comment: '', Index_comment: '' }
