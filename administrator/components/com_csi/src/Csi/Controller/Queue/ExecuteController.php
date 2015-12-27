@@ -81,29 +81,34 @@ class ExecuteController extends Controller
 
 		try
 		{
-			$db->transactionStart(true);
-
 			// Set processing
 			$this->queue->state = 2;
 
 			$this->queueMapper->updateOne($this->queue);
 
+			$db->transactionStart(true);
+
 			// Do task
 			$result = $this->fetch('Csi', $this->queue->task, array('id' => $this->queue->id));
-
-			// Set finished
-			$this->queue->state = 3;
-
-			$this->queueMapper->updateOne($this->queue);
 		}
 		catch (\Exception $e)
 		{
 			$db->transactionRollback(true);
 
+			// Set Closed
+			$this->queue->state = 0;
+
+			$this->queueMapper->updateOne($this->queue);
+
 			throw $e;
 		}
 
 		$db->transactionCommit(true);
+
+		// Set finished
+		$this->queue->state = 3;
+
+		$this->queueMapper->updateOne($this->queue);
 
 		exit($result);
 	}
