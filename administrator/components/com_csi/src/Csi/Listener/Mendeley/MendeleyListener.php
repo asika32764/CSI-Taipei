@@ -181,7 +181,7 @@ class MendeleyListener extends DatabaseListener
 				continue;
 			}
 
-			$result->$field = with(new $class($task))->get();
+			$result->$field = with(new $class($task))->get() ? : 0;
 		}
 	}
 
