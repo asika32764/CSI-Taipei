@@ -123,15 +123,15 @@ class SocialListener extends DatabaseListener
 		$uri = new \JUri($page->url);
 		$host = strtolower($uri->getHost());
 
-		if (strpos($host, 'facebook.com'))
+		if (strpos($host, 'facebook.com') !== false)
 		{
 			$platform = SocialDatabase::FACEBOOK;
 		}
-		elseif (strpos($host, 'twitter.com'))
+		elseif (strpos($host, 'twitter.com') !== false)
 		{
 			$platform = SocialDatabase::TWITTER;
 		}
-		elseif (strpos($host, 'plus.google.com'))
+		elseif (strpos($host, 'plus.google.com') !== false)
 		{
 			$platform = SocialDatabase::GOOGLE_PLUS;
 		}
