@@ -14,7 +14,8 @@ $user = JFactory::getUser();
 
 foreach ($data->databaseResult as $title => $result)
 :
-	$task = $data->tasks[$i];
+	$task = \Windwalker\Helper\ArrayHelper::query($data->tasks, array('database' => $data->database));
+	$task = array_shift($task);
 
 	$nolinks = array(
 		'scholar',

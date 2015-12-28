@@ -121,27 +121,24 @@ class SocialListener extends DatabaseListener
 		$names = KeywordHelper::arrangeNames($params->get('name.chinese'), $params->get('name.eng'));
 
 		$uri = new \JUri($page->url);
+		$host = strtolower($uri->getHost());
 
-		switch (strtolower($uri->getHost()))
+		if (strpos($host, 'facebook.com'))
 		{
-			case 'www.facebook.com':
-			case 'facebook.com':
-				$platform = SocialDatabase::FACEBOOK;
-				break;
-
-			case 'www.twitter.com':
-			case 'twitter.com':
-				$platform = SocialDatabase::TWITTER;
-				break;
-
-			case 'plus.google.com':
-				$platform = SocialDatabase::GOOGLE_PLUS;
-				break;
-
-			default:
-				$platform = null;
+			$platform = SocialDatabase::FACEBOOK;
 		}
-
+		elseif (strpos($host, 'twitter.com'))
+		{
+			$platform = SocialDatabase::TWITTER;
+		}
+		elseif (strpos($host, 'plus.google.com'))
+		{
+			$platform = SocialDatabase::GOOGLE_PLUS;
+		}
+		else
+		{
+			$platform = null;
+		}
 
 		// Prepare states
 		$state->set('platform', $platform);

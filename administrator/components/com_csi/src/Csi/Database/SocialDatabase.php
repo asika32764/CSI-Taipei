@@ -70,7 +70,6 @@ class SocialDatabase extends AbstractDatabase
 		$content = null;
 
 		$platform = $this->state->get('platform');
-		$platform = static::TWITTER;
 
 		switch ($platform)
 		{
