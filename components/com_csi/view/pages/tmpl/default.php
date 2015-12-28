@@ -46,6 +46,10 @@ $container = $this->getContainer();
 		<div id="j-main-container">
 		<?php endif;?>
 
+			<h2>頁面總覽 <small class="text-mute"><?php echo $data->task->title; ?></small></h2>
+
+			<hr />
+
 			<?php echo with(new FileLayout('joomla.searchtools.default'))->render(array('view' => $this->data)); ?>
 
 			<?php echo $this->loadTemplate('table'); ?>
